@@ -1,0 +1,66 @@
+{% trans_default_domain 'messages' %}
+
+{% set saveActionUrl = legacyUrl(currentLegacyUrl, {'method': 'saveHeaderParameters'}, true) %}
+{{ form_start(form, {'action': saveActionUrl}) }}
+<table class="version_header header-table">
+    {{ form_widget(form.ecuId) }}
+    <tbody>
+    <tr>
+        <td>{{ 'ecu.sw.partials.form.header.twig.editParameter.swRevision' | trans }}</td>
+        <td>{{ form_widget(form.swVersion) }}</td>
+
+        <td>{{ 'ecu.sw.partials.form.header.twig.editParameter.protocol' | trans }}</td>
+        <td>{{ form_widget(form.protocol) }}</td>
+
+        <td>{{ 'ecu.sw.partials.form.header.twig.editParameter.request' | trans }}</td>
+        <td>0x{{ form_widget(form.request) }}</td>
+
+        <td>{{ 'ecu.sw.partials.form.header.twig.editParameter.response' | trans }}</td>
+        <td>0x{{ form_widget(form.response) }}</td>
+
+        <td>{{ 'common.diagnosticIdentifier' | trans }}</td>
+        <td>{{ form_widget(form.diagnosticIdentifier) }}</td>
+    </tr>
+    <tr>
+        <td>{{ 'ecu.sw.partials.form.header.twig.editParameter.info' | trans }}</td>
+        <td>{{ form_widget(form.info) }}</td>
+
+        <td>{{ 'ecu.sw.partials.form.header.twig.editParameter.status' | trans }}</td>
+        <td>{{ form_widget(form.status) }}</td>
+
+        <td>{{ 'ecu.sw.partials.form.header.twig.editParameter.windchill' | trans }}</td>
+        <td>{{ form_widget(form.windchillUrl) }}</td>
+
+        <td>{{ 'ecu.sw.partials.form.header.twig.editParameter.odxVersion' | trans }}</td>
+        <td>{{ form_widget(form.odxVersion) }}</td>
+
+        <td>{{ 'ecu.sw.partials.form.header.twig.editParameter.defaultEndian' | trans }}</td>
+        <td>{{ form_widget(form.bigEndian) }}</td>
+    </tr>
+
+    {% if form.subversionSuffix.vars.data is not null %}
+        <tr>
+            <td>{{ 'ecu.sw.partials.form.header.twig.editParameter.suffix' | trans }}</td>
+            <td>{{ form_widget(form.subversionSuffix) }}</td>
+            <td colspan="10"></td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>
+{{ form_end(form) }}
+
+{% block javascripts %}
+    <script>
+        $( document ).ready(function() {
+            $('#header_protocol').on('change', function() {
+                if ($(this).val() == 3) {
+                    $('#header_request').prop('disabled', true);
+                    $('#header_response').prop('disabled', true);
+                } else {
+                    $('#header_request').prop('disabled', false);
+                    $('#header_response').prop('disabled', false);
+                }
+            })
+        });
+    </script>
+{% endblock %}

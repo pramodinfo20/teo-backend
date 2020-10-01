@@ -1,0 +1,2317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rpt="http://openoffice.org/2005/report" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:drawooo="http://openoffice.org/2010/draw" xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:formx="urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0" xmlns:css3t="http://www.w3.org/TR/css3-text/" office:version="1.2" office:mimetype="application/vnd.oasis.opendocument.spreadsheet">
+ <office:meta><meta:initial-creator>Christian Herbertz</meta:initial-creator><meta:print-date>2018-07-16T06:32:31</meta:print-date><meta:creation-date>2018-07-06T13:46:59</meta:creation-date><dc:date>2018-07-27T15:16:47.998398004</dc:date><meta:editing-duration>PT4H34M16S</meta:editing-duration><meta:generator>LibreOffice/5.1.6.2$Linux_X86_64 LibreOffice_project/10m0$Build-2</meta:generator><meta:editing-cycles>22</meta:editing-cycles><meta:document-statistic meta:table-count="1" meta:cell-count="195" meta:object-count="2"/><meta:user-defined meta:name="AppVersion">15.0300</meta:user-defined><meta:user-defined meta:name="Company">StreetScooter GmbH</meta:user-defined><meta:user-defined meta:name="DocSecurity" meta:value-type="float">0</meta:user-defined><meta:user-defined meta:name="HyperlinksChanged" meta:value-type="boolean">false</meta:user-defined><meta:user-defined meta:name="LinksUpToDate" meta:value-type="boolean">false</meta:user-defined><meta:user-defined meta:name="ScaleCrop" meta:value-type="boolean">false</meta:user-defined><meta:user-defined meta:name="ShareDoc" meta:value-type="boolean">false</meta:user-defined></office:meta>
+ <office:settings>
+  <config:config-item-set config:name="ooo:view-settings">
+   <config:config-item config:name="VisibleAreaTop" config:type="int">0</config:config-item>
+   <config:config-item config:name="VisibleAreaLeft" config:type="int">0</config:config-item>
+   <config:config-item config:name="VisibleAreaWidth" config:type="int">23521</config:config-item>
+   <config:config-item config:name="VisibleAreaHeight" config:type="int">28490</config:config-item>
+   <config:config-item-map-indexed config:name="Views">
+    <config:config-item-map-entry>
+     <config:config-item config:name="ViewId" config:type="string">view1</config:config-item>
+     <config:config-item-map-named config:name="Tables">
+      <config:config-item-map-entry config:name="{{tabellenname}}">
+       <config:config-item config:name="CursorPositionX" config:type="int">10</config:config-item>
+       <config:config-item config:name="CursorPositionY" config:type="int">32</config:config-item>
+       <config:config-item config:name="HorizontalSplitMode" config:type="short">0</config:config-item>
+       <config:config-item config:name="VerticalSplitMode" config:type="short">0</config:config-item>
+       <config:config-item config:name="HorizontalSplitPosition" config:type="int">0</config:config-item>
+       <config:config-item config:name="VerticalSplitPosition" config:type="int">0</config:config-item>
+       <config:config-item config:name="ActiveSplitRange" config:type="short">2</config:config-item>
+       <config:config-item config:name="PositionLeft" config:type="int">0</config:config-item>
+       <config:config-item config:name="PositionRight" config:type="int">0</config:config-item>
+       <config:config-item config:name="PositionTop" config:type="int">9</config:config-item>
+       <config:config-item config:name="PositionBottom" config:type="int">3</config:config-item>
+       <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
+       <config:config-item config:name="ZoomValue" config:type="int">140</config:config-item>
+       <config:config-item config:name="PageViewZoomValue" config:type="int">60</config:config-item>
+       <config:config-item config:name="ShowGrid" config:type="boolean">true</config:config-item>
+      </config:config-item-map-entry>
+     </config:config-item-map-named>
+     <config:config-item config:name="ActiveTable" config:type="string">{{tabellenname}}</config:config-item>
+     <config:config-item config:name="HorizontalScrollbarWidth" config:type="int">1496</config:config-item>
+     <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
+     <config:config-item config:name="ZoomValue" config:type="int">140</config:config-item>
+     <config:config-item config:name="PageViewZoomValue" config:type="int">60</config:config-item>
+     <config:config-item config:name="ShowPageBreakPreview" config:type="boolean">false</config:config-item>
+     <config:config-item config:name="ShowZeroValues" config:type="boolean">true</config:config-item>
+     <config:config-item config:name="ShowNotes" config:type="boolean">true</config:config-item>
+     <config:config-item config:name="ShowGrid" config:type="boolean">true</config:config-item>
+     <config:config-item config:name="GridColor" config:type="long">12632256</config:config-item>
+     <config:config-item config:name="ShowPageBreaks" config:type="boolean">true</config:config-item>
+     <config:config-item config:name="HasColumnRowHeaders" config:type="boolean">true</config:config-item>
+     <config:config-item config:name="HasSheetTabs" config:type="boolean">true</config:config-item>
+     <config:config-item config:name="IsOutlineSymbolsSet" config:type="boolean">true</config:config-item>
+     <config:config-item config:name="IsValueHighlightingEnabled" config:type="boolean">false</config:config-item>
+     <config:config-item config:name="IsSnapToRaster" config:type="boolean">false</config:config-item>
+     <config:config-item config:name="RasterIsVisible" config:type="boolean">false</config:config-item>
+     <config:config-item config:name="RasterResolutionX" config:type="int">1000</config:config-item>
+     <config:config-item config:name="RasterResolutionY" config:type="int">1000</config:config-item>
+     <config:config-item config:name="RasterSubdivisionX" config:type="int">1</config:config-item>
+     <config:config-item config:name="RasterSubdivisionY" config:type="int">1</config:config-item>
+     <config:config-item config:name="IsRasterAxisSynchronized" config:type="boolean">true</config:config-item>
+    </config:config-item-map-entry>
+   </config:config-item-map-indexed>
+  </config:config-item-set>
+  <config:config-item-set config:name="ooo:configuration-settings">
+   <config:config-item config:name="SyntaxStringRef" config:type="short">2</config:config-item>
+   <config:config-item config:name="IsDocumentShared" config:type="boolean">false</config:config-item>
+   <config:config-item config:name="LoadReadonly" config:type="boolean">false</config:config-item>
+   <config:config-item config:name="AllowPrintJobCancel" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="UpdateFromTemplate" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="IsKernAsianPunctuation" config:type="boolean">false</config:config-item>
+   <config:config-item config:name="EmbedFonts" config:type="boolean">false</config:config-item>
+   <config:config-item config:name="IsSnapToRaster" config:type="boolean">false</config:config-item>
+   <config:config-item config:name="RasterResolutionX" config:type="int">1000</config:config-item>
+   <config:config-item config:name="RasterResolutionY" config:type="int">1000</config:config-item>
+   <config:config-item config:name="HasSheetTabs" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="IsRasterAxisSynchronized" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="ShowPageBreaks" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="ShowGrid" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="ShowNotes" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="IsOutlineSymbolsSet" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="ShowZeroValues" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="SaveVersionOnClose" config:type="boolean">false</config:config-item>
+   <config:config-item config:name="GridColor" config:type="long">12632256</config:config-item>
+   <config:config-item config:name="RasterIsVisible" config:type="boolean">false</config:config-item>
+   <config:config-item config:name="PrinterName" config:type="string">KONICA-MINOLTA-500-420-360</config:config-item>
+   <config:config-item-map-indexed config:name="ForbiddenCharacters">
+    <config:config-item-map-entry>
+     <config:config-item config:name="Language" config:type="string">de</config:config-item>
+     <config:config-item config:name="Country" config:type="string">DE</config:config-item>
+     <config:config-item config:name="Variant" config:type="string"/>
+     <config:config-item config:name="BeginLine" config:type="string"/>
+     <config:config-item config:name="EndLine" config:type="string"/>
+    </config:config-item-map-entry>
+   </config:config-item-map-indexed>
+   <config:config-item config:name="LinkUpdateMode" config:type="short">3</config:config-item>
+   <config:config-item config:name="RasterSubdivisionX" config:type="int">1</config:config-item>
+   <config:config-item config:name="HasColumnRowHeaders" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="RasterSubdivisionY" config:type="int">1</config:config-item>
+   <config:config-item config:name="AutoCalculate" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="PrinterSetup" config:type="base64Binary">sgH+/0tPTklDQS1NSU5PTFRBLTUwMC00MjAtMzYwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ1VQUzpLT05JQ0EtTUlOT0xUQS01MDAtNDIwLTM2MAAWAAMA1AAAAAAAAAAEAAhSAAAEdAAASm9iRGF0YSAxCnByaW50ZXI9S09OSUNBLU1JTk9MVEEtNTAwLTQyMC0zNjAKb3JpZW50YXRpb249UG9ydHJhaXQKY29waWVzPTEKY29sbGF0ZT1mYWxzZQptYXJnaW5kYWp1c3RtZW50PTAsMCwwLDAKY29sb3JkZXB0aD0yNApwc2xldmVsPTAKcGRmZGV2aWNlPTEKY29sb3JkZXZpY2U9MApQUERDb250ZXhEYXRhClBhZ2VTaXplOkE0AElucHV0U2xvdDpBdXRvU2VsZWN0AAASAENPTVBBVF9EVVBMRVhfTU9ERQ4ARFVQTEVYX1VOS05PV04=</config:config-item>
+   <config:config-item config:name="ApplyUserData" config:type="boolean">true</config:config-item>
+   <config:config-item config:name="CharacterCompressionType" config:type="short">0</config:config-item>
+  </config:config-item-set>
+ </office:settings>
+ <office:scripts>
+  <office:script script:language="ooo:Basic">
+   <ooo:libraries xmlns:ooo="http://openoffice.org/2004/office" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <ooo:library-embedded ooo:name="Standard"/>
+   </ooo:libraries>
+  </office:script>
+ </office:scripts>
+ <office:font-face-decls>
+  <style:font-face style:name="Calibri" svg:font-family="Calibri" style:font-family-generic="swiss"/>
+  <style:font-face style:name="Ubuntu Condensed" svg:font-family="&apos;Ubuntu Condensed&apos;" style:font-pitch="variable"/>
+  <style:font-face style:name="Liberation Sans" svg:font-family="&apos;Liberation Sans&apos;" style:font-family-generic="swiss" style:font-pitch="variable"/>
+  <style:font-face style:name="DejaVu Sans" svg:font-family="&apos;DejaVu Sans&apos;" style:font-family-generic="system" style:font-pitch="variable"/>
+  <style:font-face style:name="Noto Sans CJK SC Regular" svg:font-family="&apos;Noto Sans CJK SC Regular&apos;" style:font-family-generic="system" style:font-pitch="variable"/>
+ </office:font-face-decls>
+ <office:styles>
+  <style:default-style style:family="table-cell">
+   <style:paragraph-properties style:tab-stop-distance="12.5mm"/>
+   <style:text-properties style:font-name="Liberation Sans" fo:language="de" fo:country="DE" style:font-name-asian="DejaVu Sans" style:language-asian="zh" style:country-asian="CN" style:font-name-complex="DejaVu Sans" style:language-complex="hi" style:country-complex="IN"/>
+  </style:default-style>
+  <style:default-style style:family="graphic">
+   <style:graphic-properties svg:stroke-color="#3465a4" draw:fill-color="#729fcf" fo:wrap-option="no-wrap" draw:shadow-offset-x="3mm" draw:shadow-offset-y="3mm"/>
+   <style:paragraph-properties style:text-autospace="ideograph-alpha" style:punctuation-wrap="simple" style:line-break="strict" style:writing-mode="page" style:font-independent-line-spacing="false">
+    <style:tab-stops/>
+   </style:paragraph-properties>
+   <style:text-properties style:use-window-font-color="true" fo:font-family="&apos;Liberation Serif&apos;" style:font-family-generic="roman" style:font-pitch="variable" fo:font-size="12pt" fo:language="de" fo:country="DE" style:letter-kerning="true" style:font-name-asian="DejaVu Sans" style:font-size-asian="12pt" style:language-asian="zh" style:country-asian="CN" style:font-name-complex="DejaVu Sans" style:font-size-complex="12pt" style:language-complex="hi" style:country-complex="IN"/>
+  </style:default-style>
+  <number:number-style style:name="N0">
+   <number:number number:min-integer-digits="1"/>
+  </number:number-style>
+  <number:currency-style style:name="N108P0" style:volatile="true">
+   <number:number number:decimal-places="2" loext:min-decimal-places="2" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text> </number:text>
+   <number:currency-symbol number:language="de" number:country="DE">€</number:currency-symbol>
+  </number:currency-style>
+  <number:currency-style style:name="N108">
+   <style:text-properties fo:color="#ff0000"/>
+   <number:text>-</number:text>
+   <number:number number:decimal-places="2" loext:min-decimal-places="2" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text> </number:text>
+   <number:currency-symbol number:language="de" number:country="DE">€</number:currency-symbol>
+   <style:map style:condition="value()&gt;=0" style:apply-style-name="N108P0"/>
+  </number:currency-style>
+  <number:time-style style:name="N109">
+   <number:minutes number:style="long"/>
+   <number:text>:</number:text>
+   <number:seconds number:style="long"/>
+  </number:time-style>
+  <number:time-style style:name="N110" number:truncate-on-overflow="false">
+   <number:hours/>
+   <number:text>:</number:text>
+   <number:minutes number:style="long"/>
+   <number:text>:</number:text>
+   <number:seconds number:style="long"/>
+  </number:time-style>
+  <number:time-style style:name="N111">
+   <number:minutes number:style="long"/>
+   <number:text>:</number:text>
+   <number:seconds number:style="long" number:decimal-places="1"/>
+  </number:time-style>
+  <number:number-style style:name="N112">
+   <number:scientific-number number:decimal-places="1" loext:min-decimal-places="1" number:min-integer-digits="1" number:min-exponent-digits="1" loext:exponent-interval="3" loext:forced-exponent-sign="true"/>
+  </number:number-style>
+  <number:number-style style:name="N10108P0" style:volatile="true" number:language="de" number:country="DE">
+   <number:number number:decimal-places="0" loext:min-decimal-places="0" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text> €</number:text>
+  </number:number-style>
+  <number:number-style style:name="N10108" number:language="de" number:country="DE">
+   <number:text>-</number:text>
+   <number:number number:decimal-places="0" loext:min-decimal-places="0" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text> €</number:text>
+   <style:map style:condition="value()&gt;=0" style:apply-style-name="N10108P0"/>
+  </number:number-style>
+  <number:number-style style:name="N10109P0" style:volatile="true" number:language="de" number:country="DE">
+   <number:number number:decimal-places="0" loext:min-decimal-places="0" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text> €</number:text>
+  </number:number-style>
+  <number:number-style style:name="N10109" number:language="de" number:country="DE">
+   <style:text-properties fo:color="#ff0000"/>
+   <number:text>-</number:text>
+   <number:number number:decimal-places="0" loext:min-decimal-places="0" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text> €</number:text>
+   <style:map style:condition="value()&gt;=0" style:apply-style-name="N10109P0"/>
+  </number:number-style>
+  <number:number-style style:name="N10111P0" style:volatile="true" number:language="de" number:country="DE">
+   <number:number number:decimal-places="2" loext:min-decimal-places="2" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text> €</number:text>
+  </number:number-style>
+  <number:number-style style:name="N10111" number:language="de" number:country="DE">
+   <number:text>-</number:text>
+   <number:number number:decimal-places="2" loext:min-decimal-places="2" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text> €</number:text>
+   <style:map style:condition="value()&gt;=0" style:apply-style-name="N10111P0"/>
+  </number:number-style>
+  <number:number-style style:name="N10112P0" style:volatile="true" number:language="de" number:country="DE">
+   <number:number number:decimal-places="2" loext:min-decimal-places="2" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text> €</number:text>
+  </number:number-style>
+  <number:number-style style:name="N10112" number:language="de" number:country="DE">
+   <style:text-properties fo:color="#ff0000"/>
+   <number:text>-</number:text>
+   <number:number number:decimal-places="2" loext:min-decimal-places="2" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text> €</number:text>
+   <style:map style:condition="value()&gt;=0" style:apply-style-name="N10112P0"/>
+  </number:number-style>
+  <number:date-style style:name="N10113" number:language="de" number:country="DE">
+   <number:day number:style="long"/>
+   <number:text>. </number:text>
+   <number:month number:textual="true"/>
+   <number:text> </number:text>
+   <number:year/>
+  </number:date-style>
+  <number:date-style style:name="N10114" number:language="de" number:country="DE">
+   <number:day number:style="long"/>
+   <number:text>. </number:text>
+   <number:month number:textual="true"/>
+  </number:date-style>
+  <number:date-style style:name="N10115" number:language="de" number:country="DE">
+   <number:month number:textual="true"/>
+   <number:text> </number:text>
+   <number:year/>
+  </number:date-style>
+  <number:time-style style:name="N10116" number:language="de" number:country="DE">
+   <number:hours/>
+   <number:text>:</number:text>
+   <number:minutes number:style="long"/>
+   <number:text> </number:text>
+   <number:am-pm/>
+  </number:time-style>
+  <number:time-style style:name="N10117" number:language="de" number:country="DE">
+   <number:hours/>
+   <number:text>:</number:text>
+   <number:minutes number:style="long"/>
+   <number:text>:</number:text>
+   <number:seconds number:style="long"/>
+   <number:text> </number:text>
+   <number:am-pm/>
+  </number:time-style>
+  <number:date-style style:name="N10118" number:language="de" number:country="DE">
+   <number:day number:style="long"/>
+   <number:text>.</number:text>
+   <number:month number:style="long"/>
+   <number:text>.</number:text>
+   <number:year number:style="long"/>
+   <number:text> </number:text>
+   <number:hours number:style="long"/>
+   <number:text>:</number:text>
+   <number:minutes number:style="long"/>
+  </number:date-style>
+  <number:number-style style:name="N10120P0" style:volatile="true" number:language="de" number:country="DE">
+   <number:number number:decimal-places="0" loext:min-decimal-places="0" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text>   </number:text>
+  </number:number-style>
+  <number:number-style style:name="N10120" number:language="de" number:country="DE">
+   <number:text>-</number:text>
+   <number:number number:decimal-places="0" loext:min-decimal-places="0" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text>   </number:text>
+   <style:map style:condition="value()&gt;=0" style:apply-style-name="N10120P0"/>
+  </number:number-style>
+  <number:number-style style:name="N10121P0" style:volatile="true" number:language="de" number:country="DE">
+   <number:number number:decimal-places="0" loext:min-decimal-places="0" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text>   </number:text>
+  </number:number-style>
+  <number:number-style style:name="N10121" number:language="de" number:country="DE">
+   <style:text-properties fo:color="#ff0000"/>
+   <number:text>-</number:text>
+   <number:number number:decimal-places="0" loext:min-decimal-places="0" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text>   </number:text>
+   <style:map style:condition="value()&gt;=0" style:apply-style-name="N10121P0"/>
+  </number:number-style>
+  <number:number-style style:name="N10123P0" style:volatile="true" number:language="de" number:country="DE">
+   <number:number number:decimal-places="2" loext:min-decimal-places="2" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text>   </number:text>
+  </number:number-style>
+  <number:number-style style:name="N10123" number:language="de" number:country="DE">
+   <number:text>-</number:text>
+   <number:number number:decimal-places="2" loext:min-decimal-places="2" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text>   </number:text>
+   <style:map style:condition="value()&gt;=0" style:apply-style-name="N10123P0"/>
+  </number:number-style>
+  <number:number-style style:name="N10124P0" style:volatile="true" number:language="de" number:country="DE">
+   <number:number number:decimal-places="2" loext:min-decimal-places="2" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text>   </number:text>
+  </number:number-style>
+  <number:number-style style:name="N10124" number:language="de" number:country="DE">
+   <style:text-properties fo:color="#ff0000"/>
+   <number:text>-</number:text>
+   <number:number number:decimal-places="2" loext:min-decimal-places="2" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text>   </number:text>
+   <style:map style:condition="value()&gt;=0" style:apply-style-name="N10124P0"/>
+  </number:number-style>
+  <number:number-style style:name="N10128P0" style:volatile="true" number:language="de" number:country="DE">
+   <loext:fill-character> </loext:fill-character>
+   <number:number number:decimal-places="0" loext:min-decimal-places="0" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text>    </number:text>
+  </number:number-style>
+  <number:number-style style:name="N10128P1" style:volatile="true" number:language="de" number:country="DE">
+   <loext:text>-</loext:text>
+   <loext:fill-character> </loext:fill-character>
+   <number:number number:decimal-places="0" loext:min-decimal-places="0" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text>    </number:text>
+  </number:number-style>
+  <number:number-style style:name="N10128P2" style:volatile="true" number:language="de" number:country="DE">
+   <loext:fill-character> </loext:fill-character>
+   <number:text>-    </number:text>
+  </number:number-style>
+  <number:text-style style:name="N10128" number:language="de" number:country="DE">
+   <number:text-content/>
+   <number:text> </number:text>
+   <style:map style:condition="value()&gt;0" style:apply-style-name="N10128P0"/>
+   <style:map style:condition="value()&lt;0" style:apply-style-name="N10128P1"/>
+   <style:map style:condition="value()=0" style:apply-style-name="N10128P2"/>
+  </number:text-style>
+  <number:number-style style:name="N10132P0" style:volatile="true" number:language="de" number:country="DE">
+   <loext:fill-character> </loext:fill-character>
+   <number:number number:decimal-places="0" loext:min-decimal-places="0" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text> € </number:text>
+  </number:number-style>
+  <number:number-style style:name="N10132P1" style:volatile="true" number:language="de" number:country="DE">
+   <loext:text>-</loext:text>
+   <loext:fill-character> </loext:fill-character>
+   <number:number number:decimal-places="0" loext:min-decimal-places="0" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text> € </number:text>
+  </number:number-style>
+  <number:number-style style:name="N10132P2" style:volatile="true" number:language="de" number:country="DE">
+   <loext:fill-character> </loext:fill-character>
+   <number:text>- € </number:text>
+  </number:number-style>
+  <number:text-style style:name="N10132" number:language="de" number:country="DE">
+   <number:text-content/>
+   <number:text> </number:text>
+   <style:map style:condition="value()&gt;0" style:apply-style-name="N10132P0"/>
+   <style:map style:condition="value()&lt;0" style:apply-style-name="N10132P1"/>
+   <style:map style:condition="value()=0" style:apply-style-name="N10132P2"/>
+  </number:text-style>
+  <number:number-style style:name="N10136P0" style:volatile="true" number:language="de" number:country="DE">
+   <loext:fill-character> </loext:fill-character>
+   <number:number number:decimal-places="2" loext:min-decimal-places="2" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text>    </number:text>
+  </number:number-style>
+  <number:number-style style:name="N10136P1" style:volatile="true" number:language="de" number:country="DE">
+   <loext:text>-</loext:text>
+   <loext:fill-character> </loext:fill-character>
+   <number:number number:decimal-places="2" loext:min-decimal-places="2" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text>    </number:text>
+  </number:number-style>
+  <number:number-style style:name="N10136P2" style:volatile="true" number:language="de" number:country="DE">
+   <loext:fill-character> </loext:fill-character>
+   <number:text>-</number:text>
+   <number:number number:decimal-places="0" loext:min-decimal-places="0" number:min-integer-digits="0"/>
+   <number:text>    </number:text>
+  </number:number-style>
+  <number:text-style style:name="N10136" number:language="de" number:country="DE">
+   <number:text-content/>
+   <number:text> </number:text>
+   <style:map style:condition="value()&gt;0" style:apply-style-name="N10136P0"/>
+   <style:map style:condition="value()&lt;0" style:apply-style-name="N10136P1"/>
+   <style:map style:condition="value()=0" style:apply-style-name="N10136P2"/>
+  </number:text-style>
+  <number:number-style style:name="N10140P0" style:volatile="true" number:language="de" number:country="DE">
+   <loext:fill-character> </loext:fill-character>
+   <number:number number:decimal-places="2" loext:min-decimal-places="2" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text> € </number:text>
+  </number:number-style>
+  <number:number-style style:name="N10140P1" style:volatile="true" number:language="de" number:country="DE">
+   <loext:text>-</loext:text>
+   <loext:fill-character> </loext:fill-character>
+   <number:number number:decimal-places="2" loext:min-decimal-places="2" number:min-integer-digits="1" number:grouping="true"/>
+   <number:text> € </number:text>
+  </number:number-style>
+  <number:number-style style:name="N10140P2" style:volatile="true" number:language="de" number:country="DE">
+   <loext:fill-character> </loext:fill-character>
+   <number:text>-</number:text>
+   <number:number number:decimal-places="0" loext:min-decimal-places="0" number:min-integer-digits="0"/>
+   <number:text> € </number:text>
+  </number:number-style>
+  <number:text-style style:name="N10140" number:language="de" number:country="DE">
+   <number:text-content/>
+   <number:text> </number:text>
+   <style:map style:condition="value()&gt;0" style:apply-style-name="N10140P0"/>
+   <style:map style:condition="value()&lt;0" style:apply-style-name="N10140P1"/>
+   <style:map style:condition="value()=0" style:apply-style-name="N10140P2"/>
+  </number:text-style>
+  <style:style style:name="Default" style:family="table-cell">
+   <style:table-cell-properties style:rotation-align="none" style:vertical-align="bottom"/>
+   <style:text-properties fo:color="#000000" style:font-name="Calibri" fo:font-family="Calibri" style:font-family-generic="swiss" fo:font-size="11pt" style:font-name-asian="Noto Sans CJK SC Regular" style:font-family-asian="&apos;Noto Sans CJK SC Regular&apos;" style:font-family-generic-asian="system" style:font-pitch-asian="variable" style:font-size-asian="11pt" style:font-name-complex="Calibri" style:font-family-complex="Calibri" style:font-family-generic-complex="swiss" style:font-size-complex="11pt"/>
+  </style:style>
+  <style:style style:name="Result" style:family="table-cell" style:parent-style-name="Default">
+   <style:text-properties fo:font-style="italic" style:text-underline-style="solid" style:text-underline-width="auto" style:text-underline-color="font-color" fo:font-weight="bold"/>
+  </style:style>
+  <style:style style:name="Result2" style:family="table-cell" style:parent-style-name="Result" style:data-style-name="N108"/>
+  <style:style style:name="Heading" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties style:text-align-source="fix" style:repeat-content="false"/>
+   <style:paragraph-properties fo:text-align="center"/>
+   <style:text-properties fo:font-size="16pt" fo:font-style="italic" fo:font-weight="bold"/>
+  </style:style>
+  <style:style style:name="Heading1" style:family="table-cell" style:parent-style-name="Heading">
+   <style:table-cell-properties style:rotation-angle="90"/>
+  </style:style>
+  <draw:stroke-dash draw:name="Fine_20_Dashed" draw:display-name="Fine Dashed" draw:style="rect" draw:dots1="1" draw:dots1-length="197%" draw:distance="197%"/>
+  <draw:stroke-dash draw:name="Ultrafine_20_Dashed" draw:display-name="Ultrafine Dashed" draw:style="rect" draw:dots1="1" draw:dots1-length="0.51mm" draw:dots2="1" draw:dots2-length="0.51mm" draw:distance="0.51mm"/>
+ </office:styles>
+ <office:automatic-styles>
+  <style:style style:name="co1" style:family="table-column">
+   <style:table-column-properties fo:break-before="auto" style:column-width="9mm"/>
+  </style:style>
+  <style:style style:name="co2" style:family="table-column">
+   <style:table-column-properties fo:break-before="auto" style:column-width="28.31mm"/>
+  </style:style>
+  <style:style style:name="ro1" style:family="table-row">
+   <style:table-row-properties style:row-height="5.29mm" fo:break-before="auto" style:use-optimal-row-height="false"/>
+  </style:style>
+  <style:style style:name="ro2" style:family="table-row">
+   <style:table-row-properties style:row-height="4.23mm" fo:break-before="auto" style:use-optimal-row-height="false"/>
+  </style:style>
+  <style:style style:name="ro3" style:family="table-row">
+   <style:table-row-properties style:row-height="4.87mm" fo:break-before="auto" style:use-optimal-row-height="true"/>
+  </style:style>
+  <style:style style:name="ta1" style:family="table" style:master-page-name="PageStyle_5f_KS_20_Unvollständige_20_Fzg._20_N1">
+   <style:table-properties table:display="true" style:writing-mode="lr-tb"/>
+  </style:style>
+  <number:text-style style:name="N100">
+   <number:text-content/>
+  </number:text-style>
+  <style:style style:name="ce1" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="value-type" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border="none" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties style:font-name="Ubuntu Condensed"/>
+  </style:style>
+  <style:style style:name="ce2" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border="none" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="start" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="10pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-name-asian="Noto Sans CJK SC Regular" style:font-size-asian="10pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="10pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce3" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N100">
+   <style:table-cell-properties style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="value-type" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border="none" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce4" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:background-color="transparent"/>
+   <style:text-properties style:font-name="Ubuntu Condensed"/>
+  </style:style>
+  <style:style style:name="ce5" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="0.74pt solid #000000" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="value-type" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border-left="0.74pt solid #ffffff" style:direction="ltr" fo:border-right="0.74pt solid #ffffff" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" fo:border-top="0.74pt solid #ffffff" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce6" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="value-type" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border="0.74pt solid #ffffff" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties style:font-name="Ubuntu Condensed"/>
+  </style:style>
+  <style:style style:name="ce7" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border="none" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="start" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="10pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="10pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="10pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce8" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="0.74pt solid #ffffff" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="value-type" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border-left="none" style:direction="ltr" fo:border-right="none" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" fo:border-top="0.74pt solid #ffffff" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties style:font-name="Ubuntu Condensed"/>
+  </style:style>
+  <style:style style:name="ce9" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N100">
+   <style:table-cell-properties fo:background-color="#dddddd" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:wrap-option="no-wrap" fo:border="0.74pt solid #ffffff" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="start" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce10" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="value-type" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border="none" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce11" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N100">
+   <style:table-cell-properties style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border="none" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="start" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce12" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border="none" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="start" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties style:use-window-font-color="true" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="10pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="10pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="10pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce13" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="wrap" fo:border="none" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="middle" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="center" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="11pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="bold" style:font-size-asian="11pt" style:font-style-asian="normal" style:font-weight-asian="bold" style:font-name-complex="Calibri" style:font-size-complex="11pt" style:font-style-complex="normal" style:font-weight-complex="bold"/>
+  </style:style>
+  <style:style style:name="ce14" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="wrap" fo:border="none" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="middle" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="center" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="12pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="bold" style:font-size-asian="12pt" style:font-style-asian="normal" style:font-weight-asian="bold" style:font-name-complex="Calibri" style:font-size-complex="12pt" style:font-style-complex="normal" style:font-weight-complex="bold"/>
+  </style:style>
+  <style:style style:name="ce15" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N100">
+   <style:table-cell-properties fo:background-color="#dddddd" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="value-type" style:repeat-content="false" fo:wrap-option="no-wrap" fo:border="none" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce16" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="0.74pt solid #ffffff" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="value-type" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border-left="none" style:direction="ltr" fo:border-right="0.74pt solid #ffffff" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" fo:border-top="0.74pt solid #ffffff" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties style:font-name="Ubuntu Condensed"/>
+  </style:style>
+  <style:style style:name="ce17" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N100">
+   <style:table-cell-properties style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border="none" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="center" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce18" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:background-color="transparent"/>
+   <style:text-properties fo:color="#000000" style:font-name="Ubuntu Condensed"/>
+  </style:style>
+  <style:style style:name="ce19" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N100">
+   <style:table-cell-properties fo:background-color="#dddddd" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:wrap-option="no-wrap" fo:border="none" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="start" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce20" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="value-type" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border="0.74pt solid #ffffff" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="10pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="10pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="10pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce21" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N100">
+   <style:table-cell-properties fo:background-color="#dddddd" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="value-type" style:repeat-content="false" fo:wrap-option="no-wrap" fo:border="0.74pt solid #ffffff" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce22" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N100">
+   <style:table-cell-properties fo:background-color="#dddddd" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:wrap-option="no-wrap" fo:border="0.74pt solid #ffffff" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="start" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-name-asian="Noto Sans CJK SC Regular" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce23" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:background-color="#dddddd" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:wrap-option="no-wrap" fo:border="0.74pt solid #ffffff" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="start" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce24" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border="none" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="center" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce25" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="value-type" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border="none" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="11pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="11pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="11pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce26" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N100">
+   <style:table-cell-properties fo:background-color="#dddddd" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="value-type" style:repeat-content="false" fo:wrap-option="no-wrap" fo:border="0.74pt solid #ffffff" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-name-asian="Noto Sans CJK SC Regular" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce27" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N100">
+   <style:table-cell-properties style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="value-type" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border="0.74pt solid #ffffff" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce28" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N100">
+   <style:table-cell-properties style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border="0.74pt solid #ffffff" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="start" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce29" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N100">
+   <style:table-cell-properties style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border="0.74pt solid #ffffff" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="center" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce30" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border="none" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="start" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce31" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:background-color="#dddddd" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:wrap-option="no-wrap" fo:border="0.74pt solid #ffffff" style:direction="ltr" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="center" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce32" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N100">
+   <style:table-cell-properties fo:border-bottom="0.74pt solid #ffffff" fo:background-color="#dddddd" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:wrap-option="no-wrap" fo:border-left="0.74pt solid #ffffff" style:direction="ltr" fo:border-right="none" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" fo:border-top="0.74pt solid #ffffff" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="start" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-name-asian="Noto Sans CJK SC Regular" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce33" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N100">
+   <style:table-cell-properties fo:border-bottom="0.74pt solid #ffffff" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border-left="none" style:direction="ltr" fo:border-right="none" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" fo:border-top="0.74pt solid #ffffff" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="start" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce34" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N100">
+   <style:table-cell-properties fo:border-bottom="0.74pt solid #ffffff" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="value-type" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border-left="none" style:direction="ltr" fo:border-right="none" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" fo:border-top="0.74pt solid #ffffff" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce35" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N100">
+   <style:table-cell-properties fo:border-bottom="0.74pt solid #ffffff" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="value-type" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border-left="none" style:direction="ltr" fo:border-right="0.74pt solid #ffffff" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" fo:border-top="0.74pt solid #ffffff" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce36" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N100">
+   <style:table-cell-properties fo:border-bottom="0.74pt solid #ffffff" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border-left="none" style:direction="ltr" fo:border-right="0.74pt solid #ffffff" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" fo:border-top="0.74pt solid #ffffff" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="start" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties fo:color="#000000" style:text-outline="false" style:text-line-through-style="none" style:text-line-through-type="none" style:font-name="Ubuntu Condensed" fo:font-size="9pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline-style="none" fo:font-weight="normal" style:font-size-asian="9pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Calibri" style:font-size-complex="9pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce37" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="0.74pt solid #ffffff" style:diagonal-bl-tr="none" style:diagonal-tl-br="none" style:text-align-source="fix" style:repeat-content="false" fo:background-color="transparent" fo:wrap-option="no-wrap" fo:border-left="0.74pt solid #ffffff" style:direction="ltr" fo:border-right="none" style:rotation-angle="0" style:rotation-align="none" style:shrink-to-fit="false" fo:border-top="0.74pt solid #ffffff" style:vertical-align="top" loext:vertical-justify="auto"/>
+   <style:paragraph-properties fo:text-align="end" css3t:text-justify="auto" fo:margin-left="0mm" style:writing-mode="page"/>
+   <style:text-properties style:font-name="Ubuntu Condensed"/>
+  </style:style>
+  <style:style style:name="gr1" style:family="graphic">
+   <style:graphic-properties draw:stroke="none" draw:stroke-dash="Ultrafine_20_Dashed" svg:stroke-color="#000000" draw:fill="none" draw:fill-color="#ffffff" draw:opacity="100%" fo:min-height="48.74mm" draw:shadow="visible" draw:shadow-opacity="31%"/>
+  </style:style>
+  <style:style style:name="gr2" style:family="graphic">
+   <style:graphic-properties draw:stroke="none" svg:stroke-width="0mm" draw:fill="none" draw:textarea-horizontal-align="center" draw:textarea-vertical-align="top" draw:auto-grow-height="false" fo:padding-top="1.25mm" fo:padding-bottom="1.25mm" fo:padding-left="2.5mm" fo:padding-right="2.5mm" fo:wrap-option="wrap" draw:color-mode="standard" draw:luminance="0%" draw:contrast="0%" draw:gamma="100%" draw:red="0%" draw:green="0%" draw:blue="0%" fo:clip="rect(0mm, 0mm, 0mm, 0mm)" draw:image-opacity="100%" style:mirror="none"/>
+  </style:style>
+  <style:page-layout style:name="pm1">
+   <style:page-layout-properties style:first-page-number="continue" style:writing-mode="lr-tb"/>
+   <style:header-style>
+    <style:header-footer-properties fo:min-height="7.5mm" fo:margin-left="0mm" fo:margin-right="0mm" fo:margin-bottom="2.5mm"/>
+   </style:header-style>
+   <style:footer-style>
+    <style:header-footer-properties fo:min-height="7.5mm" fo:margin-left="0mm" fo:margin-right="0mm" fo:margin-top="2.5mm"/>
+   </style:footer-style>
+  </style:page-layout>
+  <style:page-layout style:name="pm2">
+   <style:page-layout-properties style:writing-mode="lr-tb"/>
+   <style:header-style>
+    <style:header-footer-properties fo:min-height="7.5mm" fo:margin-left="0mm" fo:margin-right="0mm" fo:margin-bottom="2.5mm" fo:border="2.49pt solid #000000" fo:padding="0.18mm" fo:background-color="#c0c0c0">
+     <style:background-image/>
+    </style:header-footer-properties>
+   </style:header-style>
+   <style:footer-style>
+    <style:header-footer-properties fo:min-height="7.5mm" fo:margin-left="0mm" fo:margin-right="0mm" fo:margin-top="2.5mm" fo:border="2.49pt solid #000000" fo:padding="0.18mm" fo:background-color="#c0c0c0">
+     <style:background-image/>
+    </style:header-footer-properties>
+   </style:footer-style>
+  </style:page-layout>
+  <style:page-layout style:name="pm3">
+   <style:page-layout-properties fo:page-width="210.01mm" fo:page-height="297mm" style:num-format="1" style:print-orientation="portrait" fo:margin-top="10mm" fo:margin-bottom="10mm" fo:margin-left="17.99mm" fo:margin-right="17.99mm" style:shadow="none" fo:background-color="transparent" style:print-page-order="ttb" style:first-page-number="continue" loext:scale-to-X="1" loext:scale-to-Y="1" style:table-centering="both" style:writing-mode="lr-tb" style:print="charts drawings objects zero-values">
+    <style:background-image/>
+   </style:page-layout-properties>
+   <style:header-style>
+    <style:header-footer-properties fo:min-height="4.99mm" fo:margin-left="0mm" fo:margin-right="0mm" fo:margin-bottom="0mm"/>
+   </style:header-style>
+   <style:footer-style>
+    <style:header-footer-properties fo:min-height="4.99mm" fo:margin-left="0mm" fo:margin-right="0mm" fo:margin-top="0mm"/>
+   </style:footer-style>
+  </style:page-layout>
+  <style:page-layout style:name="pm4">
+   <style:page-layout-properties fo:page-width="210.01mm" fo:page-height="297mm" style:num-format="1" style:print-orientation="portrait" fo:margin-top="10mm" fo:margin-bottom="10mm" fo:margin-left="17.99mm" fo:margin-right="17.99mm" style:print-page-order="ttb" style:first-page-number="continue" style:scale-to="100%" style:table-centering="both" style:writing-mode="lr-tb" style:print="charts drawings objects zero-values"/>
+   <style:header-style>
+    <style:header-footer-properties fo:min-height="7.5mm" fo:margin-left="0mm" fo:margin-right="0mm" fo:margin-bottom="2.5mm"/>
+   </style:header-style>
+   <style:footer-style>
+    <style:header-footer-properties fo:min-height="7.5mm" fo:margin-left="0mm" fo:margin-right="0mm" fo:margin-top="2.5mm"/>
+   </style:footer-style>
+  </style:page-layout>
+  <style:page-layout style:name="pm5">
+   <style:page-layout-properties fo:page-width="210.01mm" fo:page-height="297mm" style:num-format="1" style:print-orientation="portrait" fo:margin-top="10mm" fo:margin-bottom="10mm" fo:margin-left="17.99mm" fo:margin-right="17.99mm" style:print-page-order="ttb" style:first-page-number="continue" style:scale-to="100%" style:writing-mode="lr-tb" style:print="charts drawings objects zero-values"/>
+   <style:header-style>
+    <style:header-footer-properties fo:min-height="7.5mm" fo:margin-left="0mm" fo:margin-right="0mm" fo:margin-bottom="2.5mm"/>
+   </style:header-style>
+   <style:footer-style>
+    <style:header-footer-properties fo:min-height="7.5mm" fo:margin-left="0mm" fo:margin-right="0mm" fo:margin-top="2.5mm"/>
+   </style:footer-style>
+  </style:page-layout>
+  <style:style style:name="P1" style:family="paragraph">
+   <loext:graphic-properties draw:fill="none" draw:fill-color="#ffffff" draw:opacity="100%"/>
+   <style:text-properties fo:color="#cccccc" style:font-name="Liberation Sans" fo:font-size="96pt" fo:font-weight="bold" style:font-size-asian="96pt" style:font-weight-asian="bold" style:font-size-complex="96pt" style:font-weight-complex="bold"/>
+  </style:style>
+  <style:style style:name="P2" style:family="paragraph">
+   <loext:graphic-properties draw:fill="none"/>
+   <style:paragraph-properties fo:text-align="start"/>
+   <style:text-properties fo:font-size="18pt"/>
+  </style:style>
+  <style:style style:name="T1" style:family="text">
+   <style:text-properties fo:color="#cccccc" style:font-name="Liberation Sans" fo:font-size="96pt" fo:font-weight="bold" style:font-size-asian="96pt" style:font-weight-asian="bold" style:font-size-complex="96pt" style:font-weight-complex="bold"/>
+  </style:style>
+  <style:style style:name="T2" style:family="text">
+   <style:text-properties fo:color="#000000" style:font-name="Calibri" fo:font-size="10pt" fo:font-weight="bold" style:text-underline-style="none" style:text-underline-color="font-color" style:text-line-through-type="none" fo:font-style="normal" style:text-outline="false" fo:text-shadow="none" style:text-position="0%" style:font-name-complex="Calibri" style:font-size-asian="10pt" style:font-size-complex="10pt" style:font-weight-asian="bold" style:font-weight-complex="bold" style:font-style-asian="normal" style:font-style-complex="normal"/>
+  </style:style>
+ </office:automatic-styles>
+ <office:master-styles>
+  <style:master-page style:name="Default" style:page-layout-name="pm1">
+   <style:header>
+    <text:p><text:sheet-name>???</text:sheet-name></text:p>
+   </style:header>
+   <style:header-left style:display="false"/>
+   <style:footer>
+    <text:p>Seite <text:page-number>1</text:page-number></text:p>
+   </style:footer>
+   <style:footer-left style:display="false"/>
+  </style:master-page>
+  <style:master-page style:name="Report" style:page-layout-name="pm2">
+   <style:header>
+    <style:region-left>
+     <text:p><text:sheet-name>???</text:sheet-name> (<text:title>???</text:title>)</text:p>
+    </style:region-left>
+    <style:region-right>
+     <text:p><text:date style:data-style-name="N2" text:date-value="2018-07-27">00.00.0000</text:date>, <text:time style:data-style-name="N2" text:time-value="14:54:09.322503217">00:00:00</text:time></text:p>
+    </style:region-right>
+   </style:header>
+   <style:header-left style:display="false"/>
+   <style:footer>
+    <text:p>Seite <text:page-number>1</text:page-number> / <text:page-count>99</text:page-count></text:p>
+   </style:footer>
+   <style:footer-left style:display="false"/>
+  </style:master-page>
+  <style:master-page style:name="PageStyle_5f_KS_20_Unvollständige_20_Fzg._20_N1" style:display-name="PageStyle_KS Unvollständige Fzg. N1" style:page-layout-name="pm3">
+   <style:header style:display="false"/>
+   <style:header-left style:display="false"/>
+   <style:footer style:display="false"/>
+   <style:footer-left style:display="false"/>
+  </style:master-page>
+  <style:master-page style:name="PageStyle_5f_B16-BAAEX11-X21ABABC" style:display-name="PageStyle_B16-BAAEX11-X21ABABC" style:page-layout-name="pm4">
+   <style:header style:display="false"/>
+   <style:header-left style:display="false"/>
+   <style:footer style:display="false"/>
+   <style:footer-left style:display="false"/>
+  </style:master-page>
+  <style:master-page style:name="PageStyle_5f_Vervollständigte_20_Fzg._20_N2" style:display-name="PageStyle_Vervollständigte Fzg. N2" style:page-layout-name="pm5">
+   <style:header style:display="false"/>
+   <style:header-left style:display="false"/>
+   <style:footer style:display="false"/>
+   <style:footer-left style:display="false"/>
+  </style:master-page>
+  <style:master-page style:name="PageStyle_5f_KS_20_Vollständige_20_Fzg._20_N1" style:display-name="PageStyle_KS Vollständige Fzg. N1" style:page-layout-name="pm4">
+   <style:header style:display="false"/>
+   <style:header-left style:display="false"/>
+   <style:footer style:display="false"/>
+   <style:footer-left style:display="false"/>
+  </style:master-page>
+  <style:master-page style:name="PageStyle_5f_B1608PUREAA-B16A2CYAEAA2BX" style:display-name="PageStyle_B1608PUREAA-B16A2CYAEAA2BX" style:page-layout-name="pm4">
+   <style:header style:display="false"/>
+   <style:header-left style:display="false"/>
+   <style:footer style:display="false"/>
+   <style:footer-left style:display="false"/>
+  </style:master-page>
+  <style:master-page style:name="PageStyle_5f_B16-BXBEX11-X21BBABC" style:display-name="PageStyle_B16-BXBEX11-X21BBABC" style:page-layout-name="pm4">
+   <style:header style:display="false"/>
+   <style:header-left style:display="false"/>
+   <style:footer style:display="false"/>
+   <style:footer-left style:display="false"/>
+  </style:master-page>
+  <style:master-page style:name="PageStyle_5f_B16-BAAEX11-X21BBABC" style:display-name="PageStyle_B16-BAAEX11-X21BBABC" style:page-layout-name="pm4">
+   <style:header style:display="false"/>
+   <style:header-left style:display="false"/>
+   <style:footer style:display="false"/>
+   <style:footer-left style:display="false"/>
+  </style:master-page>
+ </office:master-styles>
+ <office:body>
+  <office:spreadsheet>
+   <table:calculation-settings table:case-sensitive="false" table:automatic-find-labels="false" table:use-regular-expressions="false">
+    <table:iteration table:maximum-difference="0.0001"/>
+   </table:calculation-settings>
+   <table:table table:name="{{tabellenname}}" table:style-name="ta1" table:print-ranges="&apos;{{tabellenname}}&apos;.A1:&apos;{{tabellenname}}&apos;.W67">
+    <office:forms form:automatic-focus="false" form:apply-design-mode="false"/>
+    <table:shapes>
+     <draw:frame draw:z-index="1" draw:style-name="gr1" draw:text-style-name="P1" table:table-background="true" svg:width="314.75mm" svg:height="48.74mm" draw:transform="skewX (-9.71104476432848E-017) rotate (0.959931088596881) translate (0mm 247.3mm)">
+      <draw:text-box>
+       <text:p><text:span text:style-name="T1">{{testausdruck}}</text:span></text:p>
+      </draw:text-box>
+     </draw:frame></table:shapes>
+    <table:table-column table:style-name="co1" table:number-columns-repeated="23" table:default-cell-style-name="ce6"/>
+    <table:table-column table:style-name="co2" table:number-columns-repeated="976" table:default-cell-style-name="ce6"/>
+    <table:table-column table:style-name="co2" table:number-columns-repeated="25" table:default-cell-style-name="Default"/>
+    <table:table-row table:style-name="ro1">
+     <table:table-cell table:style-name="ce1" table:number-columns-repeated="5"/>
+     <table:table-cell table:style-name="ce13" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="13" table:number-rows-spanned="4"><text:p>EG-Übereinstimmungsbescheinigung</text:p><text:p><text:span text:style-name="T2">für unvollständige Fahrzeuge</text:span></text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="12" table:style-name="ce14"/>
+     <table:table-cell table:style-name="ce1">
+      <draw:frame table:end-cell-address="&apos;{{tabellenname}}&apos;.W4" table:end-x="6.28mm" table:end-y="4.38mm" draw:z-index="0" draw:name="Grafik 2" draw:style-name="gr2" draw:text-style-name="P2" svg:width="41.82mm" svg:height="19.05mm" svg:x="0.46mm" svg:y="1.22mm">
+       <draw:image xlink:href="">
+        <office:binary-data>iVBORw0KGgoAAAANSUhEUgAAAO4AAACGCAYAAAGtToaDAAAAAXNSR0IArs4c6QAAAARnQU1B
+         AACxjwv8YQUAAAAJcEhZcwAAFxEAABcRAcom8z8AAFgGSURBVHhe7X0HeFS30jY4t/33frkt
+         N70nJBBICAFcds/ZXZuSAKGXhNB77zWN3nHo1fQawGBMMe7gbgM2trFNM7333iFY/7yz0rI2
+         azDdwL7Po2f3nKOjI2k00kgazRR4EBw4cOrtsIiIqQkbNx6KjY01yduPBw0bNRE//vSLmDB5
+         slgVsEakbE4T27bvEJtSUsXmzeni5s2b4vz586Kfr+9f5CsPh1WBQXMzMzP/OnbcBDFz9hwR
+         HBomklM3i+07MkVqWroIDV8rJk2ZKpq3aCXefO0tUbTI5yIwOETI1x8My/1XHKxXr4EtEXwU
+         Jd23/8BdEy5bprwYOnzEg3+8W/eed7yMksq/d0WLlq1F12497v/jPtNniiFDhzt8MWHDxjwl
+         2L1Hr/v/cP8Bg5im8vKBEJew/v7f79n7JzFj1uw8vXjx4iWH8erXb/hgGe/aNW802pG5UyRu
+         Ss4Wd+eu3QKNTF7eH2rVqCPC1q5DojvkLYdYFxkl5sybL5KSkv6H6/0HDgqTbnmwjypU/rZq
+         wgfvfijOnDknrl69KhT++OOWyNy5S6iPok3UqVOXP/ZAjSo3FPnkM1H88xKiZInSovCnn4kf
+         vq8vKleuJrw8y4oK31QSlEFRrWoNsW3btpflK48eo0eP79qgfmNRqWJl0aF9p5MbNmx4Qz5y
+         Im/48ssv/41ftEiTydKCb+YCi9mLG5CmWYL5hoTZ5CkQ5OXteEbTUfy6dA/L3vAsFsufbidm
+         ao9Go2vmFFzrepmi+AUs5jLZElVsU8arHP+ajKaeuq6X0jRzEF/rtzPBaLvwP+o7942AgABz
+         TFzChR07djSRtx4fOnTsLIYMGy7mL/xdRMfGia3btouMLVvF5vQMcenSZXHt2nVx48bNByuJ
+         IyxavIQTGzZ8pPBd5idi4uL5owjx6zfwvX79BwpU33tvv8/3omLj5/HLD4rpM2cJNSaTbFU6
+         Nj5BbCVxhx/mgm++rsgdis+0mQ9WevuPKhw8dJhLKi9zRVZW1us9evZ+sA8PGjzU4Yt5HWMn
+         T/EREBDlZd7hPWr0g+VYAm2hTp3v7z+Nzl265ekljFTybzZA7K1Y4dv7/3DNmrWFn/+KPL2Y
+         lJxyRzw/P//7/6jC5599wTwrLx2CZhNN/VeuEmPHT7DFO3XqlHAt5f7gHwbAm/37DhBnz56j
+         2cIfLAQA589fECjpilWrxbgJEwVI07RJ81MZGcf/DywlX384eHt7F0Xpv/qypChRvKRAwj/U
+         rS8MHpr4unwFHperVqkuatSo9Wg+mBsaN2yyDhLH99/XEzTTGChvO3F32Iuh9uMk3b9sNlmv
+         7Qd2T8vt8RigMXsFfnOOsSpdNzfLOyaT57d8U8I2ptu/pBvNSSbN1IX/G/SG/KuZr+JXoqD8
+         vQOa0XICAgT+0zvL+CZBZdal48q2Hh5F/8s3Hxd+X+IbNmDgYDF02AgxYdJkMW/BQp7Qo19I
+         ozH84MFD4vTpMySvn2FWBXtevnyFWXVbZmYtmUz+R8dOXXjFQhUUcgLm8xjKsZCAUXUHTbHx
+         izk+5AYsKixZukxMnurDMgUGtRkzZoojR45yvG15nJI/dlBneQ3iQrPmLcXJk6dsmcLkdqnf
+         8uwFJbll7779IjExsZKMlisCAwOLenmW2fHW62/zigr6y06duvIMbeGixU++8CEhIR+ioHV/
+         qJ/rIgfNay+goFiPyuuiyd2wJTPzK4zT33//g/i1Tz9qEUuHyUePF6sDA+uOnziJhcBxEybx
+         lORu2J65k9fCYmJi/iNvPRQmT5m6Y+CgIQIy/oiR3sny9uMDZPrBQ4dlEzbygvB1647Ivw8N
+         SGPLSKp64HWd+0HPXj+K0WPGiYmTpzyyj8XHx9/XkLEhMUkEBgWLatVqPP4C9/rxlx71GzYW
+         c+cvEMuW+6fL2w+No0ePiQM0VMnLXBETE18Dy0yYmLVs2fqEvP140a/fwBYY6FevCXz4NWkJ
+         zDgioqJZTF7q579V3s4GLFNj2RIrhV06dz8tbz85uJX2EG+/8Y4wk1iFBQGMl+fOnacOKr6x
+         jHJPUE++D4uCKChazbjxEwUElk6du9oqcmPSJnGJCmo06MK1pNvjb8Z5wTtvvis++ehTUfiT
+         z8RbVAlBgcEsNd26lcUTHusWyUUWJtAkMelRBYUUNmnyVIE1YsxNMEWoUrkaL0zK5DEX/bP8
+         mz/Rrm377aW+cuWpooebgSdXJC/zihtkXCyGlS/3DRcQ/IhJFwr6baUqomaN2iI0dJ1FJuWE
+         Ew8Ck+55Fc0NTQ0BUzcVNKPZH80Q/2nel1XWtewreEfd4zge5hpelrK2a/TiZt3Tdo1AU7dz
+         eI9+r+Fb9Ms9raZpNej/H4hP/9/DPeSHvnWjToE6L+EasJg9r+Ceu7v769br22kj5LyHa5cu
+         QcJsNIVj3ZjS9sA9XlxWheUbBCpkpKaZOuC/sbDxZc6gbo7z8rTGMbubP8E9FExtKGESjGs1
+         NwVMmnk8hfnysgBXBL1X1uv2O/xAgp7d8PDw+EJecqXSd/fSXJnzAuB9+RcVY/tPlXZBfV83
+         mhJc2q+qV7DjylSTbo5Rc2N80M9aI5SwwcITb8A+IypzAOKZDCYzfvFhBM1oWq1rpm34OK6z
+         FdguHU0z78a38HF3XXfHPSpIe7yD9NzdzZ/hni3Tut4R14C6R0QYIG8V0Nw1TyrkeXnJ31J5
+         wrVL5zW2b3PFafoCefn4kZycbPT3X1U2MjYuIz5h/dWkpOSVR44cMfsHBJSSUZ5NpKWlFek/
+         YNBNTOF+Gz1GYBqJRYCQsHDeX8UYjJVN62rHWRJUzpH0dFFkZWXR/TMZlISNZ/MtJk+ddqRl
+         qzY8ZcSKhSooVjGwmgFhP2PrNp4bb6GwmaaLkJ7we+HCBRZQsF1z+fJl1t9ITd28RCad/zB0
+         2IjL9gWdPXeeWLk6QKyNiOSCpmdsEdg9h9iJ/6ByZHQMr29hBeO3UWN4ebnOd3XFaaI4dtVR
+         EbEJCT7yE08XC35fxBSRlwVQUEwVsdmWa0G3bOWCRsXE2grq/dtoXi3BKkahDz8REE3ffPUt
+         bhXh6yJEMLGA/MTTwaw5c4XPtBmiV+8fbRnxW74iVhUUcjEKmiYLSk33cL9+/e6qWkT19vdJ
+         E6ZMNmkW8enHhUXxz78UxYuVYJ73mT4D9Zrr0uxjAwo60vs30bpNOwFVJnmbERQSaisoU/Qh
+         1q6mTZvRm4Y3lqtH0PcGDxn2ZCmM1UEsm7Zp2x5LOtfk7Wywp+juvfseOoM//FCfF+mgO9L7
+         x5+fTIFXrl7dC4pnKGhuG6dAQEDAG4pHU1JSd8vbDwV8s32HTgLLSGPHT7yrNs8jwZSp03ho
+         +fmXPves3Q2Jm8aiGWNFUt56aPz08688+W/brsPjp+6oMWN5vZf49Iq8dVdsTEo6iCWZiIiI
+         P8lbD4VZc+cdwooHVBoDQkNZxHws+H2x7xAsu44Y+ZsIjop6V96+J6JiYjLl34cGtncxXNWr
+         31C0a9fhkS0M3oHfRo+di+Y7euy4J9NB5AKInRiP86p68EDw8fEZBH6F0BAeGVlR3n5onDlz
+         xiz/5gnYe6patbr4rk7dg/LW4wE6Bsi7cxcsvCRvPTSgprhz5+7Z8vKuiIqLG41tGKxjjRo1
+         9vFujzZu0kwMHDRYQEyUtx4a0NfCunFiYqKXvJUrtmzbLubOnc8aE/LW40OvXj+ugkqGdd/2
+         0ciru3fvbQYBBIpNhFzFyeTU1L3YCC9X9mvRuHGzJ9NvYDmm1FelRUBgEAvz8vYDIy0toxsK
+         CjFzse9Sh+lFRMd2xDZKgwaNbKsRTwzYXH7/nQ94WwNz0vl+fm/KR/cNiJbYakFBp06bzpts
+         8hEjYUNib+jShdOcGEs7gaGhZeWjJ4d3335fvP6/N3hHHpNy8N2uPXsDfPN4aGLv3r3/hmK+
+         oihmNcNHerOaQ78BA+fIaAXQdJcsXsIFnTFrzjh5+8kDagTvv/shFxoTbqgqYInl5o2brACe
+         E1euXBXY2YMYiaZrT1EUFEJ+qzZtubeVn+CJB5ruitWrq8pbTw/ly3yd/DFNuD8tVFgU/qSI
+         cHf14AJlZQm5B/SHuHL1ijh16jRTH5qz9jwKio6ggqKAansEnWCjxk3yJJI+FZTxKncEyiJf
+         FCsuShT/SpQsUYo7Mmjbe7gZeW8Hp2rq1P6e15wxT1X7QFCixP4PNrtQ0OrVawpM62TS+RcL
+         Fi2qDOqWLFFSuNGvwV3j7Uis7WINF2vAGD4wVmJSbl9QVEi//gMjZVLPHuLi4l6rXfu7ga1b
+         tj1Su9Z3omLFb3mrsmnT5qJNm/ZREyZM6C2jOuGEE05kh8Vk+VXtgvE17+zJYPISul72I3Vt
+         MlkuI46XwfC+fbyc7+W8Vvd0zbLMfrcNoG9fxrXaXjRplsHIj8lkPdsDWCxeHXFP16yHg0ya
+         OdI+7TJe5dHbX759XU64dFjRqGCHlfG4pvSv0MdNmZqm1eQU7YAI8i/ibNU083f4jw9af81n
+         jUaj7VAvFJRp3LwpL22w7Y8SzCavPwxUSfKSodJT4O1FXf8I/y3mMlmUt4omzfMm3auMe7pu
+         OU2V0Qf/Afv0c6bl0i0kq0Dj2X/Df45nNOoNEAk1Swn9xrEI9i9yBozmCNQW1fZk3EN8tW/q
+         6ur6CtX0MXVN78bziwT7dHSjxVd9iyqqiaaZZlF9+cnHDPtKxn+tlPYe4stboPoheud7/DcY
+         zF/pmvkkPyAgbZUHXLt0XCFMmmk83jfrljiOpKBqiWrx1WwfkBl2dE/B/pk97DOvYDBYinha
+         sOFsWUstZpq8zXBEqdy+SwU9pWkWHf9dXS1vUMvJ1rJcOq3mXXtuxmazK/9B8FQ68QRdNyea
+         jKY28tJ21o2oURgftlDC+Cj+q4zkvAYoI+MoQ7Ydb/Utintd3uJdddxT1DDpnhuxE29faKqQ
+         APs4CvbfIoqfUHngeG39qxfsuDJNPr6DOM8cAgMDdb+VK9eMGz9hH5TBoViGbVKsK2P3D5tr
+         WImEuj/mzNDSw0Y4poyYnVk3ws+LS5cuCZqziOvXb+D+uW3bd+zcu/dA3WXLVhWRn3LicSAr
+         K+u1WbPnrRs0ZChvMWE1F/N77HENGzZSjBo9lo8zYNETu6XQ9sc6Ojb7QVQspKTRrBJ724cO
+         H2HthrNEVJzlgIYDiIuNf2z242wHpuM4t3n58mU+n32dz2/eYC0I4NSpU/tSU9OryOw58SCg
+         evwzFm9btW7LyvWKqNjfx2FaKDNMnDTFRtRly/3FmqBg3h3GGcf1GxP5KAfWLrF4hBVnnHTA
+         3iIWZbFegjMs0APg868xsdwg0DCwrIAeAGfr/FesxOl+Xme5fv06N47jx0+Iw9RQsBxx6PBR
+         +sbWQJltJ3IiMjLhs+CQ0IydO3dWl7cYMfHxNeyJikNH2HCaNmMmr9YrLsW5HBAV+yPofkFU
+         EI8PIxFRoQIAouIaih32RIUmC7puaJVjURxdOnbccYgW34TCB84D1apVh8fKjz8oJP798n9I
+         ajHzu1t37GCdY9VAsJIYs379s63k9ShAXLEbHALum04Ew3E34oi98jEjI2P3ezilAiVtjKuq
+         68V4qvQ4HHEqiApO3UFj7L4DBzmkpG7eHL9+Y3h8wvrwqNjY5dGxsRMpeEdGR09Zuy5iVUj4
+         2vCVAQHhEyZMjvr5l74Zg4YMEx07dRaawSTeffNd8carb7KWPU7UwrQGCA2Fl08+/lQYPXRu
+         aMgXehE0vmX+Kx7vJlx+REBg0HUo34CoGC9xgAzjKbhkzNjxDqW8AOpyUWk5ORVjqo1TJVFh
+         HCUyMvLxbdITNmzYYOjTp992aCRDmwnHK0BgSK/ly3/D3TrKBpkAjZLw5DWcniRWrF7jozgV
+         Om4/1GvARO3StTt0ce65RL42MnK+Q06V3e/uPXtFVEjUhzL6E8focRP8sGCMhWKshuOIFg7k
+         QQUGXbzPtBnZeqXnBot9fW+AqBgv6zdoZJN8c+PU3ODr6/vSrj37so+pFDCmEqEfn5bJfYAk
+         65dbtmzN2xw4YAz7XVBQ6dX7J/4luMiozz4wTkKJDNInCgpOhY7V70uW8HrXgyA2NqHJnr37
+         sglKu4hz5eN8gYiICA/ofGK4AVFRbmj+tGvfkSTu4/8noz27mLdg4bXxEyaJMePGc8FYy37U
+         GJGZnPmqjPJQSE5J8cPihJJ+IyKjUuWjfIEzZ878C+qfkL6n+ExjBV9M78DFMsqziYSEhA9A
+         2JHeo0Tf/gP4fPbwEd5i7Nix9zQfcL8gwl7AlAbSalR8fEl5O18gIiLqV8gaWDWD5N+kaXPR
+         oGFjsWSZX4iM8uxh2Ahvb6iGYzUJREXrxZgrH79QgElE6Fqti4piI1IYj1u1amM7pfXMof/g
+         Id6//NqXuyDoMuPk9Jz5C15I4tL8mvXKsMgCKRqat+07dHx262J1UJAJdjFh1gYcjJUfcO6c
+         eQt6yCj5BhBhsX5MY+Tv8tYjQ2pq6j8wH8dK1vQZs1jtBNMlb+/R+Uo+uG/gTAdO8mH6g3EH
+         57iwwhS7Lfbx2SV9AJw4cWISNg5Onz7Na8fp6ekT5KOHxpZt269jPg6VVMyDoTSFbUUC2/58
+         ptGiZRtRt2491otfuny5WLTEl20/BAUFFZNR8gV27dp9GpsBmDdjaoWly9jExI/l4wfCHkov
+         c9du1nuECiBU/7B3u3zlygYyyrMNTNphUBBKmygY1l1hRhGSLU5cymhPHanp6c1BVHSfUDzF
+         ahi0bEkQypJR8ozY9et7YcUMe8fYPoStD3Ar9DtDQ0MfeH6fb1G/fqNtWIR3K+0uPi9anLfY
+         MH2BJIkxKSwy0iCjPhUkJSffVETFpgR6F2z/YSiBrODn5z9YRs0V0bGxbdH9IkAZ4DeaBoKo
+         2FHCOEvI31ZoHhYepQ3i00JFxEfvfyxe+df/xOjR45hbQGAYYcLe65btO3bExSU9EU2IxE2b
+         2mARRHEqehVFVOjFY26Kg3yY0pFgaFOZsUfippRh6NJxAgLj9qZNKaysDKKWKuEq1qwJHCmj
+         vhhwK+V+C14jsI327lvvif/+6xXx8899xH5q9bt275Gb4UdYdx9aE9euXRO3bt3C0t1V+j/l
+         yJFjI5NSUmps376dTeXfC5mZmV9tTk8fuGX79tA9+/bzpgM4FQf6wan2RMUZABAV83N1shnG
+         ryAcNm7cVATksPa3ek3gcaydY5kRQw+I6ko91MJFS0bIKC8mGjVqWhGc/OF7HzE3I+BwBk6l
+         QHXfb9lydGfijz+sBzPuGW7cEFeuXGG1GRgOYa0JIiYEJRAUXIrtQsWpy1esvINTQVTs5oBY
+         WA+vXq2m7aAHjgZUqlBZjJ88uYwsAiM4NHRtvXoNRfPmLc9Tdp/9teNHDX9//3fLWMoe+fD9
+         j9j62meFi1IoxhZMYfUZB1M++bgwEb8QTSkqiR7de+FIvthDwosCjiNBF+rEiZM89kEpDme0
+         sEWIRYTYhATWosC+8KzZc1hlp0OHTqJG9VqifNlv+KwHpisgJsZJRVB1sAXzVBxuqUEBygQy
+         607cL4hW/2vZrFWCZtRFkU+L8okjnCTEqSP4+Chd0mqBDody2Aqdu5E3zTHeQUJV6p/oKhGg
+         BgoBBwTEqSTMOzE9UVbqHBEVBFVErVKlGtsO7dd/4KqsrKx/ymw68ShBFfv/mjVu0bFlyzb7
+         QVScEQBB3ek/JHJ7ooKguRFVERS/uAYxa9Wsw8Ts1evnY717/2Sz5OWEE0444YQTTjjhxIuI
+         ChUq/BV2ZbGqomvmYE0zr9aNluUIJs3kY7FY/uZp9goyaeYgXbcEQgpFwDUHk2eQwVD+NaOH
+         qQUsA1Ma+zTN9CNJrfNNmuUMJFdd87QdvzMaTatxj97dYUtDpmMqaXqzUKFCf4WUK+Pcfk5B
+         181jkIaXV7nb96VkTP/DbfE8dIvBYPkcEjKnRfcoPytVuYxGs80xEeVxC96ncl+iZ6t03TiD
+         8v87lYM96pTx8HgbaSCgfqhOmptNlgx8F/c4EUKpUqX+TuncQj2adM9o+n5T+k1APJykldFw
+         AHWlLZ+a+Sye65olTd2j9IcgnlqTvn3fGtSxyIIdVhx36bRKFOixoQTVyyAq3yj63YX0oE+N
+         ODgyyARAAY1GvSMRsxA/cADNaJrEmdHNEfKWDRYqKKYcVEjb4jgV7qisuGbyli3TNA8dQ5U5
+         EYEqeJLJzcQ6xxQ33Fpgc7pu9Jyg4mhGyyROwA4eHqaS1so032FsEQ0W6VAeThoMenWDwSvb
+         qWAPD4//h3cR5K07QJU5ntMwefrLWzbQN5nAOPCraVozbmC65x26yZSGbMy3TxQDFsv7f8M5
+         VvsGokCEGiLr4Kh9HVAaViOt/SL+5NJjrXDpkn3HiuJPsb5nWStvWWGxeDWkFjuNHt5CBBQa
+         rVE+ZmBPEgSEv0d5i2EwmMx4x1pAyxX8IugGva6MwqCK8OaPG02r5K07AOLjG/LyrqBvXEc+
+         qXJz3RtGuXTNtI64jYldtszXnDZVxFrOi27uxhEdAPlwVPnUMP6Lc7WqYSAON5Qc9QLklgbV
+         dTx/32C+Y1MBnHe3OnBp77/VpdNqUaBbdGUqxyEzfZvT0sy3T1y7ubn9kyqmvE59Bf16mjVz
+         Z7QWJpJmstksB/g5CEbdl7xlA91jIwC6uzub+AY4Da48y3Z5ixsHDj5TWs1NRlMLFVQjIOL3
+         xXuaUT9o/5zit65cuXK2hubmVuGfqFBHFeeuuxdHuZBnk8lQRjOYeyMviK9Td4k4xM1lmSAU
+         zNStGY2W0u7uOt4rVrx4+X8gDhE+Ce8Rl1728DB/QT2FG5V1L+dRM8ciDqBpOnOMxYzez2wy
+         ljYWNpkssbIOjslo2YBGjCAvbSBit+N60yyZ9nWgG/W2GEIRp2DXoKiC3UNj+AUJyk+kKqO8
+         9XwhJSPDbW1UlHnZshXmkLCwdhHR0YHRMXEn4+ITrsatX39pQ+KmTcmpaaNhcn3Hjh3mgOBg
+         4/TpSx6vEzgn7g9Hjx4tNnPmvKYLFi3eM2bs+Es4VT93/kKBA2bQ9IAPKez4YDsP23rYJ8bJ
+         BJxSwBYiNtJxABsHr3HuFmerL1y4KI4dO7YvPWPL8tTUVLbF4MQTgBDipd+XLP1u5G+jt+Dk
+         HGwM45AVNtFxmgHa/FDAg34WtvBAWGzp4RSCPWGPHTvOB6iVt0RFZOwX43Q9CAxvTNg7Bs6e
+         PXs9I2NrWHBEhNOEwqPGypUrK//ya5+9OGeDzXJoU+JICgiLkwzYe50yzUrY3xcvYcKqE/bg
+         WGzzKUeJ0GokYrHZhHNMUKupBKvJhNuEhc4T9oPZbAJxNfaRARhO2Lp9e5hvQIDTyfvDAEdC
+         unbvyQaxYeg3J2EVx071mS5mz7lNWPuuGKo7mzO2sJkENp2AQ2P0y2YT7E7Yg7Ph/zQ5NZU9
+         dF2AmcqbN0UWe++6yQSG2QTsEStPIdQLnImJiXlkVpZfKEyfMTMaGhA4EQfCwnu5PWHBsSAs
+         xlgQFpqUysgJCAuiwdT8Fng3wQn7TOtJe3TP2LjH4TEQlTfv4xO4QaBhYKzmU4nUzeM0fxDd
+         s47LN5jLYQVHeRdEQFe/YcOG50+b8XEiITHRHafhcDIwG8d6S8JOm25TkcUZHBAWNikwxtoI
+         S9zJphPk+V1FWKjaoLvGAW4c5LbXoYIxWJyEx3FT2OCAPQ7oTdWq/Z3o22eASKdGAQKDqEgb
+         PQACNZI/cPBNZt8JhYCAwN9ISrX5qlYYOHjoNZwzAmFxDBIcC6Pz0HWCzhOIgfEVqrGKsOiK
+         QVgYvYU/IsWx+K841p6w0JtWelQgLJTc0HgUYdFzwH1AxYqVRcmvSrMS32uvvC4GDhgk9h44
+         IFIpPcX9+H5MbPxSmf0XG3v37v2b/8rVrGkIOxYHDx8Ol48Ya9dGff3Tz32YY2HFBvFAWCUR
+         g2NBWOhDZSMsuuJcCGvfFdursqIXUIQdMnR4NsJC7QZqPVDYU5qaMCcNAyht27QTSZQmDnkp
+         qzjIV1JGxourW7U2MrLS0uX+YubsOTy+7d69R1y7ek3Ex8e/LaMwZsycdQqnA3MjLDj2jjHW
+         jrAwLnbw8BFYsrm8cVNyDCzZxMbFh0bHxs6Mjo0fGxUTM25dRMTc8LUR4UEhIeELf18cPmDg
+         oA19+vQ/Tb+sNAfdLRASarhM2Hc+YE3NQh9+ws9g1WbgwMEiPCKC86Z6lbVr1754Y3FgWFh9
+         EAmE9ZkxQwwYNFg0atxUzJk7n4SVo2NlNAbNPl5Cd4mpjqo0e8LC7pM9YdUYe/DwUZGYlBwU
+         Fh39qUzqgZGVlfXxjz/+WKFv337JULpjFdwPPibCfiY+L/oFK+3BRDiU8xYt9mUzhVy2aTNE
+         WPg6b5nM84/g0LVNId2i8OgGoVLatFkLPuYJwWnajBl3WNIOCQkb7GiMBWFVV6wIi/M5qWlp
+         j/wYpj2g9Th0+Mgu35SveLFokWKsgQklPV0zs3Jen779rfrP4yaIYSO8RUhoOJt9fa4RtX79
+         hyCSImwLmsNiHgvzf9Do/33x4lyPTZI0fBkcCwHIXnjCOKoIi1MK1K3bbOw+CdAcuESPHr2O
+         4YAXdnGUVmXr1u1YHxqmDGGmKCAwmPdon1vgYBUTlqYasHkPwoJjIbwsWrLE5vE2N4CgirCO
+         uuLUzWkXZNQnjuT0dCNsXYC4UI+F0jrKCOEMx1Eg7ScnJ38ioz9fWLbcfz8Ii9Ny7UkKbSYJ
+         C45duHgxb8HdC1Fx68tA2rURluatirA4VRAT//QXE6gr3lCtanW2ewEPiihr334DBMxHDBs+
+         8vnbigsICqoJgQjjEFxoNW3WkgmLOeziZctGy2h5QlzChrnoinm6IwmLXxwaWxEa+paM9lRB
+         c/FZ331Xl60JwPIsZAn0TvilmUGijPZ8ANZQQVjYxEBhFWFHjxm3Wka5L2xKTk2xX1LE1AcG
+         xiIignNVD3rSmOozPQEzANidUuvisA+CZdSTJ0/mi0b40Fi9JuhnzFHhbxVLiUoqJsKyS4gH
+         BRH3FgisFiiwpBgbH19fPs4XoLH2umrIyoIcrqnrZncUzzyIa69iyRDTAji1RUFxNHLjxo15
+         9kiaG3B2135JMW79htPyUb4ATZle+ZnGWoy5cGwGwqIOYC6QnrG6zDOLiIiID8CxIKyyRwXJ
+         ccoUn60yykMB7vLgPlqtFUPYSkpKyqZn9bQxa9bsPcNGjORlTSyjopuGcW7vUWP6yijPJnz9
+         lq8CYWHrEV0xOBYb7MHBj05nKTohuji6ZGz1YQ5M82Gbb8P8gO3btxefMHGymDZzppgzfz4T
+         Fos2ILSM8mxi/KTJ+2ASEFMATOTxC78E8vEjQ1RU3LdYX2bVmqjofFdp2B/GxgRW1yBBQ9DC
+         XrV8/Gxi1px5TFC0UnRNI0eOgtT8WKymxcbGfo192ZCQkGymDPIDqNGdwYYCiIvVOJ4iEYGf
+         6XEXuzkgrOqOfxs7BuPvVPn4hUFgWEg7bAVCIQDDE/yOflenrkhJT/eUUZ49YHMdkmK/AQPZ
+         sCd0nsZPmPT8L6LnwLp1Ud+CsOhZehFxscCB5cnY2Phn99T+sOHerIIKSRmC1fhJk2i+O+WF
+         I25kbGwl7GRB6OvRo5eoXfs7tq2xfuP6VjLKswcS97kbwrwOnjomT/HhzWz5OF+Bxj9zv379
+         7jjn8yiwNjKyEQiLXSys0IFrYTxl96HdD73X/NTQp++A01iVwcQd2hZYgsRGNiFfOXA4cPDw
+         ZCIu8iWSfJIeufm+mLj4U5iHZ+7ezW5plFEV+fjZxKjR41JAWIj9WFfGHi6I6+vrX0JGyRc4
+         d+5cBRgngw+/W0Rk4uBH2vhoHp4FHWnobkEfy2qsrMqzTdzhw4cXw4oM9m2xtgodY+hBLVm6
+         LEFGyRfw8fH5M7gWpxFOnDjB+sny0UMjKja2GhZZoAw/eNBQJizMIvXp0z9f1cEDAacGMGnH
+         3iZ0oZS7toiIiHxlPm/Pnr2+0Ec+dOgw7zBl7tx9XD56KKRt2cKbGyft7C1DY+P46dOajPLs
+         om//QaH1fqjPm9dYpQKBoWqzanXAYRklXyA5OflVnCWCDhaU16EMkJya+lBr4HEbNozYvmMn
+         n1MKCgpmwsLAWe1a3z3bXbIC9XZ/hicOqIhCBQXSMjjXqsUY+KOMli9w5uw5JqwaH6Nj4kRk
+         TMwDKZmHhoZ+Al1sEBZjOQ5Zg7DQtZq7YEFDGe3ZR++ffp4HW4owwwdjmFB0YzP4NLEPDg29
+         p+7Uk8KhI0eZsJBsoauFuSnyGBp6//rHMPmLIyfoDcaMHseERXdcv17D+7a6nu+B5TbYXYQZ
+         gcaNmvIiPwKf0wkP7yyjPVWAy5hjaU4KwmLJEJ4/0dskJSXlyaYzsHP3HiYsTgzCFDBMGYCw
+         4NrMvXu/ktGeH8yf7/cOCgnF7a++LMWKY3KLjrmEwkYZ9amAxtwvscigCIveRfnBhWIflM0J
+         93STum3HzltoJDgJiLO+Rg+NCWug31GjRgfLaM8fxo4d/zO08+FvFsazv/+uLh8FAXFxdgfT
+         hYjo2K4y+hNF6ua0q8gHGpviWBAWJ/6gSQId5EmTp2TI6A4BKRuEPXbsGB/5xJQHhIWyepMm
+         ze/pQvaZR41qtUbBSHahjz5l79EergaRTOOc/bEQqM9sTNw0fd68eWxR5nEjPWPLKXvCQuDL
+         RthRY1j/GGvkc+bPryFfs4GmdX+C6X7FsX/8kSWg3gohCsdPmjdr+XxIx3lBzeq1xr/z5nt8
+         qAon53Ascu68+WJbZiafcIfEigNcR6iidu7aJTIzd8551Huf1MW6JG7aNBK+g3J2xZiuoSuG
+         ihCfGiDC4hgptBexTp6ze16zJrg69KYxT4bphUoVv2WONWkW0aB+oxeHsAp9+vTri3Ou6kgk
+         iPzl5yXAsXycE/PNA/QLToA5e9iowBIhurszp86mnzt3gQizs8eOHTvKySTviU2pqXUzd+4e
+         mZaefg0eUBwJT4pjFWHhpk4RFkc6caqgfftOSTJJRnp6+mdYnEGDUMdK8NuwQeMXj7AKo0aN
+         +gK+C0BcdvL/3kfirdfeEqW/chWRUdHizNmzzA2wPIMlQRgigX0K5ahCrvXnCjxHY8A8E1Zr
+         0HWqBQpMd0BYdMX2wpPqimExBy5hFWGhQYGVNng1g3l8Pz8/D1kMxvJVq3fOpt4HRHWnoaZT
+         x8475KMXG9Wr1TyIbvoj6Z0EnklAbJx7HUYVjLnirVtZ7HZGEfZuAQ0AkirWimGaCF65cEhM
+         LVCoeSwIuypgzZ3CkxxjcVqve8/eogFxoPJ7oHwewG25zD7j6NGj//BbvoK5dsKESc/3oa/7
+         BXFxPbdS7uIjIigONX/y8acsUUP4eu+d98UXxb4UzZq0ENHRMZIvrZwJTyTZCHvtuo1TT1Cj
+         AGHRxWN9VxE2Z1esxljsXI2fOEn0+vEn0bhxMyZmha8r3uHMgr2TVKspfObOtMjsO5EXtGzR
+         +jeeKn1c2OZ6Bl13MbidKVqc3cS9S1wNf0Oo4BUrVonU1M3cbSvAQBiIe/joUZthEiiuQxqH
+         VK6MnICwICaU+KD6AuKVJQn3bl5KFGGx4d6qVdt0mW0n7gcdO3b2cS/tTtz7mY2wIPqXX5Sw
+         cz9Tmk+0l6IxuljRL8SnnxRhv0MwHAo1lu/r/CDq/dCAw3ff/cDr2xUqVLKaHvbQBWxDK28l
+         9p5K1J7r3QiLsbd9h06RMrtOPAh69/65hsloPoFVreIkTdsT1upTyI3dqt32K6TZfAph8QCr
+         YiAmLLtiPMTcE1tvubmgUUR1RFgQtG7d+qJRo6ZHBwwYUF5m0YlHgUrfVGpYpkw5WDNnDoaz
+         KEeEhemC3AgLot4PYfG/vtWF28XW7dr9ILPixOPE4sWL61arVnMiuloTCKl5Cg8iLgisCKts
+         MdsTFkR1RFj8xy+6XaTZokVr0axZ8zGLF/tXl5904mkiKCjIs2fPnwaWL//NmNat226C2QKM
+         t+hSwZUgHjgSymmNGjYRrVq2EV26dEupXr3WmH79BgxcvTroG5mUE0444YQTTjjhhBNOOOGE
+         E0444YQTTxwmD1NJXTOd1zXzTazHqqDrlrYmzTRYuUVzFLC8x2nolivwHa/u4326d00zaKP4
+         IxIm3XzD/n0VsFSI5/TNOo6eIxgMWg9N06ooP3qOAvKjfBDqul7dbPa8TOW6pcqE75QubSyM
+         5wom3XMm8srr0TrFo0Dv2NzUae4WT7o+hfrhOCbPKwZdry0f2+DmphelesykODcQj9K9arF4
+         2U7Qwzkk8uco3ypomrmG0dVsgBPHnM/MVL9UP5WRlkuvdQLOGvEf/glRNnyX4tw2QUgZno4X
+         KVPX4MJTl25I6SMBFovlDU2zjMJ9fqaZ9yHT9HtS3aPAZv6QOILRaO5L7/xq1iwh6p7BYLIt
+         7anC2b1vTdtgWoLnmtHszxWTwwUr3LziOQqn7umaJcpaiRw/Wzy6tw/fprzu5LiyXHQdgOcA
+         5dUL+UEwmcxBRqM+hxrEXLhYNRotLRCH0omW+b2sG03DKcxFA8E9iteeEyLQ/bFodHCaqBkt
+         PprRNM7TIh0oGk0LEcdkMr3LrmSteV2t6kdeB3l6lgmCs0d614ff08371TMEIlyQrpd4tUDH
+         cX916RIkXLqFiIrFP/yU8vEj0W8Np0XvGY0a25x2QSaRWVzcC5TABa4wXbc5ZJQoiDSwQC+v
+         Gbjm+B46K7Jp7jZnj2c5ggPQs+ucydKme1qZo16AHSlqBtOv8hbD6G6uas2n+aC8dQeKly//
+         DxAV+S5c2PiyvJ0N1MDZwSMFGxcDBoO5lfW++RauqT7Y6SPdu84RJNzctC+Rj5z1AlBv2ZrL
+         abJslrdsoDxlIT2j0fixvJUNBduv+M2l4ypRsMPK5fIWg3rZZOSLyj2xgMVgKCIzRRVuiYIX
+         SkrQYUEBipuFyoD3TnmLQS2+F6dhNAXKWyhwKWQerVneotZt6WitFMt++s8+Ya3B02ZIG90R
+         3qOKHa+ew78ucdIdh7bp/gnEhedLeYvBnivpOyibZjAvK1u27B0mCqiH2EHdZjbuywmUlbvH
+         HK5TUX5+5mktG32HXb0SZ7IPYHugATkkrmZeaq1383R5S8EFaaNcutGczX+w8gFcsMOKNexi
+         te2qdvyGBN7D98pLL6LodngMxIeYGBQBROSHdqhTp85LqguTt2ygj4fifWrJxynTsZThU9bC
+         Wi4VL17cplyO9BFP+YdVgXqEfXgOF6Z4D/Hsn5cvV+GObwKoNEcVB/er+Ib6Hn5lo9kvo0jC
+         lREYB+WtbDAY9MrwuUvDwAF5ywbKJ3EdGrNlDwgq83xHnenELPJZNo4GcB+hVKnsrmNdXcu+
+         AtkFebavA2xZKqZy6R0lXLqHqoaF+k5HHJTRZDAZcd8G6mWLm4yWJqrbRYVQyz4hHzOI1a1+
+         XXVLvLxlAyqJn2nmqxT+wH9PU5mL8rENKAziyss7QBzXU34jV+fJChbN4oG80vdyNehJ3F/R
+         pHm2pzTZYbM1bTOcShREZThqGArUxXWwlsl0R3kp3RSkR8NBH92gl5XpcgO1B8Ze67PbPZoC
+         ejRZF9mU3Ik55uEd+kZOjraifuA/XbrSeNs5QFT46sPiNA5fgQAI9aJChaz+dXMFda0xnLjB
+         tEbeYtBHd3AFeZhyHrssmJNoNmKT8CFvFUDXhvuoVHnrDiB9BLR4eStX6EZ9oKzUPJkgoEZw
+         lgmimXrgWnEEP3QA5aQY47q8xXB3N3+C8pbxtDYMapBfW+NZznMECeV7H9/I6UGchizJ0dnH
+         aIAaUzp6BcpnY3krO3queNml05oOLh1XdpF38M5xzoPJ83YeaFpREZ6h6WMWlkJNFp72eFHG
+         lZdlBbyMynF1tWTzQkktrDzeoczclLeQ+QqIi26itBSMaPzoizQo/hblzdkajG3KlSv3L8TB
+         O9a0tPb2cei6OZ7bg4cA5CnHeAugXBQ8US7qXutSw5yPtDGVkFG4PAhE9POUp3qa5vUlxS9q
+         MBg+x3NXV9dXwNnIDzWggfTsP1SGXopglL7NMRT0spA+pTcTLs+pF2yDeCi/0c34tYxmAzXM
+         sfxt3XKHRT3rN4k5TKYm9nVA37dOvdqvGEFjbvhLHZbX4WtCZWo8yBPyQHSwMh9uIPMqWK89
+         o/hhDiCzqrXagypuFmeUpgnyFoMEtNOyAm9Yr83p8pozoYLqGosWLfoXfCPncwTqRQYjjj04
+         P6iInMKOxfKOIooKuKb8LJZRbCBiH0Q6+IaaO9P3/5CPCxhcDWbrc/RM4HSS/s1ed2g9ogFb
+         07D2YKhHEtbSwb0ySjaofJEgaJC3GETQN2UespUfgfLPR0BpCnSVx9uuwdms3yrX6mW87hQA
+         nXhKEEL8OSkp6c/R0dFlY2PjhgYFB/vMmTt/xowZsxcvWLR4t/KnhMPq+F1Dv8GhYXxiAsr1
+         0MGGyzso28etX89noGCDOj1ji8CZKOhu4+TkCT6oBsfP1/mYzeXLV/iozuEjR8TuPXvE/oMH
+         044eOzZv7969MzYmJU+JiUvon5iY4oa8tWrV6pHb53LCiXwNYsy/JSYm1/bz9x86Zsy4RVOm
+         TjtDQQwf4c2HHbx/G83nzkaPGcf+KHEIAgb3YJMNTl1wgBDe8eAHBBYccLwJTAzGha9JMCxc
+         LW1M2sQMy2avtm1nbzxg2oOHDvORKXWmzj5YPbtbvbsjWD28Wx2BX7p4kZ1/37hxk0/q4OQO
+         GP4sPd+//8Dxw0ePzkvfsmUodTjVx40b9+xaF3bixcahEyc+Xb5iRTdivsWjxoy9pTwJ4RcO
+         Z/AfZ/NhjQtWqOGhF0aLcQoYNm1h+tSeYWFIEV4PFcPCtzdGXDhyxSjLI2zC+tsMK4+t2xj2
+         4CFm2FOn8sawKsBxu9WL/wXpxV+FS3zE7nIOj/7syl8C3v1pdP+DRvElKZszuq5Zs+bZNV3q
+         xPOH3QcPFp89d+6P4ydMPNSla/cseIVq264D+z/HKW04UMKJbbhjgcFpnOBWDv3AsPAHAOvi
+         MCUPpw9wvj991m2GVSMsxGQ1woJhcxthlQct2JoA08IkAcRj2Eo6nC0csQZ6huewhQgGP3T4
+         MB+CPoeRlpnTypgIV65Yg/X6mu0+jlKCca2n4TEq3+T/uK/i4EA1LKXSaJ9FeTx98PDhn0LW
+         rcu54+SEE48XNKgUnDp95mxYom3QsDFbo23Vui0zLRgWDAyDKBhh4YDSfoTFSX0eYUfRCDve
+         OsLC/jRGWFizVSPskqXLhJ//ChvDYh4Ll+lqhMXhcZwzhg8lmH8A48JxFkZbHDBXjivxy67w
+         EOg+nFoiXvqWrXxWGQfR2Q9TcgqnGSc9nGI0RyeBb+NwOkZ5ZfEvMDiYvZ7uxbz50CEWnxVu
+         3LjB82eMyBidL1w4zyM4RniI6egYjh09Js6cPsviOHUw11I3p8Vt2LChsnMO7cRjBbXPghMn
+         Tx6MERWjK4zbKIbt1r2nTTTGCOtQJCaGxQirRGKYngaz4oA/GAMMAqbB/BUMpGyvYYRVDItR
+         NifDKia9G8NmSIa1GqPdzGlhIQtpw9CAYlp8WzEtRHR0JLAqMXf+AjYZAssS4yZMZGcz8E3S
+         s7e1zP0HDOT5egSlsXXrVhbB2fAQ/UJkxyh/gEZ3OEuFVADpgPNKeYYdGirPHxsTN4VExsbe
+         sU3ghBN3RWZm5qul7tH7E/P+ZfLU6ct//qUvu12ESJyTYZVIPMLbyrBo6GjwM2fN4ZEV1qbB
+         rEoUxqiGlWKMrhCH7RkWzIVRUTEsVovtGRbMetcRluIrhlVupdEJKIbFirSywAmGRX7AsBDV
+         FcOik1EMC/9uQ4eO4HKizJAw0IHB1XW9+g1FzRq1xddfVxSlSrqKzz4tykfiv69TV/gvX8F5
+         OXbiBNvZgyFI+9EfZURZkT/kOzo2fu/6xMTWWNWWVe+EE1ZgBI2IiGiweMnS/ctIPMWod+0a
+         jRJnz2alp6ffsQFrj1lz5qwHozoaYUf+NoobOURh5dQBRq4wd1VWxO/GsDC3Y8+waNx3Y1hm
+         1lwYVjGFI4ZVYjHygREW+VIMizzbj7DMsFS2Oxi2eUt2b1azZm0+3Y59URgrgSExmAS0DzAX
+         +PLf/8kWajqSpBIcEsZ5hJ8AlBllRx1gaqA6E5YGYmOPR8fGNgC9ZPU78SIiMjLyE9+lfqvA
+         qGigYC545p4zbx5bmcNq6lWar23LzMzVwDc1or8REy7EVo7yU8iLTZOnCJ9pM7jRO9rOUSIx
+         W1+XIrFtH9ZuDmsvEmNeyXPYuzAsnoNpcR+GvBEySRzFc9xPy9jKaaJDUCaQbaIx5QV5sh9t
+         F/y+mOsFYv2YseNpjj6COygwLOb1DRs1Ed/XrWdjWCgXlCpRio3DgUnffO0ttun5zpvv2kw/
+         vv/OB2ylFxYCET6EKUiKCwtFHTt0FitXBXDe0Ilh9EeesJqOPGHej06GmH3rxo0bWUvGiRcE
+         a9eurbly9erzmLeBqWANEGIgmHbajJliOM1FZ1NjxXwMCyzArj17hsrXHSIsbG3XufMW8GKT
+         Ylh0BophMcKi4aEBoiHmJhLnxrBgSvsRFmEvzRP3HTjI/5M2JV+nd5ZvTErpGRsf3zUyJqZ8
+         TEzMf2T2HhmoKv5y8eLF17Zu3WkgEbZ5WFhY17Fjx3dt1arNiA4dOgV169brArwcQDwGg4Ix
+         waxvvPqmeIsYGPZa2aTnB4XEJx/B6mNhUeTTz9gwIAwCwi4c/n9G96pWrcFrAWqejakFpADU
+         qeoMFy5acn3dushfZPaceB4RGrq2Ho10N7AQhFEEzAWGBbPCbWT37j15BIEVZawYI8BBHRQk
+         pvj4jJfJ5Ir4xMSS/itWHYM4jEaFhmYvEufGsEoktmdYe5FYjbBYyIEiRVpGxqnETZuGrI2N
+         zXZ8Lb+CmP3fm1JTGw4aNGRw44ZN1jVp3JTFaLbmSQyOAGOPJYqXZI8XbAuwNEzFGdmqZ+mS
+         buL7735g5RQwrpKMoMCCjhL73+gk14SEvHA+XZ9rREbG1FlB4pdiWDXCgnGhpdSmbXvxA83P
+         ME8Ds2KxCavD2H+FCDx12owJ1Pjy5K1x27ZtL68JDo6AiIdR4l5zWOzDYu6JOWjOOaxiWNgQ
+         xgpsQkICjkY8N6A6/VNierrn0GHDZjRv1uLktxWriBJflmQbj8r0n9INhiI49JFh7g8LgZMm
+         T4VnbaYPVuuHDh/Bi4HTZ84WIaHhMyntl+RnnHjWAC8hy/z8AzFXg2gFplUMC2LDXKA9w2JL
+         B/59sfc6fIT3LT+/lYNkUveNddHRvTBfxXxMMSzmsFhkUSJxzlVi2xyWxGIwLLSfsEWSmJQ8
+         Xyb73CMrK+v1eQt+H9axY5ez1kUuT2ZWZYtTGVpFaEwj96AhQ2lq483742BcLAxCyYVG4Ss0
+         AleUyTrxrGDNmtCmGPGwjaFGWASsjMIAKzNsi1Y82mKExWILVkkHDR5y6VH5TUxKSnovKjZu
+         d1JKajaGdbjoRMyqRlgVoNWUuCllrEzuhQONmn/2W7WqBUk+R+vU/p4ZFzZZYbsci2Fw9Y/Q
+         qmVrZlYsDmK1G/vKcM+MKc7cefOTqDPIdnTciXyK5StW+C9d7m+bw2I7BquiYE7YNccIqxhW
+         icTQZFrs69tdJvFIER0X15QY9VbK5s13jrA5Fp3wHwE+OzenpZ8KDw93k8m80CDme23ipMnL
+         mzVrIWrVqsOutevWrSfgrBf7xvUbNmZaKqaFiikkJ9B27PiJV4kGZWVSTuQ3bDt58mUSi5Ox
+         iqsYFgH6wC2oV8aikz3D9u79sxg2wptG5NmT8jqHfVCEhYW9siFpUyxE39wYlrd0EOgZNIto
+         zpuM92QSThCITn+bNHXq79iKwjaUWkxUaqegrWJYBKidgtZw47YqMOSpePx04i7IyMj476LF
+         S45hLgtmhcIARtmBg4dkm8Ni1IWGE0Sr8RMmHV27dm0xmcQTwYaYmGI7du48DLU/RwyrFCfw
+         Pzll87W1a6PuqgDyouLMmSvvTfGZvgMdMRgWq/9K5dSeYUFvrFvgOebAS5Yu7S2TcOJpg3rh
+         gvMXLIzDFgwYFiuO2P8DoVQvrBgWYhR0aX2mzfCRrz8VxCVs6IN9WChIbCNmdaSaCMWJ9Rs3
+         jvMVvs4VUgcA3ZcsWToBnTD0xsGwoC/EZSxSQX8atEdApw0Nr569eotVqwJ6yiSceFrAAsb8
+         hQtnYBEKzIrFJ2guDRk23HpKp2sPJihO6ICgYOp5C37vJV9/2ii4cdOmOVCiANMqhsU8GAtY
+         2CrCb1xcQlMZ3wkHWBMU1B67BKDvoEFDeWsIqploB9g6atuuA0+RECB9DRo85Gpa2hanZ6in
+         iSVLlpSHSIyN+DHjxvO+7HBvb/aHihEW6nlYbYR+7bjxE24uWrT0Z/lqvkF4eMLriUkp8dsz
+         dzGjKl1ibCdhzxf7vVFRsU1kdCccwHfZsl4zZs626ocTw9I8mHcT0DYwTcIpLgTMheHNeuy4
+         8TsuXrz4unzdiScJGm3/5DNt+hZo0GABCr0set7+AwexyAQRCvt72BbARv3sOXND6Z2/yNfz
+         HSIiIiokJm06D+aFgr398bqw8HXXN23a9JmM6oQDLPFdFgjdamhVYa0DGmzYEsTpLCxiYbTF
+         QlbjJs34d+r06d/LV514kggMDOwya86cW1DsB8MOGzFSDB46TAwYMJh/wbAjRtB9+sVKc3BY
+         GFuJz++IjY2tGhufcHFdZDTrNoNxA0NCjiWkpHwgozjhAEFBER8Qs56Dqin00KFqirrDtiBG
+         WjAvQv0GjUQLup481SdVvurEk8ToseMHTJriw2IwlvuV1gzmOGBkMDRGYZ/p00mEHnuHDdT8
+         jqioqDe3b99eJCwmxmYD1onckZmZ9dfQ8PAodZoI6qZgXJzAwgozto/q12/Ixw8RGjdusm/b
+         tm3OzvBJY/SYcbPUcTowbJ++/fkXDAuFCojPmPNi7jN2/CSnAvoLgDXB4dWhXgr9cHVkMio2
+         TvTq9aOoXasOK21AeQNesNt36Ji1KSWlgXzViSeF4SO9pw8b7s0MizktNt779Osvfhszhs+O
+         4tQIVpkx35k0edIzN+I6cf+IiYmpiIU96IjjED7WCrDYh4VKqEpCRRKaV1WqVBOdO3cVNC1x
+         KmU8aQwcOHgA5q9KvU2ZP8UojJMjsE08ccoU1qKaOXNOkr9/8D39TDnxbCM8IqJ6AjGqOoWl
+         Vuc7dOwkqlatzjrOYOCqVaqL5s1aXk1MS/lWvurEk4LvsmX9wKSYvyBAQwZ7txCRoYiBM7YI
+         2BLgQ9iLF9s8BjrhGEeOHHn1zJmzcULi6PGTv8fHxzt0m5XfgNNgUbGxfjjbjGOTGGmh2DJ/
+         wUJm1GrVajDzVqlcTVSvVlM0qN84g4r4d/m6E08Kqamp/+jeo2cGRlmlHYM9OyhcYEsAqo/q
+         VBAOWi9a4nts7969f5OvO+EA+w8ciADDwmvBdXZTch2XYt++/b/369cvX/uriYiPLxSXsP7C
+         plSrMTwotGRs2yaGDh3OxwLBvJW/rcqnjMC483///Q43bE48IfhMnz0KIy3U2cC0OEyA/Trs
+         3c2eN4+3AnAOF4wLi4pL/ZbPkK864QBbtmx5/+zZcxeybt0Sly5dYm8GMK0KzwZXrlwjZtiy
+         oF8/33y3Fx4SEvKPuISEhB07d7FRAliOhAGC0LC1fHYXZ3vxC6Yt61Wep1YREXFF5OtOPGlk
+         ZGS8MWTY8J1gWOzVNW3Wgo2Ug3kx6kIVEkyLX+gyrwpYc2vFitXN5OtOOMDmzVtMxLzn4bHg
+         1KnT4sSJk+Lo0WPs7QBeEXByKX3r1kYyer5A/PqNwbuIUcGwOHm1a88esZVG26ZNmrPnWTBs
+         hW8qsZc93Bs58rcf5atOPC34BQRU6Nq91wUwLALOZ2L1sGmz5jzawk4RtGjwi7kujI8FBAR0
+         lK874QC7du3S4HUATHuIGBbMihEMVjlgpQPnhdMythym+e8X8pWnAt+wsH8lJqck7d67l09U
+         wS4XTl7tobx26dKNzd6AYb8uX4HN31SpXB2HT6Ll6048bcxduFBvQ6Iy9ujq1PnetuT/XZ0f
+         eI4Lo23QpkGAKRtsF9Dou1K+7kQORERE/G3nzt1+J2nEBcPiCCIYFqeXcBACZnew+IMRLjY+
+         fn1aWtoT1/uNjo7W0jO2XoYpXTAsDKzDNxKkAph5xegKhoXpG9irguvvvn36bc3KynJ6FcxP
+         mDJ9umebtu1vYOVQLUSgt0VPC60qaNLALi/0V6EOBw2bcNYHDm8jk3DCDmlpW5odo1FXMSxO
+         LYFhlU1mbLNg2wX7pZHRMbeCQ0NtLtQfN5JTNi8DkyqGPXDoMM/Dd+zIpM66LhuZUwyL/2gD
+         PXv2jhdCPHKTtU48AtBI8XnLFq3PqDkNelzMcYwemqhfr6HwW+7PTqGhEsciMzEvtGsiomNE
+         2LrIVjIZJwip6emNDhw+IlLTM9htiT3DQrEBRvCgnYQ6ZBO0VKckyVyJiot7bHuj0XFxnXbu
+         2sPMqjwSYv4Nl5/4PkRjMCsYFf/hwR0MPGTI8NUyCSfyK6hX/b9evX4Kwn6dp7mM1U2/0Sw8
+         3I2i+BdfCYjUSh0OuqwwnQrRGY0RRt3CIiJGLFy48IXumbF3m5ySmohzwophodCAEVYxrHJX
+         gtV6rB1gHQELgTCDu3Dx4jkyqUcCEsdbbNuRmQXTPxDd1UIZPP7BE2DPHr2FgTpnxbAYZUHv
+         WjXqiFlz5nSQyTjxLGDSpKnf1qhe6zrs9LpRgKHtkiVKiWKffSEKf1JE0MjMjRANEuIejtGB
+         eTGiYISJiUu4EhEVNdbX1/cNmeQLg40bk37H/NVeJEZHp0ZYuFABwyovflArxdYbVvInTZkq
+         JkycDH+/V5b6+3vKJB8IsRs2dIRZHzAs3HqCYY8ePUrMepr99C5etIQYtSwzK+a0YFjNaBIm
+         zSJ6dO+dsX///rdkUk48a+jeveeIsiQ+fV70C/H5Z5+LzwoXE4ULFWE3GHBAVembb0VgUAjP
+         36Bxg6BMqcIKRcZWq1kZurc/NTWt06JF/s/tiZLElLRvk1JSzqMu1AirJBOsETgaYcGwUHaB
+         vyS4EIVnQpzOwoktaLb5TJs1n6SgvJvfqVPnpfUbNw7aTYyK1WyIxfDgYPWsf5qdZ68n+mAN
+         A0wKhlVSFTwkNGvagjqWAOd2z/OCCl9XGlHqK1eb7xr4sYFfGzijeuXf/6PwqujUsQuPMulb
+         tzIjY+TFhr4yqQoG3k/zKowANMe6lJy6OWXfwYO1o2Jjn1mjbhFxcUXSt2wZgHKivDlHWIjE
+         aoRl1VEaYZW9ajXCKoZVxslxYgvWR6DogDBs+MhjgYGBH8tP5oqUlBRPbOegjhXDYg4LJRA4
+         zY6LS2CtJ4jFaoTF6Ao3JY0aNBFL/fyHyaSceN7QumXbkUZ3Xbz+vzfYk5xy/4j/CP/553/Z
+         m1zzZi1JlF7LzrV4/3K71aQq/mM1E4sjvKJJjezYsRPi8uUrLL4dPnwk6+TJUwf27t2/c8+e
+         vQvOnz9fce/Bg57r128qFR4e/rbMxhNHUlLS3zds2FB6x45dlYhJ127O2HIYZYJqIKQM+zks
+         5v32IrEaYXMyLE5fYVS1MewAK8PCuDzsPcGIG7TaoCBDDJw1b968OjI7DrF0+fLKGNkxT15N
+         v1tIXMee7KjfxliZVLfYVorxHwzbsEFjMXv2vFEyCSeedwwaNLSxa0nXwxhx4U1OuYJU7iDf
+         e+cD8cZrb7E47VrSXQwaOESs35AoTpw8JbBNgpHhkBwRIMZBYeHUqVO8WHL27Dlx4cIF9vaH
+         FU94ZRdZ0PrNDty6dOny9StXrl6kOLuvXbuRduHS5bTTZ8+lHT9xMu3I0eNplH7q0aPHkygk
+         HDt2LOYowlFrOHz4cPzBQ4eS9h88mLJv3/7N1JGk0TwwjTqPdOpQTuzavecWpSOwH4v8Yr4I
+         RlW2re42h8XeNyyH5BSJmWHHT7SNsLA2gnPQMMiH0dWeYWFlE9pssDqBM7Bgsr59+4+TJHAI
+         6iz7k0h+i1VV588XPXv9lE0kxmgLsbhxo6bX/Pz8e8jXnHjRsHXr1le6du42p1iRz6+Ced8h
+         xn2fRlwE+G5FUL5cwdT/+89r7JT5h+/rsYf1nTQCQ6/31q0sqd9rZdjLly/zCAxFfSjtP3T4
+         w/p7gzqBq1evikuUPnz4nj17ljsMdB5YacUCDjGxgAqgveIERGHFsGqEVU6tc85hHTEse8az
+         E4kxh7VnWByr7NylO1tVbNKkOTNqlSrVWU8Y81Gs8uP3h7oNRK9evVdSn5XrvDc8Irq2L3Uc
+         +DasM7q7GTjUrvWdmDhxUlhGRobTKogTt7E+OblorRq1RxnctSyIyxh5mWlpTgzv6gjw68q+
+         XT8uLAp99Ak9+5hG5rfFuxS3DjWsdm3aiRAaucBQYDB73MGMeQw3btwU169do/SuiIuyczhL
+         8z4s1hwnMf3w4aM8omIxB5pEzLA0H08jUVMxLKxF2m/rqEUnta2DEfZui04QiWGTevgIb2ZY
+         nIPGyMoqplRuKPFj71wp9CtmRYBCDB+tq1qDQ43qtcDwobLaHQIrwqtXBzYbM3b8qj59+g1O
+         SEhwl4+ccCJ3ZGVl/bdr564/fVO+0gk4W2bGJQYGw8IhM7aU4OOV/bwWLsqhaJFiFD7ne8zY
+         9A46gI8/LCRq1/xODOg3UHh7jxIxxDwkHrMI/ccftyRbZwfuM8PSiH2V4mI0vz3CEsMePymO
+         QPmfxHV7XWLo7GIrBwtqOUXinIoTUEQB00KjDFs7mFsqbxBgWNjz6tChk2jevJVoUL+RqFDh
+         W6v3vPIVmEmh6KIYVTGrI4a1Z1o+F1utumjYsDHsXk+R1e2EE48HK1euLN64cdMJ1HCvwHs6
+         MycxsD3Dsmf1Ith2+kJ8UQyhODttLv55CQ4lin8lvvyiBG9NWd+zvlOM3sH+8ldflhQViSHa
+         tG4nRgwfKSZNnCzGjRsvpvlME0uJsUJDw0R8XIJITknlERWMunv3Xtsou4WYFgwLpQm49QwK
+         DhXL/Px5BMXeKhjxZzuHWK3pO9DtBhOW8Sxn0zpCgMYZM6l0cakCGNWeWe/JsFWsDAvLEyrU
+         qFGLdcnbt+94NTAwzFVWsRNOPH6sXbv24xYtWg2tWrXGBi9LWVG0cDFmWDAxGPaLYlaGBaOC
+         YVUAc8LzOvYcEbBFBeUQrJC6lnLn4ObqwQHzOg8ORuFW2sP6HMokpdwo0P+SMkDJxO4dLOAY
+         DbpVGUG38KKOUlJQTKkYEwGqoSqAURHAzGpUfWCmlSOsCjj8gdC6dVvRrVv3yJkz51pkdTrh
+         xNMBSbd/9vMLea3/wIHjzCavpTRXFu7ESGDi24xb8g6GdSUmVAyZk2EN7kb2zm700JkRFTNi
+         VRUe28GUijEVc6oAJkXAKIqgmNURwypmfViGxa8SiXHYo1GjJlisutaqVSvfadOm9fb29v4H
+         1dNj9YzohBOPBNRQ/921a9e3R40a271d247BxIwbapGoWIGYBAz7VYlSohQxMJhcBcWwauRE
+         YGaV4X4Y1tEI64hpFcPaM609w+JXMeq38n51YlBoKjVv1jKL5vDRAwcOCp4wYUKbsWPHvp6V
+         lfVM2KpywokHwo4DO97+9deBhZs1a+lFo/WIbt16rq9erWaip9lr57ffVjlfs3odUaNaLWKu
+         SsSYZYWJRlqNmJdHXrtRF0oJinFzY1h1bR8UE4NRMWpihbhxo6ZsKaJ+vQaXq1Wtuat+/UaJ
+         ffv2T/yN8OMvv5QbMWJMYeeWjBNO3AdoJHsZHto3bcooNHXGjNJDhw5179NngHvndp3dGzRt
+         6l63bl33qlVruVeqWtW9UiVrqEXXuN+0aUv3zp07c3y8N3XqjNKxsRsLU3qvk2TwL/kJJ5xw
+         wgknnHDCCSeccMIJJ5xwwgknnHDCCSeccMIJJ5xwwgknnHDiUcJisbyh6/pHmqbpukFvqGmm
+         9rpubpcjdNI9PFlZXHPTvtQ0rwEmzTJEN5oH3W+g90aYjBY2UE7f/pNusDTUdctwR3E1zTKA
+         fnsZjaZqlMeiRqPxrhb9KlSo8FeK//P95c1zmKaZa8okChgMXu9THfx6X2nont4eHno5vF+8
+         ePl/0PsdcitTHsJQyk/vUqVK3eEeEvVVrly5t9zc9KK6h6UCfaNlTnrh2kTBS/MqJl/LFUZj
+         ubcsBksRontZ+mYjerc5/TbLHkzN3dws78hX7oC7e5nXdb3sRyYPkxvRsjrlqbrRaCnt5eX1
+         vpub2z9ltDzDw8Pjv5pW7j2DwfwV5asypVnHZDAR6b0+NhgMr8loDqG5W3ST5jXCQZ3mKfC7
+         epmiMrkCdK8b2kfOeLkFs+45zGg0G+TrBQq08n2vYKdVwwt29B9UsOPKYS7tV3TDbbOHVo/a
+         zEi8oxksv+oGcyu8hzqjgr7M7zoCGqXF7HkCanNQoVM6r16eCFY92NvBqrxuMpm+p1cLEjEX
+         Qe/VGvd2UDaC7NXzcsbh79AvMSLS4k4A8aCLq96xD1D/U2kjDn7hiU03muYiL0jDHkYPfaCK
+         i/Ss6oHZ82AfoDKIMhJDfC6TKGAymprgG6oc90qD60Y3n6YGx7am0Ml9Ux71Y827CqzKKNNE
+         QB5zxkFAeprBvKJOnTpsPcLdXS9OzLAS5eL4lM5teuH97KFsma+hJnlUvW+PEiX0V1F3Sm3S
+         RnuZP3VfBahJEr395esMqqv/owbX16x7XcW7Kg383i6T1QQN7iFQRzKNOqI/yyTuAHXKDcxm
+         r/1IB+VUZVNpoF7w32yyeiyg7yep+lag9vnu7XftgzUd+7pXadoHa71ZbqEDQnrUlibav2ut
+         /+zv2AdVB+hkOEN1fP9SsP3K9S7dgoVLp9XCpVuIKNAlvE354u99qGumo0gbNsH5l96zls9a
+         f/StU1Qnn3I6gGYw9VCZkeEw9WKPxCo9ETiOMy4Lid5EPsoVVIB16h3kixpsb/koG9DR4Lmq
+         eGtcU3v52AZq4KHWeFQBXmWFh4fWWj7KE9zd3V8nJryg6gffytaDPgSofhqhXlT9kNSRKh85
+         RPHixWnkNq9Fg1DvENOtgnQko+QZPEJr5oOqgfD3TZ6BRPsyMso9gdHTpJnDVP1aOyLPFIzW
+         MooNFovrG2aTJdaetpLZ/iujMIiGg9ERgSGtdeN51GDQ29GjbJ1yoUIkSemmJfbti35P0+hU
+         QkbJFaAplX2vrewWLwwc1eRjhyjrWvYVKmukegf5Mxr1tvJx3tA56AOXjitOu3QJFC6dA4RL
+         x9VnC3RcYRvN7UHl+Jja7hFZLtQDdZj6NX5oKml6k0aD4+ohMkVi0GB++JBA70CVc9laSE/0
+         +NcsHpZC8rFDkGhOIrflhHqH8nWFek2HDYkaeU/VgK0NhxtBtpMp1Ku3to9DvWecfJRnaAat
+         B+Ul63b96BtyfufB0M+FGsIO1fCQT2JKm3juCFSe5mrkB82o8ZykRn0Hk9wLutHS1lpnkvk1
+         86l70SYn0FmAvvZtR0lNuQGdBcU9jFEF7zBNaFokH6PTTgbT2p4Zzd7yUW4oSGWRHbO1Dumd
+         fvJZrqBO/9ds7UK3+MpHuYJoU0O9g7JSXtPkozyjYIeVi1x6RRDDrhQuvaMEXefKaxaailD9
+         HlL1i3xaNM2DH0JUodFjv2o8CGAYXOOXrtFgb5mM5kiTydKDMl+FX8wD6KMh9hVKDDhAPsoV
+         1IP+pipHEkG5tHgJeaU03GhUaE9pH0AeUSiIJJrRvKho0aLZHC9Tw/oPenRVcATZGTgMqszo
+         6WQSDPrWWlUOTkPPPQ3Os2Y+Qox9Tyag/A308kS9W+sb33E0h7UHNfLaGNUkbTjgu4oR6P4t
+         6sDO65o+22z2bEcjy2fyVRsMBpOZ4t5CGiodiveJfJwnYM5F+d1gT1/q8H+Sj3MFjeau1OBP
+         Is/q+5qHVgPPqG2Nh8h7Oz3zLH7p7nCheDb68Pua5a7tjPJQhNrLRZUHKsc13UOvIB87BNHl
+         X6Ar3sF3VMC1o8A0ol+a198e/TusLEMj7SUeabsGCZrbHizQfKVqJ5jCuEASoI64LrWx6ap+
+         rGUzn6T2olmj2sHDw1yFGpAvRTiMSgMzqIaMoDKqEqKetaej+ZICfaQyxb2C+CgIjSwnQDT5
+         2CFQSOr5eIS2r5jb+bEawrY+N1+i5753S5PK9AXFyUJ8BBDIaNCXU1joKJDI6UvlaiFfZ5CY
+         3h3eEFTZIbpQPIfvI1DH40tl58WGuwFzQmo8tgbHjKub82TUG4tRBpo+UMMIwLvW+rGvm9v1
+         Z73veYLyZDO4Rg09SH1XMkhn+SjPwJy/jKeVyTjvRlOCfHRXUEf6SxkpMSAPRJMVfJ+kBpUn
+         lIPun3R3N9+zM6F81Mdc/HY+zBke79xdGiLG6MRtUn6L6LDjXhKU5m4uj/Zj15ZOEr19c9Jf
+         BUrbl8r0g3yd4dJuZXeXHuHW0ZbmtgU7rvYn0eBP1JFlli/7DdeH4jmLdZqQBOkh54CUJ1DP
+         +hYRtiIyam0Utoo9jvmWjHYHdKPeF8yG+MgQGot8lCtIRO5jX6HUkLdTI/3Aw6PM27ruaaFv
+         HkXBrM/595xXjtHRHsRkG1V8mYf7aqCYv9E3197+JuaT5r7y8UPBZDB9k62h6uZDd1uoyQsw
+         WqOusOpOIvRNkkw4fTAnpT8UccD0VKY461zUNlLet3MsEtl/UvlnhqE05aNcYTBYflDflW3o
+         GHUo7GSNaFM+Wz3r5n0FLAX+xC/mAu6YNc+ripnwPrVXk3ycK2gQ2WbfLsxGcyX5KFcQc61R
+         5ZWjeh/5KG9oTXPb7sS0P8aQiBwtIC4X6BZcpDLRjGjyThlu4+YZKl+cN6orundPsT9X0Kj2
+         uVm3HECFcm9g9soiRsp1XmU2mz9Br68qlDJxgyq0sHzsEBUqFPorEdImz6MAOUUD9IpW0dda
+         OM4LLxCYq8ooNtC9SpSHizK/iL+LxOw35eM8wd1dL6XKwOUgqUE+eihYmce0VZWVfzVTY/n4
+         oUGM2IPS/MNWj5pla6lS5Wxnbo1G3U/NI7lcTB/TfblSodGkDonnPO/n75i9rmkG04/ycTbQ
+         yPkZ0SJGNUrZofvZS2zUPkpTXs7J/HCjpfpeJB9nw5cWy7+p/U2xpmdbEMt0IwaQUXIF1c0Q
+         L5kPrhvdHEPtKtviWE5AdKXy0RTE+o5m5LntHbsXd0U/3zyNmlSvTale6VuyHqizoAEokB7d
+         NvtDDdlIka4Sw5DYab5AhTgnA82RzNfxEnpkNCzumWj+RIksvFdBqfecrohkrRyT771GE6Nu
+         9la9Mb5F4stqR/M9pIOtC9X7IUBUonnbCBmFQT3iKDXiq4BGQWKjw2AVh81J5YuXt0kRdJ2i
+         yoFAdXLL0bsqYL5KRM0sV+42kzgC5fUbSss2UtB3rhEtSsrHuYLq1V/Ri2lkDedAO+QP9YB6
+         Ab2k+Ei01DvJ17OBmLcf4qryIR+gNZdVs5wgZj9C3zlC6R+ke4coHHN1tZuvESjPZrPJckLV
+         M9Kw0sV8mN7LoPdPqvzYvqV5zqeBwOG+a+nSpd+l9xKx+Mb1ItOjdM5a07McwFwe7QRpWZ9Z
+         4qg+rVst9wDPy3VLiGpnSIOkk/7ycW7AHHoa5x11I4Mj+qtQxouluy3ooDmFjoH/LNjefxuP
+         tt3DaLSNFAXar2rKzxxADhhXuEPnb0E6sRzA/JcjwAQKhWtUMfbhOoUb1DPtptFtjEWzeFLh
+         9LzK2a6uZV+hTG/GB5EePmrWzPXkY4coWdL0JuVjvXznBn41Tburiwma27SgeDcQH98Boem7
+         wXjm4WEqSQXltPAsDwHfvKF53F5c0T10C+XpJD37I0fcXANXsG65q48cgKSBOZAa8A4aIuYx
+         8lGuoDltK5SR3gF97L9LZTRdpo5uA8XpZDJ5mbEPLl+7J4iJ3ud3aBpBdI6jdE4YjdoZTdNP
+         Ufm5A0e5jB5mb1tDzAFjYePLWPCisjekTjqC0jhD4QCVa6JF18vdT/tRIBq6mc1lqlAnvYTC
+         ScrPSfr1o3zWRIfh6ur6ioyaZ2juWnlVh2hjNKJv6dev310N2Oml9Y8o7hV656as73sFtLnr
+         UBCRSRDjrmxbsHPArYId/E8X7LzqWsGO/n7ySa7g6aFm3kWB2wnlgfLseUPXvUr9f5TeSgpx
+         oxhaAAAAAElFTkSuQmCC
+        </office:binary-data>
+        <text:p/>
+       </draw:image>
+      </draw:frame>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce1" table:number-columns-repeated="4"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro1">
+     <table:table-cell table:style-name="ce1" table:number-columns-repeated="5"/>
+     <table:covered-table-cell table:number-columns-repeated="13" table:style-name="ce14"/>
+     <table:table-cell table:style-name="ce1" table:number-columns-repeated="5"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro1">
+     <table:table-cell table:style-name="ce2" office:value-type="string" calcext:value-type="string">
+      <text:p>{{head_jahr}}</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce7" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce2" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="2" table:number-rows-spanned="1">
+      <text:p>{{coc_year}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:style-name="ce12"/>
+     <table:covered-table-cell table:number-columns-repeated="13" table:style-name="ce14"/>
+     <table:table-cell table:style-name="ce1" table:number-columns-repeated="5"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro1">
+     <table:table-cell table:style-name="ce2" office:value-type="string" calcext:value-type="string">
+      <text:p>{{head_laufende_nr}}</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce7" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce2" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="2" table:number-rows-spanned="1">
+      <text:p>{{coc}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:style-name="ce12"/>
+     <table:covered-table-cell table:number-columns-repeated="13" table:style-name="ce14"/>
+     <table:table-cell table:style-name="ce12" table:number-columns-repeated="5"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2" table:number-rows-repeated="2">
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="23"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>1.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Anzahl Achsen:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce21" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{num_axles}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce27"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Anzahl Räder:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{num_wheels}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="4"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>3.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Anzahl Antriebsachsen:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{num_driven_axles}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce28"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Lage:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{driven_axles_location}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>gegenseit. Verb.:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="5"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{driven_axles_connection}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce29"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="11"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>4.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Radstand:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce22" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{wheelbase}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce28"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>mm</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="6"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>4.1.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Achsabstand:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce17" office:value-type="string" calcext:value-type="string">
+      <text:p>1-2</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce22" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{axle_distance_1_2}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce28"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>mm</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce17" office:value-type="string" calcext:value-type="string">
+      <text:p>2-3</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce22" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{axle_distance_2_3}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>mm</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="6"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce17" office:value-type="string" calcext:value-type="string">
+      <text:p>3-4</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce22" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{axle_distance_3_4}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce28"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>mm</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="6"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>5.1.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Höchstzul. Länge:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{max_length}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce28"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>mm</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="6"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="5"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>6.1.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Höchstzul. Breite:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{max_width}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce28"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>mm</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>7.1.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce10" office:value-type="string" calcext:value-type="string">
+      <text:p>Höchstzul. Höhe:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce4" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{max_height}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>mm</text:p>
+     </table:table-cell>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>12.1.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Höchstzul. Überhang hinten:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce4"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{max_overhang}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce28"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>mm</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce4" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="5"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>14.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Masse unvollst. Fzg. fahrbereit:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce4"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{mass_incomplete_vehicle}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce28"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>kg</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce4" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="5"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>14.1.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Verteilung dieser Masse:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Achse 1:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{mass_incomplete_vehicle_axle_1}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce28"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>kg</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Achse 2:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{mass_incomplete_vehicle_axle_2}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>kg</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="2"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>14.2.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Tatsächliche Masse unvollst. Fzg.:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce4" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{actual_weight_incomplete_vehicle}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce28"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>kg</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce4" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="3"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>15.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Mindestmasse vervollst. Fzg.:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce4" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{min_weight_completed_vehicle}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce28"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>kg</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce4" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="5"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>15.1.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Verteilung dieser Masse:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Achse 1:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{min_weight_completed_vehicle_axle_1}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce28"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>kg</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Achse 2:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{min_weight_completed_vehicle_axle_2}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>kg</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="2"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>16.1.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>techn. zul. Gesamtmasse:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{max_laden_mass}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce28"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>kg</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="4"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>16.2.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>techn. zul. Achslast:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Achse 1:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{max_laden_mass_axle_1}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce28"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>kg</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Achse 2:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{max_laden_mass_axle_2}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>kg</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="2"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>16.4.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>techn. zul. Gesamtmasse Fzg. komb.:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{max_laden_mass_combined}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce28"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>kg</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="7"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="2"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>18.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Technisch zulässige maximale Anhängemasse bei Beförderung eines:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce11" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>18.4.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Ungebremsten Anhängers:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce18"/>
+     <table:table-cell table:style-name="ce23" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="2" table:number-rows-spanned="1">
+      <text:p>{{max_towable_mass}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:style-name="ce30"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>kg</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce11" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce18" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>19.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Technisch zulässige Stützlast am Kupplungspunkt:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce18"/>
+     <table:table-cell table:style-name="ce24" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce11" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce31" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="2" table:number-rows-spanned="1">
+      <text:p>{{allowed_mass_on_coupling}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:style-name="ce24"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>kg</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce18" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>20.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Herst. Antrieb:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="7" table:number-rows-spanned="1">
+      <text:p>{{powertrain_manufacturer}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="6" table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="8"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>21.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Baumuster:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="7" table:number-rows-spanned="1">
+      <text:p>{{powertrain_type_examination}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="6" table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="8"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>22.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Arbeitsverfahren:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="7" table:number-rows-spanned="1">
+      <text:p>{{powertrain_type}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="6" table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="8"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>23.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Reiner Elektroantrieb:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="2" table:number-rows-spanned="1">
+      <text:p>{{pure_electric_drive}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>23.1.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Hybrid (elektro) Antrieb:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="5"/>
+     <table:table-cell table:style-name="ce21" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="2" table:number-rows-spanned="1">
+      <text:p>{{hybrid_electric_drive}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>26.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Kraftstoff:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="2" table:number-rows-spanned="1">
+      <text:p>{{fuel}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="11"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>27.2.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>höchste Stundenleistung [kW]:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="2" table:number-rows-spanned="1">
+      <text:p>{{max_power_hour}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>27.3.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>höchste Nennleistung [kW]:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="5"/>
+     <table:table-cell table:style-name="ce21" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="2" table:number-rows-spanned="1">
+      <text:p>{{max_power}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce10"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>27.4.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>höchste 30-Minuten-Leistung [kW]:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="7"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="2" table:number-rows-spanned="1">
+      <text:p>{{max_power_30min}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:style-name="ce17"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="7"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>28.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Getriebetyp:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="5"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="7" table:number-rows-spanned="1">
+      <text:p>{{gearbox}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="6" table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="7"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>29.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Höchstgeschw.:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="5"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="2" table:number-rows-spanned="1">
+      <text:p>{{vmax}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>km/h</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="7"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>30.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Spurweite:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce11" office:value-type="string" calcext:value-type="string">
+      <text:p>1:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="2" table:number-rows-spanned="1">
+      <text:p>{{track_width_1}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>mm</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>2:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce19" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="2" table:number-rows-spanned="1">
+      <text:p>{{track_width_2}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>mm</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="7"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>35.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Reifen/Radkombinationen:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="6"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Achse 1:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="4" table:number-rows-spanned="1">
+      <text:p>{{tyre_dimensions_axle1}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="3" table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce32" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="4" table:number-rows-spanned="1">
+      <text:p>{{rim_type_axle_1}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="3" table:style-name="ce33"/>
+     <table:table-cell table:style-name="ce34"/>
+     <table:table-cell table:style-name="ce35"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="9"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Achse 2:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="4" table:number-rows-spanned="1">
+      <text:p>{{tyre_dimensions_axle1}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="3" table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce32" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="4" table:number-rows-spanned="1">
+      <text:p>{{rim_type_axle_2}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="3" table:style-name="ce33"/>
+     <table:table-cell table:style-name="ce34"/>
+     <table:table-cell table:style-name="ce35"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>44.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Genehmigungsnummer oder -zeichen der Anhängevorrichtung:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="5"/>
+     <table:table-cell table:style-name="ce25" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce18" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce25"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="6" table:number-rows-spanned="1">
+      <text:p>{{hitch_approval_code}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="4" table:style-name="ce33"/>
+     <table:covered-table-cell table:style-name="ce36"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>45.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Typen oder Klassen von Anhängevorrichtungen, die angebracht werden können:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="5"/>
+     <table:table-cell table:style-name="ce18" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce18" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="5"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="9" table:number-rows-spanned="1">
+      <text:p>{{kinds_of_hitches}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="8" table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce18" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="5"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>45.1.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Kennwerte:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>D:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce19" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="2" table:number-rows-spanned="1">
+      <text:p>{{hitch_property_D}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>kN</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>/ V:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="2" table:number-rows-spanned="1">
+      <text:p><text:s/>{{hitch_property_V}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>kN</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>/ S:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="2" table:number-rows-spanned="1">
+      <text:p>{{hitch_property_S}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>kg</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>/ U:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce9" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="2" table:number-rows-spanned="1">
+      <text:p>{{hitch_property_U}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>t</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>46.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Geräuschpegel:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="8"/>
+     <table:table-cell table:style-name="ce10" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="8"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Standgeräusch:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="5"/>
+     <table:table-cell table:style-name="ce22" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{stationary_noise}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>dB(A)</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="11"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Fahrgeräusch:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="5"/>
+     <table:table-cell table:style-name="ce22" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{pass_by_noise}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>dB(A)</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="11"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>48.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Abgasverhalten:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="5"/>
+     <table:table-cell table:style-name="ce22" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="6" table:number-rows-spanned="1">
+      <text:p>{{emission_characteristics}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="5" table:style-name="ce11"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="9"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>49.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>CO2 Emissionen/Kraftstoffverbrauch/elektr. Energieverbrauch:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="20"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>elektr. Energieverbrauch kombiniert:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="8"/>
+     <table:table-cell table:style-name="ce26" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{combined_energy_consumption}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Wh/km</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="8"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Reichweite elektr.:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="5"/>
+     <table:table-cell table:style-name="ce26" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="3" table:number-rows-spanned="1">
+      <text:p>{{range}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="2" table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>km</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="11"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>52.</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3" office:value-type="string" calcext:value-type="string">
+      <text:p>Bemerkungen:</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="2"/>
+     <table:table-cell table:style-name="ce15" office:value-type="string" calcext:value-type="string" table:number-columns-spanned="17" table:number-rows-spanned="3">
+      <text:p>{{additional_annotations}}</text:p>
+     </table:table-cell>
+     <table:covered-table-cell table:number-columns-repeated="16" table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce4" table:number-columns-repeated="5"/>
+     <table:covered-table-cell table:style-name="ce4"/>
+     <table:covered-table-cell table:number-columns-repeated="6" table:style-name="ce3"/>
+     <table:covered-table-cell table:number-columns-repeated="10" table:style-name="ce4"/>
+     <table:table-cell table:style-name="ce4"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="5"/>
+     <table:covered-table-cell table:style-name="ce4"/>
+     <table:covered-table-cell table:number-columns-repeated="16" table:style-name="ce3"/>
+     <table:table-cell table:style-name="ce3"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="5"/>
+     <table:table-cell table:style-name="ce4"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="17"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2" table:number-rows-repeated="2">
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="12"/>
+     <table:table-cell table:style-name="ce4" table:number-columns-repeated="9"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="2"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="12"/>
+     <table:table-cell table:style-name="ce4"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="10"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="23"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="9"/>
+     <table:table-cell table:style-name="ce4" table:number-columns-repeated="4"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="10"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="9"/>
+     <table:table-cell table:style-name="ce4" table:number-columns-repeated="8"/>
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="6"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2" table:number-rows-repeated="4">
+     <table:table-cell table:style-name="ce3" table:number-columns-repeated="23"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro2">
+     <table:table-cell table:style-name="ce5" table:number-columns-repeated="23"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro3">
+     <table:table-cell table:style-name="ce4" table:number-columns-repeated="23"/>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro3">
+     <table:table-cell/>
+     <table:table-cell table:style-name="ce8" table:number-columns-repeated="5"/>
+     <table:table-cell table:style-name="ce16"/>
+     <table:table-cell table:style-name="ce20" table:number-columns-repeated="14"/>
+     <table:table-cell/>
+     <table:table-cell table:style-name="ce37" office:value-type="string" calcext:value-type="string">
+      <text:p>Seite 2</text:p>
+     </table:table-cell>
+     <table:table-cell table:number-columns-repeated="1001"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro3" table:number-rows-repeated="1048509">
+     <table:table-cell table:number-columns-repeated="1024"/>
+    </table:table-row>
+    <table:table-row table:style-name="ro3">
+     <table:table-cell table:number-columns-repeated="1024"/>
+    </table:table-row>
+   </table:table>
+   <table:named-expressions/>
+  </office:spreadsheet>
+ </office:body>
+</office:document>

@@ -1,0 +1,161 @@
+{% trans_default_domain 'messages' %}
+
+<div id="search_window" class="seitenteiler columns four custom-skeleton">
+    <fieldset class="">
+        <legend class="collapsible"><span class="genericon genericon-expand"></span>
+            {{ 'parameters.values.twig.search.searchVConfiguration' | trans }}
+        </legend>
+        <div id="search_window_collapsible" class="">
+
+            {% include 'Common/Configuration/search.html.twig' %}
+
+            <div class="" style="">
+                <label for="sel_globals_result_list">{{ 'parameters.values.twig.search.globalParameters' | trans }}</label><br>
+                <div id="sel_globals_result_list">
+                </div>
+            </div>
+
+            <div class="options-bar">
+                <ul class="submenu_ul">
+                    <li>
+                        <span id="btn_select_global" class="sts_submenu W180 disabled">
+                            {{ 'parameters.values.twig.search.selectGlobal' | trans }}
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </fieldset>
+</div>
+
+{% block javascripts %}
+    {% include 'Common/Configuration/searchJs.html.twig' %}
+
+    <script>
+        $('#sel_globals_result_list').on('change', function (event) {
+            enableButtonsByLevel(3);
+        });
+
+        $('#btn_select_vehicle_configuration').on('click', function () {
+            if ($(this).hasClass('disabled'))
+                return false;
+
+            disableButtonsByLevel(3);
+            clearByLevel(2);
+
+            let selectedConfiguration = $('#sel_search_result_list').val();
+            getGlobalList(selectedConfiguration);
+        });
+
+
+        $('#btn_select_global').on('click', function() {
+            if ($(this).hasClass('disabled'))
+                return false;
+
+            let selectedType = ($('#sel_type').val() != null)? $('#sel_type').val() : ($('#sel_search_result_list').text()).substr(0, 1);
+            let selectedYear = ($('#sel_year').val() != null)? $('#sel_year').val() : ($('#sel_search_result_list').text()).substr(1, 2);
+            let selectedSeries = ($('#sel_series').val() != null)? $('#sel_series').val() : ($('#sel_search_result_list').text()).substr(3, 2);
+            let selectedConfiguration = $('#sel_search_result_list').val();
+            let selectedGlobal = $('input[name="sel_globals_result"]:checked').val();
+
+            window.location.href = 'index.php?action=globalValuesSets&method=regenerateView&' +
+                'type='+selectedType+'&year='+selectedYear+'&series='+selectedSeries+
+                '&configuration='+selectedConfiguration+'&global='+selectedGlobal;
+        });
+
+        function getGlobalList(subConfigurationId) {
+            $.ajax({
+                method: "GET",
+                url: "index.php",
+                data: {
+                    action: 'globalValuesSets',
+                    method: 'ajaxCall',
+                    subconfiguration: subConfigurationId,
+                    path: 'globals',
+                    ajax: 'get'
+                },
+                dataType: "json",
+                success: function (ajaxResultData) {
+                    fillSelectGlobalBoxList(ajaxResultData);
+                }
+            });
+        }
+
+        function fillSelectGlobalBoxList(dataToList) {
+            $('#sel_globals_result_list').empty();
+
+            let table = `<table class="reset-table newTable">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Linked</th>
+                                <th>Value</th>
+                            </tr>
+                        <thead>
+                        <tbody>`;
+            $.each(dataToList, function (index, value) {
+                table += '<tr><td><input name="sel_globals_result" value="' + value.globalParameterId + '" type="radio">' +
+                    '</td><td>' + value.globalParameterName + '</td><td>' +value.isLinked + '</td>' +
+                    ((value.value != null) ? '<td>' + value.value + '</td>' : '<td class="empty"> ------ </td>') + '</tr>';
+            });
+
+            table += '</tbody></table>';
+
+            $('#sel_globals_result_list').append(table);
+        }
+    </script>
+
+{% endblock %}
+
+{% block stylesheets %}
+    {% include 'Common/Configuration/searchCss.html.twig' %}
+    <style>
+        #sel_globals_result_list {
+            width: 100%;
+            border: 0.5px solid #a9a9a9;
+            height: 300px;
+            overflow: auto;
+        }
+
+        .empty {
+            color: red;
+        }
+
+        .reset-table {
+            all: initial;
+        }
+
+        .reset-table {
+            all: unset;
+        }
+
+        .reset-table {
+            border: none;
+        }
+
+
+        .newTable {
+            display: block;
+            width: 90%;
+            border-collapse: collapse;
+            margin-left: 5px;
+            margin-top: 5px;
+        }
+
+        .newTable tr {
+            background: white;
+            width: 100%;
+        }
+
+        .reset-table th {
+            border: none !important;
+        }
+
+        .reset-table td {
+            border: none !important;
+        }
+
+    </style>
+{% endblock %}

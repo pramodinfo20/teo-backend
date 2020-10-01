@@ -1,0 +1,19 @@
+label:
+  parameter:
+    llobalParametersType:
+      globalParameterName: 'Name'
+    cocParametersType:
+      description: 'Description'
+      section: 'Section'
+      field: 'Field'
+      order: 'Order'
+
+choices:
+  eventListener:
+    odx:
+      types:
+        default: Default
+        constant: Constant
+        global: Global Parameter
+        dynamic: Dynamic
+        coc: CoC

@@ -1,0 +1,114 @@
+{% trans_default_domain 'messages' %}
+
+<div id="search_window" class="seitenteiler columns four custom-skeleton">
+    <fieldset class="">
+        <legend class="collapsible"><span class="genericon genericon-expand"></span>
+            {{ 'parameters.values.twig.search.searchVConfiguration' | trans }}
+        </legend>
+        <div id="search_window_collapsible" class="">
+
+            {% include 'Common/Configuration/search.html.twig' %}
+
+
+        </div>
+    </fieldset>
+</div>
+
+{% block javascripts %}
+    {% include 'Common/Configuration/searchJs.html.twig' %}
+    <script>
+        var viewSelectedConfiguration = function (selectedConfigurationId) {
+            // let type = $('#sel_type').find("option:selected").val();
+            // let year = $('#sel_year').find("option:selected").val();
+            // let series = $('#sel_series').find("option:selected").val();
+
+            window.location.href = 'index.php?action=cocValuesSets&method=regenerateView&configuration=' + selectedConfigurationId;
+        };
+
+        $('#btn_select_vehicle_configuration').on('click', function () {
+            if ($(this).hasClass('disabled'))
+                return false;
+
+            disableButtonsByLevel(3);
+            clearByLevel(2);
+        });
+
+        $('#sel_type').on('change', function (event) {
+            $('#description').empty();
+            $('#sel_search_result_list').empty();
+        });
+
+
+        var viewSelectedMainConfiguration = function (selectedConfigurationId) {
+            // let type = $('#sel_type').find("option:selected").val();
+            // let year = $('#sel_year').find("option:selected").val();
+            // let series = $('#sel_series').find("option:selected").val();
+
+            window.location.href = 'index.php?action=cocValuesSets&method=regenerateView&mainConfiguration=' + selectedConfigurationId;
+        };
+
+        //---------------
+
+        // var fillSelectConfigurationBoxList = function (dataToList) {
+        //     $('#sel_search_result_list option').remove();
+        //     let select = $('#sel_search_result_list');
+        //     let previousConfigurationId = null;
+        //     let previousConfigurationKey = null;
+        //     let previousConfigurationDraft = null;
+        //     let configuration = '';
+        //     let subconfigurations = '';
+        //     let vehicle = false;
+        //     let vehiclesCount = 0;
+        //     let first = true;
+        //
+        //     $.each(dataToList, function (index, value) {
+        //         if (first) {
+        //             previousConfigurationId = value['vehicleConfigurationId'];
+        //             first = false;
+        //         }
+        //
+        //         if (value['vehicleConfigurationId'] != previousConfigurationId) {
+        //             configuration = '<option value="' + previousConfigurationId + '" ' +
+        //                 ' class="' + ((previousConfigurationDraft) ? 'invalid' : '') +
+        //                 ' " data-type="configuration">'
+        //                 + previousConfigurationKey + ' (' + vehiclesCount + ')</option>';
+        //             vehicle = false;
+        //             vehiclesCount = 0;
+        //             select.append(configuration);
+        //             select.append(subconfigurations);
+        //             subconfigurations = '';
+        //         }
+        //
+        //         if (value['vehiclesCount'] != 0) {
+        //             vehicle = true;
+        //             vehiclesCount += value['vehiclesCount'];
+        //         }
+        //
+        //         subconfigurations += '<option value="' + value['subVehicleConfigurationId'] + '" ' +
+        //             'class="' + ((value['sub_configuration_draft'] == true) ? 'invalid' : '') + '" data-type="subconfiguration">&nbsp&nbsp&nbsp'
+        //             + value['subVehicleConfigurationName'] + ' (' + value['vehiclesCount'] + ')</option>';
+        //
+        //         previousConfigurationId = value['vehicleConfigurationId'];
+        //         previousConfigurationKey = value['vehicleConfigurationKey'];
+        //         previousConfigurationDraft = value['configuration_draft'];
+        //     });
+        //
+        //     // configuration = '<option value="' + previousConfigurationId + '" disabled' +
+        //     configuration = '<option value="' + previousConfigurationId + '" ' +
+        //         ' class="' + ((previousConfigurationDraft) ? 'invalid' : '') +
+        //         ' " data-type="configuration">'
+        //         + previousConfigurationKey + ' (' + vehiclesCount + ')</option>';
+        //     vehicle = false;
+        //     vehiclesCount = 0;
+        //     select.append(configuration);
+        //     select.append(subconfigurations);
+        //     subconfigurations = '';
+        // }
+
+    </script>
+
+{% endblock %}
+
+{% block stylesheets %}
+    {% include 'Common/Configuration/searchCss.html.twig' %}
+{% endblock %}

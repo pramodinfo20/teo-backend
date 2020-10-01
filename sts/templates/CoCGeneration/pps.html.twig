@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ 'cocOutput.form.cocTitle' | trans }}</h1>
+    <br>
+    <form id="vehicleData">
+        <table>
+            <tr>
+                <th>{{ 'cocOutput.form.vehicleCharacteristic' | trans }}</th>
+                <td><select name="db_col">
+                        <option value="null">--</option>
+                        <option value="vin">VIN</option>
+                        <option value="pentaKennwort">{{ 'cocOutput.form.PentaKennwort' | trans }}</option>
+                        <option value="vehicle_configuration">{{ 'cocOutput.form.vehicleConfiguration' | trans }}</option>
+                        <option value="date_of_delivery">{{ 'cocOutput.form.dateOfDelivery' | trans }}</option>
+                    </select>
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <th>{{ 'cocOutput.form.startValue' | trans }}</th>
+                <td><input name="start_val" type="text"></td>
+            </tr>
+            <tr>
+                <th>{{ 'cocOutput.form.endValue' | trans }}</th>
+                <td><input name="end_val" type="text"></td>
+            </tr>
+            <tr>
+                <th>{{ 'cocOutput.form.dateOnCoc' | trans }}</th>
+                <td><input name="coc_date" type="date"></td>
+            </tr>
+            <tr>
+                <th>{{ 'cocOutput.form.docLang' | trans }}</th>
+                <td>
+                    <select name="lang">
+                    <option value="null">--</option>
+                    <option value="de">{{ 'cocOutput.form.LangGerman' | trans }}</option>
+                    <option value="en">{{ 'cocOutput.form.langEnglish' | trans }}</option>
+                    </select>
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <th>{{ 'cocOutput.form.authorizedSignatory' | trans }}</th>
+                <td><select name="auth_signatory">
+                        <option value="Ralf Steffes__CEO">Ralf Steffes, CEO</option>
+                        <option value="Ulrich Stuhec__CTO">Ulrich Stuhec, CTO</option>
+                        <option value="Arndt Stegmann__CFO">Arndt Stegmann, CFO</option>
+                    </select>
+                    <br>
+                </td>
+            </tr>
+        </table>
+        <input name="is_test_print" type="hidden" value="0">
+    </form>
+    <br>
+    <input type="button" id="btn_export_pdf" value="Generate CoC">
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(() => {
+            $('select[name="db_col"]').change(function() {
+                let dbCol = $('select[name="db_col"]');
+                let startVal = $('input[name="start_val"]');
+                let endVal = $('input[name="end_val"]');
+
+                startVal.val('');
+                endVal.val('');
+
+                if(dbCol.val() === 'date_of_delivery') {
+                    startVal.attr('type', 'date');
+                    endVal.attr('type', 'date');
+                    endVal.prop( "disabled", true );
+                } else if(dbCol.val() === 'vehicle_configuration') {
+                    startVal.attr('type', 'text');
+                    endVal.attr('type', 'text');
+                    endVal.prop( "disabled", true );
+                } else if(dbCol.val() === 'pentaKennwort') {
+                    startVal.attr('type', 'text');
+                    endVal.attr('type', 'text');
+                    endVal.prop( "disabled", false );
+                } else {
+                    startVal.attr('type', 'text');
+                    endVal.attr('type', 'text');
+                    endVal.prop( "disabled", false );
+                }
+            });
+            $('input[name="start_val"]').change(function() {
+                if($('select[name="db_col"]').val() === 'date_of_delivery') {
+                    $('input[name="end_val"]').val($('input[name="start_val"]').val());
+                }
+            });
+        });
+
+        $(document).on('click', '#btn_export_pdf', () => {
+            generatePdf();
+        });
+
+        function generatePdf() {
+            let dbCol = $('select[name="db_col"]').val();
+            let startVal = $('input[name="start_val"]').val();
+            let endVal = $('input[name="end_val"]').val();
+            let cocDate = $('input[name="coc_date"]').val();
+            let lang = $('select[name="lang"]').val();
+            let isTestPrint = $('input[name="is_test_print"]').val();
+            let authSignatory = $('select[name="auth_signatory"]').val();
+
+            if (dbCol === 'null') {
+                alert("{{ 'cocOutput.form.emptyVehCharacteristic' | trans }}");
+            } else if (startVal === '') {
+                alert("{{ 'cocOutput.form.emptyStartValue' | trans }}");
+            } else if (endVal === '' && dbCol === 'pentaKennwort') {
+                alert("{{ 'cocOutput.form.emptyEndValue' | trans }}");
+            } else if (lang === 'null') {
+                alert("{{ 'cocOutput.form.emptyLang' | trans }}");
+            } else if (dbCol === 'date_of_delivery' && (new Date(startVal).getTime() > new Date(endVal).getTime())) {
+                alert("{{ 'cocOutput.form.greaterData' | trans }}");
+            }
+            else{
+                $.ajax({
+                    method: 'POST',
+                    data: {
+                        db_col: dbCol,
+                        start_val: startVal,
+                        end_val: endVal,
+                        coc_date: cocDate,
+                        lang: lang,
+                        is_test_print: isTestPrint,
+                        auth_signatory: authSignatory,
+                    },
+                    url: 'index.php?action=cocGenerationPPS&method=ajaxCallPost&path=pdf&ajax=generate-pps',
+                    dataType: "json",
+                    beforeSend: function (){
+                        $("#streetscooter-loader-mask").css('display', 'flex');
+                    },
+                    success: function (result) {
+                        if (result['status'] === 'success') {
+                            let downloadUrl = 'downloadfile.php?fromloc=exportedpdfdownload&filename=' + result['generated_pdf_name'];
+                            window.open(downloadUrl, '_self');
+                        } else {
+                            alert("{{ 'cocOutput.form.pdfNotGenerated' | trans }}");
+                        }
+                        $("#streetscooter-loader-mask").css('display', 'none');
+                    },
+                    error: function() {
+                        alert("{{ 'cocOutput.form.incorrectPrameters' | trans }}");
+                        $("#streetscooter-loader-mask").css('display', 'none');
+                    }
+                });
+            }
+        }
+
+    </script>
+{% endblock %}

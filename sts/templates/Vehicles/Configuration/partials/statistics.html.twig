@@ -1,0 +1,38 @@
+<div>
+    <h2>{{ 'vehicles.configuration.partials.keyComponents.twig.collationOfVehicles' | trans }}</h2>
+    <table>
+        <tr>
+            <th>{{ 'vehicles.configuration.partials.keyComponents.twig.color' | trans }}</th>
+            <th>{{ 'vehicles.configuration.partials.keyComponents.twig.numberOfVehiclesInDb' | trans }}</th>
+            <th>{{ 'vehicles.configuration.partials.keyComponents.twig.numberOfVehiclesStartedAssembly' | trans }}</th>
+            <th>{{ 'vehicles.configuration.partials.keyComponents.twig.numberOfVehiclesEndOfLine' | trans }}</th>
+            <th>{{ 'vehicles.configuration.partials.keyComponents.twig.numberQsApproved' | trans }}</th>
+            <th>{{ 'vehicles.configuration.partials.keyComponents.twig.numberOfDelivered' | trans }}</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.total' | trans }}</td>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.toDeutschePost' | trans }}</td>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.tothirdCustomer' | trans }}</td>
+        </tr>
+
+        {% for value in parameters[5] %}
+            <tr>
+                <td>{{ value['color'] }}</td>
+                <td>{{ value['numberVehiclesCreated'] }}</td>
+                <td></td>
+                <td>{{ value['vehicleEndOfLine'] }}</td>
+                <td>{{ value['qSApproved'] }}</td>
+                <td>{{ value['totalDelivered'] }}</td>
+                <td>{{ value['deutschePostDelivered'] }}</td>
+                <td>{{ value['3rdPartyCustomersDelivered'] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>

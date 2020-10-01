@@ -1,0 +1,86 @@
+<div id="search_window" class="seitenteiler columns four custom-skeleton">
+    <fieldset class="">
+        <legend class="collapsible"><span
+                    class="genericon genericon-expand"></span>{{ 'vehicles.configuration.partials.search.twig.searchLegend' | trans }}
+        </legend>
+        <div id="search_window_collapsible" class="">
+            {% include 'Common/Configuration/searchAdditionalWays.html.twig' %}
+        </div>
+    </fieldset>
+</div>
+
+{% block javascripts %}
+    {% include 'Common/Configuration/searchJs.html.twig' %}
+
+    <script>
+        {#let fillSelectConfigurationBoxList = function (dataToList) {#}
+        {#    $('#sel_search_result_list option').remove();#}
+
+        {#    if (dataToList.length < 1) {#}
+        {#        const paramOptList = $('#validation-errors-list');#}
+        {#        let resultData = $('<p>').text("{{ 'vehicles.configuration.partials.searchingForError.twig.noDataExist' | trans }}");#}
+
+        {#        paramOptList.empty();#}
+        {#        paramOptList.html(resultData);#}
+
+        {#        validationErrorDialogWindow.dialog('open');#}
+        {#    } else {#}
+        {#        let select = $('#sel_search_result_list');#}
+        {#        let previousConfigurationId = null;#}
+        {#        let previousConfigurationKey = null;#}
+        {#        let previousConfigurationDraft = null;#}
+        {#        let configuration = '';#}
+        {#        let subconfigurations = '';#}
+        {#        let vehicle = false;#}
+        {#        let vehiclesCount = 0;#}
+        {#        let first = true;#}
+
+        {#        $.each(dataToList, function (index, value) {#}
+        {#            if (first) {#}
+        {#                previousConfigurationId = value['vehicleConfigurationId'];#}
+        {#                first = false;#}
+        {#            }#}
+
+        {#            if (value['vehicleConfigurationId'] != previousConfigurationId) {#}
+        {#                configuration = '<option value="' + previousConfigurationId + '" ' +#}
+        {#                    ' class="' + ((previousConfigurationDraft) ? 'invalid' : '') +#}
+        {#                    ' " data-type="configuration">'#}
+        {#                    + previousConfigurationKey + ' (' + vehiclesCount + ')</option>';#}
+        {#                vehicle = false;#}
+        {#                vehiclesCount = 0;#}
+        {#                select.append(configuration);#}
+        {#                select.append(subconfigurations);#}
+        {#                subconfigurations = '';#}
+        {#            }#}
+
+        {#            if (value['vehiclesCount'] != 0) {#}
+        {#                vehicle = true;#}
+        {#                vehiclesCount += value['vehiclesCount'];#}
+        {#            }#}
+
+        {#            subconfigurations += '<option value="' + value['subVehicleConfigurationId'] + '" ' +#}
+        {#                'class="' + ((value['sub_configuration_draft'] == true) ? 'invalid' : '') + '" data-type="subconfiguration">&nbsp&nbsp&nbsp'#}
+        {#                + value['subVehicleConfigurationName'] + ' (' + value['vehiclesCount'] + ')</option>';#}
+
+        {#            previousConfigurationId = value['vehicleConfigurationId'];#}
+        {#            previousConfigurationKey = value['vehicleConfigurationKey'];#}
+        {#            previousConfigurationDraft = value['configuration_draft'];#}
+        {#        });#}
+
+        {#        configuration = '<option value="' + previousConfigurationId + '" ' +#}
+        {#            ' class="' + ((previousConfigurationDraft) ? 'invalid' : '') +#}
+        {#            ' " data-type="configuration">'#}
+        {#            + previousConfigurationKey + ' (' + vehiclesCount + ')</option>';#}
+        {#        vehicle = false;#}
+        {#        vehiclesCount = 0;#}
+        {#        select.append(configuration);#}
+        {#        select.append(subconfigurations);#}
+        {#        subconfigurations = '';#}
+        {#    }#}
+        {#};#}
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {% include 'Common/Configuration/searchCss.html.twig' %}
+{% endblock %}

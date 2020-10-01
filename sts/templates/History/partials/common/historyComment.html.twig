@@ -1,0 +1,82 @@
+{% trans_default_domain 'messages' %}
+
+
+{% block body %}
+    {# ---------------------------- Dialogs ----------------------------------------- #}
+    <div id="history-confirm-dialog" title="{{ 'history.partials.common.twig.historyComment.history' | trans }}">
+            {{ form_start(form, {'attr': {'id': 'historyComment'}}) }}
+                <span class="boldItem">{{ form_label(form.comment) }}</span><br />
+                {{ form_widget(form.comment) }}<br />
+                {{ form_widget(form.id, {'value' : id}) }}
+            {{ form_end(form) }}
+    </div>
+    {# ------------------------------------------------------------------------------ #}
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .boldItem {
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        const defer = (function () {
+            let
+                defer = $.Deferred(),
+                resetDefer = function() {
+                    defer = $.Deferred();
+                },
+                getDefer = function() {
+                    return defer;
+                };
+
+            return {
+                getDefer: getDefer,
+                resetDefer: resetDefer
+            }
+        }());
+
+        function historyComment() {
+            defer.resetDefer();
+            historyConfirmDialog.dialog('open');
+
+            return defer.getDefer().promise();
+        }
+
+        function initHistory() {
+            return $.ajax({
+                method: 'POST',
+                data: $('#historyComment').serialize(),
+                url: 'index.php?action=history&method=ajaxCallPost&strategy=' + {{ type }} + '&ajax=init',
+                dataType: "json",
+                success: function (result) {
+                },
+            })
+        }
+
+
+        let historyConfirmDialog = $("#history-confirm-dialog").dialog({
+            autoOpen: false,
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "{{ 'history.partials.common.twig.historyComment.confirm' | trans }}": function () {
+                    let that = this;
+                    $.when(initHistory()).done( function() {
+                        $(that).dialog('close');
+                        defer.getDefer().resolve("true");
+                     })
+                }
+            },
+            onClose: function() {
+                $(this).dialog('close');
+                defer.getDefer().resolve("true");
+            }
+        });
+    </script>
+{% endblock %}

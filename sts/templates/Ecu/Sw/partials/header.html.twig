@@ -1,0 +1,56 @@
+{% trans_default_domain 'messages' %}
+
+<table class="version_header header-table">
+    <tbody>
+    <tr>
+        <td>{{ 'ecu.sw.partials.twig.header.swRevision' | trans }}</td>
+        <td>{{ header.swVersion }}</td>
+
+        <td>{{ 'ecu.sw.partials.twig.header.odx' | trans }}</td>
+        <td>{{ (header.odxSts02)? ('ecu.sw.partials.twig.header.yes' | trans) : ('ecu.sw.partials.twig.header.no' | trans) }}</td>
+
+        <td>{{ 'ecu.sw.partials.twig.header.protocol' | trans }}</td>
+        <td>{{ header.protocol.ecuCommunicationProtocolName }}</td>
+
+        {% if header.protocol.ecuCommunicationProtocolName != 'XCP' %}
+
+            <td>{{ 'ecu.sw.partials.twig.header.request' | trans }}</td>
+            <td>0x{{ header.request }}</td>
+
+            <td>{{ 'ecu.sw.partials.twig.header.response' | trans }}</td>
+            <td>0x{{ header.response }}</td>
+
+            <td>{{ 'common.diagnosticIdentifier' | trans }}</td>
+            <td>{{ header.diagnosticIdentifier }}</td>
+         {% else %}
+             <td colspan="2">{{ 'common.diagnosticIdentifier' | trans }}</td>
+             <td colspan="6">{{ header.diagnosticIdentifier }}</td>
+        {% endif %}
+    </tr>
+    <tr>
+        <td>{{ 'ecu.sw.partials.twig.header.info' | trans }}</td>
+        <td>{{ header.info }}</td>
+
+        <td>{{ 'ecu.sw.partials.twig.header.status' | trans }}</td>
+        <td>{{ header.status.releaseStatusName }}</td>
+
+        <td>{{ 'ecu.sw.partials.twig.header.windchill' | trans }}</td>
+        <td colspan="3">{{ header.windchillUrl }}</td>
+
+        <td>{{ 'ecu.sw.partials.twig.header.odxVersion' | trans }}</td>
+        <td>{{ header.odxVersion }}</td>
+        <td>{{ 'ecu.sw.partials.twig.header.defaultEndian' | trans }}</td>
+        <td>
+            {{ (header.bigEndian)?
+            'ecu.sw.partials.twig.header.bigEndian' | trans : 'ecu.sw.partials.twig.header.littleEndian' | trans }}
+        </td>
+    </tr>
+    {% if header.subversionSuffix is not null %}
+        <tr>
+            <td>{{ 'ecu.sw.partials.twig.header.suffix' | trans }}</td>
+            <td>{{ header.subversionSuffix }}</td>
+            <td colspan="10"></td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>

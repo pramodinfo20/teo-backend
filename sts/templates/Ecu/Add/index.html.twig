@@ -1,0 +1,210 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'messages' %}
+{% block body %}
+    {{ include('Parameters/Global/saveDataValidationError.html.twig') }}
+
+    <h1>{{ 'ecu.add.twig.index.addEcu' | trans }}</h1>
+    <div class="row">
+        <div class="four columns">
+            <form id="addEcu" name="addEcu" action="" method="POST">
+                <table class="addEcu">
+                    <thead>
+                        <tr>
+                            <th>{{ 'ecu.add.twig.index.name' | trans }}</th>
+                            <th>{{ 'ecu.add.twig.index.stsPartNumber' | trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="text" name="ecuName" />
+                            </td>
+                            <td>
+                                <select id="selectParts" name="parts[]" class="form-control" multiple>
+
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="MiniButtons actionButtons">
+                    <ul class="submenu_ul">
+                        <li>
+                            <span class="sts_submenu W100" id="create_new">{{ 'ecu.add.twig.index.create' | trans }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="add-dialog" title="{{ 'ecu.add.twig.dialog.title' | trans }}">
+        <p>{{ 'ecu.add.twig.dialog.message' | trans }}</p>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+       <style>
+            .actionButtons {
+                text-align: center;
+                margin-top: 15px;
+            }
+
+            #selectParts {
+               width: 100%;
+            }
+
+            li.select2-results__option strong.select2-results__group:hover {
+                background-color: #ddd;
+                cursor: pointer;
+            }
+
+           .addEcu td {
+               width: 50%;
+           }
+
+        </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        let createDialog = $('#add-dialog').dialog({
+            autoOpen: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                "{{ 'dialog.button.ok' | trans }}": function () {
+                    location.reload();
+                    createDialog.dialog('close');
+                }
+            }
+        });
+        $( document ).ready(function () {
+
+            var parts = new Array({{ parts | json_encode | raw }});
+            var matcherFlag = false;
+            var customData = [];
+
+            function matchCustom(params, data) {
+                // If there are no search terms, return all of the data
+                if ($.trim(params.term) === '') {
+                    return data;
+                }
+
+                // Do not display the item if there is no 'text' property
+                if (typeof data.text === 'undefined') {
+                    return null;
+                }
+
+                // `params.term` should be the term that is used for searching
+                // `data.text` is the text that is displayed for the data object
+                let result = [];
+                let re = new RegExp('^' + params.term.toLowerCase().replace(/\*/g,'.*').replace(/\?/g,'.')+'$');
+                result = data.children.filter( x => {
+                       return  re.test(x.text.toLowerCase())
+                });
+
+
+                if (result.length > 0) {
+                    let modifiedData = $.extend({}, data, true);
+                    modifiedData.text = params.term;
+                    modifiedData.children = result;
+                    matcherFlag = true;
+                    customData = modifiedData;
+                    // You can return modified objects from here
+                    // This includes matching the `children` how you want in nested data sets
+                    return modifiedData;
+                }
+
+                // Return `null` if the term should not be displayed
+                return null;
+            }
+
+
+            $('#selectParts').select2({
+                placeholder: "...",
+                allowClear: true,
+                width: '100%',
+                data: parts,
+                matcher: matchCustom
+            });
+
+            $('#selectParts').on('select2:open', function(e) {
+
+                $('#select2-selectParts-results').on('click', function(event) {
+                    var results = [];
+                    event.stopPropagation();
+
+                    if (matcherFlag) {
+                        results = customData;
+                    } else {
+                        results = parts;
+                    }
+
+                    var data = $(event.target).html();
+                    var selectedOptionGroup = data.toString().trim();
+                    var groupchildren = [];
+
+                    if (Array.isArray(results)) {
+                        for (var i = 0; i < results.length; i++) {
+                            if (selectedOptionGroup.toString() === results[i].text.toString()) {
+                                for (var j = 0; j < results[i].children.length; j++) {
+                                    groupchildren.push(results[i].children[j].id);
+                                }
+                            }
+                        }
+                    } else {
+                        if (selectedOptionGroup.toString() === results.text.toString()) {
+                            for (var j = 0; j < results.children.length; j++) {
+                                groupchildren.push(results.children[j].id);
+                            }
+                        }
+                    }
+
+                    var options = [];
+                    options = $('#selectParts').val();
+
+                    if (options === null || options === '') {
+                        options = [];
+                    }
+
+                    for (var i = 0; i < groupchildren.length; i++) {
+                        var count = 0;
+                        for (var j = 0; j < options.length; j++) {
+                            if (options[j].toString() === groupchildren[i].toString()) {
+                                count++;
+                                break;
+                            }
+                        }
+
+                        if (count === 0) {
+                            options.push(groupchildren[i].toString());
+                        }
+                    }
+
+                    $('#selectParts').val(options);
+                    $('#selectParts').trigger('change'); // Notify any JS components that the value changed
+                    $('#selectParts').select2('close');
+
+                    matcherFlag = false;
+                });
+            });
+
+            $(document).on('click', '#create_new', function () {
+                $.ajax({
+                    method: 'POST',
+                    data: $('#addEcu').serialize(),
+                    url: 'index.php?action=addEcu&method=ajaxCallPost&ajax=create',
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.status == 'success') {
+                            createDialog.dialog('open');
+                        } else {
+                            saveValidationErrorWindow(result);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

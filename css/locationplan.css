@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'Nimbus-Sans';
+    src: url('fonts/NimbusSanL-Regu.woff') format('woff'),
+         url('fonts/NimbusSanL-Regu.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nimbus-SansBold';
+    src: url('fonts/NimbusSanL-Bold.woff') format('woff'),
+         url('fonts/NimbusSanL-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body                    /*  { overflow:       hidden;   } */
+#main                     { position:       relative;           top:    -30px;      width:      1580px;    height:              660px;              }
+h2                        { margin:         4px;                                                                                                    }
+.greyed                   { color:          #aaaaaa;                                                                                                }
+.button                   { font-size:      11px;               width:  130px;      height:     28px;       margin:             2px 0px;            }
+.number                   { width:          50px;                                                                                                   }
+.divTabelle               { width:          590px;              border: 1px         solid       #888888;    background-color:   #e6e6e6;            }
+#TabellenKopf             { position:       absolute;           top:    20px;       height:     30px;                                               }
+#Tabelle                  { position:       absolute;           top:    50px;       height:     250px;      overflow-y:         scroll;             }
+#TabellenFunktionen       { position:       absolute;           top:    300px;      height:     40px;       vertical-align:     center;             }
+#TabellenFunktionen>span  { font-size:      11px;                                   line-height:11px;       display:            inline-block;       }
+.fztable                  { width:          500px;              margin: 2px;        padding:    0px;        table-layout:       fixed;              }
+#fztheader                { font-weight:    bold;                                   text-align: center;     background-color:   #aaffaa;            }
+#fztheader tr             { /*                                                        background-color:       #cccccc; */}
+.fztable td               { font-size:      11px;                                                                                                   }
+.fztable td:nth-child(1)  { width:          30px;               padding:2px;                                                                        }
+.fztable td:nth-child(2)  { width:         120px;                                                                                                   }
+.fztable td:nth-child(3)  { width:         100px;                                                                                                   }   
+.fztable td:nth-child(4)  { width:         110px;                                                                                                   }
+.fztable td:nth-child(5)  { width:         100px;                                                                                                   }
+.fztable td:nth-child(6)  { width:          35px;                                                                                                   }
+.fztable td:nth-child(7)  { width:          17px;                                   padding:    4px 1px 4px 1px;                                    }
+#id_maximize              { position:       absolute;           top:    2px;        left:       2px;                                                }  
+#id_restore               { position:       absolute;           top:    2px;        left:       2px;        visibility:         hidden;             }
+#Umkreissuche             { position:       absolute;           top:     450px;     height:     170px;      vertical-align:     top;
+                            padding-left:   4px;                left:    225px;     width:      360px;      border:             1px solid #888888;
+                            font-size:      11px;                                                           background-color:   #eeeeee;            }
+#Umkreissuche > div       { margin-bottom:  10px;                                                           display:            inline-block;       }
+#d10                      { position:       absolute;           top:    40px;       left:       20px;       display:            inline-block;       }
+#d01                      { position:       absolute;           top:    40px;       left:       210px;
+                            display:        inline-block;       height: 70px;                                                                       }
+#d01 > span               { margin:         0px 8px 10px 4px;                                                                                       }
+#d11                      { position:       absolute;           top:    120px;      left:       200px;                                              }
+#d12                      { position:       absolute;           top:    621px;      left:       0px;        width:220px;     }
+#d12 div                  { display:        inline-block;       width:  90px;       border: 1px solid #888888; }
+#d5                       { position:       absolute;           top:    60px;       left:       0px;                                                }
+#d5 > input,
+#d5 > div, #d10 > div     { display:        inline-block;       white-space:        nowrap;                                                         }
+#d1, #d2                  { width:          80px;               display:            inline-block;                                                   }
+#d3, #d4                  { width:          60px;               display:            inline-block;                                                   }
+#d3 > div, #d4 > div      { display:        inline-block;                                                                                           }
+#Einzelsuche              { position:       absolute;           background-color:   #eeeeee;                font-size:          11px;
+                            top:            360px;              width:              360px;                  border:             1px solid #888888;
+                            left:           225px;              height:             70px;                   padding-left:       4px;                }
+#Einzelsuche > h2         { display:        inline-block;                                                                                           }   
+#id_suchtext              { width:          200px;              margin:             5px;                                                            }
+#id_suchspalte            { width:          120px;              margin:             3px 5px 1px 5px;        float:              right;              }
+#id_suchen                { width:          120px;              margin:             1px 5px;                                                        }
+#Einzelsuche > select     { height:         18px;               font-size:          11px;                                                           }
+#SubLocations,
+#FahrzeugListe            { position:       absolute;           background-color:   #eeeeee;                font-size:          11px;
+                            top:            360px;              width:              200px;                  border:             1px solid #888888;
+                            left:           0px;                height:             260px;                                                          }
+#FahrzeugListe   textarea { width:          180px;              margin:             4px;                    border:             1px solid #888888;
+                            height:         170px;              padding:            4px;                    resize:             none;               }
+#SubLocations    h2,
+#FahrzeugListe   h2       { display:        inline-block;       margin-right:       20px;                   display:            inline-block;       }
+
+#SubLocations    div      { margin:         10px  0px 0px 8px; }
+#SubLocations    input,
+#FahrzeugListe   input    { margin:         0px 0px 4px 8px;    width:              180px;                                                          }
+
+#SubLocations             { padding-left: 5px;}  
+#SubLocations    select   { width:190px;    background-color:   #eee; }
+
+#help_liste               { font-size:      11px;               width:              200px;                  display:            inline-block;       }
+#id_option_append         { position:       absolute;           top:                620px;                  left:               225px;              }
+#id_option_append > input { position:       relative;           top:                5px;                                                            }
+/*-------------------------------------------------------------------------------------------------------------------------------------------------*/
+.lageplan                 { position:       absolute;           padding:            2px;                    z-index:            5;                  }
+.lageplan img             { border:         2px solid #dddddd;                                              z-index:            8;                  }
+.lageplan b               { white-space:    nowrap;                                                                                                 }
+/*-------------------------------------------------------------------------------------------------------------------------------------------------*/
+.vehicle                  { position:       absolute;           border:             1px solid black;
+                            width:          7px;                border-radius:      20%;
+                            height:         7px;                z-index:            1000;                                                           }
+/*-------------------------------------------------------------------------------------------------------------------------------------------------*/
+.kennzeichen              { font-family:    'Nimbus-SansBold', sans-serif;                                  font-size:          10px;                   
+                            position:       absolute;           background-color:   white;                  padding:            2px 02px 0px 2px;
+                            width:          65px;               color:              black;                  border:             2px solid black;
+                            height:         15px;               z-index:            1100;                   border-radius:      5px;                    
+                            text-align:     center;                                                                                                 }
+    
+    
+/*-------------------------------------------------------------------------------------------------------------------------------------------------*/
+.faehnchen                { position:       absolute;           z-index:            9999;                   visibility:         hidden;             }
+.faehnchen img            { border:         none;               padding:            0px;                    margin:             0px;                }
+canvas                    { position:       absolute;           top:    4px;    left:   4px;                z-index:            50;                 } 
+.frb1           {background-color: rgba(255, 238,  68, 0.3);}
+.frb2           {background-color: rgba(255, 238,  68, 0.3);}
+.frb3           {background-color: rgba(255, 238,  68, 0.3);}
+.frb4           {background-color: rgba(211,  84,   0, 0.3);}
+.frb5           {background-color: rgba(255, 255, 255, 0.3);}
+.frb6           {background-color: rgba(255, 238,  68, 0.3);}

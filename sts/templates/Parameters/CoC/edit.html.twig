@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'messages' %}
+
+{% block title %}{{ 'parameters.twig.edit.titleCoC' | trans }}{% endblock %}
+
+{% block body %}
+    <h1>{{ 'parameters.twig.edit.headerCoC' | trans }}</h1>
+
+    {{ include('Parameters/CoC/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('Parameters/CoC/saveDataValidationError.html.twig') }}
+
+    <a href="{{ returnLegacyUrl(previousLegacyUrl, ['cocParameter']) }}">{{ 'parameters.twig.edit.backToList' | trans }}</a>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function save() {
+            $.ajax({
+                method: 'POST',
+                data: $('#saveCoC').serialize(),
+                url: 'index.php?action=cocParameters&method=saveEdited&cocParameter={{ cocParameter.cocParameterId }}',
+                dataType: "json",
+                success: function (result) {
+                    if (result['status'] === 'success') {
+                        window.location.href = 'index.php?action=cocParameters';
+                    } else {
+                        saveValidationErrorWindow(result);
+                    }
+                }
+            });
+        }
+
+
+    </script>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'messages' %}
+
+{% block title %}{{ 'parameters.twig.show.title' | trans }}{% endblock %}
+
+{% block body %}
+    <h1>{{ 'parameters.twig.show.header' | trans }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>{{ 'parameters.twig.show.id' | trans }}</th>
+                <td>{{ globalParameter.globalParameterId }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'parameters.twig.show.name' | trans }}</th>
+                <td>{{ globalParameter.globalParameterName }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'parameters.twig.show.responsibleU' | trans }}</th>
+                <td>{{ globalParameter.responsibleUser }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'parameters.twig.show.variableT' | trans }}</th>
+                <td>{{ globalParameter.variableType }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('global_parameters_index') }}">{{ 'parameters.twig.show.backToList' | trans }}</a>
+
+    <a href="{{ path('global_parameters_edit', {'globalParameterId': globalParameter.globalParameterId}) }}">
+        {{ 'parameters.twig.show.edit' | trans }}
+    </a>
+
+    {{ include('parameters/global/_delete_form.html.twig') }}
+{% endblock %}

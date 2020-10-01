@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    <h1>{{ 'parameters.values.twig.index.coc.header' | trans }}</h1>
+    <div class="row">
+        {% include 'Parameters/CoC/Values/search.html.twig' with {select_button_available : true, search : search} %}
+        <div id="description" class="columns seven custom-skeleton">
+            <div class="row">
+                {% if isMainConfiguration == true %}
+                    {% if parameters is not null %}
+                        {% include 'Vehicles/Configuration/partials/keyComponents.html.twig' %}
+                    {% endif %}
+                {% else %}
+                    <div class="parameters">
+                        {% if search is not null %}
+                            {% include 'Common/Configuration/subconfiguration.html.twig' with {'parameters': parameters} %}
+
+                            <fieldset class="shrink">
+                                <legend><span id="expand_button_coc" class="genericon genericon-expand"></span>
+                                    {{ 'parameters.values.twig.cocRelease.cocPreview' | trans }}
+                                </legend>
+
+                                <div class="content-one" style="display: none;">
+                                    {% if mode == 1 and cocReleasedParameters is not null  %}
+                                        {% include 'Parameters/CoC/Values/cocParameterRelease.html.twig' with {'cocReleasedParameters': cocReleasedParameters} %}
+                                    {% elseif mode == 1 %}
+                                        {{ 'parameters.values.twig.cocRelease.cocEmpty' | trans }}
+                                    {% elseif mode == 2 %}
+                                        {% include 'Parameters/CoC/Values/form/editCoCReleased.html.twig' with {'form': releasedCoCForm} %}
+                                    {% endif %}
+                                </div>
+                            </fieldset>
+                        {% endif %}
+                        <div class="coc-div parametersValues">
+                            {% if mode == 1 and search is not null %}
+                                {% include 'Parameters/CoC/Values/view.html.twig' with {'cocParameters': cocParameters } %}
+                            {% elseif mode == 2 %}
+                                {% include 'Parameters/CoC/Values/form/editValue.html.twig' with {'form': parametersForm} %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if search is not null %}
+                        {% with
+                            {
+                                'search': search,
+                            } %}
+                            {% include 'Parameters/CoC/Values/footer.html.twig' %}
+                        {% endwith %}
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% if subconfiguration != 0 %}
+        {% include 'History/partials/selector/generalSelector.html.twig' with {
+            'type' : historyType, 'form': historyForm, 'fk': subconfiguration
+        } %}
+
+        {% if mode == 2 %}
+            {% include 'History/partials/common/historyComment.html.twig' with {'form': commentForm, 'id' : subconfiguration, 'type' : historyType} %}
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .horizontalMenuButtons{border:1px solid #b0b0b0;height:auto;display:flex;align-items:center;justify-content:center;padding:0 5px;margin-top:15px}
+        .submenu_ul li{margin-bottom:0!important;padding:5px 0}
+        .MiniButtons{text-align:center}
+        .sts_submenu{cursor:default!important}
+        .coc-div{width:100%;max-height:550px;overflow-x:auto;overflow-y:auto;margin-top:10px;margin-bottom:10px}
+        .parametersValues{max-height:60vh;}
+        td{min-width:35px}
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            /* Select search after regenerate view */
+            {% if search is not empty %}
+            let type = "{{ search['type'] }}";
+            let year = {{ search['year'] }};
+            let series = "{{ search['series'] }}";
+            let customerKey = "{{ search['customerKey'] }}";
+            let configuration = {{ search['configuration'] }};
+
+            $.when(getTypeList(), getYearList(type), getSeriesList(type, year),
+                getSearchListResult(type, year, series, customerKey))
+                .done(function () {
+                    $('#sel_type option[value="' + type + '"]').prop('selected', 'selected');
+                    $('#sel_year option[value="' + year + '"]').prop('selected', 'selected');
+                    $('#sel_series option[value="' + series + '"]').prop('selected', 'selected');
+                    $('#sel_series option[value="' + series + '"][data-customer-key="' + customerKey + '"]')
+                        .prop('selected', 'selected');
+                    $('#sel_search_result_list option[value="' + configuration + '"]').prop('selected', 'selected');
+                });
+            {% endif %}
+
+        });
+
+    </script>
+{% endblock %}

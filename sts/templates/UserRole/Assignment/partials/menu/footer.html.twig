@@ -1,0 +1,101 @@
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    <div class="horizontalMenuButtons">
+        <div class="MiniButtons">
+            <ul class="submenu_ul">
+                {% if  arguments.tab == 0 %}
+                    <li><span class="sts_submenu W180" id="save">{{ 'userRole.assignment.index.twig.btnSave' | trans }}</span></li>
+                    <li><span class="sts_submenu W180 {{  (footerMenuButtonsState.isGoBackAvailable)? '' : 'disabled'}}"
+                              id="showTree">{{ 'userRole.assignment.index.twig.btnShowTree' | trans }}</span></li>
+                {% else %}
+                    <li><span class="sts_submenu W080" id="goBack">{{ 'userRole.assignment.index.twig.btnBack' | trans }}</span></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    {# ---------------------------- Dialogs ----------------------------------------- #}
+    <div id="overwrite-dialog" title="Confirm update!">
+        <p>{{ 'userRole.assignment.index.twig.dialogElementsReasigned' | trans | raw }}</p>
+        <p><span id="overwrite-dialog-text"></span></p>
+    </div>
+    {# ----------------------------------------------------------------------------- #}
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+            let overwriteDialog = $("#overwrite-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.overwrite' | trans }}": function () {
+                        overwrite();
+                        $(this).dialog("close");
+                    },
+                    "{{ 'dialog.button.close' | trans }}": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+
+
+            $(document).on('change', '#CompanyStructureAssignmentType_currentRole', function() {
+                window.location.href= 'index.php?action=userrole2Company&method=regenerateView&role=' +  $(this).find(':selected').val() +
+                    '&tab=0';
+            });
+
+            function save(overwrite = 0) {
+                return $.ajax({
+                    method: 'POST',
+                    data: $('#userrole2company').serialize(),
+                    url: 'index.php?action=userrole2Company&method=ajaxCallPost&overwrite=' + overwrite + '&ajax=save',
+                    dataType: "json",
+                    success: function (result) {
+                        let assignedStructures = result['assignedStructures'];
+                        let userRoleId = result['userRoleId'];
+
+                        if( !$.isEmptyObject(assignedStructures) ) {
+                            let txt = '<ul>';
+
+                            $.each(assignedStructures, function (key, value) {
+                                txt += '<li>' + value + '</li>';
+                            });
+
+                            txt += '</ul>';
+                            $("#overwrite-dialog-text").empty();
+                            $("#overwrite-dialog-text").append(txt);
+                            overwriteDialog.dialog("open");
+                        } else {
+                            window.location.href= 'index.php?action=userrole2Company&method=regenerateView&role=' +
+                                userRoleId + '&tab=0';
+                        }
+                    },
+                });
+            }
+
+            function overwrite() {
+                save(1);
+            }
+
+            $(document).on('click', '#save', function() {
+                save();
+            });
+
+            $(document).on('click', '#showTree', function() {
+                window.location.href= 'index.php?action=userrole2Company&method=regenerateView&tab=1';
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="row ">
+        <div class="twelve columns padding_all">
+            <h1>TEO Manager</h1><br>
+                <div>
+                    <form id="deadline_selection">
+                    <input type="hidden"> 
+                        <p> 
+                            <input type="hidden" name="userid" value="" />
+                            <label> X - Weeks: </label>
+                            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                            <select id="x_weeks" name="xweeks" >
+                                <option value="2xweek">2 weeks</option>
+                                <option value="3xweek">3 weeks</option>
+                                <option value="4xweek">4 weeks</option>
+                            </select>
+                        </p> 
+                        <p>        
+                            <label> Y - Weeks: </label>
+                            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                            <select id="y_weeks" name="yweeks" >
+                                <option value="3yweek">3 weeks</option>
+                                <option value="4yweek">4 weeks</option>
+                                <option value="5yweek">5 weeks</option>
+                            </select>
+                        </p>
+
+                        <p>        
+                            <label> Z - Weeks: </label>
+                            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                            <select id="z_weeks" name="zweeks" >
+                                <option value="4zweek">4 weeks</option>
+                                <option value="5zweek">5 weeks</option>
+                                <option value="6zweek">6 weeks</option>
+                            </select>
+                        </p>
+                        <p>        
+                            <label> </label> 
+                            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                            <button type="button" 
+                                id="add_deadline"
+                                class="sts_submenu W140">
+                                submit
+                            </button>
+                        </p>
+                    </form>
+                </div>
+        </div>
+    </div>
+
+            <div class="ten columns">
+
+                <div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>x_weeks</th>
+                            <th>Y_weeks</th>
+                            <th>Z_weeks</th>
+
+                            <th>Assigne</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+    <div class="row">
+        <div class="twelve columns">
+            <p class="padding_all">* X weeks left until deadline to enter and release ECU-System for released configuration</a></p>
+            <p class="padding_all">* Please ensure to finalize ECU-System and assignement to released configuration within y week(s)</a></p>
+            <p class="padding_all">* Z weeks left until deadline to enter and release ECU-System for released configuration</a></p>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+    label {
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .options-bar {
+        margin-top: 1.0em;
+        text-align: center;
+    }
+
+    select {
+        width: 200px;
+    }
+
+    button {
+        background-color: #155292;
+        color: #fff;
+        border-radius: 10px;
+        padding: 10px 2px 10px 6px;
+    }
+</style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+     $(document).on('click', '.add_deadline', function () {
+            user = $(this).attr("data-id");
+            adddeadline();
+        });
+    function adddeadline(){
+        $.ajax({
+            method: "GET",
+            url: "index.php?action=useradministration&method=ajaxCallPost&ajax=adddeadline",
+            data: $('#deadline_selection').serialize(),
+            dataType: 'json',
+                success: function (result) {
+                    if (result['status'] === 'success') {
+                        window.location.href = 'index.php?action=useradministration';
+                    } else {
+                        saveValidationErrorWindow(result);
+                    }
+                }
+        })
+    }
+    </script>
+{% endblock %}

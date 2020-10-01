@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta http-equiv="refresh" content="10; URL=https://streetscooter-cloud-system.eu/end-of-line-test/">
+<meta charset="UTF-8">
+<title>StreetScooter</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style type="text/css">
+body
+{
+}
+table, th, td {border-collapse: collapse; border: 1px solid #CCCCCC;}
+
+th,td { padding: 5px; text-align: left}
+
+table.secondtable
+{
+max-width: 500px;
+}
+</style>
+<body>
+<?php
+$db_handle=pg_connect('dbname=LeitwartenDB host=10.12.54.173 port=5432 user=leitwarte password=Oyah1zuuaiN0ov8p') or die("Couln't Connect ".pg_last_error());
+// $query = "SELECT * FROM vehicles ORDER BY update_timestamp";
+// $query_result = pg_query ( $db_handle, $query ) or die ( "Couln't Connect " . pg_last_error () );
+// $theobjects=array();
+
+function objtotable($theobjects,$tableclass)
+{
+	$contentHTML = "";
+	$cnt=0;
+	$length = sizeof ( $theobjects [0] );
+	$headings = array_shift ( $theobjects );
+	$contentHTML = "<table class=\"$tableclass\" width=\"100%\" style=\"border-collapse: collapse; \"><tr>";
+
+	foreach ( $headings ["headingone"] as $value ) {
+		$contentHTML .= "<th>".$value."</th>";
+	}
+	$contentHTML .= "</tr>";
+	if (! empty ( $headings ["headingtwo"] )) {
+		$contentHTML .= "<tr>";
+		foreach ( $headings ["headingtwo"] as $value )
+
+		{
+			$contentHTML .= "<th>" . $value . "</th>";
+		}
+		$contentHTML .= "</tr>";
+	}
+	foreach ( $theobjects as $theobject ) {
+		$contentHTML .= "<tr>";
+		$rowdata = $theobject;
+		if($cnt%2)
+			$bgcolor="#FFFFFF";
+		else $bgcolor="#F1F1F1";
+		foreach ( $rowdata as $key => $value )
+		{
+			if($key=="update_timestamp")
+//			$contentHTML .= "<td style=\"background-color: ".$bgcolor."\" >" . date("F j, Y, g:i a",$value). "</td>";
+			$contentHTML .= "<td style=\"background-color: ".$bgcolor."\" >" . date(DATE_ISO8601,$value). "</td>";
+			else
+			$contentHTML .= "<td style=\"background-color: ".$bgcolor."\" >" . $value . "</td>";
+		}
+		$contentHTML .= "</tr>";
+		$cnt++;
+	}
+	$contentHTML .= "</tr></table>";
+
+	echo $contentHTML;
+}
+
+
+
+$query = "SELECT vin,c2cbox,update_timestamp FROM vehicles ORDER BY update_timestamp DESC LIMIT 15";
+$query = "select vin,c2cbox,update_timestamp FROM vehicles WHERE substring(vin,1,3) != 'WST' ORDER BY substring(vin,1,3) DESC, substring(vin,13) DESC;";
+$query_result = pg_query ( $db_handle, $query ) or die ( "Couln't Connect " . pg_last_error () );
+$theobjects=array();
+$theobjects[]["headingone"]=array(
+		"VIN","C2CBox ID","Update Timestamp");
+while($theobjects[]= pg_fetch_assoc ( $query_result ));
+
+objtotable($theobjects,"secondtable");
+echo "<br><br><br>";
+?>
+</body>
+</html>

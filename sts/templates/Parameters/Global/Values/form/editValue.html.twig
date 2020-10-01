@@ -1,0 +1,79 @@
+{% trans_default_domain 'messages' %}
+
+{{ form_start(parametersForm, {'attr': {'id': 'saveGPValueSet'}}) }}
+<table>
+    <thead>
+    <tr>
+        <th>{{ 'parameters.values.form.twig.editValue.id' | trans }}</th>
+        <th>{{ 'parameters.values.form.twig.editValue.name' | trans }}</th>
+        <th>{{ 'parameters.values.form.twig.editValue.min' | trans }}</th>
+        <th>{{ 'parameters.values.form.twig.editValue.max' | trans }}</th>
+        <th>{{ 'parameters.values.form.twig.editValue.value' | trans }}</th>
+        <th>{{ 'parameters.values.form.twig.editValue.unit' | trans }}</th>
+        <th>{{ 'parameters.values.form.twig.editValue.responsibleU' | trans }}</th>
+        <th>{{ 'parameters.values.form.twig.editValue.variableT' | trans }}</th>
+        <th>{{ 'parameters.twig.index.specEcuRel' | trans }}</th>
+        <th>{{ 'parameters.twig.index.chargCtrl' | trans }}</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            {% if global is not null %}
+                {{ global.globalParameterId }}
+            {% endif  %}
+        </td>
+        <td>
+            {% if global is not null %}
+                {{ global.globalParameterName }}
+            {% endif  %}
+        </td>
+        <td>
+            {% if global is not null %}
+                {{ global.minValue }}
+            {% endif  %}
+        </td>
+        <td>
+            {% if global is not null %}
+                {{ global.maxValue }}
+            {% endif  %}
+        </td>
+        <td>
+            {{ form_widget(form) }}
+        </td>
+        <td>
+            {% if global is not null %}
+                {% if global.globalUnit is not null %}
+                    {{ global.globalUnit.unitName }}
+                {% endif %}
+            {% endif  %}
+        </td>
+        <td>
+            {% if global is not null %}
+                {% if global.responsibleUser is not null %}
+                    {{ global.responsibleUser.fname }} {{ global.responsibleUser.lname }}
+                {% endif %}
+            {% endif %}
+        </td>
+        <td>
+            {% if global is not null %}
+                {% if global.variableType is not null %}
+                    {{ global.variableType.variableTypeName }}
+                {% endif %}
+            {% endif  %}
+        </td>
+        <td>
+            {% if global is not null %}
+                {{ globalParameter.specialEcu.ecuName ?? '' }}
+            {% endif %}
+        </td>
+        <td>
+            {% if global is not null %}
+                {{ global.chargingControlRelated ? 'common.trueTxt' | trans : 'common.falseTxt' | trans }}
+            {% endif %}
+        </td>
+    </tr>
+    </tbody>
+</table>
+{{ form_end(parametersForm) }}

@@ -1,0 +1,67 @@
+{% trans_default_domain 'messages' %}
+
+<table class="coc-table">
+    <thead>
+        <tr>
+            <th>{{ 'parameters.values.twig.view.id' | trans }}</th>
+            <th>{{ 'parameters.values.twig.view.name' | trans }}</th>
+            <th>{{ 'parameters.values.twig.view.field' | trans }}</th>
+            <th>{{ 'parameters.values.twig.view.value' | trans }}</th>
+            <th>{{ 'parameters.values.twig.view.unit' | trans }}</th>
+            <th>{{ 'parameters.values.twig.view.description' | trans }}</th>
+            <th>{{ 'parameters.values.twig.view.responsibleU' | trans }}</th>
+            <th>{{ 'parameters.values.twig.view.variableT' | trans }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if cocParameters is defined %}
+            {% for id, parameter in cocParameters %}
+                <tr>
+                    <td>
+                        {{ parameter.cocParameterId }}
+                    </td>
+                    <td>
+                        {{ parameter.cocParameterName }}
+                    </td>
+                    <td>
+                        {{ parameter.field }}
+                    </td>
+                    <td>
+                        {% if parameter.valueString is not null %}
+                            {{ parameter.valueString }}
+                        {% elseif parameter.valueDate is not null  %}
+                            {{ parameter.valueDate | date('d-m-Y') }}
+                        {% elseif parameter.valueBool is not null  %}
+                            {{ (parameter.valueBool)? ('parameters.values.twig.view.trueTxt' | trans)
+                            : ('parameters.values.twig.view.falseTxt' | trans)  }}
+                        {% elseif parameter.valueDouble is not null  %}
+                            {{ parameter.valueDouble }}
+                        {% elseif parameter.valueInteger is not null  %}
+                            {{ parameter.valueInteger }}
+                        {% elseif parameter.valueBigInteger is not null  %}
+                            {{ parameter.valueBigInteger }}
+                        {% else  %}
+                            {{ 'parameters.values.twig.view.notDefined' | trans }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ parameter.unitName }}
+                    </td>
+                    <td>
+                        {{ parameter.description }}
+                    </td>
+                    <td>
+                        {% if parameter.responsibleUserId is not null %}
+                            {{ parameter.responsibleUser }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if parameter.variableTypeId is not null %}
+                            {{ parameter.variableTypeName }}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </tbody>
+</table>

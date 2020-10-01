@@ -1,0 +1,42 @@
+{% block body %}
+    <div id="sw_parameters_actions" class="horizontalMenuButtons">
+        <div class="MiniButtons">
+            <input id="subVehicleConfigurationId" type="hidden" data-id="{{ subConfigurationId }}">
+            <input id="configurationId" type="hidden" data-id="{{ configurationId }}">
+            <ul class="submenu_ul">
+                <li><span class="sts_submenu W130 {{ (menuState.isEditAvailable) ? '' : 'disabled' }}"
+                          id="edit_vc">{{ 'vehicles.configuration.partials.bottom_menu.twig.edit' | trans }}</span></li>
+                <li><span class="sts_submenu W130 {{ (menuState.isFixAvailable) ? '' : 'disabled' }}"
+                          id="fix_vc">{{ 'vehicles.configuration.partials.bottom_menu.twig.fix' | trans }}</span></li>
+                <li><span class="sts_submenu W130 {{ (menuState.isSaveAvailable) ? '' : 'disabled' }}"
+                          id="save_vc" >{{ 'vehicles.configuration.partials.bottom_menu.twig.save' | trans }}</span></li>
+                <li><span class="sts_submenu W130 {{ (menuState.isCancelAvailable) ? '' : 'disabled' }}"
+                          id="cancel_vc">{{ 'vehicles.configuration.partials.bottom_menu.twig.cancel' | trans }}</span></li>
+                <li><span class="sts_submenu W130 {{ (menuState.isCreateAvailable) ? '' : 'disabled' }}"
+                          id="add_vc">{{ 'vehicles.configuration.partials.bottom_menu.twig.create' | trans }}</span></li>
+                <li><span class="sts_submenu W130 {{ (menuState.isCreateByCopyAvailable) ? '' : 'disabled' }}"
+                          id="copy_vc">{{ 'vehicles.configuration.partials.bottom_menu.twig.createByCopy' | trans }}</span></li>
+                <li><span class="sts_submenu W130 {{ (menuState.isDeleteAvailable) ? '' : 'disabled' }}"
+                          {% if ( not menuState.isDeleteAvailable and not (menuState.isMainView)) %}
+                              title="{{ 'vehicles.configuration.partials.bottom_menu.twig.cannotDelete' | trans }}"
+                          {% endif %}
+                          id="delete_vc">{{ 'vehicles.configuration.partials.bottom_menu.twig.delete' | trans }}</span></li>
+                <li>
+                    <span class="sts_submenu W130 {{ (menuState.isHistoryAvailable) ? '' : 'disabled' }}" id="history_vc">
+                        {{ 'vehicles.configuration.partials.bottom_menu.twig.history' | trans }}
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    {% if historyType is not null %}
+        {% include 'History/partials/common/historyComment.html.twig' with {'form': commentForm,
+            'id' : configurationId ?? subVehConfigId , 'type' : historyType} %}
+        {% if mode != 2 %}
+            {% include 'History/partials/selector/generalSelector.html.twig' with {
+                'type' : historyType, 'form': historyForm, 'fk': configurationId ?? subVehConfigId
+            } %}
+        {% endif %}
+    {% endif %}
+{% endblock %}

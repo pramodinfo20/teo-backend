@@ -1,0 +1,123 @@
+{{ form_start(form, {'attr': {'id': 'saveGP'}}) }}
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Variable Type</th>
+        <th>Min Value</th>
+        <th>Max Value</th>
+        <th>Unit</th>
+        <th>{{ 'parameters.twig.index.specEcuRel' | trans }}</th>
+        <th>{{ 'parameters.twig.index.chargCtrl' | trans }}</th>
+        <th>Responsible User</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ form_widget(form.children.globalParameterName) }}</td>
+        <td>{{ form_widget(form.children.variableType) }}</td>
+        <td>{{ form_widget(form.children.minValue) }}</td>
+        <td>{{ form_widget(form.children.maxValue) }}</td>
+        <td>{{ form_widget(form.children.globalUnit) }}</td>
+        <td>{{ form_widget(form.children.specialEcu) }}</td>
+        <td>{{ form_widget(form.children.chargingControlRelated) }}</td>
+        <td>{{ form_widget(form.children.responsibleUser) }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="MiniButtons actionButtons">
+    <ul class="submenu_ul">
+        <li>
+            <span class="sts_submenu W080" id="save">{{ button_label|default('Save') }}</span>
+        </li>
+    </ul>
+</div>
+{{ form_end(form) }}
+
+{% block stylesheets %}
+    <style>
+        .actionButtons {
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        const varType = {
+            'ascii': {{ constant('App\\Enum\\Entity\\VariableTypes::VARIABLE_TYPE_ASCII') }},
+            'string': {{ constant('App\\Enum\\Entity\\VariableTypes::VARIABLE_TYPE_STRING') }},
+            'blob': {{ constant('App\\Enum\\Entity\\VariableTypes::VARIABLE_TYPE_BLOB') }},
+            'integer': {{ constant('App\\Enum\\Entity\\VariableTypes::VARIABLE_TYPE_INTEGER') }},
+            'unsigned': {{ constant('App\\Enum\\Entity\\VariableTypes::VARIABLE_TYPE_UNSIGNED') }},
+            'boolean': {{ constant('App\\Enum\\Entity\\VariableTypes::VARIABLE_TYPE_BOOLEAN') }},
+            'bigInteger': {{ constant('App\\Enum\\Entity\\VariableTypes::VARIABLE_TYPE_BIGINTEGER') }},
+            'signed': {{ constant('App\\Enum\\Entity\\VariableTypes::VARIABLE_TYPE_SIGNED') }}
+        };
+
+        $(document).ready(() => {
+            showHideMinMaxValue();
+
+            $(document).on('click', '#save', function () {
+                save();
+            });
+
+            $('#global_parameters_variableType').on('change', () => {
+                showHideMinMaxValue();
+            });
+        });
+
+        function showHideMinMaxValue(whatDo) {
+            let variableType = parseInt($('#global_parameters_variableType').val());
+
+            switch (variableType) {
+                case varType['boolean']:
+                case varType['ascii']:
+                case varType['string']:
+                case varType['blob']:
+
+                    if(whatDo === 'save'){
+                        setUnitValue();
+                    }
+                    else{
+                        hideMinMaxValues();
+                    }
+
+                    break;
+
+                case varType['integer']:
+                case varType['unsigned']:
+                case varType['bigInteger']:
+                case varType['signed']:
+                    showMinMaxValues();
+                    break;
+            }
+        }
+
+        function showMinMaxValues() {
+            $('label[for="global_parameters_minValue"]').show();
+            $('#global_parameters_minValue').removeAttr('readonly');
+            $('label[for="global_parameters_maxValue"]').show();
+            $('#global_parameters_maxValue').removeAttr('readonly');
+            $('label[for="global_parameters_globalUnit"]').show();
+            $('#global_parameters_globalUnit').attr("disabled", false);
+        }
+
+        function hideMinMaxValues() {
+            $('label[for="global_parameters_minValue"]').hide();
+            $('#global_parameters_minValue').attr('readonly', 'readonly').val('');
+            $('label[for="global_parameters_maxValue"]').hide();
+            $('#global_parameters_maxValue').attr('readonly', 'readonly').val('');
+            $('label[for="global_parameters_globalUnit"]').hide();
+            $('#global_parameters_globalUnit').attr("disabled", true).val('0');
+        }
+
+        function setUnitValue() {
+            $('#global_parameters_globalUnit').attr("disabled", false).val('0');
+        }
+
+
+    </script>
+{% endblock %}

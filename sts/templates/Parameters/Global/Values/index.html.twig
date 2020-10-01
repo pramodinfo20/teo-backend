@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    <h1>{{ 'parameters.values.twig.index.header' | trans }}</h1>
+    <div class="row">
+        {% include 'Parameters/Global/Values/search.html.twig' with {select_button_available : true, search : search} %}
+        <div class="columns seven custom-skeleton">
+            <div class="row">
+                <div class="parameters">
+                    {% if search is not null %}
+                        {% include 'Common/Configuration/subconfiguration.html.twig' with {'parameters': parameters} %}
+                    {% endif %}
+                    {% if mode == 1 and search is not null %}
+                        {% include 'Parameters/Global/Values/view.html.twig' with {'globalParamaters': globalParameters } %}
+                    {% elseif mode == 2 %}
+                        {% include 'Parameters/Global/Values/form/editValue.html.twig' with {'form': parametersForm} %}
+                    {% endif %}
+                </div>
+                {% if search is not null %}
+                    {% with
+                        {
+                        'search': search,
+                        }
+                    %}
+                        {% include 'Parameters/Global/Values/footer.html.twig' %}
+                    {% endwith %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {#{% include 'Vehicles/Configuration/partials/saveDataValidationError.html.twig' %}#}
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .horizontalMenuButtons {
+            border: 1px solid #b0b0b0;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0px 5px;
+            margin-top: 15px;
+        }
+
+        .submenu_ul li {
+            margin-bottom: 0px !important;
+            padding: 5px 0px;
+        }
+
+        .MiniButtons {
+            text-align: center;
+        }
+
+
+        .sts_submenu {
+            cursor: default !important
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+            /* Select search after regenerate view */
+            {% if search is not empty %}
+            let type = "{{ search['type'] }}";
+            let year = {{ search['year'] }};
+            let series = "{{ search['series'] }}";
+            let customerKey = "{{ search['customerKey'] }}";
+            let configuration = {{ search['configuration'] }};
+            let global = "{{ search['global'] }}";
+
+            $.when(getTypeList(), getYearList(type), getSeriesList(type, year),
+                getSearchListResult(type, year, series, customerKey), getGlobalList(configuration))
+                .done(function () {
+                    $('#sel_type option[value="' + type + '"]').prop('selected', 'selected');
+                    $('#sel_year option[value="' + year + '"]').prop('selected', 'selected');
+                    $('#sel_series option[value="' + series + '"][data-customer-key="' + customerKey + '"]')
+                        .prop('selected', 'selected');
+                    $('#sel_search_result_list option[value="' + configuration + '"]').prop('selected', 'selected');
+                    $('input[name="sel_globals_result"][value="' + global + '"]').prop('checked', 'checked');
+                });
+            {% endif %}
+
+        });
+    </script>
+{% endblock %}

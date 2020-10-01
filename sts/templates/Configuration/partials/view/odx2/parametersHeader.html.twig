@@ -1,0 +1,40 @@
+{% trans_default_domain 'messages' %}
+
+<thead>
+    <th>{{ 'configuration.partials.view.odx2.twig.parametersHeader.ord' | trans }}</th>
+    <th>{{ 'configuration.partials.view.odx2.twig.parametersHeader.name' | trans }}</th>
+    {% if not odxSts02 %}
+        <th>{{ 'configuration.partials.view.odx2.twig.parametersHeader.odx_v.01' | trans }}</th>
+    {% endif %}
+    {% if header.protocol == 'UDS+XCP' %}
+        <th>{{ 'configuration.partials.view.odx2.twig.parametersHeader.protocol' | trans }}</th>
+    {% endif %}
+    {% if header.protocol != 'XCP' %}
+        <th>{{ 'configuration.partials.view.odx2.twig.parametersHeader.uds' | trans }}</th>
+    {% endif %}
+    <th>{{ 'configuration.partials.view.odx2.twig.parametersHeader.rwc' | trans }}</th>
+    <th>{{ 'configuration.partials.view.odx2.twig.parametersHeader.type' | trans }}</th>
+    <th>{{ 'configuration.partials.view.odx2.twig.parametersHeader.coding' | trans }}</th>
+    <th>{{ 'configuration.partials.view.odx2.twig.parametersHeader.bigEndian' | trans }}</th>
+    <th>{{ 'configuration.partials.view.odx2.twig.parametersHeader.bytes' | trans }}</th>
+    <th>{{ 'configuration.partials.view.odx2.twig.parametersHeader.factor' | trans }}</th>
+    <th>{{ 'configuration.partials.view.odx2.twig.parametersHeader.offset' | trans }}</th>
+    <th>{{ 'configuration.partials.view.odx2.twig.parametersHeader.unit' | trans }}</th>
+    <th>{{ 'configuration.partials.view.odx2.twig.parametersHeader.value' | trans }}</th>
+    <th>{{ 'configuration.partials.view.odx2.twig.parametersHeader.hex' | trans }}</th>
+    <th id="global">{{ 'configuration.partials.view.odx2.twig.parametersHeader.gp' | trans }}</th>
+    <th id="dynamic">{{ 'configuration.partials.view.odx2.twig.parametersHeader.dp' | trans }}</th>
+    <th>{{ 'configuration.partials.view.odx2.twig.parametersHeader.defaultType' | trans }}</th>
+    <th>{{ 'configuration.partials.view.odx2.twig.parametersHeader.start' | trans }}</th>
+    <th>{{ 'configuration.partials.view.odx2.twig.parametersHeader.stop' | trans }}</th>
+</thead>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /* Hide default GP & Dynamic */
+        $('#global').toggle(false);
+        $('#dynamic').toggle(false);
+    });
+</script>
+{% block javascripts %}
+{% endblock %}

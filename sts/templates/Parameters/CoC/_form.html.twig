@@ -1,0 +1,55 @@
+{{ form_start(form, {'attr': {'id': 'saveCoC'}}) }}
+<table>
+    <thead>
+        <tr>
+            <th>Order</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Section</th>
+            <th>Field</th>
+            <th>Responsible User</th>
+            <th>Variable Type</th>
+            <th>Unit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ form_widget(form.children.parameterOrder) }}</td>
+            <td>{{ form_widget(form.children.cocParameterName) }}</td>
+            <td>{{ form_widget(form.children.description) }}</td>
+            <td>{{ form_widget(form.children.section) }}</td>
+            <td>{{ form_widget(form.children.field) }}</td>
+            <td>{{ form_widget(form.children.responsibleUser) }}</td>
+            <td>{{ form_widget(form.children.variableType) }}</td>
+            <td>{{ form_widget(form.children.unit) }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="MiniButtons actionButtons">
+    <ul class="submenu_ul">
+        <li>
+            <span class="sts_submenu W080" id="save">{{ button_label|default('Save') }}</span>
+        </li>
+    </ul>
+</div>
+{{ form_end(form) }}
+
+{% block stylesheets %}
+<style>
+    .actionButtons {
+        text-align: center;
+        margin-top: 15px;
+    }
+</style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $( document ).ready(function() {
+            $(document).on('click', '#save', function() {
+                save();
+            });
+        });
+    </script>
+{% endblock %}

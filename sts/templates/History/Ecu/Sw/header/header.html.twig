@@ -1,0 +1,53 @@
+{% trans_default_domain 'messages' %}
+
+<table class="version_header header-table {{ header.historyEvent | historyEventClass }}">
+    <tbody>
+    <tr>
+        <td>{{ 'ecu.sw.partials.twig.header.swRevision' | trans }}</td>
+            {{ header.swVersion | historyValueTd }}
+
+        <td>{{ 'ecu.sw.partials.twig.header.odx' | trans }}</td>
+            {{ header.odxSts02 | historyValueTd }}
+
+        <td>{{ 'ecu.sw.partials.twig.header.protocol' | trans }}</td>
+            {{ header.protocol | historyValueTd([], [], ['getEcuCommunicationProtocolName']) }}
+
+        {% if header.protocol | historyRawByEventValue(header.historyEvent)!= 'XCP' %}
+
+            <td>{{ 'ecu.sw.partials.twig.header.request' | trans }}</td>
+                {{ header.request | historyValueTd([], [], [], {'prefix': '0x'}) }}
+
+            <td>{{ 'ecu.sw.partials.twig.header.response' | trans }}</td>
+                {{ header.response | historyValueTd([], [], [], {'prefix': '0x'}) }}
+
+            <td>{{ 'common.diagnosticIdentifier' | trans }}</td>
+            {{ header.diagnosticIdentifier | historyValueTd }}
+        {% else %}
+            <td colspan="2">Diagnostic Identifier</td>
+            {{ header.diagnosticIdentifier | historyValueTd([], [], [], [], 6) }}
+        {% endif %}
+    </tr>
+    <tr>
+        <td>{{ 'ecu.sw.partials.twig.header.info' | trans }}</td>
+            {{ header.info | historyValueTd }}
+
+        <td>{{ 'ecu.sw.partials.twig.header.status' | trans }}</td>
+            {{ header.status | historyValueTd([], [], ['getReleaseStatusName']) }}
+
+        <td>{{ 'ecu.sw.partials.twig.header.windchill' | trans }}</td>
+            {{ header.windchillUrl | historyValueTd([], [], [], {}, 3) }}
+
+        <td>{{ 'ecu.sw.partials.twig.header.odxVersion' | trans }}</td>
+            {{ header.odxVersion | historyValueTd }}
+        <td>{{ 'ecu.sw.partials.twig.header.defaultEndian' | trans }}</td>
+            {{ header.bigEndian | historyValueTd }}
+    </tr>
+    {% if header.subversionSuffix | historyRawByEventValue(header.historyEvent) is not null %}
+        <tr>
+            <td>{{ 'ecu.sw.partials.twig.header.suffix' | trans }}</td>
+            {{ header.subversionSuffix | historyValueTd }}
+            <td colspan="10"></td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>

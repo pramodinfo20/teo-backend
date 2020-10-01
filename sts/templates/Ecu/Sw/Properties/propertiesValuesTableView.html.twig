@@ -1,0 +1,19 @@
+<table class="parameters_table">
+
+    <thead>
+    <tr>
+        <th>{{ 'properties.propValTbView.order' | trans }}</th>
+        <th>{{ 'properties.propValTbView.name' | trans }}</th>
+        <th>{{ 'properties.propValTbView.value' | trans }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for ecuSwProperty in ecuSwPropertiesList %}
+        <tr>
+            <td>{{ ecuSwProperty.propertyOrder }}</td>
+            <td>{{ ecuSwProperty.name }}</td>
+            <td>{{ ecuSwProperty.value }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

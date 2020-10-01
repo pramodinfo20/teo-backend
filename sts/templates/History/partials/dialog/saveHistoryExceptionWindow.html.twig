@@ -1,0 +1,37 @@
+<!-- Dialogs -->
+<div id="exception-errors-list" title="Error"></div>
+
+
+{% block javascripts %}
+    <script>
+        function saveHistoryExceptionWindow(exceptionInputData) {
+            let resultData = '';
+
+            for (let key in exceptionInputData) {
+                if (key !== 'status') {
+                    resultData +=  exceptionInputData[key] + '<br>';
+                }
+            }
+
+            $('#exception-errors-list').empty();
+            $('#exception-errors-list').html(resultData);
+            $("#save_vc").removeClass('disabled');
+            exceptionDialogWindow.dialog('open');
+        }
+
+        /*------------- Dialogs ------------*/
+        var exceptionDialogWindow = $("#exception-errors-list").dialog({
+            autoOpen: false,
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "{{ 'dialog.button.close' | trans }}": function () {
+                    $("#save_vc").removeClass('disabled');
+                    exceptionDialogWindow.dialog("close");
+                }
+            }
+        });
+    </script>
+{% endblock %}

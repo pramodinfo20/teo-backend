@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css?family=Bevan");
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Header */
+.six.columns {
+    width: 48%;
+}
+.sts_logo {
+    margin: 10px 0;
+}
+.sts_logo {
+    position: relative;
+    top: 4px;
+    margin: 0;
+    max-width: 400px;
+    height: 60px;
+    margin: auto;
+}
+.div4logo {
+    height: 100px;
+    padding: 0;
+    position: relative;
+}
+a {
+    text-decoration: none;
+    color: #026DB1;
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+}
+.domain {
+    font-size: 14px;
+    margin-left: -188px;
+    color: #f0c674;
+    font-style: italic;
+}
+.column, .columns {
+    margin-left: 4%;
+}
+.languages-flags-wrapper {
+    margin-top: 15px;
+}
+.float-right {
+    float: right;
+}
+.user_login_info {
+    position: relative;
+    text-align: left;
+    background: #272727;
+    color:#FFF;
+    padding: 0 8px; 
+    border-radius: 4px;
+    z-index: 100;
+}
+.dp_logo {
+    float: right;
+    margin: 10px 0;
+}
+.dp_logo {
+    position: relative;
+    top: -10px;
+    margin: 0;
+    max-width: 400px;
+    height: 100px;
+    margin: auto;
+}
+/* */
+
+body {
+    background: rgb(40,40,40);
+    overflow: hidden;
+}
+.logged-in .pagewrap {
+    background: rgb(40,40,40);
+    overflow: hidden;
+}
+p {
+    font-family: "Bevan", cursive;
+    font-size: 130px;
+    margin: 10vh 0 0;
+    text-align: center;
+    letter-spacing: 5px;
+    background-color: black;
+    color: transparent;
+    text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.1);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+}
+p span {
+    font-size: 1.2em;
+}
+code {
+    color: #bdbdbd;
+    text-align: center;
+    display: block;
+    font-size: 16px;
+    margin: 0 30px 25px;
+}
+code span {
+    color: #f0c674;
+}
+
+code i {
+    color: #b5bd68;
+}
+
+code em {
+    color: #b294bb;
+    font-style: unset;
+}
+
+code b {
+    color: #81a2be;
+    font-weight: 500;
+}
+a {
+    color: #8abeb7;
+    font-family: monospace;
+    font-size: 20px;
+    text-decoration: underline;
+    margin-top:10px;
+    display:inline-block
+}
+.btn-home {
+	background-color: #5da7e8;
+	padding: 6px 30px;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 2px;
+	font-size: 18px;
+}
+.btn-home:hover {
+	background-color: #419beb;
+}
+.error-msg {
+    min-height: 400px;
+}
+@media screen and (max-width: 880px) {
+    p {
+        font-size: 14vw;
+    }
+}
+

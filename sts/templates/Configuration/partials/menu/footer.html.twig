@@ -1,0 +1,170 @@
+{% trans_default_domain 'messages' %}
+
+{% if supportOdx2 == false %}
+    <div class="odxVersion">
+        {{ 'configuration.partials.menu.twig.footer.odxVersion' | trans }}
+        <form action="" id="select_odx_form">
+            <input type="hidden" name="type" value="{{ search.type }}">
+            <input type="hidden" name="year" value="{{ search.year }}">
+            <input type="hidden" name="series" value="{{ search.series }}">
+            <input type="hidden" name="configuration" value="{{ search.configuration }}">
+            <input type="hidden" name="ecu" value="{{ search.ecu }}">
+            <input type="hidden" name="sw" value="{{ search.sw }}">
+            <input id="id_odx01" type="radio" name="odx" value="1" {{ (odx == 1)? 'checked' : '' }}>
+            <label for="id_odx01">{{ 'configuration.partials.menu.twig.footer.odxVersion1' | trans }}</label>
+            <input id="id_odx02" type="radio" name="odx" value="2" {{ (odx == 2)? 'checked' : '' }}>
+            <label for="id_odx02">{{ 'configuration.partials.menu.twig.footer.odxVersion2' | trans }}</label>
+            <input type="hidden" name="action" value="parameterSettings">
+            <input type="hidden" name="method" value="regenerateView">
+        </form>
+    </div>
+{% endif %}
+<div id="sw_parameters_actions" class="horizontalMenuButtons">
+    <div class="MiniButtons">
+        <ul class="submenu_ul">
+            <li><span class="sts_submenu W130 {{ (parametersButtonsState.isEditAvailable) ? '' : 'disabled' }}"
+                      id="btn_edit_sw">{{ 'configuration.partials.menu.twig.footer.miniButtonEdit' | trans }}</span></li>
+            <li><span class="sts_submenu W130 {{ (parametersButtonsState.isSaveAvailable) ? '' : 'disabled' }}"
+                      id="btn_save_sw">{{ 'configuration.partials.menu.twig.footer.miniButtonSave' | trans }}</span></li>
+            <li><span class="sts_submenu W130 {{ (parametersButtonsState.isCancelAvailable) ? '' : 'disabled' }}"
+                      id="btn_cancel_sw">{{ 'configuration.partials.menu.twig.footer.miniButtonCancel' | trans }}</span></li>
+        </ul>
+    </div>
+</div>
+
+<div id="validation-error-dialog" title="Error">
+    <p>{{ 'configuration.partials.menu.twig.footer.validationError' | trans }}</p>
+</div>
+
+
+{% block stylesheets %}
+
+{% endblock %}
+
+
+{% block javasctripts %}
+    <script>
+        let MODE = {'VIEW': 1, 'EDIT': 2};
+
+        // ---------- SAVE BUTTON ---------
+        $(document).on('click', '#btn_save_sw', function () {
+            if ($(this).hasClass('disabled'))
+                return false;
+
+            historyComment().then(function (result) {
+                if ($('form[name="Odx1ParameterCollectionType"]').length > 0) {
+                    saveHeaderAndParameters(1);
+                } else {
+                    saveHeaderAndParameters(2);
+                }
+            });
+        });
+
+        // ---------- CANCEL BUTTON ---------
+        $(document).on('click', '#btn_cancel_sw', function () {
+            if ($(this).hasClass('disabled'))
+                return false;
+
+            let parameters = getParametersToRedirect(MODE.VIEW);
+            regenerateViewWithSw(parameters);
+        });
+
+        // ---------- EDIT BUTTON ---------
+        $(document).on('click', '#btn_edit_sw', function () {
+            if ($(this).hasClass('disabled'))
+                return false;
+
+            let parameters = getParametersToRedirect(MODE.EDIT);
+            regenerateViewWithSw(parameters);
+        });
+
+        function getParametersToRedirect(mode) {
+            return {
+                type: "{{ search.type }}",
+                year: {{ search.year }},
+                series: "{{ search.series }}",
+                configuration: {{ search.configuration }},
+                ecu: {{ search.ecu }},
+                sw: {{ search.sw }},
+                odx: {{ odx }},
+                mode: mode
+            }
+        }
+
+        function regenerateViewWithSw(parameters) {
+            window.location.href = `index.php?action=parameterSettings&method=regenerateView&type=${parameters.type}&year=${parameters.year}` +
+                `&series=${parameters.series}&configuration=${parameters.configuration}&ecu=${parameters.ecu}&sw=${parameters.sw}` +
+                `&odx=${parameters.odx}&mode=${parameters.mode}`;
+        }
+
+
+        function saveHeaderAndParameters(odxType) {
+            $.ajax({
+                method: 'POST',
+                data:
+                    $('form[name="header"]').serialize(),
+                url: 'index.php?action=parameterSettings&method=ajaxCallPost&' +
+                    'ecu=' + {{ ecu }} +
+                        '&sw=' + {{ sw }} +
+                        '&odx=' + {{ odx }} +
+                        '&subConfiguration=' + {{ search.configuration }} +
+                        '&ajax=header',
+                dataType: "json",
+                success: function (result) {
+
+                    if (result.status === 'success') {
+                        $.ajax({
+                            method: 'POST',
+                            data:
+                                $('form[name="Odx' + odxType + 'ParameterCollectionType"]').serialize(),
+                            url: 'index.php?action=parameterSettings&method=ajaxCallPost&' +
+                                'ecu=' + {{ ecu }} +
+                                    '&sw=' + {{ sw }} +
+                                    '&odx=' + {{ odx }} +
+                                    '&subConfiguration=' + {{ search.configuration }} +
+                                    '&ajax=parameters',
+                            dataType: "json",
+                            beforeSend: function() {
+                                $( '#streetscooter-loader-mask' ).css('display', 'flex');
+                            },
+                            success: function (result) {
+
+                                if (result.status === 'success') {
+                                    let parameterToRedirect = getParametersToRedirect(MODE.VIEW);
+                                    regenerateViewWithSw(parameterToRedirect);
+                                } else if (result.status === 'failure') {
+                                    saveHistoryExceptionWindow(result);
+                                } else {
+                                    validationErrorDialog.dialog('open');
+                                }
+
+                                $( '#streetscooter-loader-mask' ).css('display', 'none');
+                            },
+                            error: function() {
+                                $( '#streetscooter-loader-mask' ).css('display', 'none');
+                            }
+                        })
+                    } else if (result.status === 'failure') {
+                        saveHistoryExceptionWindow(result)
+                    } else {
+                        validationErrorDialog.dialog('open');
+                    }
+                }
+            });
+        }
+
+        var validationErrorDialog = $("#validation-error-dialog").dialog({
+            autoOpen: false,
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "Ok": function () {
+                    validationErrorDialog.dialog("close");
+                }
+            }
+        });
+
+    </script>
+{% endblock %}

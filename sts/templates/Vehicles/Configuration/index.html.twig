@@ -1,0 +1,568 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div>
+        <h1>{{ 'vehicles.configuration.index.twig.header' | trans }}</h1>
+        <div class="row">
+            {% include 'Vehicles/Configuration/partials/search.html.twig' with {select_button_available : true} %}
+            <div class="columns seven custom-skeleton">
+                <div id="result_page">
+                    {% with
+                        {
+                        'subConfigurationId': subVehConfigId,
+                        'configurationId' : configurationId,
+                        'menuState': menuState,
+                        'commentForm': commentForm
+                        } %}
+                        {% include 'Vehicles/Configuration/partials/menu/top_menu.html.twig' with { mode: mode } %}
+                    {% endwith %}
+                    {% if configurationId is not null %}
+                        {% if mode == 0 %}
+                            {% include 'Vehicles/Configuration/show.html.twig' %}
+                        {% elseif mode == 1 or mode == 4 %}
+                            {% if type == 1 %}
+                                {% include 'Vehicles/Configuration/form/shortKey/configurationEdit.html.twig' %}
+                            {% elseif type == 2 %}
+                                {% include 'Vehicles/Configuration/form/longKey/configurationEdit.html.twig' %}
+                            {% endif %}
+                        {% endif %}
+                    {% elseif subVehConfigId is not null %}
+                        {% if mode == 0 %}
+                            {% include 'Vehicles/Configuration/show.html.twig' %}
+                        {% elseif mode == 1 %}
+                            {% if type == 1 %}
+                                {% include 'Vehicles/Configuration/form/shortKey/edit.html.twig' %}
+                            {% elseif type == 2 %}
+                                {% include 'Vehicles/Configuration/form/longKey/edit.html.twig' %}
+                            {% endif %}
+                        {% elseif mode == 3 %}
+                            {% if type == 1 %}
+                                {% include 'Vehicles/Configuration/form/shortKey/create.html.twig' %}
+                            {% elseif type == 2 %}
+                                {% include 'Vehicles/Configuration/form/longKey/create.html.twig' %}
+                            {% endif %}
+                        {% elseif mode == 4 %}
+                            {% if type == 1 %}
+                                {% include 'Vehicles/Configuration/form/shortKey/fix.html.twig' %}
+                            {% elseif type == 2 %}
+                                {% include 'Vehicles/Configuration/form/longKey/fix.html.twig' %}
+                            {% endif %}
+                        {% endif %}
+                     {% else %}
+                         {% if mode == 2 %}
+                             {% if type == 1 %}
+                                 {% include 'Vehicles/Configuration/form/shortKey/create.html.twig' %}
+                             {% elseif type == 2 %}
+                                 {% include 'Vehicles/Configuration/form/longKey/create.html.twig' %}
+                             {% endif %}
+                         {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if mode != 0 and mode != 2  %}
+        {% include 'Vehicles/Configuration/partials/saveHistoryExceptionWindow.html.twig' %}
+    {% endif %}
+    {% include 'Vehicles/Configuration/partials/availableOptionsForProperty.html.twig' %}
+    {% include 'Vehicles/Configuration/partials/saveDataValidationError.html.twig' %}
+
+    {# ---------------------------- Dialogs ----------------------------------------- #}
+    <div id="create-configuration-dialog" title="{{ 'vehicles.configuration.index.twig.dialog.selectHeader' | trans }}">
+        <p>{{ 'vehicles.configuration.index.twig.dialog.selectType' | trans }}</p>
+        <form action='' method='post' id="select-configuration=type">
+            <labe for="short">{{ 'vehicles.configuration.index.twig.dialog.shortKey' | trans }}</labe>
+            <input type="radio" id="short" name="type" value="1">
+            <labe for="long">{{ 'vehicles.configuration.index.twig.dialog.longKey' | trans }}</labe>
+            <input type="radio" id="long" name="type" value="2" checked>
+        </form>
+        </p>
+    </div>
+    <div id="delete-dialog" title="{{ 'dialog.button.delete' | trans }}">
+        <p>{{ 'vehicles.configuration.index.twig.dialog.deleteQuestion' | trans }}</p>
+    </div>
+    {# ----------------------------------------------------------------------------- #}
+
+
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .error {
+            outline: 1px solid red;
+        }
+
+        .horizontalMenuButtons {
+            border: 1px solid #b0b0b0;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0px 5px;
+            margin-top: 15px;
+        }
+
+        .submenu_ul li {
+            margin-bottom: 0px !important;
+            padding: 5px 0px;
+        }
+
+        .MiniButtons {
+            text-align: center;
+        }
+
+
+        .sts_submenu {
+            cursor: default !important
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function getSearchObject() {
+            let type = $('#sel_type').find("option:selected").val();
+            let year = $('#sel_year').find("option:selected").val();
+            let series = $('#sel_series').find("option:selected").val();
+
+            {% if search is not null %}
+                if (type === undefined || year === undefined || series === undefined) {
+                    type = "{{ search['type'] }}";
+                    year = {{ search['year'] }};
+                    series = "{{ search['series'] }}";
+                }
+            {% endif %}
+
+            return { 'type': type, 'year': year, 'series': series };
+        }
+
+        var viewSelectedMainConfiguration = function (configuration, type, year, series) {
+            let searchObject = getSearchObject();
+
+            if (type === undefined && year === undefined && series === undefined) {
+                if ((searchObject.type === undefined && searchObject.year === undefined && searchObject.series === undefined)
+                    || customSearch.getStatus()) {
+                    window.location.href = "index.php?action=vehicleConfigurations&method=regenerateView&path="
+                        + configuration  + "&main=view";
+                } else {
+                    window.location.href = "index.php?action=vehicleConfigurations&method=regenerateView&path="
+                        + configuration + "&type=" + searchObject.type + "&year=" + searchObject.year +
+                        "&series=" + searchObject.series
+                        + "&main=view";
+                }
+            } else {
+                if (customSearch.getStatus()) {
+                    window.location.href = "index.php?action=vehicleConfigurations&method=regenerateView&path="
+                        + configuration  + "&main=view";
+                } else {
+                    window.location.href = "index.php?action=vehicleConfigurations&method=regenerateView&path="
+                        + configuration + "&type=" + type + "&year=" + year + "&series=" + series + "&main=view";
+                }
+            }
+        };
+
+        var viewSelectedConfiguration = function (subConfiguration, type, year, series) {
+            let searchObject = getSearchObject();
+
+            if (type === undefined && year === undefined && series === undefined) {
+                if ((searchObject.type === undefined && searchObject.year === undefined && searchObject.series === undefined)
+                    || customSearch.getStatus()) {
+                    window.location.href = "index.php?action=vehicleConfigurations&method=regenerateView&path="
+                        + subConfiguration + "&ajax=view";
+                } else {
+                    window.location.href = "index.php?action=vehicleConfigurations&method=regenerateView&path="
+                        + subConfiguration + "&type=" + searchObject.type + "&year=" + searchObject.year +
+                        "&series=" + searchObject.series
+                        + "&ajax=view";
+                }
+            } else {
+                if (customSearch.getStatus()) {
+                    window.location.href = "index.php?action=vehicleConfigurations&method=regenerateView&path="
+                        + subConfiguration + "&ajax=view";
+                } else {
+                    window.location.href = "index.php?action=vehicleConfigurations&method=regenerateView&path="
+                        + subConfiguration + "&type=" + type + "&year=" + year + "&series=" + series + "&ajax=view";
+                }
+            }
+        };
+
+        $(document).ready(function () {
+
+            /* Select search after regenerate view */
+            {% if search is not null %}
+                let type = "{{ search['type'] }}";
+                let year = {{ search['year'] }};
+                let series = "{{ search['series'] }}";
+                let customerKey = "{{ search['customerKey'] }}";
+                let configuration = {{ search['configuration'] }};
+                let dataType = "{{ search['dataType'] }}";
+
+                $.when(getTypeList(), getYearList(type), getSeriesList(type, year),
+                    getSearchListResult(type, year, series, customerKey))
+                    .done(function () {
+                        $('#sel_type option[value="' + type + '"]').prop('selected', 'selected');
+                        $('#sel_year option[value="' + year + '"]').prop('selected', 'selected');
+                        $('#sel_series option[value="' + series + '"]').prop('selected', 'selected');
+                        $('#sel_series option[value="' + series + '"][data-customer-key="' + customerKey + '"]')
+                            .prop('selected', 'selected');
+                        $('#sel_search_result_list option[value="' + configuration + '"][data-type="' + dataType + '"]')
+                            .prop('selected', 'selected');
+
+                    });
+            {% endif %}
+
+            $(document).on('change', "#sel_search_result_list", function() {
+                if ($('option:selected', this).attr('data-type') == 'configuration') {
+                    viewSelectedMainConfiguration($('option:selected', this).val());
+                } else {
+                    viewSelectedConfiguration($('option:selected', this).val());
+                }
+            });
+
+            let subVehicleId = null;
+            let configurationId = null;
+            $(document).on('click', '#edit_vc', function () {
+                if (!$(this).hasClass('disabled')) {
+                    subVehicleId = $('#subVehicleConfigurationId').attr('data-id');
+                    configurationId = $('#configurationId').attr('data-id');
+
+                    if (subVehicleId != '') {
+                        editConfiguration(subVehicleId);
+                    } else {
+                        editMainConfiguration(configurationId);
+                    }
+                }
+            });
+
+            $(document).on('click', '#fix_vc', function () {
+                if (!$(this).hasClass('disabled')) {
+                    subVehicleId = $('#subVehicleConfigurationId').attr('data-id');
+                    configurationId = $('#configurationId').attr('data-id');
+
+                    if (subVehicleId != '') {
+                        fixConfiguration(subVehicleId);
+                    } else {
+                        fixMainConfiguration(configurationId);
+                    }
+                }
+            });
+
+            $(document).on('click', "a[name='parameter[]']", function () {
+                subVehicleId = $('#subVehicleConfigurationId').attr('data-id');
+                getListOfAvailableOptions(this.id);
+            });
+
+            $(document).on('click', '#add_vc', function () {
+                if (!$(this).hasClass('disabled')) {
+                    createDialog.dialog("open");
+                }
+            });
+
+            $(document).on('click', '#copy_vc', function () {
+                if (!$(this).hasClass('disabled')) {
+                    subVehicleId = $('#subVehicleConfigurationId').attr('data-id');
+                    copyConfiguration(subVehicleId);
+                }
+            });
+
+
+            $(document).on('click', '#delete_vc', function () {
+                if (!$(this).hasClass('disabled')) {
+                    deleteDialog.dialog('open');
+                }
+            });
+
+            $(document).on('click', '#cancel_vc', function () {
+                if (!$(this).hasClass('disabled')) {
+                    subVehicleId = $('#subVehicleConfigurationId').attr('data-id');
+                    configurationId = $('#configurationId').attr('data-id');
+                    if (subVehicleId != '') {
+                       viewSelectedConfiguration(subVehicleId);
+                    } else if (configurationId != ''){
+                        viewSelectedMainConfiguration(configurationId);
+                    } else {
+                        window.location.href = "index.php?action=vehicleConfigurations";
+                    }
+                }
+            });
+
+            $(document).on('click', '#history_vc', function() {
+                if (!$(this).hasClass('disabled')) {
+                    historyDialog.dialog('open');
+                }
+            });
+
+            function editConfiguration(id) {
+                let searchObject = getSearchObject();
+
+                window.location.href = "index.php?action=vehicleConfigurations&method=regenerateView&path="
+                    + id + "&type=" + searchObject.type + "&year=" + searchObject.year +
+                    "&series=" + searchObject.series
+                    + "&ajax=edit";
+            }
+
+            function editMainConfiguration(id) {
+                let searchObject = getSearchObject();
+
+                window.location.href = "index.php?action=vehicleConfigurations&method=regenerateView&path="
+                    + id + "&type=" + searchObject.type + "&year=" + searchObject.year +
+                    "&series=" + searchObject.series
+                    + "&configuration=edit";
+            }
+
+            function fixConfiguration(id) {
+                let searchObject = getSearchObject();
+
+                window.location.href = "index.php?action=vehicleConfigurations&method=regenerateView&path="
+                    + id + "&type=" + searchObject.type + "&year=" + searchObject.year +
+                    "&series=" + searchObject.series
+                    + "&ajax=fix";
+            }
+
+            function fixMainConfiguration(id) {
+                let searchObject = getSearchObject();
+
+                window.location.href = "index.php?action=vehicleConfigurations&method=regenerateView&path="
+                    + id + "&type=" + searchObject.type + "&year=" + searchObject.year +
+                    "&series=" + searchObject.series
+                    + "&configuration=fix";
+            }
+
+            function createConfiguration(type) {
+                window.location.href = "index.php?action=vehicleConfigurations&method=regenerateView&type="
+                    + type + "&ajax=create";
+
+            }
+
+            function copyConfiguration(id) {
+                window.location.href = "index.php?action=vehicleConfigurations&method=regenerateView&path="
+                    + id + "&copy=create";
+            }
+
+            function deleteConfiguration(id) {
+                $.ajax({
+                    method: "GET",
+                    url: "index.php",
+                    data: {
+                        action: 'vehicleConfigurations',
+                        method: 'ajaxCallDelete',
+                        path: id,
+                        ajax: 'delete'
+                    },
+                    dataType: "json",
+                    success: function (ajaxResultData) {
+                        window.location.href = "index.php?action=vehicleConfigurations";
+                    }
+                });
+            }
+
+            function deleteMainConfiguration(id) {
+                $.ajax({
+                    method: "GET",
+                    url: "index.php",
+                    data: {
+                        action: 'vehicleConfigurations',
+                        method: 'ajaxCallDelete',
+                        path: id,
+                        main: 'delete'
+                    },
+                    dataType: "json",
+                    success: function (ajaxResultData) {
+                        window.location.href = "index.php?action=vehicleConfigurations";
+                    }
+                });
+            }
+
+
+            function getListOfAvailableOptions(propertyId) {
+                $.ajax({
+                    method: "GET",
+                    url: "index.php",
+                    data: {
+                        action: 'vehicleConfigurations',
+                        method: 'ajaxCall',
+                        path: propertyId,
+                        ajax: 'optionsForProperty'
+                    },
+                    dataType: "json",
+                    success: function (ajaxResultData) {
+                        availableOptionsDialog(ajaxResultData);
+                    }
+                });
+            }
+
+
+            /* save */
+            $(document).on('click', '#save_vc', function () {
+                if (!$(this).hasClass('disabled')) {
+                    $('#save_vc').addClass('disabled');
+
+                    historyComment().then(function (result) {
+                        save();
+                    });
+                }
+            });
+
+            function save() {
+                let type = undefined;
+                let method = undefined;
+                let serializedForm = undefined;
+                let formName = undefined;
+                let query = undefined;
+                let mode = undefined;
+                let configurationId = undefined;
+
+                if ($('form[data-type="configuration"]').length > 0) {
+                    configurationId = $('#configurationId').attr('data-id');
+                    query = '&ajax=save';
+                    method = 'ajaxCallPost';
+                    if ($('#configuration_short_key_fix').length > 0 || $('#configuration_short_key_edit').length > 0 ) {
+                     type = 1;
+                     if ($("#configuration_short_key_fix").length > 0) {
+                         mode = 1;
+                         serializedForm = $("#configuration_short_key_fix").serialize();
+                         formName = 'configuration_short_key_edit';
+                     } else if ($("#configuration_short_key_edit").length > 0) {
+                         mode = 2;
+                         method = 'ajaxCallPost';
+                         serializedForm = $("#configuration_short_key_edit").serialize();
+                         formName = 'configuration_short_key_edit';
+                     }
+                 }  else {
+                     type = 2;
+                     if ($("#configuration_long_key_fix").length > 0) {
+                         mode = 1;
+                         serializedForm = $("#configuration_long_key_fix").serialize();
+                         formName = 'configuration_long_key_edit';
+                     } else if ($("#configuration_long_key_edit").length > 0) {
+                         mode = 2;
+                         serializedForm = $("#configuration_long_key_edit").serialize();
+                         formName = 'configuration_long_key_edit';
+                     }
+                 }
+                } else {
+                    method = 'ajaxCallPost';
+                    if ($("#short_key_create").length > 0 || $("#short_key_edit").length > 0
+                        || $("#short_key_fix").length > 0) {
+                        type = 1;
+                        if ($("#short_key_create").length > 0) {
+                            serializedForm = $("form[name='short_key']").serialize();
+                            formName = 'short_key';
+                            query = "&create=save";
+                        } else if ($("#short_key_edit").length > 0) {
+                            serializedForm = $("form[name='short_key_edit']").serialize();
+                            formName = 'short_key_edit';
+                            query = "&edit=save";
+                        } else {
+                            serializedForm = $("form[name='short_key_fix']").serialize();
+                            formName = 'short_key';
+                            query = '&fix=save'
+                        }
+                    } else {
+                        type = 2;
+                        if ($("#long_key_create").length > 0) {
+                            serializedForm = $("form[name='long_key']").serialize();
+                            formName = 'long_key';
+                            query = "&create=save";
+                        } else if ($("#long_key_edit").length > 0) {
+                            serializedForm = $("form[name='long_key_edit']").serialize();
+                            formName = 'long_key_edit';
+                            query = "&edit=save";
+                        } else {
+                            serializedForm = $("form[name='long_key_fix']").serialize();
+                            formName = 'long_key';
+                            query = '&fix=save'
+                        }
+                    }
+                }
+
+                if (type !== undefined && method !== undefined && serializedForm !== undefined && formName !== undefined
+                        && query !== undefined) {
+                    $.ajax({
+                        method: 'POST',
+                        data: serializedForm,
+                        url: 'index.php?action=vehicleConfigurations&method=' + method
+                            + ((mode !== undefined)? '&path=' + configurationId + '&type=' + type  + '&mode=' + mode
+                                : '&type=' + type ) + query,
+                        dataType: "json",
+                        success: function (result) {
+                            $('.error').removeClass('error');
+
+                            if (result['status']) {
+                                if (result['status'] === "failure") {
+                                    saveHistoryExceptionWindow(result);
+                                } else {
+                                    saveValidationErrorWindow(result);
+                                    markValidationErrorFields(result, formName);
+                                }
+                            } else {
+                                if (mode !== undefined) {
+                                   viewSelectedMainConfiguration(
+                                        result['configurationId'], result['type'], result['year'], result['series']
+                                    );
+                                } else {
+                                    viewSelectedConfiguration(
+                                        result['configurationId'], result['type'], result['year'], result['series']
+                                    );
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+
+
+
+            function markValidationErrorFields(errorInputData, formName) {
+                for (let key in errorInputData['errors']) {
+                    $('[name="' + formName + '[' + key + ']"]').addClass('error');
+                }
+            }
+
+
+            var createDialog = $("#create-configuration-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.select' | trans }}": function () {
+                        createDialog.dialog("close");
+                        createConfiguration($('input[name="type"]:checked').val());
+                    },
+                    "{{ 'dialog.button.cancel' | trans }}": function () {
+                        createDialog.dialog("close");
+                    }
+                }
+            });
+
+            var deleteDialog = $("#delete-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.delete' | trans }}": function () {
+                        deleteDialog.dialog("close");
+                        subVehicleId = $('#subVehicleConfigurationId').attr('data-id');
+                        configurationId = $('#configurationId').attr('data-id');
+                        historyComment().then(function (result) {
+                            if (subVehicleId != '') {
+                                deleteConfiguration(subVehicleId);
+                            } else {
+                                deleteMainConfiguration(configurationId);
+                            }
+                        });
+                    },
+                    "{{ 'dialog.button.cancel' | trans }}": function () {
+                        deleteDialog.dialog("close");
+                    }
+                }
+            });
+
+        });
+    </script>
+{% endblock %}

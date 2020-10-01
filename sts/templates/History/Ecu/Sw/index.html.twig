@@ -1,0 +1,125 @@
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+
+    <h2>{{ 'ecu.sw.parameters.twig.index.header' | trans }}</h2>
+    <div class="row">
+        <div class="parameters">
+            <div class="parametersHeader">
+                    {% include 'History/Ecu/Sw/header/header.html.twig' with {'header': historyModel.historyHeader} %}
+            </div>
+            <div class="parametersValues">
+                {% if historyModel.odx == 1 %}
+                    {% include 'History/Ecu/Sw/odx1/historyParameters.html.twig' with {
+                        'parameters': historyModel.historyOdxCollection, 'odxSts02' : historyModel.historyHeader.odxSts02,
+                        'header': historyModel.historyHeader
+                    } %}
+                {% elseif historyModel.odx == 2 %}
+                    {% include 'History/Ecu/Sw/odx2/historyParameters.html.twig' with {
+                        'parameters': historyModel.historyOdxCollection, 'odxSts02' : historyModel.historyHeader.odxSts02,
+                        'header': historyModel.historyHeader
+                    } %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .parametersValues{
+            width: 100%;
+            max-height: 550px;
+            overflow-x: auto;
+            overflow-y: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .parametersValues table {
+            width: 100%;
+        }
+
+        .parametersHeader table tr {
+            background: white;
+        }
+
+        .version_header {
+            margin: 10px 0px;
+        }
+
+        .version_header tr td:nth-child(odd) {
+            font-weight: bold;
+        }
+
+        .parameters_table thead {
+            font-weight: bold;
+
+        }
+
+        .parameters_table tbody tr:nth-child(1), .odx1-table tbody tr:nth-child(1), .odx2-table tbody tr:nth-child(1) {
+            background-color: #e2e2ff;
+        }
+
+        .parameters_table tbody tr:nth-child(2), .odx1-table tbody tr:nth-child(2), .odx2-table tbody tr:nth-child(2) {
+            background-color: #d0d0ff;
+        }
+
+        .odx2_table tbody tr:nth-child(3), .odx2-table tbody tr:nth-child(3) {
+            background-color: #d0d0b0;
+            /*border-top: 5px solid #bbb;*/
+            /*border-bottom: 5px solid #bbb;*/
+        }
+
+        .sts_submenu {
+            cursor: default !important;
+        }
+
+        .parameters_table {
+            margin-bottom: 10px;
+        }
+
+        .odxVersion {
+            margin-bottom: 10px;
+        }
+
+        .centerColumn{
+            text-align: center;
+        }
+
+        .centerColumnExtra input {
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        .odx_yes {
+            width: 50px;
+            background: linear-gradient(to bottom, #008800 0, #668844 90%, #008800 100%);
+            color: #ddffdd;
+            display: inline-block;
+            font-family: 'RobotoBold';
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .odx_no {
+            width: 50px;
+            display: inline-block;
+            background: linear-gradient(to bottom, #880000 0, #884400 90%, #880000 100%);
+            color: #ffdddd;
+            font-family: 'RobotoBold';
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.disabled', function(event) {
+                event.preventDefault();
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,173 @@
+{% block body %}
+
+{{ form_start(form, {'attr': {'id': 'short_key_fix'}}) }}
+<div>
+    <h2>{{ 'vehicles.configuration.partials.keyComponents.twig.keyTableTitle' | trans }}</h2>
+
+    <table class="createShortKey">
+        <tbody>
+        <tr>
+            <td>{{ 'vehicles.configuration.form.create.twig.configuration' | trans }} *</td>
+            <td>
+                {{ 'vehicles.configuration.form.create.twig.type' | trans }} {{ form_widget(form.type) }}
+                {{ 'vehicles.configuration.form.create.twig.year' | trans }} {{ form_widget(form.year) }}
+                {{ 'vehicles.configuration.form.create.twig.series' | trans }} {{ form_widget(form.series) }}
+            </td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.form.create.twig.layout' | trans }} *</td>
+            <td>{{ form_widget(form.layout) }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.form.create.twig.feature' | trans }} *</td>
+            <td>{{ form_widget(form.feature) }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.form.create.twig.battery' | trans }} *</td>
+            <td>{{ form_widget(form.battery) }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+{% include 'Vehicles/Configuration/form/common/oldCodeSupport.html.twig' %}
+
+<div>
+    <h2>{{ 'vehicles.configuration.partials.keyComponents.twig.additionalKeyTableTitle' | trans }}</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>{{ 'vehicles.configuration.partials.keyComponents.twig.name' | trans }}</th>
+            <th>{{ 'vehicles.configuration.partials.keyComponents.twig.value' | trans }}</th>
+            <th>{{ 'vehicles.configuration.partials.keyComponents.twig.visibleOnReport' | trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.espPart' | trans }}</td>
+            <td>{{ form_widget(form.espPart) }}</td>
+            <td>{{ form_widget(form.espPartReport) }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.rotBeac' | trans }}</td>
+            <td>{{ form_widget(form.rotatingBacon) }}</td>
+            <td>{{ form_widget(form.rotatingBaconReport) }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.coDriverPart' | trans }} *</td>
+            <td>{{ form_widget(form.partAtCoDriverPosition) }}</td>
+            <td>{{ form_widget(form.partAtCoDriverPositionReport) }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.batteryType' | trans }} *</td>
+            <td>{{ form_widget(form.typeOfBattery) }}</td>
+            <td>{{ form_widget(form.typeOfBatteryReport) }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.radio' | trans }}</td>
+            <td>{{ form_widget(form.radio) }}</td>
+            <td>{{ form_widget(form.radioReport) }}</td>
+        </tr>
+        </tbody>
+    </table>
+    {{ 'common.mandatoryFields' | trans }}
+</div>
+
+<div>
+    <h2>{{ 'vehicles.configuration.partials.keyComponents.twig.addKeyFeatures' | trans }}</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>{{ 'vehicles.configuration.partials.keyComponents.twig.name' | trans }}</th>
+            <th>{{ 'vehicles.configuration.partials.keyComponents.twig.value' | trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.stdColor' | trans }} * <span class="notice">*</span></td>
+            <td>{{ form_widget(form.standardColor) }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.deutschePost' | trans }}</td>
+            <td>{{ form_widget(form.isDeutschePostConfiguration) }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.targetState' | trans }}</td>
+            <td>{{ form_widget(form.targetState) }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.stdProdPlace' | trans }} *</td>
+            <td>{{ form_widget(form.stsPlaceOfProduction) }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.espFunctionality' | trans }}</td>
+            <td>{{ form_widget(form.espFunctionality) }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.tirePressureFront' | trans }} *</td>
+            <td>{{ form_widget(form.tirePressFront) }} [kPa]</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.tirePressureRear' | trans }} *</td>
+            <td>{{ form_widget(form.tirePressRear) }} [kPa]</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.comment' | trans }}</td>
+            <td>{{ form_widget(form.comment) }}</td>
+        </tr>
+
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.testSoftwareVersion' | trans }}</td>
+            <td>{{ form_widget(form.testSoftwareVersion) }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <span class="notice">*</span><span> - {{ 'vehicles.configuration.form.create.twig.correctColorNotice' | trans }} </span><br />
+    {{ 'common.mandatoryFields' | trans }}
+</div>
+
+<div>
+    <h2>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.presentEcus' | trans }}</h2>
+    <table id="present_ecus">
+        <thead>
+        <tr>
+            <th>Ecu</th>
+            <th>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.primarySoftwareVersion' | trans }}</th>
+            <th>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.alternativeSoftwareVersion' | trans }}</th>
+            <th>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.usage' | trans }}</th>
+            <th>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.canForwarding' | trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for ecu in form.ecus %}
+            <tr>
+                <td>{{ form_label(ecu) }}</td>
+                <td>{{ (ecu.vars.attr['data-primary-sw'] is not null)? ecu.vars.attr['data-primary-sw'] :( 'vehicles.configuration.partials.descrptionOutOfKey.twig.notAssigned' | trans ) }}</td>
+                <td>{{ (ecu.vars.attr['data-alternative-sw'] is not null)? ecu.vars.attr['data-alternative-sw'] : ( 'vehicles.configuration.partials.descrptionOutOfKey.twig.notAssigned' | trans ) }}</td>
+                <td>{{ form_widget(ecu) }}</td>
+                <td>{{ form_widget(form.cans [ loop.index0 ]) }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{{ form_widget(form.subConfigurationId) }}
+{{ form_end(form, {'render_rest': false}) }}
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .year {
+            width: 38px;
+        }
+
+        .notice {
+            color: red;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ include('Vehicles/Configuration/form/common/js/fixEditJs.html.twig') }}
+{% endblock %}

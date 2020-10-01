@@ -1,0 +1,12 @@
+@charset "UTF-8";
+.tabcontent{padding:1.2em;margin:0 2px 5px;border-top:2px solid #CCC}
+.tabser{margin-left:10px;width:100%}
+.list_exceptions{list-style:none}
+.list_exceptions li{font-size:1.4em;padding:.4em}
+.list_exceptions li:nth-of-type(even){background:#F1F1F1}
+.list_exceptions li a{display:block}
+.new_exception_dtcs input,.new_exception_log input{vertical-align:top}
+.new_exception_dtcs,.new_exception_log{font-size:1.2em}
+.ui-autocomplete.ui-widget{font-size:1.5em}
+.hint{color:#999}
+.wcvariant_container{display:none}

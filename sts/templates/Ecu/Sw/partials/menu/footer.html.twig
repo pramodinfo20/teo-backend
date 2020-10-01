@@ -1,0 +1,848 @@
+{% trans_default_domain 'messages' %}
+
+{% if supportOdx2 == false %}
+<div class="odxVersion">
+    {{ 'ecu.sw.partials.menu.twig.footer.chooseOdx' | trans }}
+    <form action="" id="select_odx_form">
+        <input type="hidden" name="ecu" value="{{ ecu }}">
+        <input type="hidden" name="sw" value="{{ sw }}">
+        <input id="id_odx01" type="radio" name="odx" value="1" {{ (odx == 1)? 'checked' : '' }}>
+        <label for="id_odx01">odx.sts.01</label>
+        <input id="id_odx02" type="radio" name="odx" value="2" {{ (odx == 2)? 'checked' : '' }}>
+        <label for="id_odx02">odx.sts.02</label>
+        <input type="hidden" name="action" value="parameterManagement">
+        <input type="hidden" name="method" value="regenerateView">
+    </form>
+</div>
+{% endif %}
+<div id="sw_parameters_actions" class="horizontalMenuButtons">
+    <div class="MiniButtons">
+        <ul class="submenu_ul">
+            <li><span class="sts_submenu W130 {{ (parametersButtonsState.isEditAvailable) ? '' : 'disabled' }}"
+                      id="mode">{{ 'ecu.sw.partials.menu.twig.footer.edit' | trans }}</span></li>
+            {% if parametersButtons['delete'] == 1 %}
+                <li><span class="sts_submenu W130"
+                          id="delete_parameters">{{ 'ecu.sw.partials.menu.twig.footer.delete' | trans }}</span></li>
+            {% else %}
+                <li><span class="sts_submenu W130 {{ (parametersButtonsState.isSaveAvailable) ? '' : 'disabled' }}"
+                          id="save">{{ 'ecu.sw.partials.menu.twig.footer.save' | trans }}</span></li>
+            {% endif  %}
+            <li><span class="sts_submenu W130 {{ (parametersButtonsState.isCancelAvailable) ? '' : 'disabled' }}"
+                      id="cancel">{{ 'ecu.sw.partials.menu.twig.footer.cancel' | trans }}</span></li>
+            {% if odx == 2 %}
+                <li><span class="sts_submenu W130 {{ (parametersButtonsState.isChangeOrderAvailable) ? '' : 'disabled' }}"
+                          id="order">{{ 'ecu.sw.partials.menu.twig.footer.changeOrder' | trans }}</span></li>
+                {% if parametersButtons['copy'] == 0 %}
+                    <li><span class="sts_submenu W130 {{ (parametersButtonsState.isCopyAvailable) ? '' : 'disabled' }}"
+                          id="copy">{{ 'ecu.sw.partials.menu.twig.footer.copy' | trans }}</span></li>
+                {% elseif parametersButtons['copy'] == 1 %}
+                    <li><span class="sts_submenu W160 {{  (parametersButtonsState.isCopyCurrentAvailable) ? '' : 'disabled' }}"
+                              id="copy_parameter_current">{{ 'ecu.sw.partials.menu.twig.footer.copyCurrent' | trans }}</span></li>
+                    <li><span class="sts_submenu W160 {{  (parametersButtonsState.isCopyOtherAvailable) ? '' : 'disabled' }}"
+                              id="copy_parameter_other">{{ 'ecu.sw.partials.menu.twig.footer.copyOther' | trans }}</span></li>
+                {% endif %}
+            {% endif %}
+            {#<li><span class="sts_submenu W130 {{ (parametersButtonsState.isGenerateOdxAvailable) ? '' : 'disabled' }}"#}
+                      {#id="generate_odx">{{ 'ecu.sw.partials.menu.twig.footer.generateOdx' | trans }}</span></li>#}
+        </ul>
+    </div>
+</div>
+
+{# ---------------------------- Dialogs ----------------------------------------- #}
+<div id="copy-parameters-dialog" title="{{ 'ecu.sw.partials.menu.twig.footer.dialog.title.copyOther' | trans }}">
+    <p>{{ 'ecu.sw.partials.menu.twig.footer.dialog.body.selectSw' | trans }}</p>
+    <div class="scrollable">
+        <p><form action='' method='post' id="check-sw"></form></p>
+    </div>
+    <p style="font-weight: bold">{{ 'ecu.sw.partials.menu.twig.footer.dialog.body.info' | trans }}</p>
+    <p>{{ 'ecu.sw.partials.menu.twig.footer.dialog.body.protocolInfo' | trans }}</p>
+</div>
+
+<div id="copy-parameters-error-dialog" title="{{ 'ecu.sw.partials.menu.twig.footer.dialog.title.copyOther' | trans }}">
+    {{ 'ecu.sw.partials.menu.twig.footer.dialog.body.emptyList' | trans }}
+</div>
+
+<div id="copy-parameters-conflicts-dialog" title="{{ 'ecu.sw.partials.menu.twig.footer.dialog.title.overwrite' | trans }}">
+    <p style="font-weight: bold">{{ 'ecu.sw.partials.menu.twig.footer.dialog.body.sw' | trans }} <span id="sw"></span></p>
+    <p>{{ 'ecu.sw.partials.menu.twig.footer.dialog.body.conflictDetected' | trans }}</p>
+    <p><form action='' method='post' id="overwrite-parameters"></form></p>
+</div>
+
+<div id="copy-parameters-confirm-dialog" title="{{ 'ecu.sw.partials.menu.twig.footer.dialog.title.confirm' | trans }}">
+    <p style="font-weight: bold">{{ 'ecu.sw.partials.menu.twig.footer.dialog.body.sw' | trans }} <span id="destination-sw"></span></p>
+</div>
+
+<div id="copy-parameters-success-dialog" title="{{ 'ecu.sw.partials.menu.twig.footer.dialog.title.success' | trans }}">
+    {{ 'ecu.sw.partials.menu.twig.footer.dialog.body.selectedCopied' | trans | raw }}
+    <p id="sws"></p>
+</div>
+
+<div id="validation-error-dialog" title="Error">
+    <p>{{ 'ecu.sw.partials.menu.twig.footer.dialog.body.validationErrors' | trans }}</p>
+    <div class="scrollable"><p id="errors"></p></div>
+</div>
+{# ----------------------------------------------------------------------------- #}
+
+{% block stylesheets %}
+    <style>
+        .validation-error {
+            outline-style: solid;
+            outline-color: red;
+            outline-width: thin;
+        }
+        .scrollable {
+            max-height: 400px;
+            overflow-y: scroll;
+        }
+    </style>
+{% endblock %}
+
+{% block javasctripts %}
+    <script>
+        $( document ).ready(function() {
+
+            {% if parametersButtons['copy'] == 1 %}
+                $('.parameters_table').wrap('<form id="clonedForm">');
+
+                const cloneOrder = (function () {
+                    let
+                        order = 0,
+                        increment = function() {
+                            ++order;
+                        },
+                        decrement = function() {
+                            --order;
+                        },
+                        getOrder = function() {
+                            return order;
+                        };
+
+                    return {
+                        increment: increment,
+                        decrement: decrement,
+                        getOrder: getOrder
+                    }
+                }());
+
+                const copyArray = (function() {
+                    let
+                        copyArray = [],
+                        push = function(element) {
+                            copyArray.push(element);
+                        },
+                        getElement = function(index) {
+                            return copyArray[index];
+                        },
+                        getAll = function() {
+                            return copyArray;
+                        },
+                        clear = function() {
+                            copyArray = [];
+                        },
+                        length = function() {
+                            return copyArray.length;
+                        };
+
+                    return {
+                        push: push,
+                        getElement: getElement,
+                        getAll: getAll,
+                        clear: clear,
+                        length: length
+                    }
+                }());
+
+                const swArray = (function() {
+                    let
+                        swArray = [],
+                        unshift = function(element) {
+                            swArray.unshift(element);
+                        },
+                        getElement = function(index) {
+                            return swArray[index];
+                        },
+                        getAll = function() {
+                            return swArray;
+                        },
+                        clear = function() {
+                            swArray = [];
+                        },
+                        length = function() {
+                            return swArray.length;
+                        };
+
+                    return {
+                        unshift: unshift,
+                        getElement: getElement,
+                        getAll: getAll,
+                        clear: clear,
+                        length: length
+                    }
+                }());
+
+            const swNamesArray = (function() {
+                let
+                    swNamesArray = [],
+                    push = function(element) {
+                        swNamesArray.push(element);
+                    },
+                    getElement = function(index) {
+                        return swNamesArray[index];
+                    },
+                    getAll = function() {
+                        return swNamesArray;
+                    },
+                    clear = function() {
+                        swNamesArray = [];
+                    },
+                    length = function() {
+                        return swNamesArray.length;
+                    };
+
+                return {
+                    push: push,
+                    getElement: getElement,
+                    getAll: getAll,
+                    clear: clear,
+                    length: length
+                }
+            }());
+
+            const swIterator = (function() {
+                let
+                    swIterator = 0,
+                    increment = function() {
+                        ++swIterator;
+                    },
+                    decrement = function() {
+                        --swIterator;
+                    },
+                    getIterator = function() {
+                        return swIterator;
+                    };
+
+                return {
+                    increment: increment,
+                    decrement: decrement,
+                    getIterator: getIterator
+                }
+            }());
+
+            {% endif %}
+
+            $(document).on('click', '#sw_parameters_actions span', function () {
+               if (!$(this).hasClass("disabled")) {
+                   let value = ($(this).attr('id') == 'mode')? 2: 1;
+                   if (!['save', 'generate_odx', 'copy_parameter_current', 'copy_parameter_other', 'delete_parameters'].includes($(this).attr('id'))) {
+                       window.location.href = "index.php?action=parameterManagement&method=regenerateView&ecu=" + {{ ecu }} +
+                       "&sw=" + {{ sw }} + "&odx=" + {{ odx }} + "&path=menu&" + $(this).attr('id') + "=" + value;
+                   }
+               }
+            });
+
+            function getOrders() {
+                let orders = [];
+
+                $('.odx2_table tbody tr').each(function() {
+                    if ($(this).find('button').length > 0) {
+                        let order = $(this).find('td:eq(0)').find('button').attr('data-parameter-order');
+                        let parameterId = $(this).find('td:eq(2)').find('input').val();
+                        let object = {};
+                        object[parameterId] = order;
+
+                        orders.push(object);
+                    }
+                });
+
+                return JSON.stringify(orders);
+            }
+
+            function saveOrder() {
+                $.ajax({
+                    method: 'POST',
+                    data: {
+                        orders: getOrders()
+                    },
+                    url: 'index.php?action=parameterManagement&method=ajaxCallPost&sw=' + {{ sw }} + '&ajax=order',
+                    dataType: "json",
+                    beforeSend: function() {
+                        $( '#streetscooter-loader-mask' ).css('display', 'flex');
+                    },
+                    success: function (result) {
+                        if (result['status'] === 'failure') {
+                            $('#streetscooter-loader-mask').css('display', 'none');
+                            saveHistoryExceptionWindow(result);
+                        } else {
+                            window.location.href = 'index.php?action=parameterManagement&method=regenerateView&ecu='
+                                + {{ ecu }} +'&sw=' + {{ sw }};
+                            $('#streetscooter-loader-mask').css('display', 'none');
+                        }
+                    },
+                    error: function() {
+                        $( '#streetscooter-loader-mask' ).css('display', 'none');
+                    }
+                })
+            }
+
+            $(document).on('click', "#save", function(){
+                if (!$(this).hasClass("disabled")) {
+                    historyComment().then(function (result) {
+                        save();
+                    })
+                }
+            });
+
+            function save() {
+                if ({{ parametersButtons['order'] }} == 1) {
+                    saveOrder();
+                } else if ({{ parametersButtons['copy'] }} == 1) {
+                    saveCloned();
+                } else if ({{ mode }} == 2) {
+                    if ($('form[name="Odx1ParameterCollectionType"]').length > 0) {
+                        $('form[name="Odx1ParameterCollectionType"]').submit();
+                    } else {
+                        $('form[name="Odx2ParameterCollectionType"]').submit();
+                    }
+                }
+            }
+
+            $('form[name="Odx2ParameterCollectionType"]').submit(function(event){
+                event.preventDefault();
+                if (validateHeader()) {
+                    saveOdx(2);
+                }
+            });
+
+            $('form[name="Odx1ParameterCollectionType"]').submit(function(event){
+                event.preventDefault();
+                if (validateHeader()) {
+                    saveOdx(1);
+                }
+            });
+
+
+            function validateHeader() {
+                let positive = true;
+                $('input').removeClass('validation-error');
+
+                if (!$('#header_subversionSuffix').is('[readonly]') && $('#header_subversionSuffix').val().trim() == '' ) {
+                    $('#header_subversionSuffix').addClass('validation-error');
+                    // positive = false;
+                }
+
+                return positive;
+            }
+
+            function saveOdx(odxType) {
+                $('.validation-error').removeClass('validation-error');
+                $.ajax({
+                    method: 'POST',
+                    data:
+                            $('form[name="header"]').serialize()
+                    ,
+                    url: 'index.php?action=parameterManagement&method=ajaxCallPost&' +
+                        'ecu=' + {{ ecu }} + '&sw=' + {{ sw }} + '&odx='+ {{ odx }} +
+                        '&path=menu&mode=2&ajax=header',
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.status === 'success') {
+                            $.ajax({
+                                method: 'POST',
+                                data:
+                                    $('form[name="Odx'+odxType+'ParameterCollectionType"]').serialize()
+                                ,
+                                url: 'index.php?action=parameterManagement&method=ajaxCallPost&' +
+                                    'ecu=' + {{ ecu }} + '&sw=' + {{ sw }} + '&odx=' + {{ odx }} +
+                                    '&path=menu&mode=2&ajax=parameters',
+                                dataType: "json",
+                                beforeSend: function() {
+                                    $( '#streetscooter-loader-mask' ).css('display', 'flex');
+                                },
+                                success: function (result) {
+                                    if (result.status === 'success') {
+                                        window.location.href = 'index.php?action=parameterManagement&method=regenerateView&ecu='
+                                                + {{ ecu }} + '&sw=' + {{ sw }} + '&odx=' + {{ odx }};
+                                    } else if (result['status'] === 'failure') {
+                                        $('#streetscooter-loader-mask').css('display', 'none');
+                                        saveHistoryExceptionWindow(result);
+                                    } else {
+                                        let errors = {};
+
+                                        if (odxType == 2) {
+                                            if ("Odx2ParameterCollectionType" in result.errors) {
+                                                errors = result.errors.Odx2ParameterCollectionType.parameters;
+                                            }
+                                        } else {
+                                            if ("Odx1ParameterCollectionType" in result.errors) {
+                                                errors = result.errors.Odx1ParameterCollectionType.parameters;
+                                            }
+                                        }
+
+                                        $('#errors').empty();
+
+                                        let txt = '<ul>';
+                                        for (let parameterId in errors) {
+                                            let realParameterId = parseInt(parameterId)+1;
+
+                                            txt += "<li>{{ 'ecu.sw.partials.menu.twig.footer.row' | trans }} " + realParameterId;
+                                            txt += '<ul>';
+                                            for (let parameterField in errors[parameterId]) {
+                                                $('[name="Odx'+odxType+'ParameterCollectionType[parameters]['+parameterId+']' +
+                                                    '['+parameterField+']"]').addClass('validation-error');
+                                                txt += '<li>'+parameterField+': '+errors[parameterId][parameterField]+'</li>';
+
+                                            }
+                                            txt += '</ul>';
+                                            txt += '</li>';
+                                        }
+
+                                        let allErrors = result.errors;
+
+                                        for (let error in allErrors) {
+                                            if (error == "Odx2ParameterCollectionType" || error == "Odx1ParameterCollectionType") {
+                                                continue;
+                                            }
+
+                                            txt += "<li>" + allErrors[error] + "</li>";
+                                        }
+
+                                        txt += '</ul>';
+
+                                        $('#errors').append(txt);
+
+                                        validationErrorDialog.dialog('open');
+                                        $( '#streetscooter-loader-mask' ).css('display', 'none');
+                                    }
+                                }
+                            })
+                        } else if (result['status'] === 'failure') {
+                            $('#streetscooter-loader-mask').css('display', 'none');
+                            saveHistoryExceptionWindow(result);
+                        } else {
+                            $('#errors').empty();
+
+                            let errors = result.errors;
+                            let txt = '';
+
+                            for (let key in errors) {
+                                $('[name="header['+key+']"]').addClass('validation-error');
+                                txt += key+': '+errors[key]+'<br />';
+                            }
+
+                            $('#errors').append(txt);
+                            validationErrorDialog.dialog('open');
+                            $( '#streetscooter-loader-mask' ).css('display', 'none');
+                        }
+                    }
+                })
+            }
+
+
+            function cloneSelectedParameters() {
+               $('input[name="copy"]:checked').each(function() {
+                   cloneOrder.increment();
+                   let clone = $(this).parent().parent().clone();
+                   let id = $(this).attr('data-parameter-id');
+                   let name = $(this).attr('data-parameter-name');
+                   let udsId = null;
+
+                   if ('{{ protocol }}' != 'XCP') {
+                       udsId = $(this).attr('data-parameter-udsId');
+                   }
+
+                   clone.addClass('cloned');
+
+                   clone.find('td:eq(0)').empty();
+                   clone.find('td:eq(1)').empty()
+                       .append('<input type="hidden" name="parameter['+cloneOrder.getOrder()+'][order]" ' +
+                           'value="'+cloneOrder.getOrder()+'">');
+                   clone.find('td:eq(1)').append('<input type="hidden" ' +
+                       'name="parameter['+cloneOrder.getOrder()+'][previous_name]" value="'+name+'">');
+                   clone.find('td:eq(1)').append('<input type="hidden"' +
+                       ' name="parameter['+cloneOrder.getOrder()+'][id]" value="'+id+'">');
+                   clone.find('td:eq(2)').empty()
+                       .append('<input type="text" name="parameter['+cloneOrder.getOrder()+'][name]" placeholder="'+name+'">');
+
+                   if ('{{ protocol }}' != 'XCP') {
+                       clone.find('td:eq(1)').append('<input type="hidden" ' +
+                           'name="parameter['+cloneOrder.getOrder()+'][previous_udsId]" value="'+udsId+'">');
+                       clone.find('td:eq(4)').empty()
+                           .append('<input type="number" name="parameter[' +cloneOrder.getOrder()+ '][udsId]" ' +
+                               'placeholder="' + udsId + '">');
+                   }
+                   $(this).parent().parent().parent().find('tr:last').after(clone);
+               });
+            }
+
+            function validateClonedBeforeSave() {
+                let error = false;
+                $('input').removeClass('validation-error');
+                $('.cloned').each(function() {
+                   if ('{{ protocol }}' != 'XCP') {
+                       let previousUdsId = $(this).find('input').filter(function() {
+                           return $(this).attr('name').match(/parameter\[.*\]\[previous_udsId\]/)
+                       }).val();
+                       let udsId = $(this).find('input').filter(function() {
+                           return $(this).attr('name').match(/parameter\[.*\]\[udsId\]/)
+                       }).val();
+
+                       if (previousUdsId == udsId || udsId == '') {
+                           $(this).find('input').filter(function() {
+                               return $(this).attr('name').match(/parameter\[.*\]\[udsId\]/)
+                           }).addClass('validation-error');
+                           error = true;
+                       }
+                   }
+
+                    let previousName = $(this).find('input').filter(function() {
+                        return $(this).attr('name').match(/parameter\[.*\]\[previous_name\]/)
+                    }).val();
+                    let name = $(this).find('input').filter(function() {
+                        return $(this).attr('name').match(/parameter\[.*\]\[name\]/)
+                    }).val();
+
+                    if (previousName == name || name == '') {
+                        $(this).find('input').filter(function() {
+                            return $(this).attr('name').match(/parameter\[.*\]\[name\]/)
+                        }).addClass('validation-error');
+                        error = true;
+                    }
+                });
+
+                return error;
+            }
+
+            function saveCloned() {
+                if (!validateClonedBeforeSave()) {
+                    $('input').removeClass('validation-error');
+                    $.ajax({
+                            method: 'POST',
+                            data: {
+                                clonedForm: $("#clonedForm").serialize()
+                            },
+                            url: 'index.php?action=parameterManagement&method=ajaxCallPost&path=parameters&ajax=clone&sw=' + {{ sw }},
+                            dataType: "json",
+                            success: function (result) {
+                                if (result['status'] === 'failure') {
+                                    $('#streetscooter-loader-mask').css('display', 'none');
+                                    saveHistoryExceptionWindow(result);
+                                } else if (result.length > 0) {
+                                    for (let i = 0; i < result.length; ++i) {
+                                        $('input[name="'+result[i]+'"]').addClass('validation-error');
+                                    }
+                                } else {
+                                    window.location.href = 'index.php?action=parameterManagement&method=regenerateView&ecu='
+                                    + {{ ecu }} + '&sw=' + {{ sw }};
+                                }
+                            }
+                        })
+                }
+            }
+
+            $(document).on('click', '#copy_parameter_current', function() {
+                if (!$(this).hasClass("disabled")) {
+                    cloneSelectedParameters();
+                }
+            });
+
+            $(document).on('click', '#copy_parameter_other', function() {
+                if (!$(this).hasClass("disabled")) {
+                    copySelectedParametersIntoOtherSW();
+                }
+            });
+
+            function copySelectedParametersIntoOtherSW() {
+                copyArray.clear();
+                $('input[name="copy"]:checked').each(function() {
+                    let id = $(this).attr('data-parameter-id');
+                    copyArray.push(id);
+                });
+
+                if (!(copyArray.length() > 0)) {
+                    return;
+                }
+
+                $.ajax({
+                    method: 'GET',
+                    data: {
+                        action: 'parameterManagement',
+                        method: 'ajaxCall',
+                        path: 'sws',
+                        ajax: 'get',
+                        ecu: {{ ecu }},
+                        sw: {{ sw }}
+                    },
+                    url: "index.php",
+                    dataType: "json",
+                    success: function (result) {
+                        let length = result.length;
+                        if (length > 0) {
+                            $("#check-sw").empty();
+                            let text = '';
+                            for (let i = 0; i < length; ++i) {
+                                let sw = result[i];
+                                let disabled = ((parseInt(sw['disable_protocol']) + parseInt(sw['disable_sw'])) >= 1)? 'disabled' : '';
+                                if (sw['subversionSuffix'] == null) {
+                                    text += "<input type='checkbox' name='ecu_revision_id[]' " +
+                                        "value='" + sw['ecuSwVersionId'] + "' style ='display: inline' " +
+                                        "sts_version='" + sw['swVersion'] + "' subversion_suffix='" + sw['subversionSuffix'] + "' " +
+                                        "" + disabled + ">" + sw['swVersion'] + "<br />";
+
+                                } else {
+                                    text += "&nbsp&nbsp&nbsp&nbsp <input type='checkbox' name='ecu_revision_id[]' " +
+                                        "value='" + sw['ecuSwVersionId'] + "' style ='display: inline' " +
+                                        "sts_version='" + sw['swVersion'] + "' " +
+                                        "subversion_suffix='" + sw['subversionSuffix'] + "' " +
+                                        "" + disabled + ">"
+                                        + sw['subversionSuffix'] + "<br />";
+
+                                }
+                            }
+                            $("#check-sw").append(text);
+                            copyDialog.dialog("open");
+                        } else {
+                            copyErrorDialog.dialog("open");
+                        }
+                    }
+                });
+            }
+            $(document).on('click', 'input[name="overwriteAll"]', function (){
+                if ($(this).is(":checked")) {
+                    $('input[name="ecu_parameter_id[]"]').prop('checked', true);
+                } else {
+                    $('input[name="ecu_parameter_id[]"]').prop('checked', false);
+                }
+            });
+
+            function checkConflicts(iterator) {
+                if (iterator < 0) {
+                    $('#sws').empty();
+                    let length = swNamesArray.length();
+                    let text = '<ul>';
+                    for (let i = 0; i < length; ++i) {
+                        text += '<li>'+swNamesArray.getElement(i)+'</li>';
+                    }
+                    text += '</ul>';
+                    $('#sws').append(text);
+                    copySuccessDialog.dialog("open");
+                } else {
+                    $.ajax({
+                        method: 'POST',
+                        data: {
+                            sw_current: {{ sw }},
+                            sw_destination: swArray.getElement(iterator).ecu_revision_id,
+                            ecu_parameters: JSON.stringify(copyArray.getAll())
+                        },
+                        url: 'index.php?action=parameterManagement&method=ajaxCallPost&path=parameters&ajax=conflicts' +
+                            '&ecu=' + {{ ecu }},
+                        dataType: "json",
+                        success: function (result) {
+                            if (result[0] == 'empty') {
+                                $('#destination-sw').empty();
+                                let text = swArray.getElement(iterator).sts_version
+                                + ((swArray.getElement(iterator).subversion_suffix != 'null') ?
+                                    ' ---> ' + swArray.getElement(iterator).subversion_suffix  : '');
+                                $('#destination-sw').append(text);
+                                confirmCopyDialog.dialog('open');
+                            } else {
+                                let text = '<table>' +
+                                    '<thead>' +
+                                    '<tr>' +
+                                    '<th><input type="checkbox" name="overwriteAll"></th>' +
+                                    "<th>{{ 'ecu.sw.partials.menu.twig.footer.currentParameter' | trans }}</th>" +
+                                    "<th>{{ 'ecu.sw.partials.menu.twig.footer.destinationParameter' | trans }}</th>" +
+                                    '</tr>' +
+                                    '</thead>' +
+                                    '<tbody>';
+                                let length = result.length;
+                                for (let i = 0; i < length; ++i) {
+                                    text += "<tr>" +
+                                        "<td><input type='checkbox' name='ecu_parameter_id[]' destination='"
+                                        + result[i]['ecu_parameter_id_destination']
+                                        + "' current='" + result[i]['ecu_parameter_id_current'] + "' ></td>"
+                                        + "<td>" + result[i]['ecu_parameter_name_current'] + "</td>"
+                                        + "<td>" + result[i]['ecu_parameter_name_destination'] + "</td>"
+                                        + "</tr>";
+                                }
+                                text += '</tbody>' +
+                                    '</table>';
+                                $("#sw").empty();
+                                $("#overwrite-parameters").empty();
+                                $("#sw").append(swArray.getElement(iterator).sts_version +
+                                    ((swArray.getElement(iterator).subversion_suffix != 'null') ? (' ---> '
+                                        + swArray.getElement(iterator).subversion_suffix) : ''));
+                                $("#overwrite-parameters").append(text);
+                                copyConflictsDialog.dialog('open');
+                            }
+                        }
+                    });
+                }
+            }
+
+            function confirmAndCopy(iterator) {
+                $.ajax({
+                    method: 'POST',
+                    data: {
+                        sw_current: {{ sw }},
+                        sw_destination: swArray.getElement(iterator).ecu_revision_id,
+                        ecu_parameters: JSON.stringify(copyArray.getAll())
+                    },
+                    url: 'index.php?action=parameterManagement&method=ajaxCallPost&path=parameters&ajax=copy' +
+                        '&ecu=' + {{ ecu }},
+                    dataType: "json",
+                    success: function (result) {
+                        swNamesArray.push(result);
+                        swIterator.decrement();
+                        confirmCopyDialog.dialog('close');
+                        checkConflicts(swIterator.getIterator());
+                    }
+                });
+            }
+
+            function copyParameters() {
+                let conflictArray = [];
+                let withoutConflictArray = copyArray.getAll();
+                let conflictToRemoveArray = [];
+                $('#overwrite-parameters tbody input').each(function() {
+                    if ($(this).is(':checked')) {
+                        conflictArray.push({
+                            current: $(this).attr('current'),
+                            destination: $(this).attr('destination')
+                        });
+                    }
+                    conflictToRemoveArray.push($(this).attr('current'));
+                });
+
+                withoutConflictArray = withoutConflictArray.filter(function(el) {
+                    return !conflictToRemoveArray.includes(el);
+                });
+
+                $.ajax({
+                    method: 'POST',
+                    data: {
+                        sw_current: {{ sw }},
+                        sw_destination: swArray.getElement(swIterator.getIterator()).ecu_revision_id,
+                        parameters_conflict: JSON.stringify(conflictArray),
+                        parameters_without_conflict: JSON.stringify(withoutConflictArray)
+                    },
+                    url: 'index.php?action=parameterManagement&method=ajaxCallPost&path=conflicts&ajax=resolve' +
+                        '&ecu=' + {{ ecu }},
+                    dataType: "json",
+                    success: function (result) {
+                        swNamesArray.push(result);
+                        swIterator.decrement();
+                        $("#copy-parameters-conflicts-dialog").dialog('close');
+                        checkConflicts(swIterator.getIterator());
+                    }
+                });
+            }
+
+            var copyDialog = $("#copy-parameters-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.copyParameters' | trans }}": function() {
+                        $('#check-sw input:checked').each(function() {
+                            swArray.unshift({ecu_revision_id: $(this).val(), sts_version: $(this).attr('sts_version'),
+                                subversion_suffix: $(this).attr('subversion_suffix')});
+                            swIterator.increment();
+                        });
+                        copyDialog.dialog("close");
+                        if (swIterator.getIterator() != 0) {
+                            swIterator.decrement();
+                            checkConflicts(swIterator.getIterator());
+                        }
+                    },
+                    "{{ 'dialog.button.cancel' | trans }}": function () {
+                        copyDialog.dialog("close");
+                    }
+                }
+            });
+
+            var copyErrorDialog = $("#copy-parameters-error-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.ok' | trans }}": function () {
+                        copyErrorDialog.dialog("close");
+                    }
+                }
+            });
+
+            var copyConflictsDialog = $("#copy-parameters-conflicts-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.confirm' | trans }}": function () {
+                        historyComment().then(function (result) {
+                            copyParameters();
+                        });
+                    },
+                    "{{ 'dialog.button.cancel' | trans }}": function () {
+                        copyConflictsDialog.dialog("close");
+                        swIterator.decrement();
+                        checkConflicts(swIterator.getIterator());
+                    }
+                }
+            });
+
+            var copySuccessDialog = $("#copy-parameters-success-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.ok' | trans }}": function () {
+                        copySuccessDialog.dialog("close");
+                        window.location.href = 'index.php?action=parameterManagement&method=regenerateView&ecu='
+                        + {{ ecu }} + '&sw=' + {{ sw }};
+                    }
+                }
+            });
+
+            var confirmCopyDialog = $("#copy-parameters-confirm-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.confirm' | trans }}": function () {
+                        confirmCopyDialog.dialog("close");
+                        historyComment().then(function (result) {
+                            confirmAndCopy(swIterator.getIterator());
+                        });
+                    },
+                    "{{ 'dialog.button.cancel' | trans }}": function () {
+                        confirmCopyDialog.dialog("close");
+                        swIterator.decrement();
+                        checkConflicts(swIterator.getIterator());
+                    }
+                }
+            });
+
+            var validationErrorDialog = $("#validation-error-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.ok' | trans }}": function () {
+                        validationErrorDialog.dialog("close");
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

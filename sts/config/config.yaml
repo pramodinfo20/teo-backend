@@ -1,0 +1,6 @@
+# app/config/config.yml
+swiftmailer:
+    transport: 'smtp.1und1.de'
+    host:      '587'
+    username:  'fahrzeugreport@streetscooter-cloud-system.eu'
+    password:  'Do3eiNor'

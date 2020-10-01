@@ -1,0 +1,213 @@
+﻿generalMessages:
+  btnEdit: Edit
+  btnRemove: Remove
+  btnOk: Ok
+  btnCancel: Cancel
+  btnSave: Save
+  btnOverwrite: Overwrite
+  btnAdd: Add
+  btnSwitchRole: Switch role
+  btnSwitch: Switch
+  textSelect: Select
+userrole2Functionality:
+  addRole: Add new User role
+  msgRoleRemoved: User Role has been <strong>:removed</strong> !
+  msgRoleWrongRemoved: User Role has not been removed correctly, probably User Role is assigned to the company structure !
+  titleAssignUserRole: Assigning user roles to functionality groups
+  textUserGroup: "For functionality groups: [w] means 'write permissions',[r] means 'read only'"
+  titleNewRole: Create new User Role
+  textNewRole: Enter name of new User Role
+  btnCreate: Create
+  msgConfirmRemoveRole: Are you sure to remove this User Role?
+  msgEmptyName: Name can not be empty
+  headerRole: User Role
+  headerGroup: Functionality Groups
+  headerActions: Action
+  noFunctionalityGroup: No functionality groups assigned
+userrole2FunctionalityEdit:
+  headerEditGroup: Edit Functionality Groups
+  titleEditGroup: "Change permission, Remove an existing Functionality Group from User Role or Assign a new one from list."
+  assignNewFuncGroup: Assign new Functionality Group
+  headerAssignNew: Assign new Functionality Group to User Role
+  titleAssignNew: Enter name of Functionality Group
+  btnAssignNew: Assign New
+  permissionReadOnly: Read only
+  permissionWrite: Write
+  headerFunctionalityGroup: Functionality Group
+  headerPermission: Permission
+  headerEdit: Edit
+  removeMessage: "Are you sure to remove this functionality group from this user role?"
+  msgFGAssigned: "New Functionality Group has been <strong>assigned</strong>!"
+  msgFGRemoved: "Functionality Group has been <strong>removed</strong>!"
+  msgFGmodified: "Functionality Group has been <strong>modified</strong>!"
+userrole2Company:
+  titleAssignUserStructure: Assignment of user roles to structures
+  titleSelect: User Roles
+  tipInSelect: Select user role to see details...
+  infoAboutSave: Please make changes if necessary. They will be stored after clicking <strong>Save</strong> button below.
+  infoAboutAssigned: "Company structures already assigned marked in <span class='assigned-structure'>orange color</span>."
+  btnShowTree: Show Organization Tree
+  dialogElementsReasigned: "Elements will be reassigned to current User Role.<br/>Are you sure?"
+  msgAddedStructure: 'Added <strong>" + {*var1*} + "</strong> " + ({*var*} == 1 ? "structure" : "structures") + " to current User Role <br>'
+  msgRemovedStructure: 'Removed <strong>" + {*var2*} + "</strong>  " + ({*var2*} == 1 ? "structure" : "structures") + " from current User Role <br>'
+responsiblePersons:
+  titleResponsibilities: Responsibilities
+  titleCategories: Categories
+  textChooseCategories: "Choose from list below:"
+  titleSubcategories: Subcategories
+  infoNoCategoriesResponsibility: No Responsibility Categories found!
+  infoCannotAddPermission: Cannot add new deviatation permissions due to max limit was reached.
+  textAddNew: Add new
+  infoEnterName: Enter name of StreetScooter employee or company structure
+  optLeader: Leader
+  optDeputy: Deputy
+  optAll: All
+  optResponsible: Responsible
+  optWritable: Writable
+  lblSetResponsible: Set as responsible
+  lblSetDeputy: Set as deputy
+  msgConfirmRemove: Remove item from list " + {*var3*} + "<br/>Are you sure?
+  infoNoResponsibilities: No management responsibilities assigned for this category.
+  titleOfTableColumns: "<table><tr><th>Access</th><th>Name</th><th>Details</th><th>Action</th></tr>"
+  textSelectCategory: Select category and more details if necessary.
+  textNoOption: No option selected
+manageFunctions:
+  header: Management Functions
+  selectHeader: Functions
+  selectTitle: "Choose from list below:"
+  noSetNotice: "No management functions found!"
+  addUser: Add new
+  titleAddUser: Enter name of StreetScooter employee or company structure
+  structureLeader: leader
+  structureDeputy: deputy
+  structureAll: all
+  structureSave: Add
+  removeTextDialog1: "Remove item from list "
+  removeTextDialog2: "<br/>Are you sure?"
+  titleNoAssigned: No management functions assigned for this category
+  titleAssigned: "Assigned users to management functions:"
+  userListHeader1: "User name / "
+  userListHeader2: "company structure (bolded)"
+  detailsHeader: Details
+  optionsHeader: Options
+  titleTip: "Select one of provided functions."
+uploadHR:
+  header: Human Resources List Upload
+  uploadResults: Upload results
+  headerNote: Use this form to upload a new CSV file and import into database
+  title: Select file from computer
+  btnUpload: Upload
+  exampleFile: Example for .CSV file
+  code: "Bereich;KST;Beschreibung;hash;Status<br/>
+          CEO;100;Gesch?ftsfŮhrung;116164df0354038042732c4f9b7768d42e50fe38175635083965d70a97b666a4;Student/in<br/>
+          CFO;260;Systeme;ab128765d4d13e7b318675b0d135a89afee0510c3633efbb63250e5e364a6255;StS-MA<br/>
+          CTO;511;System Engineering;eb7b514f1ba658f3745f5c10ef152c92c92f19031c031d282c9f0ca7ad136361;StS-MA<br/>
+          CTO;511;System Engineering;f1e662ac725bdcb2470266efd17fc969288bf63568b0b37fd453763ad0cd2f2a;StS-MA<br/>
+          CTO;513;Diagnostics/Analysis &
+          Connected;e4d77566ff6b3d1130b71da9841134ad76757e8a89d4f5f6ed119fe804893565;StS-MA<br/>
+          CEO;840;Field Support;c14ddae25ddaae4e7150572c130d2deef3445b8659799b6a3998c018e27bd439;StS-MA<br/>"
+  note: "Please note, that <strong>hash</strong>ed version of name is needed!"
+  listHeader: HR list
+  listTitle: " records found"
+  showList: Show list
+  listName: Hashed person name
+  listOrganizationID: Organization ID
+  listBusinessUnit: Business Unit
+  listStatus: "Kind/status"
+  listLeader: "Is Leader?"
+  listDeputyID: Deputy organization ID
+  noDataNote: "There is no data stored in database yet."
+  noDataTip: "Use form to upload new csv file into system."
+generalSearch:
+  header: Vehicle Search
+  formLegendTitle: Search Function
+  formTitle: New search - Select a category
+  andBool: AND
+  orBool: OR
+  checkboxNote: " Use of regular expressions in all input fields"
+  notBool: NOT
+  yesOption: YES
+  noOption: NO
+  deleteAllFilter: Remove all filter categories
+  teoFilter: TEO Filter
+  dtcCode: DTC Code
+  dtcCodeNote: "* shows all vehicles with a fault of this control unit"
+  dtcError: "DTC error, log error related"
+  logData: Log Data
+  btnSearch: Search
+  deleteFitler: Delete all filters
+  locationFilter: Location Filter
+  locationSelecedTitle: "Production / Reworking Locations selected:"
+  selectedLocation: "Selected locations:"
+  selectedLocationLabel: "Choose another location : "
+  locationSelectedPlaceholder: Enter location
+  onlyProductionLocations: Select only production locations
+  firstPage: First
+  previousPage: Previous Page
+  nextPage: Next Page
+  lastPage: Last
+  page: "Page: "
+  linePerPage: "Line per page: "
+enggMenu:
+  btnVehicles: Vehicles
+  itemVehicleSearch: "Vehicle Search  <b>(new)</b>"
+  itemListOfProducedVehicles: Liste of Produced Vehicles
+  itemListOfDeliveredVehicles: List of Delivered Vehicles
+  itemDailyStatistics: Daily Statistic
+  itemHistory: Historical Data
+  itemDTCMagenament: DTC Management
+  itemErrorList: Error List
+  itemTestVehicleBooking: Test Vehicle Booking
+  itemTestVehicleDocuments: Test Vehicle Documents
+  btnVehiclesConf: Vehicle Configurations
+  itemVehiclesConfAdministration: "Vehicle Configuration Management  <b>(new)</b>"
+  itemVehiclesConfDisplay: Vehicle Configurations Viewer
+  itemVehiclesPropAdministration: Vehicles Properties Management
+  itemUpdateIterface: Update Interface
+  itemTask: Task Viewer
+  itemDisplayEBOM: EBOM Management
+  btnECUs: ECUs
+  itemECUsParamManagement: "ECU System Management  <b>(new)</b>"
+  itemECUsSoftwareManagement: "ECU System Assignment  <b>(new)</b>"
+  itemAddEcu: "Add ECU  <b>(new)</b>"
+  itemECUsPropManagement: "ECU Properties Management <b>(new)</b>"
+  itemECUsPropAssignment: ECU Properties Assignment
+  itemECUsSoftwareUpload: ECU Software Upload
+  itemECUsODXConf: "ECU ODX Configuration  <b>(new)</b>"
+  itemECUsEoLTester: EoL Tester Parameter Management
+  btnGlobalParam: Global Parameters
+  itemGlobalParamManagement: "Global Parameter Management  <b>(new)</b>"
+  itemGlobalParamAssigment: "Global Parameter Assignment  <b>(new)</b>"
+  btnCoc: CoC
+  itemCocParameterManagement: CoC Parameter Management
+  itemCocParameterAssignment: CoC Parameter Assignment
+  itemCocGeneration: CoC Generation
+  btnQuality: Quality
+  itemAdministrationDeferal: Deviation Approvals Management
+  itemPermitsVehicle: Special Spprovals For Vehicles
+  itemApprovalDisplayEoL: EoL Test Report Viewer
+  btnAdministration: Administration
+  itemUserRoleAdministration: "User Role Management  <b>(new)</b>"
+  itemUserRoleAssignment: "User Role Assignment  <b>(new)</b>"
+  itemAdministrationResponsibilities: "Management of Responsibilities  <b>(new)</b>"
+  itemAdministrationWritePermission: "Management of Write Permission  <b>(new)</b>"
+  itemUserListUpload: "User List Upload <b>(new)</b>"
+  itemUserListUploadHistory: "User List Upload History <b>(new)</b>"
+  itemApprovalSpecial: Approval For Special Vehicles
+  itemVehicleHistory: History
+  itemUploadServerKeys: Upload Server Keys
+  itemTranslations: Translations
+  diagSwParamManagement: "Dynamic Parameter Management <b>(new)</b>"
+BlackHeader:
+  itemRole: Role
+  itemLoggedAs: Logged in as
+  itemFiles: Files
+  itemInstructions: Instructions
+  itemManageEmployeesAccounts: Manage Employees Accounts
+  itemUserKeys: Keys Management
+  itemProfileEdit: Edit Profile
+  itemLogout: Logout
+  feedback: Feedback
+PageController:
+  sessionExpiration: Your session has expired. Click reload button.
+  reload: Reload

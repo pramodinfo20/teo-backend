@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    <h1>{{ 'translations.twig.index.header' | trans }}</h1>
+    <div class="row">
+        {% include 'Translations/Menu/vertical.html.twig' with {'languages': languages} %}
+        <div class="columns ten">
+            <div id="infobox-domain" class="row"></div>
+            {% if domain is null %}
+                {% set chooseDomain = (domain is defined) ? domain : null %}
+                {% include 'Translations/partials/chooseDomain.html.twig' with {'domain': chooseDomain} %}
+            {% endif %}
+            <div class="row">
+                <div class="translations">
+                    {% if mode == 1 and domain is not null %}
+                        {% include 'Translations/viewTranslations.html.twig' with {'translations': translations} %}
+                    {% elseif mode == 2 and domain is not null %}
+                        {% include 'Translations/editTranslations.html.twig' with {'domain' : domain, 'translations': translations} %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .translations {
+            width: 100%;
+            max-height: 550px;
+            overflow-x: auto;
+            overflow-y: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .translations table {
+            width: 100vw;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.disabled', function(event) {
+                event.preventDefault();
+            });
+        });
+    </script>
+{% endblock %}

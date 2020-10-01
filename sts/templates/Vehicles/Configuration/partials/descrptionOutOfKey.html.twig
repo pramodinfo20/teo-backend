@@ -1,0 +1,70 @@
+<div>
+    <h2>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.presentEcus' | trans }}</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Ecu</th>
+            <th>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.primarySoftwareVersion' | trans }}</th>
+            <th>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.alternativeSoftwareVersion' | trans }}</th>
+            <th>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.usage' | trans }}</th>
+            <th>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.canForwarding' | trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for value in parameters[4] %}
+            <tr>
+                <td>{{ value['ecuName'] }}</td>
+                <td>
+                    {% if value['primary']['swVersion'] is not null %}
+                        <a href="index.php?action=parameterManagement&method=regenerateView&ecu={{ value['ecuId'] }}
+                            &sw={{ value['primary']['ecuSwVersionId'] }}">{{ value['primary']['swVersion'] }}</a>
+                    {% else %}
+                        {{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.notAssigned' | trans }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if value['alternative']['swVersion'] is not null %}
+                        <a href="index.php?action=parameterManagement&method=regenerateView&ecu={{ value['ecuId'] }}
+                            &sw={{ value['alternative']['ecuSwVersionId'] }}">{{ value['alternative']['swVersion'] }}</a>
+                    {% else %}
+                        {{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.notAssigned' | trans }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if value['mappedEcu'] == true %}
+                        <input type="checkbox" name="ecu[]" checked disabled>
+                    {% else %}
+                        <input type="checkbox" name="ecu[]" disabled>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if value['canForwarding'] == true %}
+                        <input type="radio" name="ecu[]" checked disabled>
+                    {% else %}
+                        <input type="radio" name="ecu[]" disabled>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <h2>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.subConfState' | trans }}</h2>
+    <table>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.periodOfProduction' | trans }}</td>
+            <td>{{ parameters[0].periodOfProduction != null? parameters[0].periodOfProduction : ('vehicles.configuration.partials.descrptionOutOfKey.twig.notDefined' | trans) }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.periodOfDelivery' | trans }}</td>
+            <td>{{ parameters[0].periodOfDelivery != null? parameters[0].periodOfDelivery : ('vehicles.configuration.partials.descrptionOutOfKey.twig.notDefined' | trans) }}</td>
+        </tr>
+        {# <tr>
+            <td>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.configurationState' | trans }}</td>
+            <td>{{ parameters[0].configurationState }}</td>
+        </tr> #}
+    </table>
+</div>

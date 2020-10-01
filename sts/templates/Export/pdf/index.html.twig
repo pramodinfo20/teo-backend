@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Export PDF</h1>
+    <br>
+    <form id="vehicleData">
+        <table>
+            <tr>
+                <th>Fahrzeug Eingenschaft wählen</th>
+                <td><select name="db_col">
+                        <option value="null">--</option>
+                        <option value="akz">AKZ</option>
+                        <option value="ikz">IKZ</option>
+                        <option value="vorhaben">Vorhaben Number</option>
+                        <option value="vin">VIN</option>
+                    </select>
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <th>Start value</th>
+                <td><input name="start_val" type="text"></td>
+            </tr>
+            <tr>
+                <th>End value</th>
+                <td><input name="end_val" type="text"></td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <input type="button" id="btn_export_pdf" value="Generate PDF">
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(() => {
+        });
+
+        $(document).on('click', '#btn_export_pdf', () => {
+            generatePdf();
+        });
+
+
+        function generatePdf() {
+            let dbCol = $('select[name="db_col"]').val();
+            let startVal = $('input[name="start_val"]').val();
+            let endVal = $('input[name="end_val"]').val();
+
+            if (dbCol === 'null') {
+                alert('The Select vehicle characteristic cannot be empty!');
+            } else if (startVal === '') {
+                alert('The Start value is empty!');
+            } else if (endVal === '') {
+                alert('The End value is empty!');
+            }
+            else{
+                $.ajax({
+                    method: 'POST',
+                        url: 'index.php?action=exportpdf&method=ajaxCallPost&pdf=generate',
+                        data: {
+                                    db_col: dbCol,
+                                    start_val: startVal,
+                                    end_val: endVal,
+                                },
+                    dataType: "json",
+                    beforeSend: function () {
+                        $("#streetscooter-loader-mask").css('display', 'flex');
+                    },
+                    success: function (result) {
+                        if (result['status'] === 'success') {
+                            let downloadUrl = 'downloadfile.php?fromloc=exportedpdfdownload&filename=' + result['exported_pdf_name'];
+                            window.open(downloadUrl, '_self');
+                        } else {
+                            alert('The PDF has been not generated!');
+                        }
+
+                        $("#streetscooter-loader-mask").css('display', 'none');
+                    },
+                    error: function() {
+                        alert('The PDF has been not generated!\nProvided parameters are incorrect, please change data and try again.');
+                        $("#streetscooter-loader-mask").css('display', 'none');
+                    }
+                });
+            }
+        }
+
+    </script>
+{% endblock %}

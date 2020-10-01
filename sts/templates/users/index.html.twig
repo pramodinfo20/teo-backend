@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users index{% endblock %}
+
+{% block body %}
+    <h1>Users index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>DivisionId</th>
+                <th>Email</th>
+                <th>Passwd</th>
+                <th>Privileges</th>
+                <th>Fname</th>
+                <th>Lname</th>
+                <th>Addedby</th>
+                <th>Role</th>
+                <th>ZsplId</th>
+                <th>Notifications</th>
+                <th>CookiesAccepted</th>
+                <th>PrivacyAccepted</th>
+                <th>TimestampLastLoggedIn</th>
+                <th>IpLastLoggedIn</th>
+                <th>LastSessionId</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.divisionId }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.passwd }}</td>
+                <td>{{ user.privileges }}</td>
+                <td>{{ user.fname }}</td>
+                <td>{{ user.lname }}</td>
+                <td>{{ user.addedby }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.zsplId }}</td>
+                <td>{{ user.notifications }}</td>
+                <td>{{ user.cookiesAccepted ? user.cookiesAccepted|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.privacyAccepted ? user.privacyAccepted|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.timestampLastLoggedIn ? user.timestampLastLoggedIn|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.ipLastLoggedIn }}</td>
+                <td>{{ user.lastSessionId }}</td>
+                <td>
+                    <a href="{{ path('users_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('users_edit', {'id': user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('users_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,1050 @@
+dialog:
+  button:
+    close: Close
+    cancel: Cancel
+    copyParameters: Copy parameters
+    ok: Ok
+    confirm: Confirm
+    createSubversion: Create subversion
+    copyRevision: Copy revision
+    delete: Delete
+    createRevision: Create new revision
+    copyValue: Copy value
+    select: Select
+    overwrite: Overwrite
+    save: Save
+
+common:
+  mandatoryFields: "* - These fields are mandatory"
+  trueTxt: "True"
+  falseTxt: "False"
+  diagnosticIdentifier: "Diagnostic Identifier:"
+
+admin:
+  keys:
+    twig:
+      index:
+        uploadKeys: Upload server keys
+        downloadKeys: Download server keys
+        uploadHeader: Upload public and private keys
+        privateKey: Private key
+        publicKey: Public key
+        uploadButton: Upload Keys
+        downloadPrivate: Download Private Key
+        downloadPublic:  Download Public Key
+        dialog:
+          title:
+            success: Upload Success
+            failure: Upload Failure
+          body:
+            messageSuccess: Now users can make new signatures.
+            messageFailure1: Wrong key pair format.
+            messageFailure2: "Valid format for private/public key: <br />
+                      -----BEGIN PGP PRIVATE KEY BLOCK-----<br />
+                      <br />
+                      .....................................<br />
+                      ...................................==<br />
+                      =....                                <br />
+                      <br />
+                      -----END PGP PRIVATE KEY BLOCK-----"
+
+user:
+  keys:
+    twig:
+      index:
+        signature:  Signature
+        downloadPublicServerKey: Download public server key
+        uploadAndDownloadSignature: Upload your public key and download your signature
+        downloadPublic: Download Public Key
+        publicKey: Public key
+        uploadPublicKey: Upload Public Key
+        downloadSignature: Download Signature
+        downloadUsersPublicKeys: Download users public keys
+        selectUserToDownloadKey: Select user to download key
+        selectUser: -Select user-
+
+
+ecu:
+  add:
+    twig:
+      index:
+        addEcu: "Add Ecu"
+        name: Name
+        stsPartNumber: Sts Part Number
+        create: Create
+      dialog:
+        title: Success
+        message: Adding a new ECU was successful.
+        error: Ecu with this name already exists.
+  diagnosticParameter:
+    menu:
+      twig:
+        vertical_ecus:
+          header: Device / ECU
+          select: "-- Select ECU --"
+    twig:
+      index:
+        header: ECU ODX Configuration
+        ecuInfo: No ECU has been selected.
+        supportHeader: "Supports odx.sts.02 for chosen ECU:"
+        trueTxt: "True"
+        falseTxt: "False"
+        save: Save
+        supportInfo: "Diagnostic value setting - flag 'Supports_ODX2' has been <strong>updated</strong>!"
+        selectedDevice: "Selected Device / ECU: "
+        chooseSupport: "Choose whether the selected device should support the format odx.sts.02, which will allow to handle ODX files in this format."
+  diagnostic:
+    parameter:
+      management:
+        form:
+          formTheme:
+            twig:
+              id: Id
+              name: Name
+              action: Action
+        menu:
+          footer:
+            twig:
+              edit: Edit
+              save: Save
+              cancel: Cancel
+        view:
+          viewParameters:
+            twig:
+              id: Id
+              name: Name
+        index:
+          twig:
+            dynamic: Dynamic Parameters
+
+  sw:
+    parameters:
+      twig:
+        index:
+          header: ECU System Management
+    partials:
+      form:
+        header:
+          twig:
+            editParameter:
+              swRevision: "ECU System:"
+              protocol: "Protocol:"
+              request: "Request-ID:"
+              response: "Response-ID:"
+              info: "Info:"
+              status: "Status:"
+              windchill: "Windchill link:"
+              suffix: "Suffix:"
+              odxVersion: "Odx version:"
+              defaultEndian: "Default endian:"
+        odx1:
+          twig:
+            formTheme:
+              name: Name
+              odx: "odx v.01"
+              rwc: "R/W/C"
+              type: Type
+              unit: Unit
+              value: Value
+              global: Global Parameters
+              dynamic: Dynamic Parameters
+              coc: CoC Parameters
+              default: Default Type
+              actions: Actions
+              addParameter: Add parameter
+              removeParameter: Remove parameter
+        odx2:
+          twig:
+            formTheme:
+              active: Active
+              name: Name
+              odx: "odx v.01"
+              protocol: Protocol
+              uds: "UDS-id"
+              rwc: "R/W/C"
+              type: Type
+              coding: Coding
+              bigEndian: Big endian
+              bytes: Bytes
+              factor: Factor
+              offset: Offset
+              unit: Unit
+              value: Value
+              global: Global Parameters
+              dynamic: Dynamic Parameters
+              coc: CoC parameters
+              default: Default type
+              start: Start
+              stop: Stop
+              actions: Action
+              yes: Yes
+              no: No
+              addParameter: Add parameter
+              removeParameter: Remove paramter
+      menu:
+        twig:
+          footer:
+            chooseOdx: "Choose Odx version:"
+            edit: Edit
+            delete: Delete
+            save: Save
+            cancel: Cancel
+            changeOrder: Change Order
+            copy: Copy
+            copyCurrent: Copy to current version
+            copyOther: Copy to other version
+            generateOdx: Generate odx
+            dialog:
+              title:
+                copyOther: Copy parameters into other SW
+                overwrite: Overwrite parameters
+                confirm: Confirm copy
+                success: Success
+              body:
+                selectSw: "Select SW:"
+                info: Info
+                protocolInfo: You can select only SW with the same protocol.
+                emptyList: SW list is empty.
+                sw: "SW:"
+                conflictDetected: "Conflicts detected. Overwrite parameters:"
+                selectedCopied: "<p>Selected parameters have been copied.</p>
+                                  <p>Selected Software Versions or/and Sub-Versions:</p>"
+                validationErrors: "Validation errors:"
+            row: "Row:"
+            currentParameter: Current Parameter
+            destinationParameter: Destination Parameter
+          horizontal:
+            createSw: Create new ECU System
+            createSub: Create subversion
+            deleteSw: Delete ECU System
+            copySw: Copy ECU System
+            locked: Locked
+            notLocked: Not locked
+            lockedTitle: Version released
+            notLockedTitle: Version in development
+            export: List export
+            history: History
+            release: Release via signature
+            dialog:
+              title:
+                addSub: Add subversion
+                copySw: Copy ECU System
+              body:
+                validSuffix: A valid suffix has to be given
+                requiredFields: All form fields are required.
+                name: Name
+                copyFrom: Copy from main version
+                everything: Everything
+                nothing: Nothing (but StS Partnumber)
+            noAssigned: "OK: No configurations assigned to this ECU System"
+            errorAssigned: "Error: There are some subversions assigned!"
+            noSAssigned: "OK: No subversions assigned to this ECU System"
+            areYSure: Are you sure?
+            errorSAssigned: "Error: This software is assigned to following configurations:"
+            onlyFirst: Only first 20 results showed
+            suffixExists: This subversion suffix already exists for this ECU System
+          vertical:
+            deviceEcu: "Device / ECU"
+            selectEcu: "-- Select ECU --"
+            swVersions: ECU Systems
+      start:
+        twig:
+          chooseSw:
+            noEcuSelected: No ECU selected
+            chooseEcuAndSw: Choose ECU and ECU System
+            noSwSelected: No ECU System is selected
+            chooseSw: "Choose ECU System..."
+            legend: "Legend:"
+            redInfo: "Red - you are responsible person"
+            greenInfo: "Green - you are deputy"
+            blueInfo: "Blue - you are writable person"
+            orCreateNew: "...or create new"
+            newRevision: New %ecu_name% revision
+      view:
+        odx1:
+          twig:
+            viewParameters:
+              order: "Ord."
+              name: Name
+              odx: "odx .02"
+              rwc: "R/W/C"
+              type: Type
+              unit: Unit
+              value: Value
+              defaultType: Default type
+              yes: Yes
+              no: No
+              r: R
+              w: W
+              c: C
+              trueTxt: "True"
+              falseTxt: "False"
+        odx2:
+          twig:
+            parametersHeader:
+              selectAll: Select all parameters
+              order: "Ord."
+              name: Name
+              odx: "odx v.01"
+              protocol: Protocol
+              udsId: "UDS-id"
+              rwc: "R/W/C"
+              type: Type
+              coding: Coding
+              bigEndian: Big endian
+              bytes: Bytes
+              factor: Factor
+              offset: Offset
+              unit: Unit
+              value: Value
+              global: Global Parameters
+              dynamic: Dynamic Parameters
+              defaultType: Default type
+              start: start
+              stop: stop
+            viewParameters:
+              yes: yes
+              no: no
+              r: R
+              w: W
+              c: C
+              trueTxt: "True"
+              falseTxt: "False"
+      twig:
+        createNewVersion:
+          dialog:
+            title:
+              addNew: Add new ECU System
+            body:
+              name: Name
+          tooShort: This name is too short
+          nameExists: This name already exists for this ECU
+          notMatchPattern: This name does not match a pattern
+          nameExists2: This name already exists
+        header:
+          swRevision: "ECU System:"
+          odx: "ODX 2 support:"
+          yes: Yes
+          no: No
+          protocol: "Protocol:"
+          request: "Request-ID:"
+          response: "Response-ID:"
+          info: "Info:"
+          status: "Status:"
+          windchill: "Windchill link:"
+          suffix: "Suffix:"
+          odxVersion: "Odx version:"
+          defaultEndian: "Default endian:"
+          bigEndian: "Big-endian"
+          littleEndian: "Little-endian"
+
+configuration:
+  partials:
+    form:
+      header:
+        twig:
+          editParameter:
+            configuration: "Configuration: "
+            penta: "Penta number: "
+            clone: "Cloned configuration: "
+            odx: "Odx source type: "
+            ecu: "ECU:"
+            swrev: "ECU System: "
+            odx2: "ODX 2 support:"
+            yes: Yes
+            no: No
+            protocol: "Protocol:"
+            request: "Request-ID:"
+            response: "Response-ID:"
+            info: "Info:"
+            status: "Status:"
+            windchill: "Windchill link:"
+            suffix: "Suffix:"
+            odxVersion: "Odx version:"
+      odx1:
+        twig:
+          formTheme:
+            ord: "Ord."
+            name: Name
+            odx1: "odx v.01"
+            rwc: "R/W/C"
+            type: Type
+            unit: Unit
+            value: Value
+            gp: Global Parameters
+            dp: Dynamic Parameters
+            coc: COC Parameters
+            default: Default Type
+            yes: Yes
+            no: No
+            r: R
+            w: W
+            c: C
+            trueTxt: "True"
+            falseTxt: "False"
+      odx2:
+        twig:
+          formTheme:
+            order: "Ord."
+            name: Name
+            odx: "odx v.01"
+            protocol: Protocol
+            udsId: "UDS-id"
+            rwc: "R/W/C"
+            type: Type
+            coding: Coding
+            bigEndian: Big endian
+            bytes: Bytes
+            factor: Factor
+            offset: Offset
+            unit: Unit
+            value: Value
+            hex: Hex
+            global: Global Parameters
+            dynamic: Dynamic Parameters
+            coc: COC Parameters
+            defaultType: Default type
+            start: Start
+            stop: Stop
+            yes: Yes
+            no: No
+            r: R
+            w: W
+            c: C
+            trueTxt: "True"
+            falseTxt: "False"
+    menu:
+      twig:
+        footer:
+          odxVersion: "Choose Odx Version:"
+          odxVersion1: "odx.sts.01"
+          odxVersion2: "odx.sts.02"
+          miniButtonEdit: Edit
+          miniButtonSave: Save
+          miniButtonCancel: Cancel
+          validationError: "Validation error!"
+    view:
+      odx1:
+        twig:
+          viewParameters:
+            ord: "Ord."
+            name: Name
+            odx_v.02: "odx v.02"
+            rwc: "R/W/C"
+            type: Type
+            unit: Unit
+            value: Value
+            defaultType: Default type
+            yes: Yes
+            no: No
+            r: R
+            w: W
+            c: C
+            trueTxt: "True"
+            falseTxt: "False"
+      odx2:
+        twig:
+          parametersHeader:
+            ord: "Ord."
+            name: Name
+            odx_v.01: "odx v.01"
+            protocol: Protocol
+            uds: "UDS-id"
+            rwc: "R/W/C"
+            type: Type
+            coding: Coding
+            bigEndian: Big endian
+            bytes: Bytes
+            factor: Factor
+            offset: Offset
+            unit: Unit
+            value: Value
+            hex: Hex
+            gp: Global Parameters
+            dp: Dynamic Parameters
+            defaultType: Default type
+            start: Start
+            stop: Stop
+          viewParameters:
+            yes: Yes
+            no: No
+            r: R
+            w: W
+            c: C
+            trueTxt: "True"
+            falseTxt: "False"
+      twig:
+        createNewVersion:
+          dialog:
+            title:
+              addNew: Add new ECU System
+            body:
+              name: Name
+          tooShort: This name is too short
+          nameExists: This name already exists for this ECU
+          notMatchPattern: This name does not match a pattern
+          nameExists2: This name already exists
+        header:
+          configuration: "Configuration: "
+          penta: "Penta number: "
+          clone: "Cloned configuration: "
+          odx: "Odx source type: "
+          ecu: "ECU:"
+          swrev: "ECU System: "
+          odx2: "ODX 2 support:"
+          yes: Yes
+          no: No
+          protocol: "Protocol:"
+          request: "Request-ID:"
+          response: "Response-ID:"
+          info: "Info:"
+          status: "Status:"
+          windchill: "Windchill link:"
+          suffix: "Suffix:"
+          odxVersion: "Odx version:"
+          defaultEndian: "Default endian:"
+          bigEndian: "Big-endian"
+          littleEndian: "Little-endian"
+        search:
+          searchLegend: Search Vehicle Configuration
+          searchLabel: Search for (sub-)configurations
+          searchSeries: Series
+          searchYear: Model year
+          searchRelease: Release
+          search: Search
+          result: Search Result
+          invalid: "- invalid sub-configurations"
+          searchConfSpan: Select Configuration
+          ecuResult: ECUs Result
+          selectECU: Select ECU
+          primary: Primary ECU System
+          alternative: Alternative ECU System
+          accept: Accept
+          preview: Preview
+          import: Import ODX
+          history: History
+          assignment: No assignment
+  twig:
+    index:
+      header: ECU System Assignment
+      infoBlock: "Select the type, year and series, and then select a specific configuration"
+      configurationPreview: Vehicle Configuration Preview
+
+
+parameters:
+  values:
+    form:
+      twig:
+        editValue:
+          id: Id
+          name: Name
+          min: Min Value
+          max: Max Value
+          value: Value
+          unit: Unit
+          responsibleU: Responsible User
+          variableT: Variable Type
+          field: Field
+          description: Description
+          row:  Row
+    twig:
+      footer:
+        history: History
+        edit: Edit
+        save: Save
+        cancel: Cancel
+        copy: Copy
+        dialog:
+          title:
+            copyValue: "Copy value into other sub-configurations"
+            incorrectValue: Incorrect value
+          body:
+            selectSub: "Select sub-configurations:"
+            info: Info
+            selectUnderDevelopment: "You can select only \"under-development\" sub-configurations."
+            valueBetween: Enter value between minimum and maximum
+      index:
+        header: Global Values Sets
+        coc:
+          header: CoC Values Assignment
+      search:
+        searchVConfiguration: Search Vehicle Configuration
+        searchLabel: Search for (sub-)configurations
+        searchSeries: Series
+        searchYear: Model year
+        searchRelease: Release
+        search: Search
+        searchResult: Search Result
+        selectConfiguration: Select Configuration
+        globalParameters: Global Parameters
+        selectGlobal: Select Global Parameter
+        selectCoC: Select CoC Parameter
+      subconfiguration:
+        selectTYS: Select the type, year and series, and then select a specific configuration
+        vcPreview: Vehicle Configuration Preview
+      cocRelease:
+        cocPreview: CoC Release Preview
+        cocEmpty: Selected Sub-configuration doesn't have CoC released parameters
+        header: CoC Parameters Release
+        notDefined: Not defined
+        approvalCode: CoC Approval Code
+        approvalDate: CoC Approval Date
+        releasedDate: Released date
+        releasedBy: Released by
+        incorrectParameters: Incorrect CoC Released Parameters
+      view:
+        id: Id
+        name: Name
+        min: Min Value
+        max: Max Value
+        value: Value
+        unit: Unit
+        responsibleU: Responsible User
+        variableT: Variable Type
+        trueTxt: "True"
+        falseTxt: "False"
+        notDefined: Not defined
+        field: Field
+        description: Description
+  twig:
+    _delete_form:
+      delete: Delete
+      areUSure: "Are you sure you want to delete this item?"
+    edit:
+      title: Edit Global Parameter
+      titleCoC: Edit CoC Parameter
+      header: Edit Global Parameter
+      headerCoC: Edit CoC Parameter
+      backToList: back to list
+    footer:
+      save: Save
+      cancel: Cancle
+      dialog:
+        title:
+          incorrectValue: Incorrect value
+        body:
+          valueBetween: Enter value between minimum and maximum
+    index:
+      header: Global Parameters
+      cocHeader: CoC Parameter Management
+      id: Id
+      name: Name
+      min: Min Value
+      max: Max Value
+      unit: Unit
+      responsibleU: Responsible User
+      variableT: Variable Type
+      linkedEcu: Linked ECU parameters
+      actions: Actions
+      showLinkedEcu: Show
+      edit: Edit
+      remove: Remove
+      noRecords: no records found
+      createNew: Create new
+      ecu: ECU
+      sw: Software Version
+      order: Order
+      description: Description
+      section: Section
+      field: Field
+      specEcuRel: ECU relationship
+      chargCtrl: Charging control
+    new:
+      title: New Global Parameter
+      header: Create new global parameter
+      backToList: back to list
+    saveDataValidationError:
+      dialog:
+        title:
+          error: Error
+      errorMessage: "Some fields are empty!<br>"
+    show:
+      title: New Global Parameter
+      header: New Global Parameter
+      id: Id
+      name: Name
+      responsibleU: Responsible User
+      variableT: Variable Type
+      backToList: back to list
+      edit: edit
+
+properties:
+  index:
+    header: ECU properties management
+    canVersion: CAN version
+  topHorizMenu:
+    addProp: Add new ECU Property
+    addPropFromList: Add property from list
+  propValTbView:
+    order: Order
+    name: Name
+    value: Value
+  botHorMenu:
+    chgCanVerBtn: Change CAN version
+    copyBtn: Copy
+
+  PopupDialogs:
+    changeCanVersion:
+      chgCanVerDialTitl: Change CAN version
+    addPropertyFromList:
+      addPropFromListDial: Add property from list
+
+  Form:
+    formThemeAddProperty:
+      name: Name
+      value: Value
+    formThemeAddPropertyFromList:
+      selected: Selected
+      name: Name
+      value: Value
+    formThemeChangeOrder:
+      chgOrd: Change orders
+      name: Name
+      value: Value
+    propertiesValuesTableCopyToAnother:
+      selToCpy: Select to Copy
+      name: Name
+      value: Value
+      cpyPropDialTit: Copy property to other sw
+      cpyPropConflDialTit: Overwrite properties
+      conflDetPar: Conflicts detected. Overwrite properties
+      cpyPropSuccDialInf: Selected properties have been copied
+
+
+vehicles:
+  configuration:
+    edit:
+      twig:
+        title: Edit Vehicle Configuration
+
+    index:
+      twig:
+        header: Vehicle Configurations
+        configDetails: Configuration Details
+        dialog:
+          selectHeader: Select configuration type
+          selectType: "Select correct type:"
+          deleteQuestion: "Do you really like to delete this configuration?"
+          shortKey: Short Key
+          longKey: Long Key
+
+    new:
+      twig:
+        title: New Vehicle Configuration
+
+    show:
+      twig:
+        title: Show Vehicle Configuration
+        vehKey: "Vehicle configuration key:"
+
+    partials:
+      search:
+        twig:
+          searchLegend: Search Vehicle Configuration
+          searchLabel: Search for (sub-)configurations
+          searchVinLabel: Search for VIN
+          searchLocationLabel: Search for location
+          searchLicPlateLabel: Search for licence plate
+          configBoxLabel: Configuration
+          vinBoxLabel: VIN
+          licPlateBoxLabel: Licence Plate
+          locationBoxLabel: Location
+          searchSeries: Series
+          searchYear: Model year
+          searchRelease: Release
+          searchButton: Search
+          searchResult: Search Result
+          searchRed: Red
+          searchInvalidConfig: invalid sub-configurations
+          searchSelectConfig: Select Configuration
+
+      saveDataValidationError:
+        twig:
+          validationError: Some fields are empty
+
+      keyComponents:
+        twig:
+          keyTableTitle: Parts and features corresponding to the configuration key
+          vehicleType: Type
+          vehicleYear: Year
+          vehicleSeries: Series
+          additionalKeyTableTitle: Additional key components
+          name: Name
+          value: Value
+          visibleOnReport: Visible on report paper
+          espPart: ESP part with ESP SW
+          rotBeac: Rotating Beacon
+          coDriverPart: Part at co driver position
+          batteryType: Type of battery
+          radio: Radio
+          addKeyFeatures: Additional key features
+          stdColor: Standard color
+          deutschePost: Is Deutsche Post configuration
+          targetState: Target state
+          stdProdPlace: Standard place of production
+          espFunctionality: ESP functionality
+          tirePressureFront: Tire pressure front
+          tirePressureRear: Tire pressure rear
+          comment: Comment
+          testSoftwareVersion: Test ECU System
+          collationOfVehicles: Collation of vehicles
+          color: Color
+          numberOfVehiclesInDb: Number of vehicles created in database
+          numberOfVehiclesStartedAssembly: Number of vehicles started assembly
+          numberOfVehiclesEndOfLine: Number vehicles end of line
+          numberQsApproved: Number of vehicles QS approved
+          numberOfDelivered: Number of vehicles delivered
+          total: Total
+          toDeutschePost: to Deutsche Post
+          tothirdCustomer: to 3 rd customer
+
+      descrptionOutOfKey:
+        twig:
+          notDefined: Not defined
+          notAssigned: Not Assigned
+          presentEcus: Present ECUs
+          primarySoftwareVersion: Primary ECU System
+          alternativeSoftwareVersion: Alternative ECU System
+          usage: Usage
+          canForwarding: CAN Forwarding
+          pentaNumber: Penta number
+          subConfState: SubConfiguration state
+          subConfReleaseState: SubConfiguration release state
+          releaseState: Release state
+          releasedByUser: Released by user
+          releasedDate: Release Date
+          subConfigurationState: SubConfiguration state
+          periodOfProduction: Period of production
+          periodOfDelivery: Period of delivery
+          configurationState: Configuration state
+
+      bottom_menu:
+        twig:
+          edit: Edit
+          fix: Fix
+          save: Save
+          cancel: Cancel
+          create: Create
+          createByCopy: Create by copy
+          delete: Delete
+          cannotDelete: "There are assigned cars for the given configuration / sub-configuration. For this reason, it cannot be deleted."
+          history: History
+
+      availableOptionsForProperty:
+        twig:
+          symbol: Symbol
+          description: Description
+          dataNotExist: Data does not exist
+          availableOptions: Available options
+
+      searchingForError:
+        twig:
+          noDataExist: "No search results. Please change the data and try again."
+
+      generalConfigurationKeyTable:
+        twig:
+          typeDesignation: Type designation
+          vehKey: "Vehicle configuration keys:"
+          shortProdDesc: Short production description
+
+    form:
+      oldCodeSupport:
+        twig:
+          additionalInformations: Additional information
+          vinMethod: Vin Method
+          smartLoading: Smart Loading
+      create:
+        twig:
+          keyTableTitle: Parts and features corresponding to the configuration key
+          configuration: Configuration
+          type: Type
+          year: Year
+          series: Series
+          customerKey: Customer key
+          devStatus: Dev Status
+          body: Body
+          numberDriveAxle: Number/Drive/Steered Axle
+          engineType: Engine type, Continous power
+          stageOfCompletion: Stage of completion
+          bodyLength: Body length
+          frontAxle: Front axle
+          rearAxle: Rear axle
+          zgg: ZGG
+          fuelType: Type of fuel
+          tractionBattery: Traction battery
+          chargingSystem: Charging system
+          vMax: V max
+          seats: Seats
+          hitch: Trailer hitch
+          superstructures: Superstructures
+          energySupplyStructure: Energy supply superstructure
+          steering: Steering
+          rearWindow: Rear Window
+          airConditioning: Air conditioning
+          passengerAirbag: Passenger airbag
+          keylessEntry: Keyless entry/go
+          specialApplication: Special application area
+          radio: Radio
+          soundGenerator: Sound generator
+          countryCode: Country code
+          color: Color
+          wheelings: Wheelings
+          layout: Layout
+          battery: Battery
+          feature: Feature
+          correctColorNotice: Please select correct color for vehicle configuration. It will not affect color encoded in penta name for each sub-configuration
+
+responsiblePersons:
+  index:
+    twig:
+      titleResponsibilities: Responsibilities
+      titleCategories: Categories
+      textChooseCategories: "Choose from list below"
+      titleSubcategories: Subcategories
+      infoNoCategoriesResponsibility: No Responsibility Categories found!
+      infoCannotAddPermission: Cannot add new deviatation permissions due to max limit was reached.
+      textAddNew: Add new
+      infoEnterName: Enter name of StreetScooter employee or company structure
+      optLeader: Leader
+      optDeputy: Deputy
+      optAll: All
+      optResponsible: Responsible
+      optWritable: Writable
+      lblSetResponsible: Set as responsible
+      lblSetDeputy: Set as deputy
+      msgConfirmRemove: Remove item from list " + {*var3*} + "<br/>Are you sure?
+      infoNoResponsibilities: No management responsibilities assigned for this category.
+      titleOfTableColumns: "<table><tr><th>Access</th><th>Name</th><th>Details</th><th>Action</th></tr>"
+      textSelectCategory: Select category and more details if necessary.
+      textNoOption: No option selected
+      addUser: Add user
+      addStructure: Add structure
+      assignedUsers: Users assigned
+      access: Access
+      name: Name
+      details: Details
+      action: Action
+      position: Position
+      remove: Remove
+      switchRole: Switch role
+      selectUserRole: Select user role
+      sltEcuResponsible: Ecu Responsible
+      sltDepartmentManager: Department Manager
+      sltDivisionManager: Division Manager
+      sltCompanyManager: Company Manager
+cocOutput:
+  form:
+    cocTitle: CoC generation
+    vehicleCharacteristic: Choose the vehicle characteristic
+    authorizedSignatory: Authorized signatory
+    startValue: Start value
+    endValue: End value
+    dateOnCoc: Date on CoC paper (optional)
+    docLang: Language of document
+    generateCoc: Generate coc
+    langEnglish: English
+    LangGerman: German
+    PentaKennwort: Penta Kennwort
+    vehicleConfiguration: Vehicle configuration
+    dateOfDelivery: Date of delivery
+    emptyVehCharacteristic: The vehicle characteristic cannot be empty!
+    emptyStartValue: The start value is empty!
+    emptyEndValue: The end value is empty!
+    emptyLang: The Language of document cannot be empty!
+    greaterData: Start date cannot be greater then end date!
+    pdfNotGenerated: The PDF has been not generated!
+    incorrectPrameters: "Provided parameters are incorrect, please change data and try again."
+hr:
+  upload:
+    header: Human Resources List Upload
+    uploadResults: Upload results
+    headerNote: Use this form to upload a new CSV file and import into database
+    title: Select file from computer
+    btnUpload: Upload
+    exampleFile: Example for .CSV file
+    code:  Bereich;KST;Beschreibung;hash;Status;Leader;Deputy_organization
+      CFO;200;Verwaltung;0b502b7b2983a7a53db345f8719071b5c3964f09b8cf133c36fe05b96289acae;StS-MA;TRUE;
+      CFO;210;Controlling;5a1b92622b1259e0ca9edc062d41655bd222b3db1581b0f5183f5d036dc6ac14;Student/in;TRUE;Verwaltung
+      CFO;250;Personal & OE;6b6553fcee2457cbc09020bf21c7130ef9413b8d7265286825fec86a4a28015f;Auszubildende;TRUE;Verwaltung
+      CEO;350;Einkauf;eaf5bf140f599776a6d881876bec644ed613564d2be09c50ccdb43790c9022df;StS-MA;TRUE;Verwaltung
+      CEO;360;SCM;273f7e030ad05786f8f18abda4cf579f92d8e8ba31980767d17889a7e19d7423;StS-MA;TRUE;Einkauf
+      CEO;400;Vertrieb;46667a3537bfaa7b1bb791fce03f19f4b0b3ebe769f15d297be9fca9b21c68d5;Student/in;TRUE;
+      CTO;510;Powertrain;63444dd9b5024f3193d48a35ed2fb76120a8d68cc2e60c4ca4121016514acd18;Student/in;TRUE;Vertrieb
+      CTO;514;Vernetzung;27f9aa011d00ed582b1b15e751ecae840a943c733371e99e068147af9cd466fe;StS-MA;TRUE;Vertrieb
+    note: "Please note, that <strong>hash</strong>ed version of name is needed!"
+    listHeader: HR list
+    listTitle: " records found"
+    showList: Show list
+    listName: Hashed person name
+    listOrganizationID: Organization ID
+    listBusinessUnit: Business Unit
+    listStatus: "Kind/status"
+    listLeader: "Is Leader?"
+    listDeputyID: Deputy organization ID
+    noDataNote: "There is no data stored in database yet."
+    noDataTip: "Use form to upload new csv file into system."
+  history:
+    history: History
+userRole:
+  assignment:
+    index:
+      twig:
+        titleAssignUserStructure: Assignment of user roles to structures
+        titleSelect: User Roles
+        tipInSelect: Select user role to see details...
+        infoAboutSave: "Please make changes if necessary. They will be stored after clicking <strong>Save</strong> button below."
+        infoAboutAssigned: "Company structures already assigned marked in <span class='assigned-structure'>orange color</span>."
+        btnShowTree: Show Organization Tree
+        dialogElementsReasigned: "Elements will be reassigned to current User Role.<br/>Are you sure?"
+        msgAddedStructure: 'Added <strong>" + {*var1*} + "</strong> " + ({*var*} == 1 ? "structure" : "structures") + " to current User Role <br>'
+        msgRemovedStructure: 'Removed <strong>" + {*var2*} + "</strong>  " + ({*var2*} == 1 ? "structure" : "structures") + " from current User Role <br>'
+        btnSave: Save
+        btnBack: Back
+        btnView: View
+history:
+  partials:
+    common:
+      twig:
+        historyComment:
+          history: History
+          confirm: Confirm
+    menu:
+      twig:
+        footer:
+          goBack: Go Back
+          history: History
+    selector:
+      twig:
+        generalSelector:
+          default: Default scope - current element
+          filters: Search filters
+          fromTo: From - To
+          createdBy: Created by
+          comment: Comment
+          event: Event
+          scope: Scope
+          searchWHistory: Search the whole history
+          search: Search
+    twig:
+      searchResults:
+        date: Date
+        user: User
+        comment: Comment
+        event: Event
+        action: Action
+        historySResult: History Search Results
+        show: Show
+        name: Name
+  twig:
+    index:
+      hModule: History module
+      events: "Events:"
+      create: Create
+      update: Update
+      delete: Delete
+      tip: Please hover over the value to see the previous one.
+      user: User
+      comment: Comment
+      date: Date
+      event: Event
+      name: Name

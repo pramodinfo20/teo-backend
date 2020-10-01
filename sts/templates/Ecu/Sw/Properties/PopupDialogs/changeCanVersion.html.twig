@@ -1,0 +1,87 @@
+{% trans_default_domain 'messages' %}
+{% form_theme addPropertyFromList 'Ecu/Sw/Properties/Form/formThemeAddPropertyFromList.html.twig' %}
+
+<!-- Dialogs -->
+<div id="change_can_version_dialog" title="{{ 'properties.PopupDialogs.changeCanVersion.chgCanVerDialTitl' | trans }}">
+    <div class="validateTips"></div>
+    <div class="properties">
+        <form name="change_can_version_form">
+            <select id="list_of_can_version_sel" name="can_version" style="width: 100%">
+                {% for canVersion in canVersionsList %}
+                    {% set isSelected = (canVersion.name == assignedCan)? 'selected' : '' %}
+                    <option value="{{ canVersion.canVersionId }}" {{ isSelected }} >{{ canVersion.name }}</option>
+                {% endfor %}
+            </select>
+        </form>
+    </div>
+</div>
+
+{% block stylesheets %}
+    <style>
+        .validateTips {
+            border: 1px solid transparent;
+            padding: 0.3em;
+            margin-bottom: 5px;
+        }
+
+        .ui-state-highlight,
+        .ui-widget-content .ui-state-highlight,
+        .ui-widget-header .ui-state-highlight {
+            border: 1px solid #dad55e;
+            background: #fffa90;
+            color: #777620;
+        }
+
+        .properties {
+            max-height: 300px;
+            overflow-y: scroll;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            /*------------- Dialogs ------------*/
+            let changeCanVersionDialog = $("#change_can_version_dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.save' | trans }}": function () {
+                        saveCanVersion();
+                    },
+                    "{{ 'dialog.button.cancel' | trans }}": function () {
+                        changeCanVersionDialog.dialog("close");
+                    }
+                }
+            });
+
+            $(document).on('click', '#change_can_version_btn', function () {
+                changeCanVersionDialog.dialog("open");
+            });
+
+            function saveCanVersion() {
+                $.ajax({
+                    method: 'POST',
+                    data: $('form[name="change_can_version_form"]').serialize(),
+                    url: 'index.php?action=propertiesManagement&method=ajaxCallPost&can=save&sw=' + {{ sw }},
+                    datatype: "json",
+                    beforeSend: function () {
+                        $('#streetscooter-loader-mask').css('display', 'flex');
+                    },
+                    success: function (result) {
+                        window.location.href = "index.php?action=propertiesManagement&method=regenerateView&ecu=" + {{ ecu }} +
+                            "&sw=" + {{ sw }};
+                        $('#streetscooter-loader-mask').css('display', 'none');
+                    },
+                    error: function () {
+                        $('#streetscooter-loader-mask').css('display', 'none');
+                    }
+                });
+            }
+        })
+    </script>
+{% endblock %}

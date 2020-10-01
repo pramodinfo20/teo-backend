@@ -1,0 +1,43 @@
+<div>
+    <h2>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.subConfReleaseState' | trans }}</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.releaseState' | trans }}</th>
+            <th>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.releasedByUser' | trans }}</th>
+            <th>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.releasedDate' | trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td id="test"> {{ parameters[0].releaseState.releaseState }}</td>
+            <td> {{ parameters[0].releaseState.userName ?? '' }}</td>
+            <td> {{ parameters[0].releaseState.date ?? '' }}</td>
+        </tr>
+        {% if parameters[0].releaseState.releaseState == 'Ready for ECU assignment'%}
+        <tr>
+            <td colspan="3"> Deadline for release of ECU-System {{ parameters[0].pentaName }} <p id="demo"></p></td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+{% block javascripts %}
+    <script>
+    var deadline = new Date("Mar 10, 2020 00:00:00").getTime(); 
+    var x = setInterval(function() { 
+    var now = new Date().getTime(); 
+    var t = deadline - now; 
+    var days = Math.floor(t / (1000 * 60 * 60 * 24)); 
+    var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
+    var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
+    var seconds = Math.floor((t % (1000 * 60)) / 1000); 
+    document.getElementById("demo").innerHTML = days + "d "  
+    + hours + "h " + minutes + "m " + seconds + "s "; 
+    if (t < 0) { 
+        clearInterval(x); 
+        document.getElementById("demo").innerHTML = "EXPIRED"; 
+    } 
+}, 1000); 
+    </script>
+{% endblock %}

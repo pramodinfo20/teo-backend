@@ -1,0 +1,42 @@
+{% trans_default_domain 'messages' %}
+
+<!-- Dialogs -->
+<div id="validation-errors-list" title="{{ 'parameters.twig.saveDataValidationError.dialog.title.error' | trans }}"></div>
+
+
+{% block javascripts %}
+    <script>
+        function saveValidationErrorWindow(errorInputData) {
+            let resultData = '';
+            let resultData1 = '';
+
+            for (let key in errorInputData['errors']) {
+
+                if (errorInputData['errors'][key] == "This value should not be blank.") {
+                    resultData = "{{ 'parameters.twig.saveDataValidationError.errorMessage' | trans }}";
+                }
+                else {
+                    resultData1 += key + ': ' + errorInputData['errors'][key] + '<br>';
+                }
+            }
+
+            $('#validation-errors-list').empty();
+            $('#validation-errors-list').html(resultData + resultData1);
+            validationErrorDialogWindow.dialog('open');
+        }
+
+        /*------------- Dialogs ------------*/
+        var validationErrorDialogWindow = $("#validation-errors-list").dialog({
+            autoOpen: false,
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "{{ 'dialog.button.close' | trans }}": function () {
+                    validationErrorDialogWindow.dialog("close");
+                }
+            }
+        });
+    </script>
+{% endblock %}

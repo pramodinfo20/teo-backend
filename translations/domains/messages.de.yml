@@ -1,0 +1,212 @@
+﻿generalMessages:
+  btnEdit: Bearbeiten
+  btnRemove: Entfernen
+  btnOk: OK
+  btnCancel: Abbrechen
+  btnSave: Speichern
+  btnOverwrite: Überschreiben
+  btnAdd: Hinzufügen
+  btnSwitchRole: Benutzerrolle wechseln
+  btnSwitch: Wechseln
+  textSelect: Auswählen
+userrole2Functionality:
+  addRole: Benutzerrolle hinzufügen
+  msgRoleRemoved: Benutzerrolle wurde <strong>entfernt</strong>!
+  msgRoleWrongRemoved: Die Benutzerrolle konnte nicht entfernt werden, möglicherweise ist sie bereits einer Firmenstruktur zugewiesen!
+  titleAssignUserRole: Zuweisung von Benutzerrollen zu Funktionen
+  textUserGroup: "Zuweisung von Benutzerrollen zu Funktionen: [w] steht für Schreibrechte, [r] steht für Leserechte"
+  titleNewRole: Neue Benutzerrolle hinzufügen
+  textNewRole: Bitte geben Sie einen Namen für die Benutzerrolle ein
+  btnCreate: Erstellen
+  msgConfirmRemoveRole: Sind Sie sicher, dass Sie die Benutzerrolle löschen möchten?
+  msgEmptyName: Bitte geben Sie einen Namen ein
+  headerRole: Benutzerrolle
+  headerGroup: Funktionsgruppen
+  headerActions: Aktion
+  noFunctionalityGroup: Keine Funktionsgruppen zugewiesen
+userrole2FunctionalityEdit:
+  headerEditGroup: Funktionsgruppen bearbeiten
+  titleEditGroup: "Berechtigungen ändern, Funktionsgruppen von Benutzerrollen entfernen oder neu zuweisen"
+  assignNewFuncGroup: Neue Funktionsgruppe zuweisen
+  headerAssignNew: Neue Funktionsgruppe einer Benutzerrolle zuweisen
+  titleAssignNew: Geben Sie den Namen der Funktionsgruppe ein
+  btnAssignNew: Neu zuweisen
+  permissionReadOnly: Nur Lesen
+  permissionWrite: Schreiben
+  headerFunctionalityGroup: Funktionsgruppe
+  headerPermission: Berechtigung
+  headerEdit: Bearbeiten
+  removeMessage: "Sind Sie sicher, dass diese Funktionsgruppe aus dieser Benutzerrolle entfernt werden soll?"
+  msgFGAssigned: "Eine neue Funktionsgruppe wurde <strong>zugewiesen</strong>!"
+  msgFGRemoved: "Funktionsgruppe wurde <strong>entfernt</strong>!"
+  msgFGmodified: "Funktionsgruppe wurde <strong>geändert</strong>!"
+userrole2Company:
+  titleAssignUserStructure: Zuweisung Benutzerrollen zu Strukturen
+  titleSelect: Benutzerrollen
+  tipInSelect: Wählen Sie eine Benutzerrolle für mehr Details
+  infoAboutSave: Hier können Änderungen durchgeführt werden. Sie werden nach dem Klick auf den <strong>Speichern</strong> Button gespeichert
+  infoAboutAssigned: "Firmenstrukturen, die bereits zugewiesen sind, werden <span class='assigned-structure'>Orange</span> markiert"
+  btnShowTree: Zeige den Firmenstrukturbaum
+  dialogElementsReasigned: "Element werden neu der aktuellen Benutzerrolle zugewiesen.<br/>Sind Sie sicher?"
+  infoAddedStructure: '<strong>" + {*var1*} + "</strong> " + ({*var*} == 1 ? "Firmenstruktur" : "Firmenstruktur") + " der aktuellen Benutzerrolle zugewiesen <br>'
+  infoRemovedStructure: '<strong>" + {*var2*} + "</strong>  " + ({*var2*} == 1 ? "Firmenstruktur" : "Firmenstruktur") + " von der aktuellen Benutzerrolle  entfernt <br>'
+responsiblePersons:
+  titleResponsibilities: Verantwortlichkeiten
+  titleCategories: Kategorien
+  textChooseCategories: "Bitte wählen Sie aus der Liste aus:"
+  titleSubcategories: Subkategorien
+  infoNoCategoriesResponsibility: Keine Verantwortlichkeitskategorie gefunden
+  infoCannotAddPermission: Es können keine neuen Abweicherlaubnisse hinzugefügt werden, da die maximale Anzahl erreicht wurde
+  textAddNew: Neu hinzufügen
+  infoEnterName: Geben Sie den Namen der Firmenstruktur oder des Mitarbeiters von StreetScooter ein
+  optLeader: Leiter
+  optDeputy: Vertreter
+  optAll: Alle
+  optResponsible: Verantwortliche
+  optWritable: Schreibrechte
+  lblSetResponsible: Als Verantwortlichen festlegen
+  lblSetDeputy: Als Vertreter festlegen
+  msgConfirmRemove: Element von der Liste entfernen " + {*var3*} + "<br/>Sind Sie sicher?
+  infoNoResponsibilities: Für diese Kategorie wurden keine Verantwortlichkeiten festgelegt
+  titleOfTableColumns: "<table><tr><th>Access</th><th>Name</th><th>Details</th><th>Action</th></tr>"
+  textSelectCategory: Wählen Sie die Kategorie und weitere Details
+  textNoOption: Es wurde keine Option ausgewählt
+manageFunctions:
+  header: Management Funktionen
+  selectHeader: Funktionen
+  selectTitle: "Wählen Sie aus der Liste:"
+  noSetNotice: "Keine Management Funktionen gefunden!"
+  addUser: Hinzufügen
+  titleAddUser: Geben Sie den Namen der Firmenstruktur oder des Mitarbeiters von StreetScooter ein
+  structureLeader: Leiter
+  structureDeputy: Vertreter
+  structureAll: Alle
+  structureSave: Hinzufügen
+  removeTextDialog1: "Element aus der Liste entfernen "
+  removeTextDialog2: "<br/>Sind Sie sicher?"
+  titleNoAssigned: Dieser Kategorie sind keine Management Funktionen zugewiesen
+  titleAssigned: "Der Management Funktion zugewiesene Benutzer:"
+  userListHeader1: "Benutzer Name / "
+  userListHeader2: "Firmenstruktur (fett markiert)"
+  detailsHeader: Details
+  optionsHeader: Optionen
+  titleTip: Wählen Sie eine der hier angegebenen Optionen aus
+uploadHR:
+  header: Upload der Personalliste
+  uploadResults: Upload der Ergebnisse
+  headerNote: Verwenden Sie dieses Formular um eine neue .CSV Datei in die Datenbank hochzuladen
+  title: Wählen Sie eine Datei aus
+  btnUpload: Upload
+  exampleFile: Beispiel einer gültigen .CSV Datei
+  code: "Bereich;KST;Beschreibung;hash;Status<br/>
+          CEO;100;Gesch?ftsfŮhrung;116164df0354038042732c4f9b7768d42e50fe38175635083965d70a97b666a4;Student/in<br/>
+          CFO;260;Systeme;ab128765d4d13e7b318675b0d135a89afee0510c3633efbb63250e5e364a6255;StS-MA<br/>
+          CTO;511;System Engineering;eb7b514f1ba658f3745f5c10ef152c92c92f19031c031d282c9f0ca7ad136361;StS-MA<br/>
+          CTO;511;System Engineering;f1e662ac725bdcb2470266efd17fc969288bf63568b0b37fd453763ad0cd2f2a;StS-MA<br/>
+          CTO;513;Diagnostics/Analysis &
+          Connected;e4d77566ff6b3d1130b71da9841134ad76757e8a89d4f5f6ed119fe804893565;StS-MA<br/>
+          CEO;840;Field Support;c14ddae25ddaae4e7150572c130d2deef3445b8659799b6a3998c018e27bd439;StS-MA<br/>"
+  note: "Bitte beachten Sie, dass die <strong>gehashte</strong> Form der Namen benötigt wird!"
+  listHeader: Personalliste
+  listTitle: " Einträge gefunden"
+  showList: Zeige die Liste
+  listName: Gehhashter Name der Person
+  listOrganizationID: Organisation ID
+  listBusinessUnit: Business Unit
+  listStatus: "Status"
+  listLeader: "Ist Leiter?"
+  listDeputyID: Vertreter Organisation ID
+  noDataNote: "Bisher sind keine Daten in der Datenbank gespeichert"
+  noDataTip: "Verwenden Sie dieses Formular um eine neue .CSV Datei in die Datenbank hochzuladen"
+generalSearch:
+  header: Fahrzeug Suche
+  formLegendTitle: Suchfunktion
+  formTitle: Neue Suche - Wählen Sie eine Kategorie
+  andBool: UND
+  orBool: ODER
+  checkboxNote: "Verwendung von regulären Ausdrücken in allen Eingabefeldern"
+  notBool: NICHT
+  yesOption: JA
+  noOption: NEIN
+  teoFilter: TEO Filter
+  deleteAllFilter: Alle Filterkategorien entfernen
+  dtcCode: DTC Code
+  dtcCodeNote: "* zeigt alle Fahrzeuge mit Fehlern an dieser ECU"
+  dtcError: "DTC Fehler mit Bezug zu Log Fehler"
+  logData: Log Daten
+  btnSearch: Suche
+  deleteFitler: Lösche alle Filter
+  locationFilter: Ortsfilter
+  locationSelecedTitle: "Ausgewählte Produktionsstätte / Werkstatt:"
+  selectedLocation: "Ausgewählte Orte:"
+  selectedLocationLabel: "Wählen Sie einen anderen Ort: "
+  locationSelectedPlaceholder: Geben Sie einen Ort ein
+  onlyProductionLocations: Nur Produktionsstätten auswählen
+  firstPage: Erste
+  previousPage: Vorherige Seite
+  nextPage: Nächste Seite
+  lastPage: Letzte
+  page: "Seite: "
+  linePerPage: "Zeilen pro Seite: "
+enggMenu:
+  btnVehicles: Fahrzeuge
+  itemVehicleSearch: "Fahrzeug Suche  <b>(neu)</b>"
+  itemListOfProducedVehicles: Liste produzierter Fahrzeuge
+  itemListOfDeliveredVehicles: Liste ausgelieferter Fahrzeuge
+  itemDailyStatistics: Tägliche Statistiken
+  itemHistory: Verlaufsdaten
+  itemDTCMagenament: DTC Verwaltung
+  itemErrorList: Fehlerliste
+  itemTestVehicleBooking: Test Fahrzeuge Buchung
+  itemTestVehicleDocuments: Test Fahrzeuge Dokumente
+  btnVehiclesConf: Fzg. Konfigurationen
+  itemVehiclesConfAdministration: "Fzg. Konfigurationen Verwaltung  <b>(neu)</b>"
+  itemVehiclesConfDisplay: Fzg. Konfigurationen Anzeige
+  itemVehiclesPropAdministration: Fzg. Eigenschaften Verwaltung
+  itemUpdateIterface: Schnittstelle Aktualisieren
+  itemTask: Taskanzeige
+  itemDisplayEBOM: EBOM Verwaltung
+  btnECUs: ECUs
+  itemECUsParamManagement: "ECU System Verwaltung  <b>(neu)</b>"
+  itemECUsSoftwareManagement: "ECU System Zuordnung  <b>(neu)</b>"
+  itemAddEcu: "ECU Hinzufügen  <b>(neu)</b>"
+  itemECUsPropManagement: "ECU Eigenschaften Verwaltung <b>(neu)</b>"
+  itemECUsPropAssignment: ECU Eigenschaften Zuweisung
+  itemECUsSoftwareUpload: ECU Software Hochladen
+  itemECUsODXConf: "ECU ODX Konfiguration  <b>(neu)</b>"
+  itemECUsEoLTester: EoL Tester Parameter Verwaltung
+  btnGlobalParam: Globale Parameter
+  itemGlobalParamManagement: "Globale Parameter Verwaltung  <b>(neu)</b>"
+  itemGlobalParamAssigment: "Globale Parameter Zuweisung  <b>(neu)</b>"
+  btnCoc: CoC
+  itemCocParameterManagement: CoC Parameter Verwaltung
+  itemCocParameterAssignment: CoC Parameter Zuweisung
+  itemCocGeneration: CoC Erzeugung
+  btnQuality: Qualität
+  itemAdministrationDeferal: Verwaltung Abweicherlaubnisse
+  itemPermitsVehicle: Fahrzeug Sondergenehmigung
+  itemApprovalDisplayEoL: Anzeige EoL Testberichte
+  btnAdministration: Verwaltung
+  itemUserRoleAdministration: "Benutzerrollen Verwaltung  <b>(neu)</b>"
+  itemUserRoleAssignment: "Benutzerrollen Zuordnung  <b>(neu)</b>"
+  itemAdministrationResponsibilities: "Verwaltung Verantwortlichkeiten  <b>(neu)</b>"
+  itemAdministrationWritePermission: "Verwaltung Schreibberechtigungen  <b>(neu)</b>"
+  itemUserListUpload: "Benutzerliste Hochladen <b>(neu)</b>"
+  itemUserListUploadHistory: "Benutzerliste Hochladen Geschichte <b>(neu)</b>"
+  itemApprovalSpecial: Freigabe Spezialfahrzeug
+  itemVehicleHistory: Historie
+  itemUploadServerKeys: Serverschlüssel Hochladen
+  diagSwParamManagement: "Dynamische Parameter Verwaltung <b>(neu)</b>"
+BlackHeader:
+  itemRole: Rolle
+  itemLoggedAs: Eingeloggt als
+  itemFiles: Dateien
+  itemInstructions: Anleitungen
+  itemManageEmployeesAccounts: "Mitarbeiter/-innen Konten verwalten"
+  itemUserKeys: Schlüsselverwaltung
+  itemProfileEdit: Profil bearbeiten
+  itemLogout: Ausloggen
+  feedback: Feedback
+PageController:
+  sessionExpiration: "Ihre Sitzung ist abgelaufen. Klicken Sie auf 'Neu laden'."
+  reload: Neu laden

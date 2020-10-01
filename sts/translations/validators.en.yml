@@ -1,0 +1,60 @@
+constraints:
+  parameter:
+    lessThanOrEqual:
+      message: The min value must be less or equal than max value.
+    range:
+      message: "The value must be in range of min (%min%) and max (%max%) values."
+      message2: "The string value length must be in range of min (%min%) and max (%max%) values."
+    minMaxPropertyValue:
+      messageComma: "Comma is improper. Use decimal point instead!"
+      messageGrEq: "Unsigned value type must be greater or equal 0!"
+      messageIntegers: "Only integer value!"
+    minMaxPropertyNotEmpty:
+      message: "Value must not be empty!"
+    minMaxPropertyNumeric:
+      message: "Value is not numeric!"
+    notAllowedValue:
+      message: "This value of field is not allowed!"
+  ecuSwProperties:
+    ExistingPropertyName:
+      msgPropExistCurrent: "Property with given name already exists for current ECU-System!"
+      msgPropExistInDb: "Property with given name and value already exists in system!"
+  subconfiguration:
+    longKey_shortKey:
+      longKey_shortKey:
+        message: "Generated key (%string%)  is incorrect. Configuration / SubConfiguration with such a key already exists"
+        message2: Lack of key element
+      longKeyQuestionMark_shortKeyQuestionMark:
+        message: "Generated key (%string%)  is incorrect. Key can not contain question marks"
+        message2: "Lack of key element"
+    longKey:
+      typeYearSeriesLongKey:
+        message: "Type/Year/Series (%string%)  is incorrect. Correct scope for new configurations: D/17/02 - (without E/17 - E/19)."
+    shortKey:
+      typeYearSeriesShortKey:
+        message: "Type/Year/Series (%string%)  is incorrect. Correct scope for old configurations: A/0/00 - D/17/01 and E/17 - E/19."
+    tirePressure:
+      messageFront: "Front tire pressure value must be between %min% and %max% kPa!"
+      messageRear: "Rear tire pressure value must be between %min% and %max% kPa!"
+    release:
+      assignedSoftwareMessage: "Not all ecus have assigned ECU Systems."
+      releasedSoftwareMessage: "Not all ECU Systems are released."
+      assignedGlobalsWithValuesMessage: "Not all global parameters linked to ECU Systems have value for this sub-configuration."
+  stsVersion:
+    tooShorMessage: "The stsVersion (%string%) not contains required length."
+    message:  "The stsVersion (%string%) contains an illegal characters: it can only contain letters like ABYXXXXXX_XX."
+  udsMessage:
+    message: The bytes contains an illegal startBit or stopBit value.
+    startBitMessage: The startBit are equal or greater than stopBit.
+    stopBitMessage: "The stopBit are equal or greater than %bits% bits."
+  windchill:
+    message: "The windchill URL (%url%) contains an illegal address for local or remote application."
+  udsIdValue:
+    message: "UDS ID must be hexadecimal"
+    message2: Length for UDS-id should be 2 byte.
+  parameterNameGlobal:
+    message: "The parameter name: (%parameterName%) must be unique for linked global parameter: (%globalName%)."
+  parameterName:
+    message: "The parameter name: (%parameterName%) must be unique for sw."
+
+

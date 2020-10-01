@@ -1,0 +1,23 @@
+{#
+    Common search result.
+#}
+
+<div class="" style="">
+    <label for="sel_search_result_list">{{ 'vehicles.configuration.partials.search.twig.searchResult' | trans }}</label><br>
+    <div class="configurations2" style="width: 100%">
+        <select id="sel_search_result_list" size="10"
+                style="overflow-x: auto; overflow-y: auto; min-width: 100%"></select>
+    </div>
+</div>
+<span class="invalid">{{ 'vehicles.configuration.partials.search.twig.searchRed' | trans }}</span>
+<span> - {{ 'vehicles.configuration.partials.search.twig.searchInvalidConfig' | trans }}</span>
+
+{% if(select_button_available == true) %}
+    <div class="options-bar">
+        <ul class="submenu_ul">
+            <li><span id="btn_select_vehicle_configuration"
+                      class="sts_submenu W140 disabled">{{ 'vehicles.configuration.partials.search.twig.searchSelectConfig' | trans }}</span>
+            </li>
+        </ul>
+    </div>
+{% endif %}

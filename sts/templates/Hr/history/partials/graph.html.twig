@@ -1,0 +1,184 @@
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+
+    <div class="chart_container"></div>
+    {% with %}
+        {#{#}
+        {#'footerMenuButtonsState': footerMenuButtonsState,#}
+        {#} %}#}
+        {% set footerMenuButtonsState = {'isGoBackAvailable': 'true'} %}
+        {% include 'Hr/history/partials/menu/right.html.twig' with footerMenuButtonsState %}
+    {% endwith %}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="css/orgchart/jquery.orgchart.css">
+    <style>
+        .orgchart .node .title .symbol {
+            display: none;
+        }
+
+        .orgchart .node .title {
+            border: 1px solid #888;
+            border-bottom: none;
+        }
+
+        .orgchart .node .content {
+            border: 1px solid #888;
+        }
+
+        .horizontalMenuButtons {
+            margin: 0 auto 20px auto;
+            width: 90%;
+        }
+
+        .chart_container {
+            width: 90%;
+            display: flex;
+            align-self: center;
+            margin: 0 auto;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .chart_wrapper {
+            background: #fff;
+            border: 1px solid #b0b0b0;
+            display: flex;
+            align-self: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .chart_wrapper:first-child {
+            margin-top: 20px;
+        }
+
+        .orgchart {
+            background-image: unset;
+            border: none;
+            margin: 0 auto;
+        }
+
+        tr:nth-child(odd) {
+            background: unset;
+        }
+
+        table, th, td {
+            border: none;
+        }
+
+        .orgchart .lines .rightLine {
+            border-right: 1px solid #888;
+        }
+
+        .orgchart .lines .topLine {
+            border-top: 2px solid #888;
+        }
+
+        .orgchart .lines .downLine {
+            background-color: #888;
+        }
+
+        .orgchart .lines .leftLine {
+            border-left: 1px solid #888;
+        }
+
+        .orgchart .node .title {
+            color: #404040;
+            width: 100%;
+        }
+
+        /*.orgchart .level_0 .title, .orgchart .level_14 .title {*/
+            /*background-color: #FBB0B0;*/
+        /*}*/
+
+        .orgchart .level_1 .title, .orgchart .level_15 .title {
+            background-color: #FBB0B0;
+        }
+
+        .orgchart .level_2 .title, .orgchart .level_16 .title {
+            background-color: #FBD9B1;
+        }
+
+        .orgchart .level_3 .title, .orgchart .level_17 .title {
+            background-color: #FBFAAF;
+        }
+
+        .orgchart .level_4 .title, .orgchart .level_18 .title {
+            background-color: #E5FBB0;
+        }
+
+        .orgchart .level_5 .title, .orgchart .level_19 .title {
+            background-color: #BAFBB0;
+        }
+
+        .orgchart .level_6 .title, .orgchart .level_20 .title {
+            background-color: #B0FBD8;
+        }
+
+        .orgchart .level_7 .title, .orgchart .level_20 .title {
+            background-color: #B0FBF8;
+        }
+
+        .orgchart .level_8 .title, .orgchart .level_21 .title {
+            background-color: #B0FBF8;
+        }
+
+        .orgchart .level_9 .title, .orgchart .level_22 .title {
+            background-color: #B0DFFB;
+        }
+
+        .orgchart .level_10 .title, .orgchart .level_23 .title {
+            background-color: #B0BCFB;
+        }
+
+        .orgchart .level_11 .title, .orgchart .level_24 .title {
+            background-color: #C6B2FB;
+        }
+
+        .orgchart .level_12 .title, .orgchart .level_25 .title {
+            background-color: #FBB2F0;
+        }
+
+        .orgchart .level_13 .title, .orgchart .level_26 .title {
+            background-color: #FBB2CE;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="js/orgchart/jquery.orgchart.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            var datasource = ({{ historyGraphData | json_encode | raw }});
+            $.each(datasource, function (key, value) {
+                $('.chart_container').append("<div class='chart_wrapper chart_" + key + "' ></div>");
+                $('.chart_' + key).orgchart({
+                    'data': datasource[key],
+                    'depth': 999,
+                    'nodeTitle': 'title',
+                    'nodeContent': 'content',
+                    'visibleLevel': 999,
+                    'chartClass': 'chart_box',
+                    'exportButton': false,
+                    'exportFilename': 'OrgChart',
+                    'exportFileextension': 'png',
+                    'draggable': false,
+                    'pan': true,
+                    'zoom': true,
+                    'zoominLimit': 5,
+                    'zoomoutLimit': 0.5
+                });
+            });
+
+
+            $('#goBack').click(function () {
+                history.back();
+            });
+
+        });
+    </script>
+{% endblock %}

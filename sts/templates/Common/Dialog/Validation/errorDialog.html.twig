@@ -1,0 +1,44 @@
+{% block body %}
+    <div id="validation-error-dialog" title="Error"></div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function saveValidationErrorWindow(resultData) {
+
+            let resultText = '<ul>';
+
+            $.each(resultData['errors'], function (_, value) {
+                let isObject = $.isPlainObject(value);
+                if (isObject === true) {
+                    let obj = Object.keys(value)[0];
+                    $.each(value[obj], function (__, subValue) {
+                        resultText += "<li>" + subValue.value + "</li>";
+                    });
+                } else {
+                    resultText += "<li>" + value + "</li>";
+                }
+            });
+
+            resultText += "</ul>";
+
+            $('#validation-error-dialog').empty();
+            $('#validation-error-dialog').html(resultText);
+            validationErrorDialogWindow.dialog('open');
+        }
+
+        /*------------- Dialogs ------------*/
+        var validationErrorDialogWindow = $("#validation-error-dialog").dialog({
+            autoOpen: false,
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "Close": function () {
+                    validationErrorDialogWindow.dialog("close");
+                }
+            }
+        });
+    </script>
+{% endblock %}

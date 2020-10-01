@@ -1,0 +1,157 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    <h1>{{ 'hr.upload.header' | trans }}</h1>
+    <div class="row">
+        <div class="columns five">
+            <p><{{ 'hr.upload.headerNote' | trans }}</p>
+            <form enctype="multipart/form-data" action="" method="post" id="uploadHrList">
+                <h4>{{ 'hr.upload.title' | trans }}</h4>
+                <p><input type="file" name="csvfile" id="csvfile"/></p>
+                <p><input type="button" id="submitHr" value="{{ 'hr.upload.btnUpload' | trans }}"></p>
+            </form>
+            <h4>{{ 'hr.upload.exampleFile' | trans | raw }}</h4>
+            <code>
+                {{ 'hr.upload.code' | trans }}
+            </code>
+            <p>{{ 'hr.upload.note' | trans | raw }}</p>
+        </div>
+
+        <div class="columns seven">
+            <h1>{{ 'hr.upload.listHeader' | trans }}</h1>
+            {% if storedHrList is not null %}
+                <h4><strong>{{ storedHrList | length }}</strong>{{ 'hr.upload.listTitle' | trans }}</h4>
+                <p>
+                    <a href="#" data-target="hr_list_content" class="parent_hidden_text">
+                        <span class="genericon genericon-plus"></span><span>{{ 'hr.upload.showList' | trans }}</span>
+                    </a>
+                </p>
+                <div class="child_hidden_text hr_list_content">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>{{ 'hr.upload.listName' | trans }}</th>
+                            <th>{{ 'hr.upload.listOrganizationID' | trans }}</th>
+                            <th>{{ 'hr.upload.listBusinessUnit' | trans }}</th>
+                            <th>{{ 'hr.upload.listStatus' | trans }}</th>
+                            <th>{{ 'hr.upload.listLeader' | trans }}</th>
+                            <th>{{ 'hr.upload.listDeputyID' | trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for record in storedHrList %}
+                            <tr>
+                                <td>{{ record.person }}</td>
+                                <td>{{ record.organization.name }}</td>
+                                <td>{{ record.businessUnit }}</td>
+                                <td>{{ record.kind }}</td>
+                                <td>{{ record.isLeader? 't' : 'f' }}</td>
+                                <td>
+                                    {% if record.deputyOrganization is not null %}
+                                        {{ record.deputyOrganization.name }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <p>{{ 'hr.upload.noDataNote' | trans }}</p>
+                <p>{{ 'hr.upload.noDataTip' }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    {# ---------------------------- Dialogs ----------------------------------------- #}
+    <div id="upload-results-dialog" title="{{ 'hr.upload.uploadResults' | trans }}">
+        <p>{{ 'hr.upload.uploadResults' | trans }}</p>
+        <div class="scrollable"><p id="results"></p></div>
+    </div>
+    {# ----------------------------------------------------------------------------- #}
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .scrollable {
+            max-height: 400px;
+            overflow-y: scroll;
+        }
+
+        .paginationjs-pages {
+            margin-top: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            let rows = []
+            $('.hr_list_content table tbody tr').each(function (i, row) {
+                return rows.push(row);
+            });
+
+            $('.hr_list_content').pagination({
+                dataSource: rows,
+                pageSize: 15,
+                callback: function (data, pagination) {
+                    $('.hr_list_content table tbody').html(data);
+                }
+            });
+
+            $(document).on('click', '#submitHr', function () {
+                $.ajax({
+                    method: 'POST',
+                    enctype: 'multipart/form-data',
+                    data: new FormData($('#uploadHrList')[0]),
+                    processData: false,
+                    contentType: false,
+                    url: 'index.php?action=uploadHr&method=ajaxCallFiles&ajax=save',
+                    dataType: "json",
+                    success: function (result) {
+                        let txt = '';
+                        $.each(result, function (typeKey, type) {
+                            let typeA = Object.keys(type).map(function (_) {
+                                return type[_];
+                            })
+
+                            if ($.isArray(typeA) && typeA.length > 0) {
+                                txt += typeKey + ':<br />';
+                                txt += typeA.join('<br />').toString();
+                            }
+                        });
+
+                        $('#results').empty();
+                        $('#results').append(txt);
+                        uploadResultsDialog.dialog('open');
+                    },
+                    error: function () {
+                        $('#results').append("Wrong upload process, wrong file format");
+                        uploadResultsDialog.dialog('open');
+                    }
+                });
+            });
+
+
+            var uploadResultsDialog = $("#upload-results-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.close' | trans }}": function () {
+                        uploadResultsDialog.dialog("close");
+                        location.reload();
+                    },
+                },
+                close: function () {
+                    uploadResultsDialog.dialog("close");
+                    location.reload();
+                }
+            });
+        });
+    </script>
+{% endblock %}

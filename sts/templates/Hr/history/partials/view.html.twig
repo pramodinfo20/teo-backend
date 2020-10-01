@@ -1,0 +1,53 @@
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    <div class="columns twelve">
+        {{ form_start(userrole2companyForm, {'attr': {'id': 'userrole2company'}}) }}
+        <div class="columns three">
+            <h2>{{ 'userRole.assignment.index.twig.titleSelect' | trans }}</h2>
+            {{ form_widget(userrole2companyForm.currentRole) }}
+            <p>{{ 'userRole.assignment.index.twig.tipInSelect' | trans }}</p>
+        </div>
+
+        <div class="columns nine">
+            <div id="infobox-management" class="row">
+                <p>{{ 'userRole.assignment.index.twig.infoAboutAssigned' | trans | raw }}</p>
+            </div>
+            <ul>
+                {% for structure in userrole2companyForm.companyStructuresForCurrentRole %}
+                    <li>{{ form_widget(structure) }} {{ form_label(structure) }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {{ form_end(userrole2companyForm) }}
+        {% with
+            {
+            'footerMenuButtonsState': footerMenuButtonsState,
+            }
+        %}
+            {% include 'Hr/history/partials/menu/right.html.twig' %}
+        {% endwith %}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .assigned-structure + label {
+            color: #8e4125;
+        }
+
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+
+            $(document).on('click', '#showTree', function() {
+                window.location.href = 'index.php?action=uploadHrHistory&method=regenerateView&history=' +
+                    $('#history_persons_list_hr_createdAt option:selected').val() + '&graph';
+            });
+
+        });
+    </script>
+{% endblock %}

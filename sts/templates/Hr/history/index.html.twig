@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    <h1>{{ 'hr.history.history' | trans }}</h1>
+    <div class="row">
+            {% include 'Hr/history/partials/history.html.twig' with { 'arguments': arguments, 'historyForm': historyForm } %}
+        {% if arguments.history != 0 %}
+            {% include 'Hr/history/partials/view.html.twig' with { 'arguments': arguments, 'userrrole2companyForm': userrole2companyForm } %}
+        {% elseif historyGraphData is not null %}
+{#            {{ dump(historyGraphData) }}#}
+            {% include 'Hr/history/partials/graph.html.twig' with { 'footerMenuButtonsState': footerMenuButtonsState, 'historyGraphData': historyGraphData } %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .assigned-structure {
+            color: #8e4125;
+        }
+
+        .horizontalMenuButtons {
+            border:             1px solid #b0b0b0;
+            height:             auto;
+            display:            flex;
+            align-items:        center;
+            justify-content:    center;
+            padding:            0px 5px;
+            margin-top:         10px;
+        }
+
+        .submenu_ul li {
+            margin-bottom:  0px !important;
+            padding:        5px 0px;
+        }
+
+        .MiniButtons {
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+
+        });
+    </script>
+{% endblock %}

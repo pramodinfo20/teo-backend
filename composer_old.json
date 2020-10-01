@@ -1,0 +1,19 @@
+{
+  "require": {
+    "guzzlehttp/guzzle": "~6.0",
+    "symfony/yaml": "4.3.2",
+<<<<<<< HEAD
+    "phpoffice/phpspreadsheet": "^1.2",
+    "mpdf/mpdf": "^8.0",
+    "dompdf/dompdf": "^0.8.3",
+    "tecnickcom/tcpdf": "^6.2",
+    "jpgraph/jpgraph": "^4.0",
+    "setasign/fpdf": "^1.8",
+    "setasign/fpdi-fpdf": "^2.2",
+    "setasign/fpdi-tcpdf": "^2.2",
+    "setasign/fpdi-tfpdf": "^2.2"
+=======
+    "phpoffice/phpspreadsheet": "^1.2"
+>>>>>>> da34cd552058d531ebf86cb46b6f1a53b43b7bb8
+  }
+}

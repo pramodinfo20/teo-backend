@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    <h1>{{ 'userRole.assignment.index.twig.titleAssignUserStructure' | trans }}</h1>
+    <div class="row">
+        {% if arguments.tab == 0 %}
+            {% include 'UserRole/Assignment/partials/form.html.twig' with { 'arguments': arguments, 'userrrole2companyForm': userrole2companyForm } %}
+        {% else %}
+            {% include 'UserRole/Assignment/partials/graph.html.twig' with { 'arguments': arguments } %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .assigned-structure {
+            color: #8e4125;
+        }
+
+        .horizontalMenuButtons {
+            border:             1px solid #b0b0b0;
+            height:             auto;
+            display:            flex;
+            align-items:        center;
+            justify-content:    center;
+            padding:            0px 5px;
+        }
+
+        .submenu_ul li {
+            margin-bottom:  0px !important;
+            padding:        5px 0px;
+        }
+
+        .MiniButtons {
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+
+        });
+    </script>
+{% endblock %}

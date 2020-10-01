@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    <h1>{{ 'parameters.twig.index.cocHeader' | trans }}</h1>
+    <br>
+    <div class="parametersValues">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{{ 'parameters.twig.index.id' | trans }}</th>
+                <th>{{ 'parameters.twig.index.order' | trans }}</th>
+                <th>{{ 'parameters.twig.index.name' | trans }}</th>
+                <th>{{ 'parameters.twig.index.description' | trans }}</th>
+                <th>{{ 'parameters.twig.index.section' | trans }}</th>
+                <th>{{ 'parameters.twig.index.field' | trans }}</th>
+                <th>{{ 'parameters.twig.index.responsibleU' | trans }}</th>
+                <th>{{ 'parameters.twig.index.variableT' | trans }}</th>
+                <th>{{ 'parameters.twig.index.unit' | trans }}</th>
+                {#<th>{{ 'parameters.twig.index.linkedEcu' | trans }}</th>#}
+                <th>{{ 'parameters.twig.index.actions' | trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cocParameter in cocParameters %}
+            <tr>
+                <td>{{ cocParameter.cocParameterId }}</td>
+                <td>{{ cocParameter.parameterOrder }}</td>
+                <td>{{ cocParameter.cocParameterName }}</td>
+                <td>{{ cocParameter.description }}</td>
+                <td>{{ cocParameter.section }}</td>
+                <td>{{ cocParameter.field }}</td>
+                <td>{{ cocParameter.responsibleUser }}</td>
+                <td>{{ cocParameter.variableType }}</td>
+                <td>{{ cocParameter.unit }}</td>
+                {#<td>#}
+                    {#<a href="#" id="show-linked-ecu-parameters">{{ 'parameters.twig.index.showLinkedEcu' | trans }}</a>#}
+                {#</td>#}
+                <td>
+                    <div class="row">
+                        <div class="columns eight nopad">
+                            <a href="{{ legacyUrl(currentLegacyUrl, {'method': 'edit', 'cocParameter': cocParameter.cocParameterId}) }}">
+                                {{ 'parameters.twig.index.edit' | trans }}
+                            </a>
+                            {#<a href="{{ legacyUrl(currentLegacyUrl, {'method': 'delete', 'cocParameter': cocParameter.cocParameterId}) }}">#}
+                                {#{{ 'parameters.twig.index.remove' | trans }}#}
+                            {#</a>#}
+                            <!-- After Product Owner decision, we hide this posibility to remove CoC Parameter -->
+                            <!-- We only comment this code, maybe in future we will make decision to put new validators -->
+                            <!-- when users will want to remove CoC parameters  -->
+                            <!-- (System should check if parameter is usedin any configuration)  -->
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">{{ 'parameters.twig.index.noRecords' | trans }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <div class="MiniButtons actionButtons">
+        <ul class="submenu_ul">
+            <li>
+                <span class="sts_submenu W100" id="create_new">Create new</span>
+            </li>
+        </ul>
+    </div>
+    <div id="dialog-linked-ecus" title="Linked ECU Parameters">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ 'parameters.twig.index.ecu' | trans }}</th>
+                <th>{{ 'parameters.twig.index.sw' | trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for cocParameter in cocParameters %}
+                {% for linkedEcuParameter in cocParameter.linkedEcuParameters %}
+                    <tr>
+                        <td>{{ linkedEcuParameter.ecuName }}</td>
+                        <td>{{ linkedEcuParameter.swVersion }}</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            let dialog = $('#dialog-linked-ecus').dialog({
+                autoOpen: false,
+                modal: true,
+            });
+
+            $('#show-linked-ecu-parameters').on('click', function() {
+                dialog.dialog('open');
+            });
+
+            $(document).on('click', '#create_new', function() {
+                location.href = "{{ legacyUrl(currentLegacyUrl, {'method': 'new'}) | raw}}";
+            });
+        });
+
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .actionButtons{text-align:center;margin-top:15px}
+        .parametersValues{max-height:60vh;}
+        table{word-break:break-all;}
+        td{min-width:35px}
+    </style>
+{% endblock %}

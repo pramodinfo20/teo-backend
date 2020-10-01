@@ -1,0 +1,59 @@
+{% trans_default_domain 'messages' %}
+
+<div class="columns two">
+    <h2>{{ 'ecu.sw.partials.menu.twig.vertical.deviceEcu' | trans }}</h2>
+    <form action="" id="ecus_swversions_form" method="GET">
+        {% if ecus is defined %}
+            <select id="list_of_ecus" name="ecu" style="width: 100%;" size="14">
+                <option value="0">{{ 'ecu.sw.partials.menu.twig.vertical.selectEcu' | trans }}</option>
+                {% for id, ecu in ecus %}
+                        {#Fix responsible persons#}
+                     {#<option value="{{ id }}" class="{{ ecu['permission'] }}">{{ ecu['name'] }}</option>#}
+                    <option value="{{ ecu.ceEcuId}}" >{{ ecu.ecuName }}</option>
+                {% endfor %}
+            </select>
+            <input type="hidden" name="action" value="parameterManagement">
+            <input type="hidden" name="method" value="regenerateView">
+        {% endif %}
+    </form>
+    {% if sws is defined and ecu != 0%}
+        <form action="" id="sws_swversions_form" method="GET">
+            <input type="hidden" name="ecu" value="{{ ecu }}">
+            <h1 id="sw_versions_header">{{ 'ecu.sw.partials.menu.twig.vertical.swVersions' | trans }}</h1>
+            <select id="sw_versions_list" name="sw" size="20" style="width: 100%;">
+                {% for sw in sws %}
+                    {% if sw.subversionSuffix is null %}
+                        <option value="{{ sw.ecuSwVersionId }}">{{ sw.swVersion }}</option>
+                    {% endif %}
+                    {% if sw.subversionSuffix is not null %}
+                        <option value="{{ sw.ecuSwVersionId}}">---> {{ sw.subversionSuffix }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <input type="hidden" name="action" value="parameterManagement">
+            <input type="hidden" name="method" value="regenerateView">
+        </form>
+    {% endif %}
+</div>
+
+{% block javascripts %}
+    <script>
+        $( document ).ready(function() {
+            {% if ecu is not null %}
+                $('#list_of_ecus option[value="{{ ecu }}"]').prop("selected", "selected").change();
+            {% endif %}
+
+            {% if sw is not null %}
+                $('#sw_versions_list option[value="{{ sw }}"]').prop("selected", "selected").change();
+            {% endif %}
+
+            $(document).on('change', '#list_of_ecus', function () {
+                $('#ecus_swversions_form').submit();
+            });
+
+            $(document).on('change', '#sw_versions_list', function () {
+                $('#sws_swversions_form').submit();
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,41 @@
+-- Table: public.persons_list_hr
+
+-- DROP TABLE public.persons_list_hr;
+
+CREATE TABLE public.persons_list_hr
+(
+  person_list_hr_id integer NOT NULL DEFAULT nextval('persons_list_hr_person_list_hr_id_seq'::regclass), -- primary key
+  person text, -- SHA256 of name: Firstname.Secondname (unique)
+  organization_id integer, -- ID of organization
+  is_leader boolean, -- Leader of organization
+  is_deputy boolean -- Deputy leader of organization
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.persons_list_hr
+  OWNER TO postgres;
+COMMENT ON COLUMN public.persons_list_hr.person_list_hr_id IS 'primary key';
+COMMENT ON COLUMN public.persons_list_hr.person IS 'SHA256 of name: Firstname.Secondname (unique)';
+COMMENT ON COLUMN public.persons_list_hr.organization_id IS 'ID of organization';
+COMMENT ON COLUMN public.persons_list_hr.is_leader IS 'Leader of organization';
+COMMENT ON COLUMN public.persons_list_hr.is_deputy IS 'Deputy leader of organization';
+
+-- Table: public.street_scooter_organizations
+
+-- DROP TABLE public.street_scooter_organizations;
+
+CREATE TABLE public.street_scooter_organizations
+(
+  street_scooter_organization_id integer NOT NULL DEFAULT nextval('street_scooter_organizations_street_scooter_organization_id_seq'::regclass), -- primary key
+  street_scooter_organization text,
+  parent_organization_id integer -- Null if no parent
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.street_scooter_organizations
+  OWNER TO postgres;
+COMMENT ON COLUMN public.street_scooter_organizations.street_scooter_organization_id IS 'primary key';
+COMMENT ON COLUMN public.street_scooter_organizations.parent_organization_id IS 'Null if no parent';
+

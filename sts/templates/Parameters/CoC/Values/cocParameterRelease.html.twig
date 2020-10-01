@@ -1,0 +1,39 @@
+{% trans_default_domain 'messages' %}
+
+<h2>{{ 'parameters.values.twig.cocRelease.header' | trans }}</h2>
+<div>
+    <table>
+        <tr>
+            <th>{{ 'parameters.values.twig.cocRelease.approvalCode' | trans }}</th>
+            {% if cocReleasedParameters.approvalCode is not null %}
+                <td>{{ cocReleasedParameters.approvalCode }}</td>
+            {% else %}
+                <td>{{ 'parameters.values.twig.cocRelease.notDefined' | trans }}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <th>{{ 'parameters.values.twig.cocRelease.approvalDate' | trans }}</th>
+            {% if cocReleasedParameters.approvalDate is not null %}
+                <td>{{ cocReleasedParameters.approvalDate|date('Y-m-d') }}</td>
+            {% else %}
+                <td>{{ 'parameters.values.twig.cocRelease.notDefined' | trans }}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <th>{{ 'parameters.values.twig.cocRelease.releasedDate' | trans }}</th>
+            {% if cocReleasedParameters.releasedDate is not null %}
+                <td>{{ cocReleasedParameters.releasedDate|date('Y-m-d') }}</td>
+            {% else %}
+                <td>{{ 'parameters.values.twig.cocRelease.notDefined' | trans }}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <th>{{ 'parameters.values.twig.cocRelease.releasedBy' | trans }}</th>
+            {% if cocReleasedParameters.releasedBy is not null %}
+                <td>{{ cocReleasedParameters.releasedBy|replace({'.': ' '}) }}</td>
+            {% else %}
+                <td>{{ 'parameters.values.twig.cocRelease.notDefined' | trans }}</td>
+            {% endif %}
+        </tr>
+    </table>
+</div>

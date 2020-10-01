@@ -1,0 +1,40 @@
+{% block body %}
+    <div>
+        <h2>{{ 'vehicles.configuration.partials.keyComponents.twig.addKeyFeatures' | trans }}</h2>
+        <table class="{{  parameters.historyEvent | historyEventClass }}">
+            <tr>
+                <th>{{ 'vehicles.configuration.partials.keyComponents.twig.name' | trans }}</th>
+                <th>{{ 'vehicles.configuration.partials.keyComponents.twig.value' | trans }}</th>
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.deutschePost' | trans }}</td>
+                {{ parameters.isDeutschePostConfiguration | historyValueTd }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.stdProdPlace' | trans }}</td>
+                {{ parameters.stsPlaceOfProduction
+                | historyValueTd([], [], [], [], null, historyModel.stsProductionLocations, []) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.espFunctionality' | trans }}</td>
+                {{ parameters.espFunctionality | historyValueTd }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.tirePressureFront' | trans }}</td>
+                {{ parameters.tirePressFront | historyValueTd }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.tirePressureRear' | trans }}</td>
+                {{ parameters.tirePressRear | historyValueTd }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.comment' | trans }}</td>
+                {{ parameters.comment | historyValueTd }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.testSoftwareVersion' | trans }}</td>
+                {{ parameters.testSoftwareVersion | historyValueTd }}
+            </tr>
+        </table>
+    </div>
+{% endblock %}

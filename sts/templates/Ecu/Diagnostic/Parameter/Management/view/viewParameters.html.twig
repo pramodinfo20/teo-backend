@@ -1,0 +1,16 @@
+{% block body %}
+    <table>
+        <thead>
+            <th>{{ 'ecu.diagnostic.parameter.management.view.viewParameters.twig.id' | trans }}</th>
+            <th>{{ 'ecu.diagnostic.parameter.management.view.viewParameters.twig.name' | trans }}</th>
+        </thead>
+        <tbody>
+            {% for id,parameter in parameters %}
+                <tr>
+                    <td> {{ parameter.parameterId }} </td>
+                    <td> {{  parameter.value }} </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

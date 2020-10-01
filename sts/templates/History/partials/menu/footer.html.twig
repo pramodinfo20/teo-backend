@@ -1,0 +1,43 @@
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    <div class="row">
+        <div class="horizontalMenuButtons" id="footer">
+            <div class="MiniButtons">
+                <ul class="submenu_ul">
+                    <li><span class="sts_submenu W130" id="back">{{ 'history.partials.menu.twig.footer.goBack' | trans }}</span></li>
+                    <li><span class="sts_submenu W130" id="history">{{ 'history.partials.menu.twig.footer.history' | trans }}</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {% include 'History/partials/selector/generalSelector.html.twig'  %}
+{% endblock %}
+
+{# ---------------------------- Dialogs ----------------------------------------- #}
+
+{# ----------------------------------------------------------------------------- #}
+
+
+{% block stylesheets %}
+    <style>
+        #footer {
+            margin-bottom: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block javasctripts %}
+    <script>
+        $( document ).ready(function() {
+            $(document).on('click', '#history', function() {
+                historyDialog.dialog('open');
+            })
+
+            $(document).on('click', '#back', function() {
+                window.location.href = 'index.php?action=' + '{{ legacyAction }}'
+            })
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% form_theme propertiesForm 'Ecu/Sw/Properties/Form/formThemeChangeOrder.html.twig' %}
+
+{{ form(propertiesForm) }}
+
+<script>
+    $(document).ready(function () {
+        $(".properties-table").collection({
+            allow_up: true,
+            allow_down: true,
+            allow_add: false,
+            add_at_the_end: false,
+            elements_selector: '.properties'
+        });
+
+        $(document).on('click', '#save', function () {
+            $.ajax({
+                method: 'POST',
+                data: $('form[name="EcuSwPropertiesCollectionType"]').serialize(),
+                url: 'index.php?action=propertiesManagement&method=ajaxCallPost&ajax=changeOrder&sw=' + {{ sw }},
+                datatype: "json",
+                beforeSend: function () {
+                    $('#streetscooter-loader-mask').css('display', 'flex');
+                },
+                success: function (result) {
+                    window.location.href = "index.php?action=propertiesManagement&method=regenerateView&ecu=" +
+                            {{ ecu }} +"&sw=" + {{ sw }};
+                    $('#streetscooter-loader-mask').css('display', 'none');
+                },
+                error: function () {
+                    $('#streetscooter-loader-mask').css('display', 'none');
+                }
+            });
+        });
+    });
+</script>
+

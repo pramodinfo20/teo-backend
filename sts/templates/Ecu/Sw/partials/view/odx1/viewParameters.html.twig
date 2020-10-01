@@ -1,0 +1,76 @@
+{% trans_default_domain 'messages' %}
+
+<table class="parameters_table odx1_table parametersValues">
+    <thead>
+    {% if copy is defined %}
+        <th><input type="checkbox" name="copy_all"></th>
+    {% endif %}
+    <th>{{ 'ecu.sw.partials.view.odx1.twig.viewParameters.order' | trans }}</th>
+    <th>{{ 'ecu.sw.partials.view.odx1.twig.viewParameters.name' | trans }}</th>
+    {%  if not odxSts02 %}
+     <th>{{ 'ecu.sw.partials.view.odx1.twig.viewParameters.odx' | trans }}</th>
+    {% endif %}
+    <th>{{ 'ecu.sw.partials.view.odx1.twig.viewParameters.rwc' | trans }}</th>
+    <th>{{ 'ecu.sw.partials.view.odx1.twig.viewParameters.type' | trans }}</th>
+    <th>{{ 'ecu.sw.partials.view.odx1.twig.viewParameters.unit' | trans }}</th>
+    <th>{{ 'ecu.sw.partials.view.odx1.twig.viewParameters.value' | trans }}</th>
+    <th>{{ 'ecu.sw.partials.view.odx1.twig.viewParameters.defaultType' | trans }}</th>
+    </thead>
+    <tbody>
+    {% if parameters is defined %}
+        {% for id,parameter in parameters %}
+            <tr>
+                {% if copy is defined %}
+                    <td>
+                        {% if id > 1 %}
+                            <input type="checkbox" name="copy">
+                        {% endif %}
+                    </td>
+                    <td>{{ parameter.order | orderForReservedParameter(parameter.order) }}</td>
+                {% else %}
+                    <td>
+                        {{ parameter.order | orderForReservedParameter(parameter.order) }}
+                    </td>
+                {% endif %}
+                <td>
+                    {{ parameter.name }}
+                </td>
+                {% if not odxSts02 %}
+                    <td class="centerColumn">
+                        {{ (parameter.odx2)? ('<span class="odx_yes">' ~ ('ecu.sw.partials.view.odx1.twig.viewParameters.yes' | trans) ~'</span>') | raw
+                        : ('<span class="odx_no">' ~ ('ecu.sw.partials.view.odx1.twig.viewParameters.no' | trans) ~ '</span>') | raw  }}
+                    </td>
+                {% endif %}
+                <td>
+                    {{ (parameter.read)? ('ecu.sw.partials.view.odx1.twig.viewParameters.r') | trans  : '' }}
+                    {{ (parameter.write)? ('ecu.sw.partials.view.odx1.twig.viewParameters.w') | trans  : '' }}
+                    {{ (parameter.confirm)? ('ecu.sw.partials.view.odx1.twig.viewParameters.c') | trans  : '' }}
+                </td>
+                <td>
+                    {{ parameter.variableType }}
+                </td>
+                <td>
+                    {{ parameter.unit }}
+                </td>
+                <td>
+                    {% if parameter.valueString is not null %}
+                        {{ (parameter.valueString == '') ? '' : parameter.valueString }}
+                    {% elseif parameter.valueInteger is not null %}
+                        {{ parameter.valueInteger }}
+                    {% elseif parameter.valueUnsigned is not null %}
+                        {{ parameter.valueUnsigned }}
+                    {% elseif parameter.linkedValueName is not null %}
+                        {{ parameter.linkedValueName }}
+                    {% elseif parameter.variableType == 'bool' %}
+                        {{ (parameter.valueBool) ? ('ecu.sw.partials.view.odx2.twig.viewParameters.trueTxt' | trans) :
+                        ('ecu.sw.partials.view.odx2.twig.viewParameters.falseTxt' | trans) }}
+                    {% endif %}
+                </td>
+                <td>
+                    {{ parameter.linkingType }}
+                </td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+    </tbody>
+</table>

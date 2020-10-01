@@ -1,0 +1,32 @@
+{#
+    Search by configuration
+    Optins to search:
+        - Input text
+        - Series, Model, Release
+#}
+
+<div class="search ui-widget" style="display:inline-block">
+    <label for="inp_search_veh_conf">{{ 'vehicles.configuration.partials.search.twig.searchLabel' | trans }}</label><br>
+    <input id="inp_search_veh_conf" name="inp_search_veh_conf" type="text" value="" style="">
+</div>
+<div class="options-bar">
+    <ul class="submenu_ul">
+        <li><span id="btn_search_veh_conf"
+                  class="sts_submenu W140 disabled">{{ 'vehicles.configuration.partials.search.twig.searchButton' | trans }}</span>
+        </li>
+    </ul>
+</div>
+<br/>
+<div class="selectors" style="display:inline-block">
+    <label for="sel_type">{{ 'vehicles.configuration.partials.search.twig.searchSeries' | trans }}</label><br>
+    <select id="sel_type" size="10" style=""></select>
+</div>
+<div class="selectors" style="display:inline-block">
+    <label for="sel_year">{{ 'vehicles.configuration.partials.search.twig.searchYear' | trans }}</label><br>
+    <select id="sel_year" size="10" style=""></select>
+</div>
+<div class="selectors" style="display:inline-block">
+    <label for="sel_series">{{ 'vehicles.configuration.partials.search.twig.searchRelease' | trans }}</label><br>
+    <select id="sel_series" size="10" style=""></select>
+</div>
+<br/>

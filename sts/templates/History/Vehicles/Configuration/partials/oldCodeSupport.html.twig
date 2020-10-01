@@ -1,0 +1,18 @@
+{% block body %}
+    <div>
+        <h2>{{ 'vehicles.configuration.form.oldCodeSupport.twig.additionalInformations' | trans }}</h2>
+
+        <table class="{{  parameters.historyEvent | historyEventClass }}">
+             <tbody>
+                <tr>
+                    <td>{{ 'vehicles.configuration.form.oldCodeSupport.twig.vinMethod' | trans }}</td>
+                    {{ parameters.vinMethod | historyValueTd}}
+                </tr>
+                <tr>
+                    <td>{{ 'vehicles.configuration.form.oldCodeSupport.twig.smartLoading' | trans }}</td>
+                    {{ parameters.chargerControllable | historyValueTd }}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

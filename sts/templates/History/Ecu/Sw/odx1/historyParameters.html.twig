@@ -1,0 +1,66 @@
+{% trans_default_domain 'messages' %}
+
+<table class="parameters_table odx1_table {{  parameters.historyEvent | historyEventClass }}">
+    {% include 'History/Ecu/Sw/odx1/historyParametersHeader.html.twig' %}
+
+    <tbody>
+    {% for id,parameter in parameters.parameters %}
+        <tr class="{{ parameter.historyEvent | historyEventValueClass }}">
+            {{ parameter.order | historyValueTd }}
+
+            {{ parameter.name | historyValueTd }}
+
+            {% if not odxSts02 | historyRawByEventValue(parameter.historyEvent) %}
+                {% if parameter.odx2 | historyRawByEventValue(parameter.historyEvent) %}
+                    {{ parameter.odx2 | historyValueTd(['centerColumn'], ['odx_yes']) }}
+                {% else %}
+                    {{ parameter.odx2 | historyValueTd(['centerColumn'], ['odx_no']) }}
+                {% endif %}
+            {% endif %}
+            <td class="{{ (parameter.read.isEqual and parameter.write.isEqual and parameter.confirm.isEqual) ? '' : ' updated ' }}">
+                {% if parameter.historyEvent == 1 %}
+                    <span class='historyValue'>
+                                {{ (parameter.read | historyRawAfterValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.r' | trans) : '' }}
+                        {{ (parameter.write | historyRawAfterValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.w' | trans) : '' }}
+                        {{ (parameter.confirm | historyRawAfterValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.c' | trans) : '' }}
+                            </span>
+                {%  elseif parameter.historyEvent == 2 %}
+                    <span title="Previous value:
+                                {{ (parameter.read | historyRawBeforeValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.r' | trans) : '' }}
+                                {{ (parameter.write | historyRawBeforeValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.w' | trans) : '' }}
+                                {{ (parameter.confirm | historyRawBeforeValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.c' | trans) : '' }}
+                                " class='historyValue'>
+                                {{ (parameter.read | historyRawAfterValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.r' | trans) : '' }}
+                        {{ (parameter.write | historyRawAfterValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.w' | trans) : '' }}
+                        {{ (parameter.confirm | historyRawAfterValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.c' | trans) : '' }}
+                            </span>
+                {% else %}
+                    <span  class='historyValue'>
+                                {{ (parameter.read | historyRawBeforeValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.r' | trans) : '' }}
+                        {{ (parameter.write | historyRawBeforeValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.w' | trans) : '' }}
+                        {{ (parameter.confirm | historyRawBeforeValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.c' | trans) : '' }}
+                            </span>
+                {% endif %}
+            </td>
+
+            {{ parameter.variableType | historyValueTd }}
+
+            {{ parameter.unit | historyValueTd }}
+
+            {% if parameter.valueString | historyRawByEventValue(parameter.historyEvent) is not null %}
+                {{ parameter.valueString | historyValueTd }}
+            {% elseif parameter.valueInteger | historyRawByEventValue(parameter.historyEvent) is not null %}
+                {{ parameter.valueInteger | historyValueTd }}
+            {% elseif parameter.valueUnsigned | historyRawByEventValue(parameter.historyEvent) is not null %}
+                {{ parameter.valueUnsigned | historyValueTd }}
+            {% elseif parameter.valueBool | historyRawByEventValue(parameter.historyEvent) is not null %}
+                {{ parameter.valueBool | historyValueTd }}
+            {% elseif parameter.linkedValueName | historyRawByEventValue(parameter.historyEvent) is not null %}
+                {{ parameter.linkedValueName | historyValueTd }}
+            {% endif %}
+
+            {{ parameter.linkingType | historyValueTd }}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

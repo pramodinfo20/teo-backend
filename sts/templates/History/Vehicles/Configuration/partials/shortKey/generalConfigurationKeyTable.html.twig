@@ -1,0 +1,17 @@
+{% block body %}
+    <h2>{{ 'vehicles.configuration.partials.generalConfigurationKeyTable.twig.vehKey' | trans }}</h2>
+    <div>
+        <table class="{{  parameters.historyEvent | historyEventClass }}">
+            <tr>
+                <th>{{ 'vehicles.configuration.show.twig.vehKey' | trans }}</th>
+                {{ parameters.vehicleConfigurationKey | historyValueTd }}
+            </tr>
+            {% if (parameters.subConfigurationId | historyRawByEventValue(parameters.historyEvent) is not null) %}
+                <tr>
+                    <th>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.pentaNumber' | trans }}</th>
+                    {{ parameters.pentaNumber | historyValueTd }}
+                </tr>
+            {% endif %}
+        </table>
+    </div>
+{% endblock %}

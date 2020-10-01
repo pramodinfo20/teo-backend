@@ -1,0 +1,7 @@
+{% trans_default_domain 'messages' %}
+
+<form method="post" action="{{ path('global_parameters_delete', {'globalParameterId': globalParameter.globalParameterId}) }}"
+      onsubmit="return confirm(\"{{ 'parameters.twig._delete_form.areUSure' | trans }}\");">
+    <input type="hidden" name="_method" value="DELETE">
+    <button class="btn">{{ 'parameters.twig._delete_form.delte' | trans }}</button>
+</form>

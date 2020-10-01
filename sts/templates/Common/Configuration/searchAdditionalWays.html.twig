@@ -1,0 +1,66 @@
+{#
+#}
+<fieldset>
+    <legend><span class="toggle_view genericon genericon-collapse"></span>
+        {{ 'vehicles.configuration.partials.search.twig.configBoxLabel' | trans }}
+    </legend>
+    <div class="content-one active" style="">
+        {% include 'Common/Configuration/searchMethods/byConfiguration.html.twig' %}
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend><span class="toggle_view genericon genericon-expand"></span>
+        {{ 'vehicles.configuration.partials.search.twig.vinBoxLabel' | trans }}
+    </legend>
+    <div class="content-one" style="display: none;">
+        {% include 'Common/Configuration/searchMethods/byVin.html.twig' %}
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend><span class="toggle_view genericon genericon-expand"></span>
+        {{ 'vehicles.configuration.partials.search.twig.licPlateBoxLabel' | trans }}
+    </legend>
+    <div class="content-one" style="display: none;">
+        {% include 'Common/Configuration/searchMethods/byLicensePlate.html.twig' %}
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend><span class="toggle_view genericon genericon-expand"></span>
+        {{ 'vehicles.configuration.partials.search.twig.locationBoxLabel' | trans }}
+    </legend>
+    <div class="content-one" style="display: none;">
+        {% include 'Common/Configuration/searchMethods/byLocation.html.twig' %}
+    </div>
+</fieldset>
+
+{% include 'Common/Configuration/searchResult.html.twig' %}
+<script>
+
+    $(document).ready(function () {
+
+        const allSlideButtons = $('.toggle_view');
+        const allPanels = $('.content-one');
+
+        allSlideButtons.click(function () {
+            const $this = $(this);
+            const $target = $this.parent().next();
+
+            if (!$target.hasClass('active')) {
+                allPanels.removeClass('active').slideUp();
+                $target.addClass('active').slideDown();
+            }
+
+            allSlideButtons.removeClass('genericon-expand');
+            allSlideButtons.removeClass('genericon-collapse');
+            allSlideButtons.addClass('genericon-expand');
+            $this.removeClass('genericon-expand');
+            $this.addClass('genericon-collapse');
+
+            return false;
+        });
+    });
+
+</script>

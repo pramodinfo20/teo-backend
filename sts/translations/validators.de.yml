@@ -1,0 +1,58 @@
+constraints:
+  parameter:
+    lessThanOrEqual:
+      message: Der Minimalwert muss kleiner oder gleich dem Maximalwert sein
+    range:
+      message: "Der Wert muss innerhalb des Bereiches zwischen Minimalwert (%min%) und Maximalwert (%max%) liegen"
+      message2: "Die Zeichenlänge muss innerhalb des Bereichs zwischen Minimalwert (%min%) und Maximalwert (%max%) liegen"
+    minMaxPropertyValue:
+      messageComma: "Komma nicht gültig. Dezimal Punkt verwenden!"
+      messageGrEq: "Vorzeichenloser Wert muss größer oder gleich 0 sein!"
+      messageIntegers: "Nur ganzzahliger Wert!"
+    minMaxPropertyNotEmpty:
+      message: "Wert darf nicht leer bleiben!"
+    minMaxPropertyNumeric:
+      message: "Wert ist nicht numerisch!"
+    notAllowedValue:
+      message: "Dieser Feldwert ist nicht erlaubt!"
+  ecuSwProperties:
+    ExistingPropertyName:
+      msgPropExistCurrent: "Eingenschaft mit diesem Namen existiert bereits für aktuelles ECU-System!"
+      msgPropExistInDb:  "Eigenschaft mit diesem Namen und Wert existiert bereits für ECU-System"
+  subconfiguration:
+    longKey_shorKey:
+      longKey_shortKey:
+        message: "Erstellter Schlüssel (%string%) ist fehlerhaft. Es existiert bereits eine Konfiguration / Unterkonfiguration mit diesem Schlüssel"
+        message2: Schlüsselelemente fehlen
+      longKeyQuestionMark_shortKeyQuestionMark:
+        message: "Erstellter Schlüssel (%string%)  ist fehlerhaft. Schlüssel darf keine Fragezeichen mehr enthalten"
+        message2: "Schlüsselelemente fehlen"
+    longKey:
+      typeYearSeriesLongKey:
+        message: "Baureihe/Modelljahr/Release (%string%) ist fehlerhaft. Korrekte Bezeichnung für neue Konfigurationen: D1702 -  (ohne E17 - E19)."
+    shortKey:
+      typeYearSeriesShortKey:
+        message: "Baureihe/Modelljahr/Release (%string%) ist fehlerhaft. Korrekte Bezeichnung für alte Konfigurationen: A000 - D1701 und E17 - E19."
+    tirePressure:
+      messageFront: "Der Reifendruck vorne sollte zwischen %min% und %max% kPa liegen!"
+      messageRear: "Der Reifendruck hinten sollte zwischen %min% und %max% kPa liegen!"
+    release:
+      assignedSoftwareMessage: "Nicht alle ECUs haben zugewiesene ECU Systeme."
+      releasedSoftwareMessage: "Nicht alle ECU Systeme sind freigegeben."
+      assignedGlobalsWithValuesMessage: "Nicht alle globalen Parameter, die ECU Systemen zugewiesen sind, haben einen eingetragenen Wert für diese Sub-Konfiguration."
+  stsVersion:
+    tooShorMessage: "Die Versionsbezeichnung (%string%) hat nicht die erforderliche Länge."
+    message:  "Die Versionsbezeichnung (%string%) enthält ungültige Zeichen: Nur folgendes Zeichenschema ist erlaubt: ABYXXXXXX_XX"
+  udsMessage:
+    message: Die Bytes enthalten einen ungültigen startBit oder stopBit Wert
+    startBitMessage: Das startBit ist gleich oder größer als das stopBit
+    stopBitMessage: "Das stopBit ist gleich oder größer als %bits% bits"
+  windchill:
+    message: "Der eingegebene Windchill Link (%url%) enthält eine ungültige Addresse"
+  udsIdValue:
+    message: "Die UDS-ID muss hexadezimal sein"
+    message2: "Länge für UDS-ID sollte 2 Byte sein"
+  parameterNameGlobal:
+    message: "Der Parameter Name: %parameterName% muss für den verlinkten globalen Parameter %globalName% eindeutig sein."
+  parameterName:
+    message: "Der Parametername: (%parameterName%) muss einzigartig für die SW sein."

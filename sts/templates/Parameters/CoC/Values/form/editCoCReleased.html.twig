@@ -1,0 +1,24 @@
+{% trans_default_domain 'messages' %}
+
+{% set saveActionUrl = legacyUrl(currentLegacyUrl, {'method': 'saveParameters'}, true) %}
+{{ form_start(releasedCoCForm, {'action': saveActionUrl, 'method': 'POST', 'attr': {'id': 'CoCReleasedForm'}}) }}
+<table>
+    <tr>
+        <th>{{ 'parameters.values.twig.cocRelease.approvalCode' | trans }}</th>
+        <td>{{ form_widget(form.approvalCode)}}</td>
+    </tr>
+    <tr>
+        <th>{{ 'parameters.values.twig.cocRelease.approvalDate' | trans }}</th>
+        <td>{{ form_widget(form.approvalDate)}}</td>
+    </tr>
+    {#<tr>#}
+        {#<th>{{ 'parameters.values.twig.cocRelease.releasedDate' | trans }}</th>#}
+        {#<td>{{ form_widget(form.releasedDate)}}</td>#}
+    {#</tr>#}
+    {#<tr>#}
+        {#<th>{{ 'parameters.values.twig.cocRelease.releasedBy' | trans }}</th>#}
+        {#<td>{{ form_widget(form.releasedBy)}}</td>#}
+    {#</tr>#}
+</table>
+
+{{ form_end(releasedCoCForm) }}

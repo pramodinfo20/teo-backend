@@ -1,0 +1,156 @@
+{% trans_default_domain 'messages' %}
+
+<!-- Dialogs -->
+<div id="add-revision-dialog" title="{{ 'ecu.sw.partials.twig.createNewVersion.dialog.title.addNew' | trans }}">
+    <div class="validateTips"></div>
+    <label for="newSwName">{{ 'ecu.sw.partials.twig.createNewVersion.dialog.body.name' | trans }}</label>
+    <input type="text" name="newSwName" id="revisionName" value="" class="text ui-widget-content ui-corner-all">
+</div>
+
+{% block stylesheets %}
+    <style>
+        .validateTips {
+            border: 1px solid transparent;
+            padding: 0.3em;
+            margin-bottom: 5px;
+        }
+
+        .ui-state-highlight,
+        .ui-widget-content .ui-state-highlight,
+        .ui-widget-header .ui-state-highlight {
+            border: 1px solid #dad55e;
+            background: #fffa90;
+            color: #777620;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        /*------------- Dialog-related validating functions -------------*/
+        function updateTips(t) {
+            let tips = $(".validateTips");
+            tips.text(t).addClass("ui-state-highlight");
+            setTimeout(function() {
+                tips.removeClass("ui-state-highlight", 5000);
+            }, 500 );
+        }
+
+        function checkLength(name, len) {
+            if (name.length < len) {
+                updateTips("{{ 'ecu.sw.partials.twig.createNewVersion.tooShort' | trans }}");
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function checkIfExists(name) {
+            if (getThisEcuSwNames().includes(name)) {
+                updateTips("{{ 'ecu.sw.partials.twig.createNewVersion.nameExists' | trans }}");
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function checkPattern(name) {
+            let regexp = /^[ABCDEF]{1}[1-3]{1}[0-9]{1}[A-Z]{1}([0-9]*)([_]{1}[0-9]{1,8})*$/;
+            if (!(regexp.test(name))) {
+                updateTips("{{ 'ecu.sw.partials.twig.createNewVersion.notMatchPattern' | trans }}");
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function getThisEcuSwNames() {
+            let list = $("#sw_versions_list").children();
+            let names = new Array();
+            for (let i = 0; i < list.length; i++) {
+                names.push(list[i].text);
+            }
+            return names;
+        }
+
+        function createSw(currentDialog) {
+            let valid = true;
+            let revisionName = $('#revisionName').val().trim();
+            let selectedEcuId = $('#list_of_ecus').val();
+
+            valid = valid && checkIfExists(revisionName);
+
+            let dialog = createDialog;
+            if (valid) {
+                $.ajax({
+                    method: 'GET',
+                    data: {
+                        action: 'parameterManagement',
+                        method: 'ajaxCall',
+                        path: 'sw',
+                        ajax: 'check',
+                        sw: revisionName,
+                    },
+                    url: "index.php",
+                    dataType: "text",
+                    success: function (result) {
+                        if (result['status'] === 'failure') {
+                            saveHistoryExceptionWindow(result);
+                        } else if (result != 0) {
+                            updateTips("{{ 'ecu.sw.partials.twig.createNewVersion.nameExists2' | trans }}");
+                        } else {
+                            dialog.dialog("close");
+                            $('#revisionName').val = "";
+                            // add new sw version
+                            $.ajax({
+                                method: "GET",
+                                url: "index.php",
+                                data: {
+                                    action: 'parameterManagement',
+                                    method: 'ajaxCall',
+                                    path: 'sw',
+                                    ajax: 'add',
+                                    ecu: selectedEcuId,
+                                    sts: revisionName
+                                },
+                                dataType: "json",
+                                success: function (res) {
+                                    createDialog.dialog("close");
+                                    $('.validateTips').empty();
+
+                                    if (res['status'] === 'failure') {
+                                        saveHistoryExceptionWindow(res);
+                                    } else {
+                                        window.location.href = 'index.php?action=parameterManagement&method=regenerateView&ecu='
+                                            + {{ (ecu is not null)? ecu: 0 }} +'&sw=' + res.inserted + '&odx=2&mode=2';
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        }
+
+        /*------------- Dialogs ------------*/
+        var createDialog = $("#add-revision-dialog").dialog({
+            autoOpen: false,
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "{{ 'dialog.button.createRevision' | trans }}": function() {
+                    historyComment().then(function (result) {
+                        createSw();
+                    });
+                },
+                "{{ 'dialog.button.cancel' | trans }}": function () {
+                    $('.validateTips').empty();
+
+                    createDialog.dialog("close");
+                }
+            }
+        });
+    </script>
+{% endblock %}

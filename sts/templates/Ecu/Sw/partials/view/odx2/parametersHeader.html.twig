@@ -1,0 +1,47 @@
+{% trans_default_domain 'messages' %}
+
+<thead>
+    {% if parametersButtons['copy'] == 1 %}
+        <th class="centerColumn"><input type="checkbox" name="copy_all" title="{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.selectAll' | trans }}"></th>
+    {% elseif parametersButtons['delete'] == 1 %}
+        <th class="centerColumn"><input type="checkbox" name="delete_all" title="{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.selectAll' | trans }}"></th>
+    {% elseif parametersButtons['order'] == 1 %}
+        <th></th>
+    {% endif %}
+    <th>{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.order' | trans }}</th>
+    <th>{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.name' | trans }}</th>
+    {% if not odxSts02 %}
+        <th>{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.odx' | trans }}</th>
+    {% endif %}
+    {% if header.protocol == 'UDS+XCP' %}
+        <th>{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.protocol' | trans }}</th>
+    {% endif %}
+    {% if header.protocol != 'XCP' %}
+        <th>{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.udsId' | trans }}</th>
+    {% endif %}
+    <th>{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.rwc' | trans }}</th>
+    <th>{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.type' | trans }}</th>
+    <th>{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.coding' | trans }}</th>
+    <th>{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.bigEndian' | trans }}</th>
+    <th>{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.bytes' | trans }}</th>
+    <th>{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.factor' | trans }}</th>
+    <th>{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.offset' | trans }}</th>
+    <th>{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.unit' | trans }}</th>
+    <th>{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.value' | trans }}</th>
+    <th>Hex</th>
+    <th id="global">{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.global' | trans }}</th>
+    <th id="dynamic">{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.dynamic' | trans }}</th>
+    <th>{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.defaultType' | trans }}</th>
+    <th>{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.start' | trans }}</th>
+    <th>{{ 'ecu.sw.partials.view.odx2.twig.parametersHeader.stop' | trans }}</th>
+</thead>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /* Hide default GP & Dynamic */
+        $('#global').toggle(false);
+        $('#dynamic').toggle(false);
+    });
+</script>
+{% block javascripts %}
+{% endblock %}

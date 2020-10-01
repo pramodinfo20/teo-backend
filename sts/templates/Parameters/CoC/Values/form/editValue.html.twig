@@ -1,0 +1,16 @@
+{% form_theme parametersForm 'Parameters/CoC/Values/form/formTheme.html.twig' %}
+
+{% set saveActionUrl = legacyUrl(currentLegacyUrl, {'method': 'saveParameters'}, true) %}
+{{ form(parametersForm, {'action': saveActionUrl, 'method': 'POST', 'attr': {'id': 'CocParametersForm'}}) }}
+
+{% block javascripts %}
+    {{ include('Parameters/CoC/Values/form/js/formJs.html.twig', {'odx': 1}) }}
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        form[name='CocParametersCollectionType'] {
+            margin-bottom: 10px;
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% if parameters[0].isNewNameConvention == false %}
+    <div>
+        <h2>{{ 'vehicles.configuration.partials.keyComponents.twig.additionalKeyTableTitle' | trans }}</h2>
+        <table>
+            <tr>
+                <th>{{ 'vehicles.configuration.partials.keyComponents.twig.name' | trans }}</th>
+                <th>{{ 'vehicles.configuration.partials.keyComponents.twig.value' | trans }}</th>
+                <th>{{ 'vehicles.configuration.partials.keyComponents.twig.visibleOnReport' | trans }}</th>
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.espPart' | trans }}</td>
+                <td>{{ parameters[2].espPart.value }}</td>
+                <td>{{ parameters[2].espPart.visibleOnReport }}</td>
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.rotBeac' | trans }}</td>
+                <td>{{ parameters[2].rotatingBacon.value }}</td>
+                <td>{{ parameters[2].rotatingBacon.visibleOnReport }}</td>
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.coDriverPart' | trans }}</td>
+                <td>{{ parameters[2].partAtCoDriverPosition.value }}</td>
+                <td>{{ parameters[2].partAtCoDriverPosition.visibleOnReport }}</td>
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.batteryType' | trans }}</td>
+                <td>{{ parameters[2].typeOfBattery.value }}</td>
+                <td>{{ parameters[2].typeOfBattery.visibleOnReport }}</td>
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.radio' | trans }}</td>
+                <td>{{ parameters[2].radio.value }}</td>
+                <td>{{ parameters[2].radio.visibleOnReport }}</td>
+            </tr>
+
+        </table>
+    </div>
+{% endif %}
+
+
+<div>
+    <h2>{{ 'vehicles.configuration.partials.keyComponents.twig.addKeyFeatures' | trans }}</h2>
+    <table>
+        <tr>
+            <th>{{ 'vehicles.configuration.partials.keyComponents.twig.name' | trans }}</th>
+            <th>{{ 'vehicles.configuration.partials.keyComponents.twig.value' | trans }}</th>
+        </tr>
+        {% if parameters[0].isNewNameConvention == false %}
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.stdColor' | trans }}</td>
+                <td>{{ parameters[3].standardColor }}</td>
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.deutschePost' | trans }}</td>
+                <td>{{ parameters[3].isDeutschePostConfiguration }}</td>
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.targetState' | trans }}</td>
+                <td>{{ parameters[3].targetState }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.deutschePost' | trans }}</td>
+                <td>{{ parameters[3].isDeutschePostConfiguration }}</td>
+            </tr>
+        {% endif %}
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.stdProdPlace' | trans }}</td>
+            <td>{{ parameters[3].stdPlaceOfProduction }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.espFunctionality' | trans }}</td>
+            <td>{{ parameters[3].espFunctionality }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.tirePressureFront' | trans }}</td>
+            <td>{{ parameters[3].tirePresFront }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.tirePressureRear' | trans }}</td>
+            <td>{{ parameters[3].tirePresRear }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.comment' | trans }}</td>
+            <td>{{ parameters[3].comment }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.testSoftwareVersion' | trans }}</td>
+            <td>{{ parameters[3].testSoftwareVersion }}</td>
+        </tr>
+    </table>
+</div>

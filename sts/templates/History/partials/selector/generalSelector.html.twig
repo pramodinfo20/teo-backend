@@ -1,0 +1,83 @@
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    {# ---------------------------- Dialogs ----------------------------------------- #}
+    <div id="history-dialog" title="{{ 'history.partials.menu.twig.footer.history' | trans }}">
+        <h3>{{ 'history.partials.selector.twig.generalSelector.default' | trans }}</h3>
+        <p>{{ 'history.partials.selector.twig.generalSelector.filters' | trans }}</p>
+        {{ form_start(form, {'attr': {'id': 'generalSearch'}}) }}
+             <span class="boldItem">{{ 'history.partials.selector.twig.generalSelector.fromTo' | trans }}</span><br />
+             {{ form_widget(form.filters[0]) }}{{ form_widget(form.createdFrom) }} - {{ form_widget(form.createdTo) }}<br />
+            <span class="boldItem">{{ 'history.partials.selector.twig.generalSelector.createdBy' | trans }}</span><br />
+             {{ form_widget(form.filters[1]) }}{{ form_widget(form.createdBy) }}<br />
+            <span class="boldItem">{{ 'history.partials.selector.twig.generalSelector.comment' | trans }}</span><br />
+             {{ form_widget(form.filters[2]) }}{{ form_widget(form.comment) }}<br />
+            <span class="boldItem">{{ 'history.partials.selector.twig.generalSelector.event' | trans }}</span><br />
+            {{ form_widget(form.filters[3]) }}{{ form_widget(form.event) }}<br />
+            <span class="boldItem">{{ 'history.partials.selector.twig.generalSelector.scope' | trans }}</span><br />
+            {{ form_widget(form.filters[4]) }}{{ form_widget(form.fk, { 'value' : ''~fk }) }}
+            <span>{{ 'history.partials.selector.twig.generalSelector.searchWHistory' | trans }}</span>
+        {{ form_end(form, {'render_rest': false}) }}
+    </div>
+
+    <div id="history-search-dialog" title="{{ 'history.partials.menu.twig.footer.history' | trans }}">
+        <div class="searchResultsDialog"></div>
+    </div>
+    {# ------------------------------------------------------------------------------ #}
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .boldItem {
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .searchResultsDialog {
+            max-height: 400px;
+            overflow-y: scroll;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function search() {
+            return  $.ajax({
+                method: 'POST',
+                data: $('#generalSearch').serialize(),
+                url: 'index.php?action=history&method=ajaxCallPost&type= ' + {{ type }} + '&fk=' + {{ fk }} + '&ajax=search',
+                dataType: "html",
+                success: function (result) {
+                    historyDialog.dialog('close');
+
+                    $(".searchResultsDialog").empty();
+                    $(".searchResultsDialog").append(result);
+
+                    historySearchDialog.dialog('open');
+                }
+            });
+        }
+
+        var historyDialog = $("#history-dialog").dialog({
+            autoOpen: false,
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "{{ 'history.partials.selector.twig.generalSelector.search' | trans }}": function () {
+                    search();
+                }
+            }
+        });
+
+        var historySearchDialog = $("#history-search-dialog").dialog({
+            autoOpen: false,
+            resizable: false,
+            height: "auto",
+            width: "auto",
+            modal: true,
+        });
+    </script>
+{% endblock %}

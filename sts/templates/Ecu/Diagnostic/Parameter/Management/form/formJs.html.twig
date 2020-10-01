@@ -1,0 +1,16 @@
+
+<script>
+    $(document).ready(function(){
+        $(".dynamic-parameters-table").collection({
+            allow_up: false,
+            allow_down: false,
+            allow_add: true,
+            allow_remove: false,
+            add_at_the_end: true,
+            elements_selector:'tr.parameter',
+            elements_parent_selector: '%id% tbody',
+            add: '<a href="#" class="collection-add btn btn-default" title="Add parameter"><i class="fas fa-plus"></i></a>',
+            remove: '<a href="#" class="collection-remove btn btn-default" title="Remove parameter"><i class="fas fa-minus"></i></a>',
+        });
+    });
+</script>

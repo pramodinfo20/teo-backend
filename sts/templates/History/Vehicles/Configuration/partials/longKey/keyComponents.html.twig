@@ -1,0 +1,168 @@
+{% include 'History/Vehicles/Configuration/partials/longKey/generalConfigurationKeyTable.html.twig' %}
+{% block body %}
+    <div>
+        <h2>{{ 'vehicles.configuration.partials.keyComponents.twig.keyTableTitle' | trans }}</h2>
+        <table class="{{  parameters.historyEvent | historyEventClass }}">
+            <tr>
+                <th>{{ 'vehicles.configuration.partials.keyComponents.twig.vehicleType' | trans }}</th>
+                {{ parameters.type | historyValueTd }}
+            </tr>
+            <tr>
+                <th>{{ 'vehicles.configuration.partials.keyComponents.twig.vehicleYear' | trans }}</th>
+                {{ parameters.year | historyValueTd }}
+            </tr>
+            <tr>
+                <th>{{ 'vehicles.configuration.partials.keyComponents.twig.vehicleSeries' | trans }}</th>
+                {{ parameters.series | historyValueTd }}
+
+            </tr>
+            <tr>
+                {% if ((parameters.customerKey | historyRawByEventValue(parameters.historyEvent) is not null)) %}
+                    <th>{{ 'vehicles.configuration.form.create.twig.customerKey' | trans }}</th>
+                    {{ parameters.customerKey | historyValueTd }}
+                {% endif %}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.devStatus' | trans }} </td>
+                {{ parameters.devStatus
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::DEV_STATUS')]) }}
+
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.body' | trans }} </td>
+                {{ parameters.body
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::BODY')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.numberDriveAxle' | trans }} </td>
+                {{ parameters.numberDrive
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::NUMBER_DRIVE')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.engineType' | trans }} </td>
+                {{ parameters.engineType
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::ENGINE_TYPE')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.stageOfCompletion' | trans }} </td>
+                {{ parameters.stageOfCompletion
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::STAGE_OF_COMPLETION')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.bodyLength' | trans }} </td>
+                {{ parameters.bodyLength
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::BODY_LENGTH')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.frontAxle' | trans }} </td>
+                {{ parameters.frontAxle
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::FRONT_AXLE')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.rearAxle' | trans }} </td>
+                {{ parameters.rearAxle
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::REAR_AXLE')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.zgg' | trans }} </td>
+                {{ parameters.zgg
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::ZGG')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.fuelType' | trans }} </td>
+                {{ parameters.typeOfFuel
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::TYPE_OF_FUEL')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.tractionBattery' | trans }} </td>
+                {{ parameters.tractionBattery
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::TRACTION_BATTERY')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.chargingSystem' | trans }} </td>
+                {{ parameters.chargingSystem
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::CHARGING_SYSTEM')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.vMax' | trans }} </td>
+                {{ parameters.vMax
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::VMAX')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.seats' | trans }} </td>
+                {{ parameters.seats
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::SEATS')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.hitch' | trans }} </td>
+                {{ parameters.trailerHitch
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::TRAILER_HITCH')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.superstructures' | trans }} </td>
+                {{ parameters.superstructures
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::SUPERSTRUCTURES')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.energySupplyStructure' | trans }} </td>
+                {{ parameters.energySupplySuperStructure
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::ENERGY_SUPPLY_SUPERSTRUCTURE')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.steering' | trans }} </td>
+                {{ parameters.steering
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::STEERING')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.rearWindow' | trans }} </td>
+                {{ parameters.rearWindow
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::REAR_WINDOW')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.airConditioning' | trans }} </td>
+                {{ parameters.airConditioning
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::AIR_CONDITIONING')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.passengerAirbag' | trans }} </td>
+                {{ parameters.passengerAirbag
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::PASSENGER_AIRBAG')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.keylessEntry' | trans }} </td>
+                {{ parameters.keyless
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::KEYLESS')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.specialApplication' | trans }} </td>
+                {{ parameters.specialApplicationArea
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::SPECIAL_APPLICATION_AREA')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.radio' | trans }} </td>
+                {{ parameters.radio
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::RADIO')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.soundGenerator' | trans }} </td>
+                {{ parameters.soundGenerator
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::SOUND_GENERATOR')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.countryCode' | trans }} </td>
+                {{ parameters.countryCode
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::COUNTRY_CODE')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.color' | trans }} </td>
+                {{ parameters.color
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::COLOR')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.wheelings' | trans }} </td>
+                {{ parameters.wheeling
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\LongKeyModel::WHEELING')]) }}
+            </tr>
+        </table>
+    </div>
+{% endblock %}

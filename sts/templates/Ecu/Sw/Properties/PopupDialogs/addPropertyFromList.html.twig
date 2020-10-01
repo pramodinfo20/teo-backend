@@ -1,0 +1,182 @@
+{% trans_default_domain 'messages' %}
+{% form_theme addPropertyFromList 'Ecu/Sw/Properties/Form/formThemeAddPropertyFromList.html.twig' %}
+
+<!-- Dialogs -->
+<div id="add_property_from_list_dialog"
+     title="{{ 'properties.PopupDialogs.addPropertyFromList.addPropFromListDial' |trans }}">
+    <div class="validateTips"></div>
+    <div class="properties">
+        {{ form(addPropertyFromList) }}
+    </div>
+</div>
+
+<div id="copy-properties-conflicts-dialog"
+     title="{{ 'properties.Form.propertiesValuesTableCopyToAnother.cpyPropConflDialTit' | trans }}">
+    <p>{{ 'properties.Form.propertiesValuesTableCopyToAnother.conflDetPar' | trans }}:</p>
+    <p>
+    <form action='' method='post' id="overwrite_prop_add_from_list_form"></form>
+    </p>
+</div>
+
+{% block stylesheets %}
+    <style>
+        .validateTips {
+            border: 1px solid transparent;
+            padding: 0.3em;
+            margin-bottom: 5px;
+        }
+
+        .ui-state-highlight,
+        .ui-widget-content .ui-state-highlight,
+        .ui-widget-header .ui-state-highlight {
+            border: 1px solid #dad55e;
+            background: #fffa90;
+            color: #777620;
+        }
+
+        .properties {
+            max-height: 300px;
+            overflow-y: scroll;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            /*------------- Dialogs ------------*/
+            let addPropFromListDialog = $("#add_property_from_list_dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.save' | trans }}": function () {
+                        addPropertyFromList();
+                        addPropFromListDialog.dialog("close");
+                    },
+                    "{{ 'dialog.button.cancel' | trans }}": function () {
+                        addPropFromListDialog.dialog("close");
+                    }
+                }
+            });
+
+            var copyConflictsDialog = $("#copy-properties-conflicts-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.confirm' | trans }}": function () {
+                        let conflictArray = [];
+                        $('#overwrite_prop_add_from_list_form tbody input').each(function () {
+                            if ($(this).is(':checked')) {
+                                conflictArray.push({
+                                    current: $(this).attr('data-current'),
+                                    destination: $(this).attr('data-destination')
+                                });
+                            }
+                        });
+
+                        $.ajax({
+                            method: 'POST',
+                            data: {
+                                properties_conflict: JSON.stringify(conflictArray),
+                            },
+                            url: 'index.php?action=propertiesManagement&method=ajaxCallPost&list=add&conflict=resolve&sw=' +
+                            {{ sw }},
+                            dataType: "json",
+                            success: function (result) {
+                                reloadPage();
+                                copyConflictsDialog.dialog('close');
+                            }
+                        });
+                    },
+                    "{{ 'dialog.button.cancel' | trans }}": function () {
+                        copyConflictsDialog.dialog("close");
+                    }
+                }
+            });
+
+
+            /*------------- Button Handlers ------------*/
+            $(document).on('click', '#add_new_prop_from_list_btn', function () {
+                addPropFromListDialog.dialog("open");
+            });
+
+            $(document).on('click', 'input[name="overwriteAll"]', function () {
+                if ($(this).is(":checked")) {
+                    $('input[name="ecu_property_id[]"]').prop('checked', true);
+                } else {
+                    $('input[name="ecu_property_id[]"]').prop('checked', false);
+                }
+            });
+
+
+            /*------------- Functions ------------*/
+            function addPropertyFromList() {
+                $.ajax({
+                    method: 'POST',
+                    data: $('form[name="EcuSwPropAddFromListCollectionType"]').serialize(),
+                    url: 'index.php?action=propertiesManagement&method=ajaxCallPost&ajax=addPropFromList&sw=' + {{ sw }},
+                    dataType: "json",
+                    beforeSend: function () {
+                        $('#streetscooter-loader-mask').css('display', 'flex');
+                    },
+                    success: function (result) {
+                        if (result[0] == 'empty') {
+                            reloadPage();
+                        } else {
+                            let text =
+                                '<table>' +
+                                '<thead>' +
+                                '<tr>' +
+                                '<th><input type="checkbox" name="overwriteAll"></th>' +
+                                "<th>Name</th>" +
+                                "<th>Value Current</th>" +
+                                "<th>Value Destination</th>" +
+                                '</tr>' +
+                                '</thead>' +
+                                '<tbody>';
+
+                            let length = result.length;
+
+                            for (let i = 0; i < length; ++i) {
+                                text +=
+                                    "<tr>" +
+                                    "<td><input type='checkbox' name='ecu_parameter_id[]' data-destination='" +
+                                    result[i]['ecu_property_id_destination'] +
+                                    "' data-current='" + result[i]['ecu_property_id_current'] +
+                                    "' value='" + result[i]['ecu_property_id_destination'] + "' ></td>" +
+                                    "<td>" + result[i]['ecu_property_name'] + "</td>" +
+                                    "<td>" + result[i]['ecu_property_value_current'] + "</td>" +
+                                    "<td>" + result[i]['ecu_property_value_destination'] + "</td>" +
+                                    "</tr>";
+                            }
+                            text +=
+                                '</tbody>' +
+                                '</table>';
+
+                            $("#sw").empty();
+                            $("#overwrite_prop_add_from_list_form").empty();
+                            $("#overwrite_prop_add_from_list_form").append(text);
+                            copyConflictsDialog.dialog('open');
+                        }
+                        $('#streetscooter-loader-mask').css('display', 'none');
+                    },
+                    error: function () {
+                        $('#streetscooter-loader-mask').css('display', 'none');
+                    }
+                });
+            }
+
+            function reloadPage() {
+                window.location.href = "index.php?action=propertiesManagement&method=regenerateView&ecu=" +
+                        {{ ecu }} +"&sw=" + {{ sw }};
+            }
+
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,173 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    <h1>{{ 'parameters.twig.index.header' | trans }}</h1>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>{{ 'parameters.twig.index.id' | trans }}</th>
+            <th>{{ 'parameters.twig.index.name' | trans }}</th>
+            <th>{{ 'parameters.twig.index.min' | trans }}</th>
+            <th>{{ 'parameters.twig.index.max' | trans }}</th>
+            <th>{{ 'parameters.twig.index.unit' | trans }}</th>
+            <th>{{ 'parameters.twig.index.responsibleU' | trans }}</th>
+            <th>{{ 'parameters.twig.index.variableT' | trans }}</th>
+            <th>{{ 'parameters.twig.index.linkedEcu' | trans }}</th>
+            <th>{{ 'parameters.twig.index.specEcuRel' | trans }}</th>
+            <th>{{ 'parameters.twig.index.chargCtrl' | trans }}</th>
+            <th>{{ 'parameters.twig.index.actions' | trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for globalParameter in globalParameters %}
+            <tr>
+                <td>{{ globalParameter.globalParameterId }}</td>
+                <td>{{ globalParameter.globalParameterName }}</td>
+                <td>{{ globalParameter.minValue }}</td>
+                <td>{{ globalParameter.maxValue }}</td>
+                <td>{{ globalParameter.globalUnit }}</td>
+                <td>{{ globalParameter.responsibleUser }}</td>
+                <td>{{ globalParameter.variableType }}</td>
+                <td>
+
+                    <button class="show-linked-ecu-parameters"
+                            data-global-parameter-id="{{ globalParameter.globalParameterId }}">
+                        {{ 'parameters.twig.index.showLinkedEcu' | trans }}
+                        {% if globalParameter.linkedEcuParameters | length > 0 %}
+                            <i class="fa fa-link"></i>
+                        {% endif %}
+                    </button>
+                </td>
+                <td>{{ globalParameter.specialEcu.ecuName ?? '' }}</td>
+                <td>{{ globalParameter.chargingControlRelated ? 'common.trueTxt' | trans : 'common.falseTxt' | trans }}</td>
+                <td>
+                    <div class="row">
+                        <div class="columns eight nopad">
+                            <input type="button"
+                                   onclick="window.location.href='{{ legacyUrl(currentLegacyUrl, {'method': 'edit', 'globalParameter': globalParameter.globalParameterId}) }}'"
+                                   value="{{ 'parameters.twig.index.edit' | trans }}">
+                            <input type="button" data-global-parameter-id="{{ globalParameter.globalParameterId }}"
+                                   class="delete"
+                                   value="{{ 'parameters.twig.index.remove' | trans }} "
+                                    {{ (globalParameter.linkedEcuParameters | length > 0) ? 'disabled' :  '' }} >
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">{{ 'parameters.twig.index.noRecords' | trans }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="MiniButtons actionButtons">
+        <ul class="submenu_ul">
+            <li>
+                <span class="sts_submenu W100" id="create_new">{{ 'parameters.twig.index.createNew' | trans }}</span>
+            </li>
+        </ul>
+    </div>
+
+    <div id="dialog-linked-ecus" title="Linked ECU Parameters">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ 'parameters.twig.index.ecu' | trans }}</th>
+                <th>{{ 'parameters.twig.index.sw' | trans }}</th>
+            </tr>
+            </thead>
+            {% for globalParameter in globalParameters %}
+                <tbody class="section hideValues" data-global-parameter-id="{{ globalParameter.globalParameterId }}">
+                {% for linkedEcuParameter in globalParameter.linkedEcuParameters %}
+                    <tr>
+                        <td>{{ linkedEcuParameter.ecuName }}</td>
+                        <td>{{ linkedEcuParameter.swVersion }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div id="delete-dialog" title="{{ 'parameters.twig._delete_form.delete' | trans }}">
+        <p>{{ 'parameters.twig._delete_form.areUSure' | trans }}</p>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            let globalParameterIdToDelete = null;
+            let linkedDialog = $('#dialog-linked-ecus').dialog({
+                autoOpen: false,
+                resizable: false,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.close' | trans }}": function () {
+                        $('.section').addClass('hideValues');
+                        linkedDialog.dialog("close");
+                    }
+                }
+            });
+
+            let deleteDialog = $('#delete-dialog').dialog({
+                autoOpen: false,
+                resizable: false,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.delete' | trans }}": function () {
+                        deleteDialog.dialog("close");
+
+                        let url =
+                            '{{ legacyUrl(currentLegacyUrl, {"method": "delete", "globalParameter": "globalParameterToDelete"}) | raw }}';
+                        url = url.replace('globalParameterToDelete', globalParameterIdToDelete);
+                        window.location.href = url;
+                    },
+                    "{{ 'dialog.button.cancel' | trans }}": function () {
+                        deleteDialog.dialog("close");
+                    }
+                }
+            });
+
+            $('.show-linked-ecu-parameters').on('click', function () {
+                $('.section').addClass('hideValues');
+                $('.section[data-global-parameter-id="' + $(this).attr('data-global-parameter-id') + '"]').removeClass('hideValues');
+
+                linkedDialog.dialog('open');
+            });
+
+            $(document).on('click', '#create_new', function () {
+                location.href = "{{ legacyUrl(currentLegacyUrl, {'method': 'new'}) | raw }}";
+            });
+
+            $(document).on('click', '.delete', function () {
+                globalParameterIdToDelete = $(this).attr('data-global-parameter-id');
+                deleteDialog.dialog('open');
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .actionButtons {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .section {
+            display: contents;
+        }
+
+        .hideValues {
+            display: none;
+        }
+
+        .fa {
+            padding-left: 5px;
+        }
+    </style>
+{% endblock %}

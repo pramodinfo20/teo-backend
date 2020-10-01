@@ -1,0 +1,88 @@
+{% trans_default_domain 'messages' %}
+
+<table>
+    <thead>
+        <tr>
+            <th>{{ 'parameters.values.twig.view.id' | trans }}</th>
+            <th>{{ 'parameters.values.twig.view.name' | trans }}</th>
+            <th>{{ 'parameters.values.twig.view.min' | trans }}</th>
+            <th>{{ 'parameters.values.twig.view.max' | trans }}</th>
+            <th>{{ 'parameters.values.twig.view.value' | trans }}</th>
+            <th>{{ 'parameters.values.twig.view.unit' | trans }}</th>
+            <th>{{ 'parameters.values.twig.view.responsibleU' | trans }}</th>
+            <th>{{ 'parameters.twig.index.specEcuRel' | trans }}</th>
+            <th>{{ 'parameters.twig.index.chargCtrl' | trans }}</th>
+            <th>{{ 'parameters.values.twig.view.variableT' | trans }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                {% if global is not null %}
+                    {{ global.globalParameterId }}
+                {% endif  %}
+            </td>
+            <td>
+                {% if global is not null %}
+                    {{ global.globalParameterName }}
+                {% endif  %}
+            </td>
+            <td>
+                {% if global is not null %}
+                    {{ global.minValue }}
+                {% endif  %}
+            </td>
+            <td>
+                {% if global is not null %}
+                    {{ global.maxValue }}
+                {% endif  %}
+            </td>
+            <td>
+                {% if globalParamaters.valueString is not null %}
+                    {{ globalParameters.valueString }}
+                {% elseif globalParamaters.valueInteger is not null  %}
+                    {{ globalParameters.valueInteger }}
+                {% elseif globalParamaters.valueUnsigned is not null  %}
+                    {{ globalParameters.valueUnsigned }}
+                {% elseif globalParamaters.valueDate is not null  %}
+                    {{ globalParameters.valueDate|date('Y-m-d') }}
+                {% elseif globalParamaters.valueBool is not null  %}
+                    {{ (globalParameters.valueBool)? ('parameters.values.twig.view.trueTxt' | trans) : ('parameters.values.twig.view.falseTxt' | trans)  }}
+                {% else  %}
+                    {{ 'parameters.values.twig.view.notDefined' | trans }}
+                {% endif %}
+            </td>
+            <td>
+                {% if global is not null %}
+                    {% if global.globalUnit is not null %}
+                        {{ global.globalUnit.unitName }}
+                    {% endif %}
+                {% endif  %}
+            </td>
+            <td>
+                {% if global is not null %}
+                    {% if global.responsibleUser is not null %}
+                        {{ global.responsibleUser.fname }} {{ global.responsibleUser.lname }}
+                    {% endif %}
+                {% endif %}
+            </td>
+            <td>
+                {% if global is not null %}
+                    {{ global.specialEcu.ecuName ?? '' }}
+                {% endif %}
+            </td>
+            <td>
+                {% if global is not null %}
+                    {{ global.chargingControlRelated ? 'common.trueTxt' | trans : 'common.falseTxt' | trans }}
+                {% endif %}
+            </td>
+            <td>
+                {% if global is not null %}
+                    {% if global.variableType is not null %}
+                        {{ global.variableType.variableTypeName }}
+                    {% endif %}
+                {% endif  %}
+            </td>
+        </tr>
+    </tbody>
+</table>

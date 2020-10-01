@@ -1,0 +1,20 @@
+{% trans_default_domain 'messages' %}
+
+    <thead>
+        <th>{{ 'ecu.sw.partials.view.odx1.twig.viewParameters.order' | trans }}</th>
+        <th>{{ 'ecu.sw.partials.view.odx1.twig.viewParameters.name' | trans }}</th>
+        {%  if not odxSts02 | historyRawByEventValue(header.historyEvent) %}
+            <th>{{ 'ecu.sw.partials.view.odx1.twig.viewParameters.odx' | trans }}</th>
+        {% endif %}
+        <th>{{ 'ecu.sw.partials.view.odx1.twig.viewParameters.rwc' | trans }}</th>
+        <th>{{ 'ecu.sw.partials.view.odx1.twig.viewParameters.type' | trans }}</th>
+        <th>{{ 'ecu.sw.partials.view.odx1.twig.viewParameters.unit' | trans }}</th>
+        <th>{{ 'ecu.sw.partials.view.odx1.twig.viewParameters.value' | trans }}</th>
+        <th>{{ 'ecu.sw.partials.view.odx1.twig.viewParameters.defaultType' | trans }}</th>
+    </thead>
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

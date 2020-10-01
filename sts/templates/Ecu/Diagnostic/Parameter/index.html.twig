@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'messages' %}
+{% block body %}
+
+    <h1 id="diagnostic_value_setting_header">{{ 'ecu.diagnosticParameter.twig.index.header' | trans }}</h1>
+    <div class="row">
+
+        {% include 'Ecu/Diagnostic/Parameter/menu/vertical_ecus.html.twig' with {'ecus': ecus} %}
+        <div class="columns ten">
+            <div id="header" class="row">
+                <div id="select_ecu_info" class="ecu_info">
+                    <p>{{ 'ecu.diagnosticParameter.twig.index.ecuInfo' | trans }}</p>
+                </div>
+            </div>
+
+            <div id="info-management" class="row">
+
+            </div>
+
+            <div id="supportODX" hidden>
+                <div id="supportFlag" class="supportFlag">
+                    {{ 'ecu.diagnosticParameter.twig.index.supportHeader' | trans }}
+                    <form id="support_odx_form" method="post">
+                        <input id="supportODX2_true" type="radio" name="supportODX" value="1">
+                        <label for="supportODX2_true">{{ 'ecu.diagnosticParameter.twig.index.trueTxt' | trans }}</label>
+                        <input id="supportODX2_false" type="radio" name="supportODX" value="0">
+                        <label for="support_false">{{ 'ecu.diagnosticParameter.twig.index.falseTxt' | trans }}</label>
+                    </form>
+                </div>
+
+                <div class="row">
+                    <ul class="submenu_ul">
+                        <li><span id="saveSupportODX"
+                                  class="sts_submenu W140 disabled">{{ 'ecu.diagnosticParameter.twig.index.save' | trans }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block stylesheets %}
+    <style>
+        .success-message {
+            padding: 20px 10px;
+            background-color: #34a34a;
+            color: white;
+            width: 75%;
+        }
+
+        .supportFlag {
+            padding: 0px 0px 20px;
+            font-size: 13px;
+        }
+
+        .ecu_info {
+            padding: 10px 0px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            if (window.location.href.indexOf("saved=") > -1) {
+                $('#select_ecu_info').hide();
+                $('#info-management')
+                    .addClass("success-message")
+                    .html("<div>{{ 'ecu.diagnosticParameter.twig.index.supportInfo' | trans }}</div>");
+            }
+
+            $('#list_of_ecus option').click(function () {
+                $('#supportODX').submit();
+            });
+
+            $('#list_of_ecus').on("change", function () {
+
+                $('#select_ecu_info')
+                    .html("<p>{{ 'ecu.diagnosticParameter.twig.index.selectedDevice' | trans }}"
+                        + $('#list_of_ecus option:selected').html() + "</p>" +
+                        "<p>{{ 'ecu.diagnosticParameter.twig.index.chooseSupport' | trans }}</p>");
+                $('#select_ecu_info').show();
+
+                $('#supportODX').show();
+                $('#supportODX2_true').prop("checked", false);
+                $('#supportODX2_false').prop("checked", false);
+
+                if ($('#list_of_ecus option:selected').attr('odx2') == "true") {
+                    $('#supportODX2_true').prop("checked", true);
+                } else {
+                    $('#supportODX2_false').prop("checked", true);
+                }
+
+                $('#saveSupportODX')
+                    .addClass("disabled")
+                    .css("pointer-events", "none");
+
+                $('#info-management')
+                    .removeClass('success-message')
+                    .html("<div></div>")
+                    .hide();
+            });
+
+            $('#supportFlag').on("change", function () {
+                $('#info-management').hide();
+
+                $('#saveSupportODX')
+                    .removeClass("disabled")
+                    .css("pointer-events", "auto");
+
+            });
+
+            $('#saveSupportODX').on("click", function () {
+                $.ajax({
+                    method: "POST",
+                    url: "index.php?action=diagSwValSet&method=ajaxSaveSupportODX2FlagToECU&ecu=" + $('#list_of_ecus option:selected').val(),
+                    data: $('#support_odx_form').serialize(),
+                    datatype: "json"
+                }).done(function () {
+                    window.location.href = window.location.href + '&saved=' + $('#list_of_ecus option:selected').val();
+                });
+            });
+        });
+
+
+    </script>
+{% endblock %}

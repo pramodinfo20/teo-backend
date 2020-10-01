@@ -1,0 +1,86 @@
+{% block body %}
+    <div>
+        <h2>{{ 'vehicles.configuration.partials.keyComponents.twig.additionalKeyTableTitle' | trans }}</h2>
+        <table class="{{  parameters.historyEvent | historyEventClass }}">
+            <tr>
+                <th>{{ 'vehicles.configuration.partials.keyComponents.twig.name' | trans }}</th>
+                <th>{{ 'vehicles.configuration.partials.keyComponents.twig.value' | trans }}</th>
+                <th>{{ 'vehicles.configuration.partials.keyComponents.twig.visibleOnReport' | trans }}</th>
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.espPart' | trans }}</td>
+                {{ parameters.espPart | historyValueTd  }}
+                {{ parameters.espPartReport | historyValueTd  }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.rotBeac' | trans }}</td>
+                {{ parameters.rotatingBacon | historyValueTd  }}
+                {{ parameters.rotatingBaconReport | historyValueTd  }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.coDriverPart' | trans }}</td>
+                {{ parameters.partAtCoDriverPosition | historyValueTd  }}
+                {{ parameters.partAtCoDriverPositionReport | historyValueTd  }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.batteryType' | trans }}</td>
+                {{ parameters.typeOfBattery | historyValueTd  }}
+                {{ parameters.typeOfBatteryReport | historyValueTd  }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.radio' | trans }}</td>
+                {{ parameters.radio | historyValueTd  }}
+                {{ parameters.radioReport | historyValueTd  }}
+            </tr>
+
+        </table>
+    </div>
+
+    <div>
+        <h2>{{ 'vehicles.configuration.partials.keyComponents.twig.addKeyFeatures' | trans }}</h2>
+        <table class="{{  parameters.historyEvent | historyEventClass }}">
+            <tr>
+                <th>{{ 'vehicles.configuration.partials.keyComponents.twig.name' | trans }}</th>
+                <th>{{ 'vehicles.configuration.partials.keyComponents.twig.value' | trans }}</th>
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.stdColor' | trans }}</td>
+                {{ parameters.standardColor
+                | historyValueTd([], [], [], [], null, historyModel.configurationColors, []) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.deutschePost' | trans }}</td>
+                {{ parameters.isDeutschePostConfiguration | historyValueTd  }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.targetState' | trans }}</td>
+                {{ parameters.targetState | historyValueTd  }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.stdProdPlace' | trans }}</td>
+                {{ parameters.stsPlaceOfProduction
+                | historyValueTd([], [], [], [], null, historyModel.stsProductionLocations, []) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.espFunctionality' | trans }}</td>
+                {{ parameters.espFunctionality | historyValueTd  }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.tirePressureFront' | trans }}</td>
+                {{ parameters.tirePressFront | historyValueTd  }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.tirePressureRear' | trans }}</td>
+                {{ parameters.tirePressRear | historyValueTd  }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.comment' | trans }}</td>
+                {{ parameters.comment | historyValueTd  }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.partials.keyComponents.twig.testSoftwareVersion' | trans }}</td>
+                {{ parameters.testSoftwareVersion | historyValueTd  }}
+            </tr>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+p,h1,h2,th,td,.print_field_label,.print_field_value{font-family:Arial}
+a{text-decoration:none;color:#000}
+h1{font-size:44px;text-decoration:underline}
+table{border-spacing:0;border-collapse:collapse;padding:8px}
+th,td{border-collapse:collapse;border:1px solid #CCC;text-align:left}
+.print_field_label,.print_field_value{display:block}
+.print_field_label{font-size:26px}
+.print_field_value{font-size:56px;font-weight:700}
+.smallest{font-size:24px}
+.smallest a,.smaller{font-size:36px;font-weight:700}

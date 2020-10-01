@@ -1,0 +1,35 @@
+{% form_theme parametersForm 'Ecu/Diagnostic/Parameter/Management/form/formTheme.html.twig' %}
+
+{% set saveActionUrl = legacyUrl(currentLegacyUrl, {'method': 'saveParameters'}, true) %}
+{{ form(parametersForm, {'action': saveActionUrl, 'method': 'POST', 'attr': {'id': 'dynamicParametersForm'}}) }}
+
+{% block javascripts %}
+{{ include('Ecu/Diagnostic/Parameter/Management/form/formJs.html.twig', {'odx': 2}) }}
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .collection-add {
+            color: #fff;
+            padding: 0 5px;
+            transition: all .3s;
+            margin: 2px 3px;
+            border: none;
+            background: linear-gradient(to bottom,#080 0,#684 90%,#080 100%);
+            margin: 5px;
+        }
+
+        .collection-remove {
+            color: #fff;
+            padding: 0 5px;
+            transition: all .3s;
+            margin: 2px 3px;
+            border: none;
+            background: linear-gradient(to bottom,#880200 0,#8d4200 90%,#880200 100%);
+        }
+
+        .hideAction {
+            display: none;
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,6 @@
+/* ---------------------------------------------------------------------- *//* Search styles*/
+.general_search_hidden{display:none}
+.select_operator{margin-left:220px}
+.options_hidden{display:none}
+.reset_fieldset{border:0;padding:.01em 0 0;margin:0;min-width:0}
+/* ---------------------------------------------------------------------- */

@@ -1,0 +1,27 @@
+<script type="text/javascript">
+    $(function() {
+        const isEcuUsage = [];
+        const ecuUsage = $('#present_ecus td input:checkbox');
+        const canForwarding = $('#present_ecus td input[type="radio"]');
+        ecuUsage.each(function(index) {
+            if ($( this ).is(':checked')) {
+                isEcuUsage.push(true);
+            } else {
+                isEcuUsage.push(false);
+            }
+            $( this ).click(function () {
+                if ($( this ).is(':checked')) {
+                    $(canForwarding[index]).attr('disabled', false);
+                } else {
+                    $(canForwarding[index]).attr('disabled', true);
+                    $(canForwarding[index]).attr('checked', false);
+                }
+            })
+        });
+        canForwarding.each(function( index ) {
+            if (isEcuUsage[index] !== true) {
+                $( this ).attr('disabled', true);
+            }
+        });
+    });
+</script>

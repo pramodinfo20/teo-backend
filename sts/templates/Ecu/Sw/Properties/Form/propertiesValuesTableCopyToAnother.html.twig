@@ -1,0 +1,477 @@
+{% block  body %}
+    <form id="property-to-copy-form">
+        <table>
+            <thead>
+            <tr>
+                <th>{{ 'properties.Form.propertiesValuesTableCopyToAnother.selToCpy' | trans }}</th>
+                <th>{{ 'properties.Form.propertiesValuesTableCopyToAnother.name' | trans }}</th>
+                <th>{{ 'properties.Form.propertiesValuesTableCopyToAnother.value' | trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ecuSwProperty in ecuSwPropertiesList %}
+                <tr>
+                    <td class="centerColumn firstColumn">
+                        <input
+                                type="checkbox"
+                                name="property[]"
+                                data-property-name="{{ ecuSwProperty.name }}"
+                                data-property-id="{{ ecuSwProperty.ecuSwPropertyId }}">
+                    </td>
+                    <td>{{ ecuSwProperty.name }}</td>
+                    <td>{{ ecuSwProperty.value }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </form>
+
+    {# ---------------------------- Dialogs ----------------------------------------- #}
+    <div id="copy-properties-dialog"
+         title="{{ 'properties.Form.propertiesValuesTableCopyToAnother.cpyPropDialTit' | trans }}">
+        <p>{{ 'ecu.sw.partials.menu.twig.footer.dialog.body.selectSw' | trans }}</p>
+        <p>
+        <form action='' method='post' id="check-sw-form" class="copy-property-form"></form>
+        </p>
+    </div>
+
+    <div id="copy-properties-conflicts-dialog"
+         title="{{ 'properties.Form.propertiesValuesTableCopyToAnother.cpyPropConflDialTit' | trans }}">
+        <p style="font-weight: bold">
+            {{ 'ecu.sw.partials.menu.twig.footer.dialog.body.sw' | trans }}
+            <span id="sw"></span>
+        </p>
+        <p>{{ 'properties.Form.propertiesValuesTableCopyToAnother.conflDetPar' | trans }}:</p>
+        <p>
+        <form action='' method='post' id="overwrite-properties"></form>
+        </p>
+    </div>
+
+    <div id="copy-properties-confirm-dialog"
+         title="{{ 'ecu.sw.partials.menu.twig.footer.dialog.title.confirm' | trans }}">
+        <p style="font-weight: bold">
+            {{ 'ecu.sw.partials.menu.twig.footer.dialog.body.sw' | trans }}
+            <span id="destination-sw"></span>
+        </p>
+    </div>
+
+    <div id="copy-properties-success-dialog"
+         title="{{ 'ecu.sw.partials.menu.twig.footer.dialog.title.success' | trans }}">
+        {{ 'properties.Form.propertiesValuesTableCopyToAnother.cpyPropSuccDialInf' | trans }}
+        <p id="sws"></p>
+    </div>
+
+    <div id="copy-properties-error-dialog"
+         title="{{ 'ecu.sw.partials.menu.twig.footer.dialog.title.copyOther' | trans }}">
+        {{ 'ecu.sw.partials.menu.twig.footer.dialog.body.emptyList' | trans }}
+    </div>
+    {# --------------------------------------------------------------------- #}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '#confirm_copy_btn', function () {
+                if (!$(this).hasClass("disabled")) {
+                    copySelectedPropertiesIntoOtherSW();
+                }
+            });
+
+            const copyArray = (function () {
+                let
+                    copyArray = [],
+                    push = function (element) {
+                        copyArray.push(element);
+                    },
+                    getElement = function (index) {
+                        return copyArray[index];
+                    },
+                    getAll = function () {
+                        return copyArray;
+                    },
+                    clear = function () {
+                        copyArray = [];
+                    },
+                    length = function () {
+                        return copyArray.length;
+                    };
+
+
+                return {
+                    push: push,
+                    getElement: getElement,
+                    getAll: getAll,
+                    clear: clear,
+                    length: length
+                }
+
+            }());
+
+            const swArray = (function () {
+                let
+                    swArray = [],
+                    unshift = function (element) {
+                        swArray.unshift(element);
+                    },
+                    getElement = function (index) {
+                        return swArray[index];
+                    },
+                    getAll = function () {
+                        return swArray;
+                    },
+                    clear = function () {
+                        swArray = [];
+                    },
+                    length = function () {
+                        return swArray.length;
+                    };
+
+
+                return {
+                    unshift: unshift,
+                    getElement: getElement,
+                    getAll: getAll,
+                    clear: clear,
+                    length: length
+                }
+            }());
+
+            const swNamesArray = (function () {
+                let
+                    swNamesArray = [],
+                    push = function (element) {
+                        swNamesArray.push(element);
+                    },
+                    getElement = function (index) {
+                        return swNamesArray[index];
+                    },
+                    getAll = function () {
+                        return swNamesArray;
+                    },
+                    clear = function () {
+                        swNamesArray = [];
+                    },
+                    length = function () {
+                        return swNamesArray.length;
+                    };
+
+
+                return {
+                    push: push,
+                    getElement: getElement,
+                    getAll: getAll,
+                    clear: clear,
+                    length: length
+                }
+            }());
+
+            const swIterator = (function () {
+                let
+                    swIterator = 0,
+                    increment = function () {
+                        ++swIterator;
+                    },
+                    decrement = function () {
+                        --swIterator;
+                    },
+                    getIterator = function () {
+                        return swIterator;
+                    };
+
+                return {
+                    increment: increment,
+                    decrement: decrement,
+                    getIterator: getIterator
+                }
+            }());
+
+            function copySelectedPropertiesIntoOtherSW() {
+                copyArray.clear();
+
+                $('input[name="property[]"]:checked').each(function () {
+                    let id = $(this).attr('data-property-id');
+                    copyArray.push(id);
+                });
+
+                if (!(copyArray.length() > 0)) {
+                    return;
+                }
+
+                $.ajax({
+                    method: 'GET',
+                    data: {
+                        action: 'propertiesManagement',
+                        method: 'ajaxCall',
+                        path: 'ecusSwsList',
+                        ajax: 'get',
+                    },
+                    url: "index.php",
+                    dataType: "json",
+                    success: function (result) {
+                        $("#check-sw-form").empty();
+                        let htmlTreeText = '<ul id="treeview">';
+
+                        $.each(result, function (indexEcu, indexSw) {
+                            htmlTreeText +=
+                                '<li> ' +
+                                '<i class="fas fa-plus"></i>' +
+                                '<label>' +
+                                '<input id="' + indexEcu + '" data-id="' + indexEcu + '" type="checkbox">' +
+                                indexSw[Object.keys(indexSw)[0]]['ecu'] +
+                                '</label>';
+
+                            htmlTreeText +=
+                                '<ul>';
+
+                            $.each(indexSw, function (indexName, indexValue) {
+                                htmlTreeText +=
+                                    '<li>' +
+                                    '<label>' +
+                                    '<input ' +
+                                    'id="' + indexEcu + '_' + indexName + '" ' +
+                                    'data-id="' + indexEcu + '" ' +
+                                    'type="checkbox" ' +
+                                    'class="hummingbirdNoParent" ' +
+                                    'name="sws[]" ' +
+                                    'value="' + indexName + '" sts_version="' + indexValue["sw"] + '"' +
+                                    'subversion_suffix="' + indexValue["suffix"] + '">' +
+                                    ((indexValue["suffix"] == null) ? indexValue["sw"] : (indexValue["sw"] + ' --- > '
+                                        + indexValue["suffix"])) +
+                                    '</label>' +
+                                    '</li>';
+                            });
+
+                            htmlTreeText +=
+                                '</ul>' +
+                                '</li>'
+                        });
+
+                        $("#check-sw-form").append(htmlTreeText);
+
+                        $("#treeview").hummingbird();
+                        $("#treeview").hummingbird("collapseAll");
+                        copyDialog.dialog("open");
+                    }
+                });
+            }
+
+            $(document).on('click', 'input[name="overwriteAll"]', function () {
+                if ($(this).is(":checked")) {
+                    $('input[name="ecu_property_id[]"]').prop('checked', true);
+                } else {
+                    $('input[name="ecu_property_id[]"]').prop('checked', false);
+                }
+            });
+
+            function checkConflicts(iterator) {
+                if (iterator < 0) {
+                    $('#sws').empty();
+                    let length = swNamesArray.length();
+                    let text = '<ul>';
+                    for (let i = 0; i < length; ++i) {
+                        text += '<li>' + swNamesArray.getElement(i) + '</li>';
+                    }
+                    text += '</ul>';
+                    $('#sws').append(text);
+                    copySuccessDialog.dialog("open");
+                } else {
+                    $.ajax({
+                        method: 'POST',
+                        data: {
+                            sw_current: {{ sw }},
+                            sw_destination: swArray.getElement(iterator).ecu_revision_id,
+                            ecu_properties: JSON.stringify(copyArray.getAll())
+                        },
+                        url: 'index.php?action=propertiesManagement&method=ajaxCallPost&ajax=conflicts',
+                        dataType: "json",
+                        success: function (result) {
+                            if (result[0] == 'empty') {
+                                $('#destination-sw').empty();
+                                let text = swArray.getElement(iterator).sts_version
+                                    + ((swArray.getElement(iterator).subversion_suffix != 'null') ?
+                                        ' ---> ' + swArray.getElement(iterator).subversion_suffix : '');
+                                $('#destination-sw').append(text);
+                                confirmCopyDialog.dialog('open');
+                            } else {
+                                let text = '<table>' +
+                                    '<thead>' +
+                                    '<tr>' +
+                                    '<th><input type="checkbox" name="overwriteAll"></th>' +
+                                    "<th>{{ 'ecu.sw.partials.menu.twig.footer.currentParameter' | trans }}</th>" +
+                                    "<th>{{ 'ecu.sw.partials.menu.twig.footer.destinationParameter' | trans }}</th>" +
+                                    '</tr>' +
+                                    '</thead>' +
+                                    '<tbody>';
+                                let length = result.length;
+                                for (let i = 0; i < length; ++i) {
+                                    text += "<tr>" +
+                                        "<td><input type='checkbox' " +
+                                        "name='ecu_parameter_id[]' " +
+                                        "destination='" + result[i]['ecu_property_id_destination'] +
+                                        "' current='" + result[i]['ecu_property_id_current'] + "' ></td>" +
+                                        "<td>" + result[i]['ecu_property_name_current'] + "</td>" +
+                                        "<td>" + result[i]['ecu_property_name_destination'] + "</td>" +
+                                        "</tr>";
+                                }
+                                text += '</tbody>' +
+                                    '</table>';
+                                $("#sw").empty();
+                                $("#overwrite-properties").empty();
+                                $("#sw").append(swArray.getElement(iterator).sts_version +
+                                    ((swArray.getElement(iterator).subversion_suffix != 'null') ? (' ---> '
+                                        + swArray.getElement(iterator).subversion_suffix) : ''));
+                                $("#overwrite-properties").append(text);
+                                copyConflictsDialog.dialog('open');
+                            }
+                        }
+                    });
+                }
+            }
+
+            function confirmAndCopy(iterator) {
+                $.ajax({
+                    method: 'POST',
+                    data: {
+                        sw_current: {{ sw }},
+                        sw_destination: swArray.getElement(iterator).ecu_revision_id,
+                        ecu_properties: JSON.stringify(copyArray.getAll())
+                    },
+                    url: 'index.php?action=propertiesManagement&method=ajaxCallPost&ajax=copy',
+                    dataType: "json",
+                    success: function (result) {
+                        swNamesArray.push(result);
+                        swIterator.decrement();
+                        confirmCopyDialog.dialog('close');
+                        checkConflicts(swIterator.getIterator());
+                    }
+                });
+            }
+
+            var copyDialog = $("#copy-properties-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.copyParameters' | trans }}": function () {
+                        $('#check-sw-form > ul >li > ul input:checked').each(function () {
+                            swArray.unshift({
+                                ecu_revision_id: $(this).val(),
+                                sts_version: $(this).attr('sts_version'),
+                                subversion_suffix: $(this).attr('subversion_suffix')
+                            });
+                            swIterator.increment();
+                        });
+                        copyDialog.dialog("close");
+                        if (swIterator.getIterator() != 0) {
+                            swIterator.decrement();
+                            checkConflicts(swIterator.getIterator());
+                        }
+                    },
+                    "{{ 'dialog.button.cancel' | trans }}": function () {
+                        copyDialog.dialog("close");
+                    }
+                }
+            });
+
+            var copyErrorDialog = $("#copy-properties-error-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.ok' | trans }}": function () {
+                        copyErrorDialog.dialog("close");
+                    }
+                }
+            });
+
+            var copyConflictsDialog = $("#copy-properties-conflicts-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.confirm' | trans }}": function () {
+                        let conflictArray = [];
+                        let withoutConflictArray = copyArray.getAll();
+                        let conflictToRemoveArray = [];
+                        $('#overwrite-properties tbody input').each(function () {
+                            if ($(this).is(':checked')) {
+                                conflictArray.push({
+                                    current: $(this).attr('current'),
+                                    destination: $(this).attr('destination')
+                                });
+                            }
+                            conflictToRemoveArray.push($(this).attr('current'));
+                        });
+
+                        withoutConflictArray = withoutConflictArray.filter(function (el) {
+                            return !conflictToRemoveArray.includes(el);
+                        });
+
+                        $.ajax({
+                            method: 'POST',
+                            data: {
+                                sw_current: {{ sw }},
+                                sw_destination: swArray.getElement(swIterator.getIterator()).ecu_revision_id,
+                                properties_conflict: JSON.stringify(conflictArray),
+                                properties_without_conflict: JSON.stringify(withoutConflictArray)
+                            },
+                            url: 'index.php?action=propertiesManagement&method=ajaxCallPost&path=conflicts&ajax=resolve',
+                            dataType: "json",
+                            success: function (result) {
+                                swNamesArray.push(result);
+                                swIterator.decrement();
+                                copyConflictsDialog.dialog('close');
+                                checkConflicts(swIterator.getIterator());
+                            }
+                        });
+                    },
+                    "{{ 'dialog.button.cancel' | trans }}": function () {
+                        copyConflictsDialog.dialog("close");
+                        swIterator.decrement();
+                        checkConflicts(swIterator.getIterator());
+                    }
+                }
+            });
+
+            var copySuccessDialog = $("#copy-properties-success-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.ok' | trans }}": function () {
+                        copySuccessDialog.dialog("close");
+                        window.location.href = 'index.php?action=propertiesManagement&method=regenerateView&ecu='
+                            + {{ ecu }} +'&sw=' + {{ sw }};
+                    }
+                }
+            });
+
+            var confirmCopyDialog = $("#copy-properties-confirm-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.confirm' | trans }}": function () {
+                        confirmCopyDialog.dialog("close");
+                        confirmAndCopy(swIterator.getIterator());
+                    },
+                    "{{ 'dialog.button.cancel' | trans }}": function () {
+                        confirmCopyDialog.dialog("close");
+                        swIterator.decrement();
+                        checkConflicts(swIterator.getIterator());
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

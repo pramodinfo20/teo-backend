@@ -1,0 +1,57 @@
+{% trans_default_domain 'messages' %}
+
+<!-- Dialogs -->
+<div id="validation-errors-list" title="{{ 'parameters.twig.saveDataValidationError.dialog.title.error' | trans }}"></div>
+
+
+{% block javascripts %}
+    <script>
+        function saveValidationErrorWindow(errorInputData) {
+            let resultData = '<ul>';
+            $('input').removeClass('validation-error');
+
+            for (let key in errorInputData['errors']['CocParametersCollectionType']['parameters']) {
+                let row = parseInt(key) + 1;
+                resultData += '<li>' + '{{ 'parameters.values.form.twig.editValue.row' | trans }}' + ': ' + row + '<ul>';
+                for (let error in errorInputData['errors']['CocParametersCollectionType']['parameters'][key] ) {
+                    resultData += '<li>';
+                    resultData += errorInputData['errors']['CocParametersCollectionType']['parameters'][key][error];
+                    $('[name="CocParametersCollectionType[parameters]['+key+']' +
+                            '['+error+']"]').addClass('validation-error');
+                    resultData += '</li>';
+                }
+                resultData += '</ul></li>';
+            }
+
+            resultData += '</ul>';
+
+            $('#validation-errors-list').empty();
+            $('#validation-errors-list').html(resultData);
+            validationErrorDialogWindow.dialog('open');
+        }
+
+        /*------------- Dialogs ------------*/
+        var validationErrorDialogWindow = $("#validation-errors-list").dialog({
+            autoOpen: false,
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "{{ 'dialog.button.close' | trans }}": function () {
+                    validationErrorDialogWindow.dialog("close");
+                }
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .validation-error {
+            outline-style: solid;
+            outline-color: red;
+            outline-width: thin;
+        }
+    </style>
+{% endblock %}

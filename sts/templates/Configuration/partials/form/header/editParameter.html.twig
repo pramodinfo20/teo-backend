@@ -1,0 +1,96 @@
+{% trans_default_domain 'messages' %}
+
+{{ form_start(form) }}
+<table class="version_header header-table">
+    <tbody>
+    <tr>
+        <td>{{ 'configuration.partials.form.header.twig.editParameter.configuration' | trans }}</td>
+        <td>{{ header.configuration }}</td>
+        <td colspan="2">{{ 'configuration.partials.form.header.twig.editParameter.penta' | trans }}</td>
+        <td colspan="2">{{ header.penta }}</td>
+    </tr>
+    <tr>
+        <td>{{ 'configuration.partials.form.header.twig.editParameter.clone' | trans }}</td>
+        <td class="{{ (header.clonedFrom is not null)? 'clone_yes' : 'clone_no'}}">
+            {{ (header.clonedFrom is not null) ? header.clonedFrom : ' --------- ' }}</td>
+        <td>{{ 'configuration.partials.form.header.twig.editParameter.odx' | trans }}</td>
+        <td>{{ form_widget(form.odxSourceType) }}</td>
+        <td>{{ 'configuration.partials.form.header.twig.editParameter.ecu' | trans }}</td>
+        <td>{{ header.ecuName }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<table class="version_header header-table">
+    <tbody>
+    <tr>
+        <td>{{ 'configuration.partials.form.header.twig.editParameter.swrev' | trans }}</td>
+        <td>{{ header.swVersion }}</td>
+
+        <td>{{ 'configuration.partials.form.header.twig.editParameter.odx2' | trans }}</td>
+        <td>{{ (header.odxSts02)?
+            ('configuration.partials.form.header.twig.editParameter.yes' | trans)
+            : ('configuration.partials.form.header.twig.editParameter.no' | trans) }}</td>
+
+        <td>{{ 'configuration.partials.form.header.twig.editParameter.protocol' | trans }}</td>
+        <td>{{ header.protocol.ecuCommunicationProtocolName }}</td>
+
+        {% if header.protocol.ecuCommunicationProtocolName != 'XCP' %}
+
+            <td>{{ 'configuration.partials.form.header.twig.editParameter.request' | trans }}</td>
+            <td>0x{{ header.request }}</td>
+
+            <td>{{ 'configuration.partials.form.header.twig.editParameter.response' | trans }}</td>
+            <td>0x{{ header.response }}</td>
+
+            <td>{{ 'common.diagnosticIdentifier' | trans }}</td>
+            <td>{{ header.diagnosticIdentifier }}</td>
+         {% else %}
+             <td colspan="2">{{ 'common.diagnosticIdentifier' | trans }}</td>
+             <td colspan="6">{{ header.diagnosticIdentifier }}</td>
+        {% endif %}
+    </tr>
+    <tr>
+        <td>{{ 'configuration.partials.form.header.twig.editParameter.info' | trans }}</td>
+        <td>{{ header.info }}</td>
+
+        <td>{{ 'configuration.partials.form.header.twig.editParameter.status' | trans }}</td>
+        <td>{{ header.status.releaseStatusName }}</td>
+
+        <td>{{ 'configuration.partials.form.header.twig.editParameter.windchill' | trans }}</td>
+        <td colspan="3">{{ header.windchillUrl }}</td>
+
+        <td>{{ 'configuration.partials.form.header.twig.editParameter.odxVersion' | trans }}</td>
+        <td>{{ header.odxVersion }}</td>
+
+        <td>{{ 'configuration.partials.view.twig.header.defaultEndian' | trans }}</td>
+        <td>
+            {{ (header.bigEndian)?
+            'configuration.partials.view.twig.header.bigEndian' | trans :
+            'configuration.partials.view.twig.header.littleEndian' | trans }}
+        </td>
+    </tr>
+    {% if header.subversionSuffix is not null %}
+        <tr>
+            <td>{{ 'configuration.partials.form.header.twig.editParameter.suffix' | trans }}</td>
+            <td>{{ header.subversionSuffix }}</td>
+            <td colspan="10"></td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>
+{{ form_end(form, {'render_rest': false}) }}
+
+{% block stylesheets %}
+    <style>
+        .version_header {
+            margin: 10px 0px;
+        }
+
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+
+
+{% endblock %}

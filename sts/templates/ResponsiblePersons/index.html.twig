@@ -1,0 +1,426 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'ResponsiblePersons/errorDialog.html.twig' %}
+
+    <h1>{{ 'responsiblePersons.index.twig.titleResponsibilities' | trans }}</h1>
+
+    <div class="row">
+        <div class="two columns">
+            <h2>{{ 'responsiblePersons.index.twig.titleCategories' | trans }}</h2>
+            <label for="resp">{{ 'responsiblePersons.index.twig.textChooseCategories' | trans }}</label>
+            <form id="responsibilities_form" method="get">
+                <select id="resp_sel" name="resp" size="10" style="width: 100%">
+                    {% for responsibility in responsibilitiesList %}
+                        {% set isSelected = selectedResponsibilityId == responsibility.id ? 'selected' : '' %}
+                        <option value="{{ responsibility.id }}" {{ isSelected }}>{{ responsibility.name }}</option>
+                    {% endfor %}
+                </select>
+                <input type="hidden" name="action" value="responsiblePersons">
+                <input type="hidden" name="method" value="regenerateView">
+            </form>
+
+            {% if displaySubcategorySelect == true %}
+                <br>
+                <label for="subResp">{{ 'responsiblePersons.index.twig.titleSubcategories' | trans }}</label>
+                <form id="sub_responsibilities_form">
+                    <input type="hidden" name="resp" value="{{ selectedResponsibilityId }}">
+                    <select id="sub_resp_sel" name="subResp" size="10" style="width: 100%">
+                        {% for subResponsibility in subresponsibilitiesList %}
+                            {% set isSelected = selectedSubResponsibilityId == subResponsibility.id ? 'selected' : '' %}
+                            <option value="{{ subResponsibility.id }}" {{ isSelected }}>{{ subResponsibility.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="hidden" name="action" value="responsiblePersons">
+                    <input type="hidden" name="method" value="regenerateView">
+                </form>
+            {% endif %}
+        </div>
+
+        {% if displayUsersAssignation == true %}
+            <div class="ten columns">
+                <input type="hidden" name="subResp" value="{{ selectedSubResponsibilityId }}">
+
+                <div>
+                    <h1 id="responsibilities_header">{{ 'responsiblePersons.index.twig.assignedUsers' | trans }}</h1>
+                </div>
+
+                <div id="deviation-management" class="row">
+                    <div class="error-message"></div>
+                </div>
+
+                <div>
+                    <table>
+                        <thead>
+                        <tr>
+                            {% if selectedResponsibilityId == 1 %}
+                            <th>{{ 'responsiblePersons.index.twig.position' | trans }}</th>
+                             {% endif %}
+                            <th>{{ 'responsiblePersons.index.twig.access' | trans }}</th>
+                            <th>{{ 'responsiblePersons.index.twig.name' | trans }}</th>
+                            <th>{{ 'responsiblePersons.index.twig.details' | trans }}</th>
+                            <th>{{ 'responsiblePersons.index.twig.action' | trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for responsibleUser in responsibleUsersList %}
+                            <tr>
+                                {% if selectedResponsibilityId == 1 %}
+                                <td>{{ responsibleUser.responsibilityRole? (('responsiblePersons.index.twig.slt' ~responsibleUser.responsibilityRole |raw) | trans) : '' }}</td>
+                                {% endif %}
+                                <td>
+                                    {% if responsibleUser.isResponsible == true %}
+                                        <b>{{ 'responsiblePersons.index.twig.optResponsible' | trans }}</b>
+                                    {% elseif responsibleUser.isDeputy == true %}
+                                        <b>{{ 'responsiblePersons.index.twig.optDeputy' | trans }}</b>
+                                    {% else %}
+                                        {{ 'responsiblePersons.index.twig.optWritable' | trans }}
+                                    {% endif %}
+                                </td>
+                                <td>{{ responsibleUser.name }}</td>
+                                <td>{{ responsibleUser.structureDetails? (('responsiblePersons.index.twig.opt' ~responsibleUser.structureDetails |raw) | trans) : '' }}</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="columns eight nopad">
+                                            <input type="button"
+                                                   class="remove_user_role_btn"
+                                                   data-id="{{ responsibleUser.userId ?? responsibleUser.osId }}"
+                                                   data-is-structure="{{ responsibleUser.isStructure ? 1 : 0 }}"
+                                                   value="{{ 'responsiblePersons.index.twig.remove' | trans }}">
+                                            {% if isDeviationPermission == false %}
+                                                <input type="button"
+                                                       class="switch_user_role_btn"
+                                                       data-id="{{ responsibleUser.userId ?? responsibleUser.osId }}"
+                                                       data-is-structure="{{ responsibleUser.isStructure ? 1 : 0 }}"
+                                                       value="{{ 'responsiblePersons.index.twig.switchRole' | trans }}">
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+
+                <div id="tabs">
+                    <ul>
+                        <li><a href="#tabs-1">{{ 'responsiblePersons.index.twig.addUser' | trans }}</a></li>
+                        <li><a href="#tabs-2">{{ 'responsiblePersons.index.twig.addStructure' | trans }}</a></li>
+                    </ul>
+                    <div id="tabs-1" class="tabs">
+                        <div class="options-bar">
+                            <form id="add_user_form">
+                                <input type="hidden" name="category" value="{{ selectedResponsibilityId }}">
+                                <input type="hidden" name="subcategory" value="{{ selectedSubResponsibilityId }}">
+                                <ul class="submenu_ul">
+                                    <li>
+                                        <select id="userSearchBox" name="user_id" style="width: 200px"></select>
+                                    </li>
+                                    <li>
+                                        <select name="mode" style="padding: 7px 2px 7px 6px; border: 0;">
+                                            <option value="0"
+                                                    selected>{{ 'responsiblePersons.index.twig.optWritable' | trans }}</option>
+                                            {% if isDeviationPermission == false %}
+                                                <option value="1">{{ 'responsiblePersons.index.twig.optDeputy' | trans }}</option>
+                                                <option value="2">{{ 'responsiblePersons.index.twig.optResponsible' | trans }}</option>
+                                            {% endif %}
+                                        </select>
+                                    </li>
+                                    {% if selectedResponsibilityId == 1 %}
+                                    <li>
+                                        <select id="responsibility_role" name="res_role"
+                                                style="padding: 7px 2px 7px 6px; border: 0;">
+                                            <option value="EcuResponsible">{{ 'responsiblePersons.index.twig.sltEcuResponsible' | trans }}</option>
+                                            <option value="DepartmentManager">{{ 'responsiblePersons.index.twig.sltDepartmentManager' | trans }}</option>
+                                            <option value="DivisionManager">{{ 'responsiblePersons.index.twig.sltDivisionManager' | trans }}</option>
+                                            <option value="CompanyManager">{{ 'responsiblePersons.index.twig.sltCompanyManager' | trans }}</option>
+                                        </select>
+                                    </li>
+                                    {% endif %}
+                                    <li>
+                                        <button type="button"
+                                                id="add_user_btn"
+                                                class="sts_submenu W140 disabled"
+                                                disabled="disabled">
+                                            {{ 'responsiblePersons.index.twig.addUser' | trans }}
+                                        </button>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="tabs-2" class="tabs">
+                        <div class="options-bar">
+                            <form id="add_structure_form" action="">
+                                <input type="hidden" name="category" value="{{ selectedResponsibilityId }}">
+                                <input type="hidden" name="subcategory" value="{{ selectedSubResponsibilityId }}">
+                                <ul class="submenu_ul">
+                                    <li>
+                                        <select id="structuresSearchBox" name="structure_id"
+                                                style="width: 200px"></select>
+                                    </li>
+                                    <li>
+                                        <select id="structure_details" name="str_details"
+                                                style="padding: 7px 2px 7px 6px; border: 0;">
+                                            <option value="leader">{{ 'responsiblePersons.index.twig.optLeader' | trans }}</option>
+                                            <option value="deputy">{{ 'responsiblePersons.index.twig.optDeputy' | trans }}</option>
+                                            <option value="all">{{ 'responsiblePersons.index.twig.optAll' | trans }}</option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <select name="role" style="padding: 7px 2px 7px 6px; border: 0;">
+                                            <option value="0"
+                                                    selected>{{ 'responsiblePersons.index.twig.optWritable' | trans }}</option>
+                                            {% if isDeviationPermission == false %}
+                                                <option value="1">{{ 'responsiblePersons.index.twig.optDeputy' | trans }}</option>
+                                                <option value="2">{{ 'responsiblePersons.index.twig.optResponsible' | trans }}</option>
+                                            {% endif %}
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <button type="button"
+                                                id="add_structure_btn"
+                                                class="sts_submenu W140 disabled"
+                                                disabled="disabled">
+                                            {{ 'responsiblePersons.index.twig.addStructure' | trans }}
+                                        </button>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+
+
+    {# ---------------------------- Dialogs ----------------------------------------- #}
+    <div id="switch_user_role_dialog" title="Switch user role">
+        <p>{{ 'responsiblePersons.index.twig.selectUserRole' | trans }}:</p>
+        <p>
+        <form method='post' id="switch_user_role_form">
+            <select>
+                <option value="2">{{ 'responsiblePersons.index.twig.optResponsible' | trans }}</option>
+                <option value="1">{{ 'responsiblePersons.index.twig.optDeputy' | trans }}</option>
+                <option value="0">{{ 'responsiblePersons.index.twig.optWritable' | trans }}</option>
+            </select>
+        </form>
+        </p>
+    </div>
+    {# ----------------------------------------------------------------------------- #}
+{% endblock %}
+{% block stylesheets %}
+    <style>
+        .tabs {
+            display: block;
+            height: 45px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+
+        $(document).on('change', '#resp_sel', () => {
+            $('#responsibilities_form').submit();
+        });
+
+        $(document).on('change', '#sub_resp_sel', () => {
+            $('#sub_responsibilities_form').submit();
+        });
+
+        $(document).on('click', '#add_user_btn', function () {
+            addUser();
+        });
+
+        $(document).on('click', '#add_structure_btn', function () {
+            addStructure();
+        });
+
+        $('#userSearchBox').change(function () {
+            $('#add_user_btn').removeClass("disabled");
+            $('#add_user_btn').prop('disabled', false);
+        });
+
+        $('#structuresSearchBox').change(function () {
+            $('#add_structure_btn').removeClass("disabled");
+            $('#add_structure_btn').prop('disabled', false);
+        });
+
+        $(function () {
+            $("#tabs").tabs();
+        });
+
+        $('#userSearchBox').select2({
+            minimumInputLength: 3,
+            ajax: {
+                url: 'index.php',
+                type: "GET",
+                dataType: 'json',
+                data: (params) => {
+                    return {
+                        action: 'responsiblePersons',
+                        method: 'ajaxCall',
+                        ajax: 'user',
+                        autocomplete: params.term
+                    };
+                },
+                processResults: (data) => {
+                    return {
+                        results: $.map(data, (item) => {
+                            return {
+                                text: item.name,
+                                id: item.id
+                            }
+                        })
+                    };
+                }
+            }
+        });
+
+        $('#structuresSearchBox').select2({
+            minimumInputLength: 1,
+            ajax: {
+                url: 'index.php',
+                type: "GET",
+                dataType: 'json',
+                data: (params) => {
+                    return {
+                        action: 'responsiblePersons',
+                        method: 'ajaxCall',
+                        ajax: 'structure',
+                        autocomplete: params.term
+                    };
+                },
+                processResults: (data) => {
+                    return {
+                        results: $.map(data, (item) => {
+                            return {
+                                text: item.name,
+                                id: item.id
+                            }
+                        })
+                    };
+                }
+            }
+        });
+
+        let user = 0;
+        let userType = 0;
+
+        $(document).on('click', '.remove_user_role_btn', function () {
+            user = $(this).attr("data-id");
+            userType = $(this).attr("data-is-structure");
+            removeUserRole();
+        });
+
+        $(document).on('click', '.switch_user_role_btn', function () {
+            user = $(this).attr("data-id");
+            userType = $(this).attr("data-is-structure");
+            createDialog.dialog("open");
+        });
+
+        function removeUserRole() {
+            $.ajax({
+                method: "GET",
+                url: "index.php",
+                data: {
+                    action: 'responsiblePersons',
+                    method: 'ajaxCallDelete',
+                    ajax: 'remove',
+                    resp: '{{ selectedResponsibilityId }}',
+                    subResp: '{{ selectedSubResponsibilityId ?? 0 }}',
+                    user: user,
+                    userType: userType
+                },
+                dataType: "json",
+                success: function (result) {
+                    if (result['status'] === 'success') {
+                        window.location.href = 'index.php?action=responsiblePersons&method=regenerateView&resp={{ selectedResponsibilityId }}{{ selectedSubResponsibilityId? ('&subResp=' ~selectedSubResponsibilityId) | raw : '' }}';
+                    }
+                }
+            })
+        }
+
+        var createDialog = $("#switch_user_role_dialog").dialog({
+            autoOpen: false,
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "Select": function () {
+                    createDialog.dialog("close");
+                    saveChangedUserRole();
+                },
+                "Cancel": function () {
+                    createDialog.dialog("close");
+                }
+            }
+        });
+
+        function saveChangedUserRole() {
+            $.ajax({
+                method: "GET",
+                url: "index.php",
+                data: {
+                    action: 'responsiblePersons',
+                    method: 'ajaxCall',
+                    ajax: 'switch',
+                    resp: '{{ selectedResponsibilityId }}',
+                    subResp: '{{ selectedSubResponsibilityId?? 0 }}',
+                    user: user,
+                    userType: userType,
+                    role: $('#switch_user_role_form').find("option:selected").val()
+                },
+                dataType: "json",
+                success: function (result) {
+                    if (result['status'] === 'success') {
+                        window.location.href = 'index.php?action=responsiblePersons&method=regenerateView&resp={{ selectedResponsibilityId }}{{ selectedSubResponsibilityId? ('&subResp=' ~selectedSubResponsibilityId) | raw : '' }}';
+                    } else {
+                        saveValidationErrorWindow(result);
+                    }
+                }
+            })
+        }
+
+        function addUser() {
+            $.ajax({
+                method: "POST",
+                url: "index.php?action=responsiblePersons&method=ajaxCallPost&ajax=addUser",
+                data: $('#add_user_form').serialize(),
+                dataType: 'json',
+                success: function (result) {
+                    if (result['status'] === 'success') {
+                        window.location.href = 'index.php?action=responsiblePersons&method=regenerateView&resp={{ selectedResponsibilityId }}{{ selectedSubResponsibilityId? ('&subResp=' ~selectedSubResponsibilityId) | raw : '' }}';
+                    } else {
+                        saveValidationErrorWindow(result);
+                    }
+                }
+            })
+        }
+
+        function addStructure() {
+            $.ajax({
+                method: "POST",
+                url: "index.php?action=responsiblePersons&method=ajaxCallPost&ajax=addStructure",
+                data: $('#add_structure_form').serialize(),
+                dataType: 'json',
+                success: function (result) {
+                    if (result['status'] === 'success') {
+                        window.location.href = 'index.php?action=responsiblePersons&method=regenerateView&resp={{ selectedResponsibilityId }}{{ selectedSubResponsibilityId? ('&subResp=' ~selectedSubResponsibilityId) | raw : '' }}';
+                    } else {
+                        saveValidationErrorWindow(result);
+                    }
+                }
+            })
+        }
+
+
+    </script>
+{% endblock %}

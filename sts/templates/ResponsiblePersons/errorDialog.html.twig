@@ -1,0 +1,31 @@
+<!-- Dialogs -->
+<div id="responsibility-error" title="Error"></div>
+
+
+{% block javascripts %}
+    <script>
+        function saveValidationErrorWindow(errorInputData) {
+            let resultData = errorInputData;
+
+
+
+            $('#responsibility-error').empty();
+            $('#responsibility-error').html(resultData);
+            validationErrorDialogWindow.dialog('open');
+        }
+
+        /*------------- Dialogs ------------*/
+        var validationErrorDialogWindow = $("#responsibility-error").dialog({
+            autoOpen: false,
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "Close": function () {
+                    validationErrorDialogWindow.dialog("close");
+                }
+            }
+        });
+    </script>
+{% endblock %}

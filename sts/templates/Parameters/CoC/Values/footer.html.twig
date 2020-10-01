@@ -1,0 +1,122 @@
+{% trans_default_domain 'messages' %}
+
+<div id="global_values_sets_actions" class="horizontalMenuButtons">
+    <div class="MiniButtons">
+        <ul class="submenu_ul">
+            <li><span class="sts_submenu W130 {{ (parametersButtonsState.isHistoryAvailable) ? '' : 'disabled' }}"
+                      id="btn_history_set">{{ 'parameters.values.twig.footer.history' | trans }}</span></li>
+            <li><span class="sts_submenu W130 {{ (parametersButtonsState.isEditAvailable) ? '' : 'disabled' }}"
+                      id="btn_edit_set">{{ 'parameters.values.twig.footer.edit' | trans }}</span></li>
+            <li><span class="sts_submenu W130 {{ (parametersButtonsState.isSaveAvailable) ? '' : 'disabled' }}"
+                      id="btn_save_set">{{ 'parameters.values.twig.footer.save' | trans }}</span></li>
+            <li><span class="sts_submenu W130 {{ (parametersButtonsState.isCancelAvailable) ? '' : 'disabled' }}"
+                      id="btn_cancel_set">{{ 'parameters.values.twig.footer.cancel' | trans }}</span></li>
+        </ul>
+    </div>
+</div>
+
+{# ---------------------------- Dialogs ----------------------------------------- #}
+<div id="value-validation-dialog" title="{{ 'parameters.values.twig.footer.dialog.title.incorrectValue' | trans }}">
+    <p>{{ 'parameters.values.twig.footer.dialog.body.valueBetween' | trans }}</p>
+</div>
+
+{% include 'Parameters/CoC/Values/saveDataValidationError.html.twig' %}
+{% include 'History/partials/dialog/saveHistoryExceptionWindow.html.twig' %}
+{# ------------------------------------------------------------------------------ #}
+
+{% block stylesheets %}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '#btn_edit_set', function () {
+                if ($('#btn_edit_set').hasClass('disabled')) {
+                    return false;
+                }
+                window.location.href = 'index.php?action=cocValuesSets&method=regenerateView&' +
+                    'type=' + '{{ search['type'] }}' + '&year=' + {{ search['year'] }} +'&series=' + '{{ search['series'] }}' +
+                    '&configuration=' + {{ search['configuration'] }} + '&mode=2';
+            });
+
+            $(document).on('click', '#btn_save_set', function () {
+                if ($('#btn_save_set').hasClass('disabled')) {
+                    return false;
+                }
+
+                historyComment().then(function (result) {
+                    save();
+                });
+            });
+
+            $(document).on('click', '#btn_cancel_set', function () {
+                if ($('#btn_cancel_set').hasClass('disabled')) {
+                    return false;
+                }
+                window.location.href = 'index.php?action=cocValuesSets&method=regenerateView&' +
+                    'type=' + '{{ search['type'] }}' + '&year=' + {{ search['year'] }} +'&series=' + '{{ search['series'] }}' +
+                    '&configuration=' + {{ search['configuration'] }} + '&mode=1';
+            });
+
+            $(document).on('click', '#btn_history_set', function() {
+                historyDialog.dialog('open');
+            });
+
+            function save() {
+                $.ajax({
+                    method: 'POST',
+                    data: $('#CoCReleasedForm').serialize(),
+                    url: 'index.php?action=cocValuesSets&method=ajaxCallPost&cocs=configuration&ajax=' + {{ search['configuration'] }}
+                        + '&save=releasedPreview',
+                    dataType: "json",
+                    beforeSend: function (){
+                        $("#streetscooter-loader-mask").css('display', 'flex');
+                    },
+                    success: function () {
+                        $.ajax({
+                            method: 'POST',
+                            data: $('#CocParametersForm').serialize(),
+                            url: 'index.php?action=cocValuesSets&method=ajaxCallPost&cocs=configuration&ajax=' + {{ search['configuration'] }}
+                                + '&path=save',
+                            dataType: "json",
+                            success: function (result) {
+
+                                if (result['status'] === 'success') {
+                                    window.location.href = 'index.php?action=cocValuesSets&method=regenerateView&' +
+                                        'type=' + '{{ search['type'] }}' + '&year=' + {{ search['year'] }} +'&series=' + '{{ search['series'] }}' +
+                                        '&configuration=' + {{ search['configuration'] }} +'&mode=1';
+                                } else if (result['status'] === 'failure') {
+                                    $("#streetscooter-loader-mask").css('display', 'none');
+                                    saveHistoryExceptionWindow(result);
+                                } else {
+                                    $("#streetscooter-loader-mask").css('display', 'none');
+                                    saveValidationErrorWindow(result);
+                                }
+                            }
+                        })
+                    },
+                    error: function (){
+                        alert("{{ 'parameters.values.twig.cocRelease.incorrectParameters' | trans }}");
+                        $("#streetscooter-loader-mask").css('display', 'none');
+                    }
+                });
+            }
+
+            let valueValidationDialog = $("#value-validation-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 600,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.ok' | trans }}": function () {
+                        valueValidationDialog.dialog("close");
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

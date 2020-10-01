@@ -1,0 +1,387 @@
+{% trans_default_domain 'messages' %}
+
+{% block horizontal_menu %}
+
+<div id="sw_config_actions" class="horizontalMenuButtons">
+    <div class="MiniButtons">
+        <ul class="submenu_ul">
+            <li><span class="sts_submenu W150 {{ (buttonsState.isCreateAvailable) ? '' : 'disabled' }}" id="create_new_sw_button2">
+                    {{ 'ecu.sw.partials.menu.twig.horizontal.createSw' | trans }}</span></li>
+            <li><span class="sts_submenu W130 {{ (buttonsState.isSwSubversionCreateAvailable) ? '' : 'disabled' }}" id="create_subversion_button">
+                    {{ 'ecu.sw.partials.menu.twig.horizontal.createSub' | trans }}</span></li>
+            <li><span class="sts_submenu W130 {{ (buttonsState.isSwRemoveAvailable) ? '' : 'disabled' }}" id="delete_sw_button">
+                    {{ 'ecu.sw.partials.menu.twig.horizontal.deleteSw' | trans }}</span></li>
+            <li><span class="sts_submenu W130 {{ (buttonsState.isSwCopyAvailable) ? '' : 'disabled' }}" id="copy_sw_button">
+                    {{ 'ecu.sw.partials.menu.twig.horizontal.copySw' | trans }}</span></li>
+            <li><span class="sts_submenu W130 {{ (buttonsState.isListExportAvailable) ? '' : 'disabled' }}">
+                    {{ 'ecu.sw.partials.menu.twig.horizontal.export' | trans }}</span></li>
+            <li>
+                <span class="sts_submenu W130 {{ (buttonsState.isHistoryAvailable) ? '' : 'disabled' }}" id="history_sw_button">
+                    {{ 'ecu.sw.partials.menu.twig.horizontal.history' | trans }}
+                </span>
+            </li>
+            <li><span class="sts_submenu W130 {{ (buttonsState.isRvSAvailable) ? '' : 'disabled' }}">
+                    {{ 'ecu.sw.partials.menu.twig.horizontal.release' | trans }}</span></li>
+            <li><span class="sts_submenu W040 {{ (buttonsState.isSwLocked) ? 'locked-yes' : 'locked-no' }}"
+                    {% if buttonsState.isSwLocked %}
+                        title="{{ 'ecu.sw.partials.menu.twig.horizontal.lockedTitle' | trans }}"
+                    {% else %}
+                        title="{{ 'ecu.sw.partials.menu.twig.horizontal.notLockedTitle' | trans }}"
+                    {% endif %}
+                >
+                    <i class="fa {{ (buttonsState.isSwLocked) ? 'fa-lock' : 'fa-lock-open' }}"></i>
+{#                    {{ (buttonsState.isSwLocked) ? 'Locked' : 'Not locked' }}#}
+                </span></li>
+        </ul>
+    </div>
+</div>
+
+    {% include 'Ecu/Sw/partials/createNewVersion.html.twig' %}
+    <!-- Dialogs -->
+    <div id="add-subversion-dialog" title="{{ 'ecu.sw.partials.menu.twig.horizontal.dialog.title.addSub' | trans }}">
+        <p>{{ 'ecu.sw.partials.menu.twig.horizontal.dialog.body.validSuffix' | trans }}</p>
+        <p><span id="remove-dialog-text"></span></p>
+        <p class="validateTips">{{ 'ecu.sw.partials.menu.twig.horizontal.dialog.body.requiredFields' | trans }}</p>
+        <label for="subName">{{ 'ecu.sw.partials.menu.twig.horizontal.dialog.body.name' | trans }}</label>
+        <input type="text" name="subName" id="subversionSuffixText" value="" class="text ui-widget-content ui-corner-all">
+        <p>{{ 'ecu.sw.partials.menu.twig.horizontal.dialog.body.copyFrom' | trans }}</p>
+        <div style="float: left; clear: none;">
+            <input style="float: left; " type="radio" name="copyFromMainVersion" value="yes" checked="checked" />
+            <label style="display: block; padding: 2px 1em 0 0;">{{ 'ecu.sw.partials.menu.twig.horizontal.dialog.body.everything' | trans }}</label>
+            <input style="float: left; " type="radio" name="copyFromMainVersion" value="no" />
+            <label style="float: left; display: block; padding: 2px 1em 0 0;">{{ 'ecu.sw.partials.menu.twig.horizontal.dialog.body.nothing' | trans }}</label>
+        </div>
+    </div>
+    <div id="copy-revision-dialog" title="{{ 'ecu.sw.partials.menu.twig.horizontal.dialog.title.copySw' | trans }}">
+        <div class="validateTips"></div>
+        <label for="newSwName">{{ 'ecu.sw.partials.menu.twig.horizontal.dialog.body.name' | trans }}</label>
+        <input type="text" name="newSwName" id="copyRevisionName" value="" class="text ui-widget-content ui-corner-all">
+    </div>
+    <div id="delete-revision-dialog" title="Delete SW version">
+        <div id="assigned-configurations-list"></div>
+    </div>
+
+    {% if sw is defined and sw is not null %}
+        {% include 'History/partials/selector/generalSelector.html.twig' with {
+            'type' : historyType, 'form': historyForm, 'fk': sw
+        } %}
+    {% endif %}
+
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .locked-yes {
+            background: linear-gradient(to bottom, #880000 0, #884400 90%, #880000 100%) !important;
+            color: #ffdddd !important;
+        }
+
+        .locked-no {
+            background: linear-gradient(to bottom, #008800 0, #668844 90%, #008800 100%) !important;
+            color: #ddffdd !important;
+        }
+
+        .horizontalMenuButtons {
+            border:             1px solid #b0b0b0;
+            height:             auto;
+            display:            flex;
+            align-items:        center;
+            justify-content:    center;
+            padding: 0px 5px;
+        }
+
+        .submenu_ul li {
+            margin-bottom: 0px !important;
+            padding: 5px 0px;
+        }
+
+        .MiniButtons {
+            text-align: center;
+        }
+    </style>
+{%  endblock %}
+
+{% block javascripts %}
+    <script>
+        $( document ).ready(function() {
+            $(document).on('click', '#history_sw_button', function() {
+                historyDialog.dialog('open');
+            });
+
+            $(document).on('click', '#create_new_sw_button2', function() {
+                if (!$(this).hasClass('disabled')) {
+                    createDialog.dialog("open");
+                }
+            });
+
+            $(document).on('click', '#create_subversion_button', function() {
+               if (!$(this).hasClass('disabled')) {
+                   createSubversionDialog.dialog("open");
+               }
+            });
+
+            $(document).on('click', '#copy_sw_button', function() {
+                if (!$(this).hasClass('disabled')) {
+                    copySWDialog.dialog("open");
+                }
+            });
+
+            //
+            // TB-1884 - delete SW version
+            //
+            $(document).on('click', '#delete_sw_button', function() {
+                if (!$(this).hasClass('disabled')) {
+                    deleteDialog.dialog("open");
+
+                    $.ajax({
+                        method: "GET",
+                        url: "index.php",
+                        data: {
+                            action: 'parameterManagement',
+                            method: 'ajaxCall',
+                            path: 'configuration',
+                            ajax: 'get',
+                            sw: {{ (sw is defined)? sw: 0 }}
+                        },
+                        dataType: "json",
+                        success: function (configs) {
+                            $("#assigned-configurations-list").children().remove();
+
+                            // Delete when: Software version is not assigned to any vehicle configuration.
+                            if (configs['status'] === 'failure') {
+                                saveHistoryExceptionWindow(configs);
+                            } else if (configs.length === 0) {
+                                $("<p>").text("{{ 'ecu.sw.partials.menu.twig.horizontal.noAssigned' | trans }}").appendTo($("#assigned-configurations-list"));
+
+                                // Delete when: No SW sub version (see TB-1753 "creating a new software sub version") of it exists.
+                                $.ajax({
+                                    method: "GET",
+                                    url: "index.php",
+                                    data: {
+                                        action: 'parameterManagement',
+                                        method: 'ajaxCall',
+                                        path: 'subversion',
+                                        ajax: 'get',
+                                        sw: {{ (sw is defined)? sw: 0 }}
+                                    },
+                                    dataType: "json",
+                                    success: function (res) {
+                                        if (res['status'] === 'failure') {
+                                            saveHistoryExceptionWindow(res);
+                                        } else if (res.length > 0) {
+                                            // subversion exists! no removing
+                                            $("<p>").text("{{ 'ecu.sw.partials.menu.twig.horizontal.errorAssigned' | trans }}").appendTo($("#assigned-configurations-list"));
+                                            $("#confirm-delete-button").button("disable");
+                                        } else {
+                                            // REMOVE
+                                            $("<p>").text("{{ 'ecu.sw.partials.menu.twig.horizontal.noSAssigned' | trans }}").appendTo($("#assigned-configurations-list"));
+                                            $("<p>").text("{{ 'ecu.sw.partials.menu.twig.horizontal.areYSure' | trans }}").appendTo($("#assigned-configurations-list"));
+                                            $("#confirm-delete-button").button("enable");
+                                        }
+                                    }
+                                });
+                            } else {
+                                $("<p>").text("{{ 'ecu.sw.partials.menu.twig.horizontal.errorSAssigned' | trans }}").appendTo($("#assigned-configurations-list"));
+                                let confList = $('<ul/>');
+                                $.each(configs, function (index, value) {
+                                    $('<li/>').addClass().text(value).appendTo(confList);
+                                });
+                                confList.appendTo($("#assigned-configurations-list"));
+                                if (configs.length >= 20) {
+                                    $("<p>").text("{{ 'ecu.sw.partials.menu.twig.horizontal.onlyFirst' | trans }}").appendTo($("#assigned-configurations-list"));
+                                }
+                                $("#confirm-delete-button").button("disable");
+                            }
+                        }
+                    });
+                }
+            });
+
+            /*------------- Dialogs ------------*/
+            function createSubversion () {
+                let valid = true;
+                let revisionName = $('#subversionSuffixText').val().trim();
+                valid = valid && checkLength(revisionName, 2);
+
+                if (valid) {
+
+                    let copyFromMain = false ;
+                    if (document.querySelector('input[name="copyFromMainVersion"]:checked').value === "yes") {
+                        copyFromMain = true;
+                    }
+
+                    // get other subversions assigned to this sw version to check for unique names
+                    $.ajax({
+                        method: "GET",
+                        url: "index.php",
+                        data: {
+                            action: 'parameterManagement',
+                            method: 'ajaxCall',
+                            path: 'subversion',
+                            ajax: 'get',
+                            sw: {{ (sw is defined)? sw: 0 }}
+                        },
+                        dataType: "json",
+                        success: function (res) {
+                            if (res['status'] === 'failure') {
+                                saveHistoryExceptionWindow(res);
+                            } else if (res && res.map(a => a.subversion_suffix).includes(revisionName)) {
+                                updateTips("{{ 'ecu.sw.partials.menu.twig.horizontal.suffixExists' | trans }}");
+                            } else {
+                                // add new sw version
+                                $.ajax({
+                                    method: "GET",
+                                    url: "index.php",
+                                    data: {
+                                        action: 'parameterManagement',
+                                        method: 'ajaxCall',
+                                        path: 'subversion',
+                                        ajax: 'add',
+                                        sw: {{ (sw is defined)? sw: 0 }},
+                                        suffix: revisionName,
+                                        copy: copyFromMain
+                                    },
+                                    dataType: "json",
+                                    success: function (res) {
+                                        createSubversionDialog.dialog("close");
+                                        if (res['status'] === 'failure') {
+                                            saveHistoryExceptionWindow(res);
+                                        } else {
+                                            window.location.href = 'index.php?action=parameterManagement&method=regenerateView&ecu='
+                                                + {{ (ecu is not null)? ecu: 0 }} +' &sw= ' + res.inserted + '&odx=2&mode=2';
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+
+            //
+            // Prepare dialog for creating new subversion
+            //
+            var createSubversionDialog = $("#add-subversion-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.createSubversion' | trans }}": function() {
+                        historyComment().then(function (result) {
+                            createSubversion();
+                        })
+                    },
+                    "{{ 'dialog.button.cancel' | trans }}": function () {
+                        createSubversionDialog.dialog("close");
+                    }
+                }
+            });
+
+            function copySw() {
+                let valid = true;
+                let revisionName = $('#copyRevisionName').val().trim();
+
+                valid = valid && checkIfExists(revisionName);
+
+                if (valid) {
+                    $('#copy-revision-dialog').dialog("close");
+                    $('#copyRevisionName').val = "";
+                    // add new sw version
+                    $.ajax({
+                        method: "GET",
+                        url: "index.php",
+                        data: {
+                            action: 'parameterManagement',
+                            method: 'ajaxCall',
+                            path: 'sw',
+                            ajax: 'copy',
+                            sw: {{ (sw is defined)? sw: 0 }},
+                            sts: revisionName,
+                        },
+                        dataType: "json",
+                        success: function (res) {
+                            $('.validateTips').empty();
+                            copySWDialog.dialog("close");
+
+                            if (res['status'] === 'failure') {
+                                saveHistoryExceptionWindow(res);
+                            } else {
+                                window.location.href = 'index.php?action=parameterManagement&method=regenerateView&ecu='
+                                    + {{ (ecu is not null)? ecu: 0 }} +'&sw=' + res.inserted + '&odx=2&mode=2';
+                            }
+                        }
+                    });
+                }
+            }
+
+            //
+            // Prepare dialog for copying software
+            //
+            var copySWDialog = $("#copy-revision-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.copyRevision' | trans }}": function() {
+                        historyComment().then(function (result) {
+                            copySw();
+                        })
+                    },
+                    "{{ 'dialog.button.cancel' | trans }}": function () {
+                        $('.validateTips').empty();
+                        copySWDialog.dialog("close");
+                    }
+                }
+            });
+
+            function deleteSw() {
+                deleteDialog.dialog("close");
+                $.ajax({
+                    method: 'DELETE',
+                    url: 'index.php?action=parameterManagement&method=ajaxCallDelete&path=sw&ajax=delete&sw='+{{ sw }},
+                    dataType: "json",
+                    success: function (result) {
+                        if (result['status'] === 'failure') {
+                            saveHistoryExceptionWindow(result);
+                        } else {
+                            window.location.href = 'index.php?action=parameterManagement&method=regenerateView&ecu='
+                                +{{ (ecu is not null)? ecu: 0 }};
+                        }
+                    }
+                });
+            }
+
+            //
+            // Prepare dialog for Removing new revision
+            //
+            var deleteDialog = $("#delete-revision-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: [
+                    {
+                        id: "confirm-delete-button",
+                        text: "{{ 'dialog.button.delete' | trans }}",
+                        click: function() {
+                            historyComment().then(function (result) {
+                                deleteSw();
+                            })
+                        }
+                    },
+                    {
+                        text: "{{ 'dialog.button.cancel' | trans }}",
+                        click: function () {
+                            deleteDialog.dialog("close");
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+{% endblock %}

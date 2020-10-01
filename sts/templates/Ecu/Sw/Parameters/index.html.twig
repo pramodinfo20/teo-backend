@@ -1,0 +1,185 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+
+    <h1>{{ 'ecu.sw.parameters.twig.index.header' | trans }}</h1>
+    <div class="row">
+        {% include 'Ecu/Sw/partials/menu/vertical.html.twig' with {'ecus': ecus} %}
+        <div class="columns ten">
+            <div id="infobox-ecu" class="row"></div>
+            {% if sw is null %}
+                {% set choose_ecu = (ecu is defined) ? ecu : null %}
+                {% include 'Ecu/Sw/partials/start/chooseSw.html.twig' with {'ecu': choose_ecu} %}
+            {% endif %}
+            <div class="row">
+
+                {% if sw is not null %}
+                    {% include 'Ecu/Sw/partials/menu/horizontal.html.twig' with {'buttonsState': horizontalButtonsState} %}
+                {% endif %}
+                <div class="parameters">
+                    <div class="parametersHeader">
+                        {% if mode == 1 and sw is defined and header is not empty %}
+                            {% include 'Ecu/Sw/partials/header.html.twig' with {'header': header, 'parametersButtons' : parametersButtons} %}
+                        {% elseif mode == 2 and sw is defined and header is not empty %}
+                            {% include 'Ecu/Sw/partials/form/header/editParameter.html.twig' with {'form': headerForm} %}
+                        {% endif %}
+                    </div>
+                    <div class="parametersValues">
+                        {% if odx == 1 and mode == 1 and sw is not null %}
+                            {% include 'Ecu/Sw/partials/view/odx1/viewParameters.html.twig' with {'parameters': parameters, 'odxSts02' : header.odxSts02} %}
+                        {% elseif odx == 1 and mode == 2 and sw is not null %}
+                            {% include 'Ecu/Sw/partials/form/odx1/editParameters.html.twig' with {'sw' : sw,
+                                'parameters': parameters, 'odxSts02' : header.odxSts02} %}
+                        {% elseif odx == 2 and mode == 1 and sw is not null %}
+                            {% include 'Ecu/Sw/partials/view/odx2/viewParameters.html.twig' with {'parameters': parameters,
+                                'parametersButtons': parametersButtons, 'odxSts02' : header.odxSts02 } %}
+                        {% elseif odx == 2 and mode == 2 and sw is not null %}
+                            {% include 'Ecu/Sw/partials/form/odx2/editParameters.html.twig' with {'sw' : sw,
+                                'parameters': parameters, 'odxSts02' : header.odxSts02} %}
+                        {% endif %}
+                    </div>
+                </div>
+                {% if sw is not null %}
+                    {% with
+                        {
+                        'ecu': ecu,
+                        'sw': sw,
+                        'odx': odx,
+                        'protocol': header.protocol.ecuCommunicationProtocolName,
+                        'parametersButtonsState': parametersButtonsState,
+                        'parametersButtons': parametersButtons,
+                        'supportOdx2': supportOdx2,
+                        'mode' : mode,
+                        } %}
+                        {% include 'Ecu/Sw/partials/menu/footer.html.twig' %}
+                    {% endwith %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% include 'History/partials/dialog/saveHistoryExceptionWindow.html.twig' %}
+    {% include 'History/partials/common/historyComment.html.twig' with {'form': commentForm, 'id' : sw, 'type' : historyType} %}
+
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .parametersValues {
+            max-height: 50vh;
+        }
+
+        .parametersHeader table tr {
+            background: #fff
+        }
+
+        .version_header {
+            margin: 10px 0
+        }
+
+        .version_header tr td:nth-child(odd) {
+            font-weight: 700
+        }
+
+        .horizontalMenuButtons {
+            border: 1px solid #b0b0b0;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5px
+        }
+
+        .submenu_ul li {
+            margin-bottom: 0 !important;
+            padding: 5px 0
+        }
+
+        .MiniButtons {
+            text-align: center
+        }
+
+        .parameters_table thead {
+            font-weight: 700
+        }
+
+        .parameters_table tbody tr:nth-child(1), .odx1-table tbody tr:nth-child(1), .odx2-table tbody tr:nth-child(1) {
+            background-color: #e2e2ff
+        }
+
+        .parameters_table tbody tr:nth-child(2), .odx1-table tbody tr:nth-child(2), .odx2-table tbody tr:nth-child(2) {
+            background-color: #d0d0ff
+        }
+
+        .odx2_table tbody tr:nth-child(3), .odx2-table tbody tr:nth-child(3) {
+            background-color: #d0d0b0;
+            border-top: 5px solid #bbb;
+            border-bottom: 5px solid #bbb
+        }
+
+        .sts_submenu {
+            cursor: default !important
+        }
+
+        .parameters_table {
+            margin-bottom: 10px
+        }
+
+        .odxVersion {
+            margin-bottom: 10px
+        }
+
+        .centerColumn {
+            text-align: center
+        }
+
+        .centerColumnExtra input {
+            vertical-align: middle;
+            display: inline-block
+        }
+
+        .odx_yes {
+            width: 50px;
+            background: linear-gradient(to bottom, #080 0, #684 90%, #080 100%);
+            color: #dfd;
+            display: inline-block;
+            font-family: 'RobotoBold';
+            border-radius: 5px;
+            text-align: center
+        }
+
+        .odx_no {
+            width: 50px;
+            display: inline-block;
+            background: linear-gradient(to bottom, #800 0, #840 90%, #800 100%);
+            color: #fdd;
+            font-family: 'RobotoBold';
+            border-radius: 5px;
+            text-align: center
+        }
+
+        .odxSts02 {
+            content: " "
+        }
+
+        table {
+            word-break: break-all;
+            width: 100%
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '.disabled', function (event) {
+                event.preventDefault();
+            });
+
+            $(document).on('change', 'input[name="odx"]', function () {
+                $('#select_odx_form').submit();
+            });
+        });
+    </script>
+{% endblock %}

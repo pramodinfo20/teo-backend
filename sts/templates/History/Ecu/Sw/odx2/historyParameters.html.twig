@@ -1,0 +1,139 @@
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    <table class="parameters_table odx2_table  {{  parameters.historyEvent | historyEventClass }}" >
+        {% include 'History/Ecu/Sw/odx2/historyParametersHeader.html.twig' %}
+        <tbody>
+            {% for id, parameter in parameters.parameters %}
+
+                <tr class="{{ parameter.historyEvent | historyEventValueClass }}">
+                    {{ parameter.order | historyValueTd  }}
+                    {% if (id == 2) %}
+                        <td class="{{ (parameter.name.isEqual or parameter.serialState.isEqual) ? '' : ' updated ' }}">
+                            {% if parameter.historyEvent == 1 %}
+                                <span class="historyValue">
+                                        {{ parameter.name | historyRawAfterValue }}&nbsp
+                                </span>
+                                <span class="historyValue">
+                                    <input type="checkbox" name="serial"
+                                    {{ (parameter.serialState | historyRawAfterValue)? 'checked' : '' }} disabled>
+                                </span>
+                            {% elseif parameter.historyEvent == 2 %}
+                                <span class="historyValue" title="Previous value: {{ parameter.name | historyRawBeforeValue }}">
+                                        {{ parameter.name | historyRawAfterValue }}&nbsp
+                                </span>
+                                <span class="historyValue" title="Previous value: {{ parameter.serialState | historyRawBeforeValue }}">
+                                    <input type="checkbox" name="serial"
+                                    {{ (parameter.serialState | historyRawAfterValue)? 'checked' : '' }} disabled>
+                                </span>
+                             {% else %}
+                                 <span class="historyValue">
+                                        {{ parameter.name | historyRawBeforeValue }}&nbsp
+                                </span>
+                                 <span class="historyValue">
+                                    <input type="checkbox" name="serial"
+                                    {{ (parameter.serialState | historyRawBeforeValue)? 'checked' : '' }} disabled>
+                                </span>
+                            {% endif %}
+                        </td>
+                    {% else %}
+                        {{ parameter.name | historyValueTd }}
+                    {% endif %}
+
+
+                     {% if not odxSts02 | historyRawByEventValue(parameter.historyevent) %}
+                         {% if parameter.odx1 | historyRawByEventValue(parameter.historyEvent) %}
+                             {{ parameter.odx1 | historyValueTd(['centerColumn'], ['odx_yes']) }}
+                         {% else %}
+                             {{ parameter.odx1 | historyValueTd(['centerColumn'], ['odx_no']) }}
+                         {% endif %}
+                    {% endif %}
+
+                     {% if header.protocol | historyRawByEventValue(parameter.historyEvent) == 'UDS+XCP' %}
+                        {{ parameter.protocol | historyValueTd }}
+                     {% endif %}
+
+
+                    {% if header.protocol | historyRawByEventValue(parameter.historyEvent) != 'XCP' %}
+                        {{ parameter.udsId | historyValueTd }}
+                    {% endif %}
+
+                    <td class="{{ (parameter.read.isEqual and parameter.write.isEqual and parameter.confirm.isEqual) ? '' : ' updated ' }}">
+                        {% if parameter.historyEvent == 1 %}
+                            <span class='historyValue'>
+                                {{ (parameter.read | historyRawAfterValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.r' | trans) : '' }}
+                                {{ (parameter.write | historyRawAfterValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.w' | trans) : '' }}
+                                {{ (parameter.confirm | historyRawAfterValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.c' | trans) : '' }}
+                            </span>
+                        {%  elseif parameter.historyEvent == 2 %}
+                            <span title="Previous value:
+                                {{ (parameter.read | historyRawBeforeValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.r' | trans) : '' }}
+                                {{ (parameter.write | historyRawBeforeValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.w' | trans) : '' }}
+                                {{ (parameter.confirm | historyRawBeforeValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.c' | trans) : '' }}
+                                " class='historyValue'>
+                                {{ (parameter.read | historyRawAfterValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.r' | trans) : '' }}
+                                    {{ (parameter.write | historyRawAfterValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.w' | trans) : '' }}
+                                    {{ (parameter.confirm | historyRawAfterValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.c' | trans) : '' }}
+                            </span>
+                        {% else %}
+                            <span  class='historyValue'>
+                                {{ (parameter.read | historyRawBeforeValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.r' | trans) : '' }}
+                                {{ (parameter.write | historyRawBeforeValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.w' | trans) : '' }}
+                                {{ (parameter.confirm | historyRawBeforeValue)? ('ecu.sw.partials.view.odx2.twig.viewParameters.c' | trans) : '' }}
+                            </span>
+                        {% endif %}
+                    </td>
+                    {{ parameter.variableType | historyValueTd }}
+
+                    {{ parameter.coding | historyValueTd }}
+
+                    {{ parameter.bigEndian | historyValueTd }}
+
+                    {{ parameter.bytes | historyValueTd }}
+
+                    {{ parameter.factor | historyValueTd }}
+
+                    {{ parameter.offset | historyValueTd }}
+
+                    {{ parameter.unit | historyValueTd }}
+
+                    {% if parameter.valueString | historyRawByEventValue(parameter.historyEvent) is not null %}
+                        {{ parameter.valueString | historyValueTd }}
+                    {% elseif parameter.valueBlob | historyRawByEventValue(parameter.historyEvent) is not null %}
+                        {{ parameter.valueBlob | historyValueTd }}
+                    {% elseif parameter.valueInteger | historyRawByEventValue(parameter.historyEvent) is not null %}
+                        {{ parameter.valueInteger | historyValueTd }}
+                    {% elseif parameter.valueUnsigned | historyRawByEventValue(parameter.historyEvent) is not null %}
+                        {{ parameter.valueUnsigned | historyValueTd }}
+                    {% elseif parameter.valueBool | historyRawByEventValue(parameter.historyEvent) is not null %}
+                        {{ parameter.valueBool | historyValueTd }}
+                    {% elseif parameter.linkedValueName | historyRawByEventValue(parameter.historyEvent) is not null %}
+                        {{ parameter.linkedValueName | historyValueTd }}
+                    {% endif %}
+
+                    {{ parameter.valueHex | historyValueTd }}
+
+                    {{ parameter.linkingTypeName | historyValueTd }}
+
+                    {{ parameter.startBit | historyValueTd }}
+
+                    {{ parameter.stopBit | historyValueTd }}
+                </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $( document ).ready(function() {
+
+        });
+    </script>
+{% endblock %}

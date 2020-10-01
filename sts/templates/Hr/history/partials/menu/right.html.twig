@@ -1,0 +1,35 @@
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+<div class="horizontalMenuButtons">
+    <div class="MiniButtons">
+        <ul class="submenu_ul">
+            {% if not footerMenuButtonsState.isGoBackAvailable %}
+                <li><span class="sts_submenu W180 {{ (footerMenuButtonsState.isShowTreeAvailable) ? '' : 'disabled' }}"
+                          id="showTree">{{ 'userRole.assignment.index.twig.btnShowTree' | trans }}</span></li>
+            {% elseif footerMenuButtonsState.isGoBackAvailable %}
+                <li><span class="sts_submenu W080" id="goBack">{{ 'userRole.assignment.index.twig.btnBack' | trans }}</span></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block stylesheets %}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+            $(document).on('change', '#CompanyStructureAssignmentType_currentRole', function() {
+                window.location.href= 'index.php?action=uploadHrHistory&method=regenerateView&history=' + {{ arguments.history }} +
+                    '&role=' + $(this).find(':selected').val();
+            });
+
+        });
+    </script>
+{% endblock %}

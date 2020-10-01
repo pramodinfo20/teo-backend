@@ -1,0 +1,68 @@
+{% trans_default_domain 'messages' %}
+
+<div id="ecu_sw_configuration_content" class="row">
+
+    {% if ecu is null %}
+        <p>{{ 'ecu.sw.partials.start.twig.chooseSw.noEcuSelected' | trans }}</p>
+        <h4>{{ 'ecu.sw.partials.start.twig.chooseSw.chooseEcuAndSw' | trans }}</h4>
+    {% else %}
+        <p>{{ 'ecu.sw.partials.start.twig.chooseSw.noSwSelected' | trans }}</p>
+        <h4>{{ 'ecu.sw.partials.start.twig.chooseSw.chooseSw' | trans }}</h4>
+    {% endif %}
+
+    <p>{{ 'ecu.sw.partials.start.twig.chooseSw.legend' | trans }}</p>
+    <ul>
+        <li class="responsible">{{ 'ecu.sw.partials.start.twig.chooseSw.redInfo' | trans }}</li>
+        <li class="deputy">{{ 'ecu.sw.partials.start.twig.chooseSw.greenInfo' | trans }}</li>
+        <li class="writable">{{ 'ecu.sw.partials.start.twig.chooseSw.blueInfo' | trans }}</li>
+    </ul>
+
+    {% if ecu is not null and ecu != 0 %}
+        {% set ecu_name = '' %}
+        {% for id, c_ecu in ecus %}
+            {% if c_ecu.ceEcuId == ecu %}
+                {#Fix responsible persons#}
+                {% set ecu_name = c_ecu.ecuName %}
+            {% endif %}
+        {% endfor %}
+        <h4>{{ 'ecu.sw.partials.start.twig.chooseSw.orCreateNew' | trans }}</h4>
+        <div class="MiniButtons">
+            <ul class="submenu_ul">
+                <li><span class="sts_submenu W180" id="create_new_sw_button">
+                        {{ 'ecu.sw.partials.start.twig.chooseSw.newRevision' | trans({'%ecu_name%' : ecu_name}) }}</span></li>
+            </ul>
+        </div>
+    {% endif %}
+</div>
+
+{% include 'Ecu/Sw/partials/createNewVersion.html.twig' %}
+
+{% block stylesheets %}
+ <style>
+     .MiniButtons {
+         text-align: center;
+     }
+
+     .responsible {
+         color: #880000;
+     }
+
+     .deputy {
+         color: #226622;
+     }
+
+     .writable {
+         color: #222288;
+     }
+ </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $( document ).ready(function() {
+            $(document).on('click', '#create_new_sw_button', function() {
+                createDialog.dialog("open");
+            });
+        });
+    </script>
+{% endblock %}

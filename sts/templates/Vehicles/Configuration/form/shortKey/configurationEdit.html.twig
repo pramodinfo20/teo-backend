@@ -1,0 +1,65 @@
+{% block body %}
+{{ form_start(form, {'attr': {'id': 'configuration_short_key_'~action, 'data-type': 'configuration'}}) }}
+<div>
+    <h2>{{ 'vehicles.configuration.partials.keyComponents.twig.keyTableTitle' | trans }}</h2>
+
+    <table class="createShortKey">
+        <tbody>
+        <tr>
+            <td>{{ 'vehicles.configuration.form.create.twig.configuration' | trans }}</td>
+            <td>
+                {{ 'vehicles.configuration.form.create.twig.type' | trans }} {{ form_widget(form.type) }}
+                {{ 'vehicles.configuration.form.create.twig.year' | trans }} {{ form_widget(form.year) }}
+                {{ 'vehicles.configuration.form.create.twig.series' | trans }} {{ form_widget(form.series) }}
+            </td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.form.create.twig.layout' | trans }}</td>
+            <td>{{ form_widget(form.layout) }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.form.create.twig.feature' | trans }}</td>
+            <td>{{ form_widget(form.feature) }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.form.create.twig.battery' | trans }}</td>
+            <td>{{ form_widget(form.battery) }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+{% include 'Vehicles/Configuration/form/common/oldCodeSupport.html.twig' %}
+
+<div>
+    <h2>{{ 'vehicles.configuration.partials.keyComponents.twig.addKeyFeatures' | trans }}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>{{ 'vehicles.configuration.partials.keyComponents.twig.name' | trans }}</th>
+                <th>{{ 'vehicles.configuration.partials.keyComponents.twig.value' | trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.stdColor' | trans }}</td>
+            <td>{{ form_widget(form.standardColor) }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'vehicles.configuration.partials.keyComponents.twig.stdProdPlace' | trans }}</td>
+            <td>{{ form_widget(form.stsPlaceOfProduction) }}</td>
+        </tr>
+    </table>
+</div>
+{{ form_widget(form.configurationId) }}
+{{ form_end(form, {'render_rest': false}) }}
+{% endblock %}
+
+
+{% block stylesheets %}
+    <style>
+        .year {
+            width: 38px;
+        }
+    </style>
+{% endblock %}

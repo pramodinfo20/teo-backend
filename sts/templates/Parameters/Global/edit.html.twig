@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'messages' %}
+
+{% block title %}{{ 'parameters.twig.edit.title' | trans }}{% endblock %}
+
+{% block body %}
+    <h1>{{ 'parameters.twig.edit.header' | trans }}</h1>
+    {{ include('Parameters/Global/_form.html.twig', {'button_label': 'Update'}) }}
+
+    {{ include('Parameters/Global/saveDataValidationError.html.twig') }}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+        });
+
+        function save() {
+            showHideMinMaxValue('save');
+            $.ajax({
+                method: 'POST',
+                data: $('#saveGP').serialize(),
+                url: 'index.php?action=globalParameters&method=saveEdited&globalParameter={{ globalParameter.globalParameterId }}',
+                dataType: "json",
+                success: function (result) {
+                    if (result['status'] === 'success') {
+                        window.location.href = 'index.php?action=globalParameters';
+                    } else {
+                        saveValidationErrorWindow(result);
+                    }
+                }
+            });
+        }
+
+
+    </script>
+{% endblock %}

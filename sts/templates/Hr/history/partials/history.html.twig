@@ -1,0 +1,32 @@
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    {{ form_start(historyForm, {'attr': {'id': 'historySelect'}}) }}
+    <div class="columns twelve">
+        {{ form_widget(historyForm.createdAt) }}
+    {{ form_end(historyForm) }}
+
+    {% with
+        {
+        'footerMenuButtonsState': footerMenuButtonsState,
+        }
+    %}
+        {% include 'Hr/history/partials/menu/left.html.twig' %}
+    {% endwith %}
+    </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+
+        });
+    </script>
+{% endblock %}

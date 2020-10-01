@@ -1,0 +1,14 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        /* Initialize Collection */
+        $('.coc-table').collection({
+            allow_add: false,
+            allow_delete: false,
+            allow_up: false,
+            allow_down: false,
+            max: 1000000,
+            elements_selector: 'tr.parameter',
+            elements_parent_selector: '%id% tbody'
+        });
+    });
+</script>

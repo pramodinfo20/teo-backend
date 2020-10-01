@@ -1,0 +1,1033 @@
+﻿﻿dialog:
+  button:
+    close: Schließen
+    cancel: Abbrechen
+    copyParameters: Parameter kopieren
+    ok: Ok
+    confirm: Bestätigen
+    createSubversion: Unterversion erstellen
+    copyRevision: Version kopieren
+    delete: Löschen
+    createRevision: Neue Version erstellen
+    copyValue: Wert kopieren
+    select: "Wählen"
+    overwrite: "Überschreiben"
+    save: Sichern
+
+common:
+  mandatoryFields: "* - Dies sind Pflichtfelder"
+  trueTxt: "Wahr"
+  falseTxt: "Falsch"
+
+admin:
+  keys:
+    twig:
+      index:
+        uploadKeys: Server Schlüssel hochladen
+        downloadKeys: Server Schlüssel herunterladen
+        uploadHeader: Öffentliche und Private Schlüssel hochladen
+        privateKey: Privater Schlüssel
+        publicKey: Öffentlicher Schlüssel
+        uploadButton: Schlüssel hochladen
+        downloadPrivate: Privaten Schlüssel herunterladen
+        downloadPublic:  Öffentlichen Schlüssel herunterladen
+        dialog:
+          title:
+            success: Hochladen erfolgreich
+            failure: Hochladen fehlgeschlagen
+          body:
+            messageSuccess: Benutzer können neue Signaturen erstellen
+            messageFailure1: Falsches Format des Schlüsselpaares
+            messageFailure2: "Korrektes Format für privaten/öffentlichen Schlüssel: <br />
+                      -----BEGIN PGP PRIVATE KEY BLOCK-----<br />
+                      <br />
+                      .....................................<br />
+                      ...................................==<br />
+                      =....                                <br />
+                      <br />
+                      -----END PGP PRIVATE KEY BLOCK-----"
+ecu:
+  add:
+    twig:
+      index:
+        addEcu: "Ecu Hinzufügen"
+        name: Name
+        stsPartNumber: Sts Part Number
+        create: Erstellen
+      dialog:
+        title: Erfolg
+        message: "Das Hinzufügen eines neuen Steuergeräts war erfolgreich."
+        error: Ecu mit diesem Namen existiert bereits.
+  diagnosticParameter:
+    menu:
+      twig:
+        vertical_ecus:
+          header: Steuergeräte / ECUs
+          select: "-- ECU auswählen --"
+    twig:
+      index:
+        header: ECU ODX Konfiguration
+        ecuInfo: Kein Steuergerät ausgewählt
+        supportHeader: "Ausgewählte ECU unterstützt odx.sts.02:"
+        trueTxt: "Wahr"
+        falseTxt: "Falsch"
+        save: Save
+        supportInfo: "Die Konfiguration der Diagnose Software für die Unterstützung des StS ODX2 Formates wurde durchgeführt"
+        selectedDevice: "Ausgewähltes Steuergerät / ECU:"
+        chooseSupport: "Bitte wählen Sie aus ob das ausgewählte Steuergerät das Dateiformat odx.sts.02 unterstützt"
+  diagnostic:
+    parameter:
+      management:
+        form:
+          formTheme:
+            twig:
+              id: Id
+              name: Name
+              action: Aktion
+        menu:
+          footer:
+            twig:
+              edit: Bearbeiten
+              save: Speichern
+              cancel: Aufheben
+        view:
+          viewParameters:
+            twig:
+              id: Id
+              name: Name
+        index:
+          twig:
+            dynamic: Dynamische Parameter
+  sw:
+    parameters:
+      twig:
+        index:
+          header: ECU System Verwaltung
+    partials:
+      form:
+        header:
+          twig:
+            editParameter:
+              swRevision: "ECU System:"
+              protocol: "Protokoll:"
+              request: "Request-ID:"
+              response: "Response-ID:"
+              info: "Info:"
+              status: "Status:"
+              windchill: "Windchill Link:"
+              suffix: "Suffix:"
+              odxVersion: "Odx version:"
+              defaultEndian: "Standard endian:"
+
+        odx1:
+          twig:
+            formTheme:
+              name: Name
+              odx: "odx v.01"
+              rwc: "R/W/C"
+              type: Typ
+              unit: Einheit
+              value: Wert
+              global: Globale Parameter
+              dynamic: Dynamische Parameter
+              coc: CoC Parameter
+              default: Standard Typ
+              actions: Aktionen
+              addParameter: Parameter hinzufügen
+              removeParameter: Parameter entfernen
+        odx2:
+          twig:
+            formTheme:
+              active: Aktiv
+              name: Name
+              odx: "odx v.01"
+              protocol: Protokoll
+              uds: "UDS-ID"
+              rwc: "R/W/C"
+              type: Typ
+              coding: Kodierung
+              bigEndian: Big endian
+              bytes: Bytes
+              factor: Faktor
+              offset: Offset
+              unit: Einheit
+              value: Wert
+              global: Globale Parameter
+              dynamic: Dynamische Parameter
+              coc: CoC Parameter
+              default: Standard Typ
+              start: Start
+              stop: Stop
+              actions: Aktion
+              yes: Ja
+              no: Nein
+              addParameter: Parameter hinzufügen
+              removeParameter: Parameter entfernen
+      menu:
+        twig:
+          footer:
+            chooseOdx: "ODX Version auswählen:"
+            edit: Bearbeiten
+            delete: Löschen
+            save: Sichern
+            cancel: Abbrechen
+            changeOrder: Reihenfolge ändern
+            copy: Kopieren
+            copyCurrent: In die aktuelle Version kopieren
+            copyOther: In eine andere Version kopieren
+            generateOdx: ODX generieren
+            dialog:
+              title:
+                copyOther: Parameters in eine anderes ECU System kopieren
+                overwrite: Parameter überschreiben
+                confirm: Kopieren bestätigen
+                success: Erfolgreich
+              body:
+                selectSw: "ECU System auswählen:"
+                info: Info
+                protocolInfo: Sie können nur ECU Systeme mit dem gleichen Protokoll auswählen
+                emptyList: ECU System Liste ist leer
+                sw: "Software:"
+                conflictDetected: "Ein Konflikt wurde festgestellt. Parameter überschreiben:"
+                selectedCopied: "<p>Ausgewählte Parameter wurden kopiert</p>
+                                                <p>Ausgewähltes ECU System und/oder Subversionen:</p>"
+                validationErrors: "Validierungsfehler:"
+            row: "Spalte:"
+            currentParameter: Aktueller Parameter
+            destinationParameter: Zielparameter
+          horizontal:
+            createSw: Neues ECU System erstellen
+            createSub: Subversion erstellen
+            deleteSw: ECU System löschen
+            copySw: ECU System kopieren
+            locked: Gesperrt
+            notLocked: Entsperrt
+            lockedTitle: System freigegeben
+            notLockedTitle: System in Entwicklung
+            export: Listenexport
+            history: Historie
+            release: Freigabe mit Signatur
+            createNewProperty: Add new ECU Property todo
+            addPropertyFromList: Add property from list todo
+            dialog:
+              title:
+                addSub: Subversion hinzufügen
+                copySw: ECU System kopieren
+              body:
+                validSuffix: Bitte geben Sie ein korrektes Suffix ein
+                requiredFields: Alle Formularfelder müssen ausgefüllt werden
+                name: Name
+                copyFrom: Von der Hauptversion kopieren
+                everything: Alles
+                nothing: Nichts (außer StS Teilenummer)
+            noAssigned: "OK: Dieses ECU System ist keiner Konfiguration zugewiesen"
+            errorAssigned: "Fehler: Einige Subversionen sind bereits zugewiesen!"
+            noSAssigned: "OK: Diesem ECU System sind keine Subversionen zugewiesen"
+            areYSure: Sind Sie sicher?
+            errorSAssigned: "Fehler: Dieses ECU System ist folgenden Konfigurationen zugewiesen:"
+            onlyFirst: Anzeige der ersten 20 Suchergebnisse
+            suffixExists: Diese Subversion mit Suffix existiert bereits für dieses ECU System
+          vertical:
+            deviceEcu: "Steuergerät / ECU"
+            selectEcu: "-- ECU auswählen --"
+            swVersions: ECU Systeme
+      start:
+        twig:
+          chooseSw:
+            noEcuSelected: Keine ECU ausgewählt
+            chooseEcuAndSw: Bitte wählen Sie ein ECU System aus
+            noSwSelected: Keine ECU System ausgewählt
+            chooseSw: "Wähle ECU System aus"
+            legend: "Legende:"
+            redInfo: "Rote Markierung - Sie sind als Verantwortlicher festgelegt"
+            greenInfo: "Grüne Markierung - Sie sind als Vertreter festgelegt"
+            blueInfo: "Blaue Markierung - Sie sind als Schreibberechtigter festgelegt"
+            orCreateNew: "oder erstellen Sie eine neues ECU System"
+            newRevision: Neue %ecu_name% Version
+      view:
+        odx1:
+          twig:
+            viewParameters:
+              order: "Nr"
+              name: Name
+              odx: "odx .02"
+              rwc: "R/W/C"
+              type: Typ
+              unit: Einheit
+              value: Wert
+              defaultType: Standard Typ
+              yes: Ja
+              no: Nein
+              r: R
+              w: W
+              c: C
+              trueTxt: "Wahr"
+              falseTxt: "Falsch"
+        odx2:
+          twig:
+            parametersHeader:
+              selectAll: Alle Parameter auswählen
+              order: "Nr"
+              name: Name
+              odx: "ODX v.01"
+              protocol: Protokoll
+              udsId: "UDS-ID"
+              rwc: "R/W/C"
+              type: Typ
+              coding: Kodierung
+              bigEndian: Big endian
+              bytes: Bytes
+              factor: Faktor
+              offset: Offset
+              unit: Einheit
+              value: Wert
+              global: Globale Parameter
+              dynamic: Dynamische Parameter
+              defaultType: Standard Typ
+              start: Start
+              stop: Stop
+            viewParameters:
+              yes: Ja
+              no: Nein
+              r: R
+              w: W
+              c: C
+              trueTxt: "Wahr"
+              falseTxt: "Falsch"
+      twig:
+        createNewVersion:
+          dialog:
+            title:
+              addNew: Neues ECU System hinzufügen
+            body:
+              name: Name
+          tooShort: Dieser Name ist zu kurz
+          nameExists: Dieser Name existiert bereits für diese ECU
+          notMatchPattern: Dieser Name entspricht keinem gültigen Muster
+          nameExists2: Dieser Name existiert bereits
+        header:
+          swRevision: "ECU System:"
+          odx: "ODX 2 Unterstützung:"
+          yes: Ja
+          no: Nein
+          protocol: "Protokoll:"
+          request: "Request-ID:"
+          response: "Response-ID:"
+          info: "Info:"
+          status: "Status:"
+          windchill: "Windchill Link:"
+          suffix: "Suffix:"
+          odxVersion: "Odx version:"
+          defaultEndian: "Standard endian:"
+          bigEndian: "Big-endian"
+          littleEndian: "Little-endian"
+configuration:
+  partials:
+    form:
+      header:
+        twig:
+          editParameter:
+            configuration: "Konfiguration: "
+            penta: "Penta Nummer: "
+            clone: "Kopierte Konfiguration: "
+            odx: "ODX Quellen Typ: "
+            ecu: "ECU:"
+            swrev: "SW Version: "
+            odx2: "ODX 2 Unterstützung:"
+            yes: Ja
+            no: Nein
+            protocol: "Protokoll:"
+            request: "Request-ID:"
+            response: "Response-ID:"
+            info: "Info:"
+            status: "Status:"
+            windchill: "Windchill Link:"
+            suffix: "Suffix:"
+            odxVersion: "Odx version:"
+      odx1:
+        twig:
+          formTheme:
+            ord: "Nr"
+            name: Name
+            odx1: "ODX v.01"
+            rwc: "R/W/C"
+            type: Typ
+            unit: Einheit
+            value: Wert
+            gp: Globale Parameter
+            dp: Dynamische Parameter
+            coc: COC Parameter
+            default: Standard Typ
+            yes: Ja
+            no: Nein
+            r: R
+            w: W
+            c: C
+            trueTxt: "Wahr"
+            falseTxt: "Falsch"
+      odx2:
+        twig:
+          formTheme:
+            order: "Nr"
+            name: Name
+            odx: "ODX v.01"
+            protocol: Protokoll
+            udsId: "UDS-ID"
+            rwc: "R/W/C"
+            type: Typ
+            coding: Kodierung
+            bigEndian: Big endian
+            bytes: Bytes
+            factor: Factor
+            offset: Offset
+            unit: Einheit
+            value: Wert
+            hex: Hex
+            global: Globale Parameter
+            dynamic: Dynamische Parameter
+            coc: COC Parameter
+            defaultType: Standard Typ
+            start: Start
+            stop: Stop
+            yes: Ja
+            no: Nein
+            r: R
+            w: W
+            c: C
+            trueTxt: "Wahr"
+            falseTxt: "Falsch"
+    menu:
+      twig:
+        footer:
+          odxVersion: "Wählen Sie eine ODX Version aus:"
+          odxVersion1: "odx.sts.01"
+          odxVersion2: "odx.sts.02"
+          miniButtonEdit: Bearbeiten
+          miniButtonSave: Sichern
+          miniButtonCancel: Abbrechen
+          validationError: "Validierungsfehler!"
+    view:
+      odx1:
+        twig:
+          viewParameters:
+            ord: "Nr"
+            name: Name
+            odx_v.02: "odx v.02"
+            rwc: "R/W/C"
+            type: Typ
+            unit: Einheit
+            value: Wert
+            defaultType: Standard Typ
+            yes: Ja
+            no: Nein
+            r: R
+            w: W
+            c: C
+            trueTxt: "Wahr"
+            falseTxt: "Falsch"
+      odx2:
+        twig:
+          parametersHeader:
+            ord: "Nr"
+            name: Name
+            odx_v.01: "odx v.01"
+            protocol: Protokoll
+            uds: "UDS-ID"
+            rwc: "R/W/C"
+            type: Typ
+            coding: Kodierung
+            bigEndian: Big endian
+            bytes: Bytes
+            factor: Faktor
+            offset: Offset
+            unit: Einheit
+            value: Wert
+            hex: Hex
+            gp: Globale Parameter
+            dp: Dynamische Parameter
+            defaultType: Standard Typ
+            start: Start
+            stop: Stop
+          viewParameters:
+            yes: Ja
+            no: Nein
+            r: R
+            w: W
+            c: C
+            trueTxt: "Wahr"
+            falseTxt: "Falsch"
+      twig:
+        createNewVersion:
+          dialog:
+            title:
+              addNew: Neues ECU System hinzufügen
+            body:
+              name: Name
+          tooShort: Der gewählte Name ist zu kurz
+          nameExists: Dieser Name existiert bereits für diese ECU
+          notMatchPattern: Dieser Name entspricht keinem bekannten Muster
+          nameExists2: Dieser Name existiert bereits
+        header:
+          configuration: "Konfiguration: "
+          penta: "Penta Nummer: "
+          clone: "Kopierte Konfiguration: "
+          odx: "ODX Quellen Typ: "
+          ecu: "ECU:"
+          swrev: "SW Version: "
+          odx2: "ODX 2 Unterstützung:"
+          yes: Ja
+          no: Nein
+          protocol: "Protokoll:"
+          request: "Request-ID:"
+          response: "Response-ID:"
+          info: "Info:"
+          status: "Status:"
+          windchill: "Windchill Link:"
+          suffix: "Suffix:"
+          odxVersion: "Odx version:"
+          defaultEndian: "Standard endian:"
+          bigEndian: "Big-endian"
+          littleEndian: "Little-endian"
+        search:
+          searchLegend: Suche von Fahrzeugkonfiguration
+          searchLabel: Suche (Sub-)Konfiguration
+          searchSeries: Baureihe
+          searchYear: Modelljahr
+          searchRelease: Release
+          search: Suche
+          result: Suchergebnis
+          invalid: "- fehlerhafte Subkonfiguration"
+          searchConfSpan: Konfiguration auswählen
+          ecuResult: Suchergebnis ECUs
+          selectECU: ECU auswählen
+          primary: Primäres ECU System
+          alternative: Alternatives ECU System
+          accept: Übernehmen
+          preview: Vorschau
+          import: ODX importieren
+          assignment: Keine Zuweisung
+          history: Historie
+  twig:
+    index:
+      header: ECU System Zuordnung
+      infoBlock: "Wählen Sie die Baureihe, das Modelljahr und das Release und anschließend eine spezifische Konfiguration"
+      configurationPreview: Vorschau der Fahrzeugkonfiguration
+
+
+parameters:
+  values:
+    form:
+      twig:
+        editValue:
+          id: ID
+          name: Name
+          min: Minimalwert
+          max: Maximalwert
+          value: Wert
+          unit: Einheit
+          responsibleU: Verantwortlicher
+          variableT: Variablen Typ
+          field: Field              {# needs translation #}
+          description: Beschreibung
+          row:  Reihe
+    twig:
+      footer:
+        history: Historie
+        edit: Bearbeiten
+        save: Sichern
+        cancel: Abbrechen
+        copy: Kopieren
+        dialog:
+          title:
+            copyValue: "Werte in eine andere Subkonfiguration kopieren"
+            incorrectValue: Falscher Wert
+          body:
+            selectSub: "Wählen Sie eine Subkonfiguration aus:"
+            info: Info
+            selectUnderDevelopment: "Sie können nur eine Subkonfiguration auswählen, die sich in Entwicklung befindet"
+            valueBetween: Wählen Sie einen Wert zwischen dem Minimum und Maximum
+      index:
+        header: Globale Parameter Verwaltung
+        coc:
+          header: CoC Parameter Zuweisung
+      search:
+        searchVConfiguration: Fahrzeug Konfiguration suchen
+        searchLabel: Suche (Sub-)Konfiguration
+        searchSeries: Baureihe
+        searchYear: Modelljahr
+        searchRelease: Release
+        search: Suche
+        searchResult: Suchergebnisse
+        selectConfiguration: Konfiguration auswählen
+        globalParameters: Globale Parameter
+        selectGlobal: Globale Parameter auswählen
+        selectCoC: CoC Parameter auswählen
+      subconfiguration:
+        selectTYS: Wählen Sie die Baureihe, Modelljahr und Release und anschließend eine spezifische Konfiguration
+        vcPreview: Vorschau der Fahrzeug Konfiguration
+      cocRelease:
+        cocPreview: CoC Freigabe Vorschau
+        cocEmpty:  Ausgewählte Subkonfiguration hat keine freigegebenen CoC-Parameter
+        header: CoC-Parameter Freigabe
+        notDefined: Nicht definiert
+        approvalCode: CoC Zulassungscode
+        approvalDate: CoC Zulassungsdatum
+        releasedDate: Freigabedatum
+        releasedBy: Freigegeben durch
+        incorrectParameters: Inkorrekte CoC freigegebene Parameter
+      view:
+        id: ID
+        name: Name
+        min: Min Wert
+        max: Max Wert
+        value: Wert
+        unit: Einheit
+        responsibleU: Verantwortlicher
+        variableT: Variablentyp
+        trueTxt: "Wahr"
+        falseTxt: "Falsch"
+        notDefined: Nicht definiert
+        field: Field              {# needs translation #}
+        description: Beschreibung
+  twig:
+    _delete_form:
+      delete: Löschen
+      areUSure: "Sind Sie sicher dass Sie dieses Objekt löschen wollen?"
+    edit:
+      title: Globale Parameter bearbeiten
+      titleCoC: CoC Parameter bearbeiten
+      header: Globale Parameter bearbeiten
+      headerCoC: CoC Parameter bearbeiten
+      backToList: Zurück zur Liste
+    footer:
+      save: Sichern
+      cancel: Abbrechen
+      dialog:
+        title:
+          incorrectValue: Falscher Wert
+        body:
+          valueBetween: Geben Sie einen Wert zwischen dem Minimum und Maximum ein
+    index:
+      header: Globale Parameter Verwaltung
+      cocHeader: CoC Parameter Verwaltung
+      id: ID
+      name: Name
+      min: Min Wert
+      max: Max Wert
+      unit: Einheit
+      responsibleU: Verantwortlicher
+      variableT: Variablentyp
+      linkedEcu: Verknüpfte ECU Parameter
+      actions: Aktionen
+      showLinkedEcu: Zeige
+      edit: Bearbeiten
+      remove: Entfernen
+      noRecords: Keine Einträge gefunden
+      createNew: Neu erstellen
+      ecu: ECU
+      sw: Software Version
+      order: Reihenfolge
+      description: Beschreibung
+      section: Abschnitt
+      field: Feld
+      specEcuRel: ECU Beziehung
+      chargCtrl: Ladessteuerung
+    new:
+      title: Neue Globale Parameter
+      header: Neue Globale Parameter erstellen
+      backToList: Zurück zur Liste
+    saveDataValidationError:
+      dialog:
+        title:
+          error: Fehler
+      validationRule: "Dieser Wert muss ausgefüllt werden"
+      errorMessage: "Einige Felder sind noch leer!<br>"
+    show:
+      title: Neue Globale Parameter
+      header: Neue Globale Parameter
+      id: ID
+      name: Name
+      responsibleU: Verantwortlicher
+      variableT: Variablentyp
+      backToList: Zurück zur Liste
+      edit: Bearbeiten
+
+properties:
+  index:
+    header: ECU Eigenschaften Verwaltung
+    canVersion: CAN Version
+  topHorizMenu:
+    addProp: Neue ECU Eigenschaft hinzufügen
+    addPropFromList: Eigenschaft aus Liste hinzufügen
+  propValTbView:
+    order: Reihenfolge
+    name: Name
+    value: Wert
+  botHorMenu:
+    chgCanVerBtn: CAN Version ändern
+    copyBtn: Kkopieren
+
+  PopupDialogs:
+    changeCanVersion:
+      chgCanVerDialTitl: CAN Version ändern
+    addPropertyFromList:
+      addPropFromListDial: Eigenschaft aus Liste hinzufügen
+
+  Form:
+    formThemeAddProperty:
+      name: Name
+      value: Wert
+    formThemeAddPropertyFromList:
+      selected: Ausgewählt
+      name: Name
+      value: Wert
+    formThemeChangeOrder:
+      chgOrd: Change orders
+      name: Name
+      value: Wert
+    propertiesValuesTableCopyToAnother:
+      selToCpy: Zum Kopieren auswählen
+      name: Name
+      value: Wert
+      cpyPropDialTit: Eigenschaften zu anderem ECU System kopieren
+      cpyPropConflDialTit: Eigenschaft überschreiben
+      conflDetPar: Konflikt erkannt. Eigenschaft überschreiben
+      cpyPropSuccDialInf: Ausgewählte Eigenschaften wurden kopiert
+
+
+vehicles:
+  configuration:
+    edit:
+      twig:
+        title: Fahrzeug Konfiguration bearbeiten
+
+    index:
+      twig:
+        header: Fahrzeug Konfigurationen Verwaltung
+        configDetails: Details der Konfiguration
+        dialog:
+          selectHeader: "Konfigurationstyp auswählen"
+          selectType: "Wählen Sie den richtigen Typ:"
+          deleteQuestion: "Wollen Sie diese Konfiguration wirklich löschen?"
+          shortKey: "Kurzer Schlüssel"
+          longKey: "Langer Schlüssel"
+
+    new:
+      twig:
+        title: Neue Fahrzeug Konfiguration
+
+    show:
+      twig:
+        title: Fahrzeug Konfiguration anzeigen
+        vehKey: "Fahrzeug Konfigurationsschlüssel:"
+
+    partials:
+      search:
+        twig:
+          searchLegend: Fahrzeug Konfiguration suchen
+          searchLabel: Suche (Sub-)Konfiguration
+          searchVinLabel: Nach VIN suchen
+          searchLocationLabel: Nach Standort suchen
+          searchLicPlateLabel: Nach Kennzeiche suchen
+          configBoxLabel: Konfiguration
+          vinBoxLabel: VIN
+          licPlateBoxLabel: Kennzeichen
+          locationBoxLabel: Standort
+          searchSeries: Baureihe
+          searchYear: Modelljahr
+          searchRelease: Release
+          searchButton: Suche
+          searchResult: Suchergebnis
+          searchRed: Rot
+          searchInvalidConfig: Ungültige Subkonfigurationen
+          searchSelectConfig: Konfiguration auswählen
+
+      saveDataValidationError:
+        twig:
+          validationError: Einige Felder sind leer
+
+      keyComponents:
+        twig:
+          keyTableTitle: Teile und Ausstattungen, die dem Konfigurationsschlüssel entsprechen
+          vehicleType: Baureihe
+          vehicleYear: Modelljahr
+          vehicleSeries: Release
+          additionalKeyTableTitle: Zusätzliche Merkmale
+          name: Name
+          value: Wert
+          visibleOnReport: Sichtbar auf dem Fahrzeugbegleitschein
+          espPart: ESC Teil mit ESC Software
+          rotBeac: Rundumleuchte
+          coDriverPart: Einbau an Beifahrersitzposition
+          batteryType: Batterietyp
+          radio: Radio
+          addKeyFeatures: Zusätzliche Ausstattungen
+          stdColor: Standard Farbe
+          deutschePost: Deutsche Post Konfiguration
+          targetState: Ziel der Auslieferung
+          stdProdPlace: Standard Produktionsstätte
+          espFunctionality: ESP Funktion
+          tirePressureFront: Reifendruck vorne
+          tirePressureRear: Reifendruck hinten
+          comment: Kommentar
+          testSoftwareVersion: Test ECU System
+          collationOfVehicles: Auswertung der Fahrzeugstückzahlen
+          color: Farbe
+          numberOfVehiclesInDb: Anzahl Fahrzeuge in Datenbank angelegt
+          numberOfVehiclesStartedAssembly: Anzahl Fahrzeuge Montage begonnen
+          numberOfVehiclesEndOfLine: Anzahl Fahrzeuge End of Line
+          numberQsApproved: Anzahl Fahrzeuge QS freigegeben
+          numberOfDelivered: Anzahl Fahrzeuge ausgeliefert
+          total: Summe
+          toDeutschePost: an Deutsche Post
+          tothirdCustomer: an Drittkunden
+
+      descrptionOutOfKey:
+        twig:
+          notDefined: Nicht definiert
+          notAssigned: Nicht zugewiesen
+          presentEcus: Vorhandene ECUs
+          primarySoftwareVersion: Primäres ECU System
+          alternativeSoftwareVersion: Alternatives ECU System
+          usage: Verwendung
+          canForwarding: CAN Weiterleitung
+          pentaNumber: Penta Nummer
+          subConfState: Status der Subkonfiguration
+          subConfReleaseState: Subkonfiguration Freigabestatus
+          releaseState: Freigabe Status
+          releasedByUser: Freigegeben von
+          releasedDate: Freigabe Datum
+          subConfigurationState: Status der Subkonfiguration
+          periodOfProduction: Zeitraum der Produktion
+          periodOfDelivery: Zeitraum der Auslieferung
+          configurationState: Status der Konfiguration
+
+      bottom_menu:
+        twig:
+          edit: Bearbeiten
+          fix: Korrigieren
+          save: Sichern
+          cancel: Abbrechen
+          create: Neu Erstellen
+          createByCopy: Neu durch Kopie
+          delete: Löschen
+          cannotDelete: "Dieser Konfiguration sind Fahrzeuge zugewiesen. Deshalb kann sie nicht gelöscht werden."
+          history: Historie
+
+      availableOptionsForProperty:
+        twig:
+          symbol: Symbol
+          description: Beschreibung
+          dataNotExist: Daten nicht vorhanden
+          availableOptions: Verfügbare Optionen
+
+      searchingForError:
+        twig:
+          noDataExist: "Keine Suchergebnisse. Bitte ändern Sie die Daten und versuchen Sie es erneut."
+
+      generalConfigurationKeyTable:
+        twig:
+          typeDesignation: Typenbezeichnung
+          vehKey: "Fahrzeug Konfigurationsschlüssel"
+          shortProdDesc: Produktionskurzbezeichnung
+
+
+
+    form:
+      oldCodeSupport:
+        twig:
+          additionalInformations: Weitere Informationen
+          vinMethod: Vin-Methode
+          smartLoading: Intelligentes Laden
+      create:
+        twig:
+          keyTableTitle: Teile und Ausstattungen, die dem Konfigurationsschlüssel entsprechen
+          configuration: Konfiguration (Baureihe/Modelljahr/Release)
+          devStatus: Entwicklungsstand
+          body: Karosserie
+          numberDriveAxle: Anzahl/angetriebene/gelenkte Achsen
+          engineType: Motortyp, Dauerleistung
+          stageOfCompletion: Komplettierung
+          bodyLength: Fahrgestell Länge
+          frontAxle: Vorderachse
+          rearAxle: Hinterachse
+          zgg: Zulässiges Gesamtgewicht
+          fuelType: Energieart
+          tractionBattery: Antriebsbatterie
+          chargingSystem: Ladesystem
+          vMax: V max
+          seats: Sitzkonfiguration
+          hitch: Anhängerkupplung
+          superstructures: Aufbau
+          energySupplyStructure: Energieversorgung Aufbau
+          steering: Lenkung
+          rearWindow: Rückwand Fenster
+          airConditioning: Klimaanlage
+          passengerAirbag: Beifahrer Airbag
+          keylessEntry: Keyless entry/go
+          specialApplication: Sonderausstattung Kunde
+          radio: Radio
+          soundGenerator: Sound Generator
+          countryCode: Länderkennzeichen
+          color: Farbe
+          wheelings: Bereifung
+          layout: Layout
+          battery: Batterie
+          feature: Ausstattung
+          correctColorNotice: Bitte wählen Sie eine gültige Farbe für die Fahrzeugkonfiguration aus. Dies wird sich nicht auf die Farbe in der Penta Nummer der Subkonfiguration auswirken.
+
+
+responsiblePersons:
+  index:
+    twig:
+      titleResponsibilities: Verantwortlichkeiten
+      titleCategories: Kategorien
+      textChooseCategories: "Bitte wählen Sie aus der Liste aus"
+      titleSubcategories: Subkategorien
+      infoNoCategoriesResponsibility: Keine Verantwortlichkeitskategorie gefunden
+      infoCannotAddPermission: Es können keine neuen Abweicherlaubnisse hinzugefügt werden, da die maximale Anzahl erreicht wurde
+      textAddNew: Neu hinzufügen
+      infoEnterName: Geben Sie den Namen der Firmenstruktur oder des Mitarbeiters von StreetScooter ein
+      optLeader: Leiter
+      optDeputy: Vertreter
+      optAll: Alle
+      optResponsible: Verantwortliche
+      optWritable: Schreibrechte
+      lblSetResponsible: Als Verantwortlichen festlegen
+      lblSetDeputy: Als Vertreter festlegen
+      msgConfirmRemove: Element von der Liste entfernen " + {*var3*} + "<br/>Sind Sie sicher?
+      infoNoResponsibilities: Für diese Kategorie wurden keine Verantwortlichkeiten festgelegt
+      titleOfTableColumns: "<table><tr><th>Access</th><th>Name</th><th>Details</th><th>Action</th></tr>"
+      textSelectCategory: Wählen Sie die Kategorie und weitere Details
+      textNoOption: Es wurde keine Option ausgewählt
+      addUser: Benutzer hinzufügen
+      addStructure: Struktur hinzufügen
+      assignedUsers: Zugeordnete Nutzer
+      access: Zugriff
+      name: Name
+      details: Details
+      action: Aktion
+      position: Position
+      remove: Entfernen
+      switchRole: Rolle wechseln
+      selectUserRole: Benutzer Rolle auswählen
+      sltEcuResponsible: Ecu Responsible
+      sltDepartmentManager: Department Manager
+      sltDivisionManager: Division Manager
+      sltCompanyManager: Company Manager
+cocOutput:
+  form:
+    cocTitle: CoC Erzeugung
+    vehicleCharacteristic: Choose the vehicle characteristic
+    authorizedSignatory: Autorisiert unterzeichner
+    startValue: Start value
+    endValue: End value
+    dateOnCoc: Date on CoC paper (optional)
+    docLang: Language of document
+    generateCoc: Generate coc
+    langEnglish: Englisch
+    LangGerman: Deutsch
+    PentaKennwort: Penta Kennwort
+    vehicleConfiguration: Vehicle configuration
+    dateOfDelivery: Date of delivery
+    emptyVehCharacteristic: The vehicle characteristic cannot be empty!
+    emptyStartValue: The start value is empty!
+    emptyEndValue: The end value is empty!
+    emptyLang: The Language of document cannot be empty!
+    greaterData: Start date cannot be greater then end date!
+    pdfNotGenerated: The PDF has been not generated! Possibly that the CoC paper is not released!
+    incorrectPrameters: "Provided parameters are incorrect, please change data and try again."
+hr:
+  upload:
+    header: Upload der Personalliste
+    uploadResults: Upload der Ergebnisse
+    headerNote: Verwenden Sie dieses Formular um eine neue .CSV Datei in die Datenbank hochzuladen
+    title: Wählen Sie eine Datei aus
+    btnUpload: Upload
+    exampleFile: Beispiel einer gültigen .CSV Datei
+    code: Bereich;KST;Beschreibung;hash;Status;Leader;Deputy_organization
+      CFO;200;Verwaltung;0b502b7b2983a7a53db345f8719071b5c3964f09b8cf133c36fe05b96289acae;StS-MA;TRUE;
+      CFO;210;Controlling;5a1b92622b1259e0ca9edc062d41655bd222b3db1581b0f5183f5d036dc6ac14;Student/in;TRUE;Verwaltung
+      CFO;250;Personal & OE;6b6553fcee2457cbc09020bf21c7130ef9413b8d7265286825fec86a4a28015f;Auszubildende;TRUE;Verwaltung
+      CEO;350;Einkauf;eaf5bf140f599776a6d881876bec644ed613564d2be09c50ccdb43790c9022df;StS-MA;TRUE;Verwaltung
+      CEO;360;SCM;273f7e030ad05786f8f18abda4cf579f92d8e8ba31980767d17889a7e19d7423;StS-MA;TRUE;Einkauf
+      CEO;400;Vertrieb;46667a3537bfaa7b1bb791fce03f19f4b0b3ebe769f15d297be9fca9b21c68d5;Student/in;TRUE;
+      CTO;510;Powertrain;63444dd9b5024f3193d48a35ed2fb76120a8d68cc2e60c4ca4121016514acd18;Student/in;TRUE;Vertrieb
+      CTO;514;Vernetzung;27f9aa011d00ed582b1b15e751ecae840a943c733371e99e068147af9cd466fe;StS-MA;TRUE;Vertrieb
+    note: "Bitte beachten Sie, dass die <strong>gehashte</strong> Form der Namen benötigt wird!"
+    listHeader: Personalliste
+    listTitle: " Einträge gefunden"
+    showList: Zeige die Liste
+    listName: Gehhashter Name der Person
+    listOrganizationID: Organisation ID
+    listBusinessUnit: Business Unit
+    listStatus: "Status"
+    listLeader: "Ist Leiter?"
+    listDeputyID: Vertreter Organisation ID
+    noDataNote: "Bisher sind keine Daten in der Datenbank gespeichert"
+    noDataTip: "Verwenden Sie dieses Formular um eine neue .CSV Datei in die Datenbank hochzuladen"
+  history:
+      history: Historie
+userRole:
+  assignment:
+    index:
+      twig:
+        titleAssignUserStructure: Zuweisung Benutzerrollen zu Strukturen
+        titleSelect: Benutzerrollen
+        tipInSelect: Wählen Sie eine Benutzerrolle für mehr Details
+        infoAboutSave: "Hier können Änderungen durchgeführt werden. Sie werden nach dem Klick auf den <strong>Speichern</strong> Button gespeichert."
+        infoAboutAssigned: "Firmenstrukturen, die bereits zugewiesen sind, werden <span class='assigned-structure'>Orange</span> markiert."
+        btnShowTree: Zeige den Firmenstrukturbaum
+        dialogElementsReasigned: "Element werden neu der aktuellen Benutzerrolle zugewiesen.<br/>Sind Sie sicher?"
+        infoAddedStructure: '<strong>" + {*var1*} + "</strong> " + ({*var*} == 1 ? "Firmenstruktur" : "Firmenstruktur") + " der aktuellen Benutzerrolle zugewiesen <br>'
+        infoRemovedStructure: '<strong>" + {*var2*} + "</strong>  " + ({*var2*} == 1 ? "Firmenstruktur" : "Firmenstruktur") + " von der aktuellen Benutzerrolle  entfernt <br>'
+        btnSave: Speichern
+        btnBack: Zurück
+        btnView: Sehen
+history:
+  partials:
+    common:
+      twig:
+        historyComment:
+          history: Verlauf
+          confirm: "Bestätigen"
+    menu:
+      twig:
+        footer:
+          goBack: Zurück
+          history: Verlauf
+    selector:
+      twig:
+        generalSelector:
+          default: Vorgegebener Umfang - aktuelles Element
+          filters: Suchfilter
+          fromTo: Von - Bis
+          createdBy: Erstellt durch
+          comment: Kommentar
+          event: Ereignis
+          scope: Umfang
+          searchWHistory: Gesamten Verlauf durchsuchen
+          search: Suchen
+    twig:
+      searchResults:
+        date: Datum
+        user: Benutzer
+        comment: Kommentar
+        event: Ereignis
+        action: Aktion
+        historySResult: Suchergebnisse des Verlaufs
+        show: Show
+        name: Name
+  twig:
+    index:
+      hModule: Verlaufsmodul
+      events: "Ereignisse:"
+      create: Erstellen
+      update: Aktualisieren
+      delete: "Löschen"
+      tip: Bitte den Zeiger über den Wert halten um den vorherigen Wert zu sehen.
+      user: Benutzer
+      comment: Kommentar
+      date: Datum
+      event: Ereignis
+      name: Name

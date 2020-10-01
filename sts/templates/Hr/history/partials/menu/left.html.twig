@@ -1,0 +1,31 @@
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    <div class="horizontalMenuButtons">
+        <div class="MiniButtons">
+            <ul class="submenu_ul">
+                {% if footerMenuButtonsState.isViewAvailable == true %}
+                    <li><span class="sts_submenu W080" id="view" >{{ 'userRole.assignment.index.twig.btnView' | trans }}</span></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block stylesheets %}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '#view', function() {
+                window.location.href = 'index.php?action=uploadHrHistory&method=regenerateView&history=' +
+                    $('#history_persons_list_hr_createdAt option:selected').val();
+            });
+        });
+    </script>
+{% endblock %}

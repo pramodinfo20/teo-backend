@@ -1,0 +1,83 @@
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    {% include 'Vehicles/Configuration/partials/availableOptionsForProperty.html.twig' %}
+    {% if parameters is null %}
+        <div class="infoBlock">
+            <h4>{{ 'parameters.values.twig.subconfiguration.selectTYS' | trans }}</h4>
+        </div>
+    {% else %}
+        <fieldset class="shrink">
+            <legend><span id="expand_button_vc" class="genericon genericon-expand"></span>
+                {{ 'parameters.values.twig.subconfiguration.vcPreview' | trans }}
+            </legend>
+
+            <div class="content-one" style="display: none;">
+                {% include 'Vehicles/Configuration/partials/keyComponents.html.twig' %}
+            </div>
+        </fieldset>
+    {% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .shrink {
+            width: 99%;
+            min-width: 0;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .infoBlock {
+            margin-bottom: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $( document ).ready(function() {
+            $(document).on('click', "a[name='parameter[]']", function () {
+                subVehicleId = $('#subVehicleConfigurationId').attr('data-id');
+                getListOfAvailableOptions(this.id);
+            });
+
+            const allSlideLegends = $('.genericon');
+
+            allSlideLegends.click(function () {
+                const $this = $(this);
+                const $target = $this.parent().next();
+
+                $target.slideToggle('fast');
+
+                if ($this.hasClass('genericon-collapse')) {
+                    $this.removeClass("genericon-collapse");
+                    $this.addClass("genericon-expand");
+                } else {
+                    $this.removeClass("genericon-expand");
+                    $this.addClass("genericon-collapse");
+                }
+            });
+
+
+            function getListOfAvailableOptions(propertyId) {
+                $.ajax({
+                    method: "GET",
+                    url: "index.php",
+                    data: {
+                        action: 'parameterSettings',
+                        call: 'ajaxGetListOfAvailableOptionsForProperty',
+                        propertyId: propertyId
+                    },
+                    dataType: "json",
+                    success: function (ajaxResultData) {
+                        availableOptionsDialog(ajaxResultData);
+                    }
+                });
+            }
+        });
+    </script>
+
+{% endblock %}

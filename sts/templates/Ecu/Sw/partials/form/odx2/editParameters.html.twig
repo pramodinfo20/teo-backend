@@ -1,0 +1,28 @@
+{% form_theme parametersForm 'Ecu/Sw/partials/form/odx2/formTheme.html.twig' %}
+
+{% set saveActionUrl = legacyUrl(currentLegacyUrl, {'method': 'saveParameters'}, true) %}
+{{ form(parametersForm, {'action': saveActionUrl, 'method': 'POST', 'attr': {'id': 'odx2ParametersForm'}}) }}
+
+{% block javascripts %}
+    {{ include('Ecu/Sw/partials/js/formJs.html.twig', {'odx': 2}) }}
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        form[name='Odx2ParameterCollectionType'] {
+            margin-bottom: 10px;
+        }
+
+        .hideAction {
+            display: none;
+        }
+
+        .centerColumn a {
+            text-align: center;
+        }
+
+        .hidden {
+            visibility: hidden;
+        }
+    </style>
+{% endblock %}

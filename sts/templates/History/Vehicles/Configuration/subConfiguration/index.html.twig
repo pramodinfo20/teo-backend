@@ -1,0 +1,39 @@
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    <h2>{{ 'vehicles.configuration.index.twig.header' | trans }}</h2>
+    <div class="row">
+        <div class="columns four custom-skeleton">
+            {% if historyModel.historyConfigurationMenu is not null %}
+                {% include 'History/Vehicles/Configuration/partials/menu/vertical.html.twig'
+                    with {'menu' : historyModel.historyConfigurationMenu } %}
+            {% endif %}
+        </div>
+        <div class="columns seven custom-skeleton">
+            <div id="result_page">
+                {% if historyModel.keyType == 1   %}
+                    {% include 'History/Vehicles/Configuration/partials/shortKey/keyComponents.html.twig' %}
+                    {% include 'History/Vehicles/Configuration/subConfiguration/shortKey.html.twig' %}
+                 {% elseif historyModel.keyType == 2 %}
+                     {% include 'History/Vehicles/Configuration/partials/longKey/keyComponents.html.twig' %}
+                     {% include 'History/Vehicles/Configuration/subConfiguration/longKey.html.twig' %}
+                {% endif %}
+                {% include 'History/Vehicles/Configuration/subConfiguration/partials/descriptionOutOfKey.html.twig' %}
+                {% include 'History/Vehicles/Configuration/subConfiguration/partials/releaseStatusTable.html.twig' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $( document ).ready(function() {
+
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    <h3>{{ 'history.partials.twig.searchResults.historySResult' | trans }}</h3>
+    <div class="row">
+       <table class="searchResultsTable">
+           <thead>
+                <tr>
+                    <th>{{ 'history.partials.twig.searchResults.date' | trans }}</th>
+                    <th>{{ 'history.partials.twig.searchResults.user' | trans }}</th>
+                    <tH>{{ 'history.partials.twig.searchResults.comment' | trans }}</tH>
+                    <th>{{ 'history.partials.twig.searchResults.event' | trans }}</th>
+                    <th>{{ 'history.partials.twig.searchResults.name' | trans }}</th>
+                    {% if not log %}
+                        <th>{{ 'history.partials.twig.searchResults.action' | trans }}</th>
+                    {% endif %}
+                </tr>
+           </thead>
+           <tbody>
+                {% for id, result in results %}
+                    <tr>
+                        <td>{{ result.createdAt | date('Y-m-d H:i:s') }}</td>
+                        <td>{{ result.createdBy }}</td>
+                        <td>{{ result.comment }}</td>
+                        {% if result.event is not null %}
+                            <td>{{ result.event.eventName }}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                        <td>{{ result.name }}</td>
+                        {% if not log %}
+                            <td><input type="button" value="{{ 'history.partials.twig.searchResults.show' | trans }}"
+                                    data-id="{{ result.hId }}" data-fk="{{ result.fkId }}" class="showHistory"></td>
+                        {% endif %}
+                    <tr/>
+                {% endfor %}
+           </tbody>
+       </table>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .searchResultsTable {
+            margin-bottom: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $( document ).ready(function() {
+            $(document).on('click', '.showHistory', function() {
+               window.location.href = 'index.php?action=history&method=regenerateView&type=' + {{ type }} +
+                   '&id=' + $(this).attr('data-id') + '&fk=' + $(this).attr('data-fk');
+            });
+        });
+    </script>
+{% endblock %}

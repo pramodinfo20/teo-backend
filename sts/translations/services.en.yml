@@ -1,0 +1,19 @@
+errorMessages:
+  responsibilityManagement:
+    responsibilityManagement:
+      currentUserIsAlreadyAssigned: "Current %userType% has been already assigned as %role%!"
+      anotherUserIsAssigned: "Another user or structure has been assigned as %role%!"
+      currentUserHasAnotherRole: "This %userType% has been already assigned to another role!"
+      user: "user"
+      structure: "structure"
+      responsible: "responsible"
+      deputy: "deputy"
+      writable: "writable"
+      maxUserCountAchieved: "Maximum 4 users allowed!"
+twig:
+  historyTupleExtension:
+    previous: "Previous value: "
+
+
+
+

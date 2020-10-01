@@ -1,0 +1,20 @@
+{% block body %}
+    <div>
+        <h2>{{ 'vehicles.configuration.form.oldCodeSupport.twig.additionalInformations' | trans }}</h2>
+
+        <table>
+            <tbody>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.oldCodeSupport.twig.vinMethod' | trans }} *</td>
+                <td>{{ parameters[0].vinMethod }}</td>
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.oldCodeSupport.twig.smartLoading' | trans }} *</td>
+                <td>
+                    {{ (parameters[0].chargerControllable)? 'true' : 'false' }}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

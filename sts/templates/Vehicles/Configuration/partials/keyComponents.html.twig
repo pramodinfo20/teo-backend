@@ -1,0 +1,32 @@
+{% include 'Vehicles/Configuration/partials/general_configuration_key_table.html.twig' %}
+
+<div>
+    <h2>{{ 'vehicles.configuration.partials.keyComponents.twig.keyTableTitle' | trans }}</h2>
+    <table>
+        <tr>
+            <th>{{ 'vehicles.configuration.partials.keyComponents.twig.vehicleType' | trans }}</th>
+            <td>{{ parameters[0].type }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'vehicles.configuration.partials.keyComponents.twig.vehicleYear' | trans }}</th>
+            <td>{{ parameters[0].year }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'vehicles.configuration.partials.keyComponents.twig.vehicleSeries' | trans }}</th>
+            {% if ((parameters[0].customerKey is defined) and (parameters[0].customerKey is not null)) %}
+                <td>{{ parameters[0].series~((parameters[0].customerKey is not null)?
+                '_'~parameters[0].customerKey : '') }}</td>
+            {% else %}
+                <td>{{ parameters[0].series }}</td>
+            {% endif %}
+        </tr>
+        {% for parameter in parameters[1] %}
+            <tr>
+                <th>{{ parameter.Key }}</th>
+                <td><a name="parameter[]" id="{{ parameter.PropertyId }}"> {{ parameter.Description }} </a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+

@@ -1,0 +1,36 @@
+{% block body %}
+    <form action="" id="history_configurations_form" method="GET">
+        <select id="configuration_list" name="id" size="20" style="width: 100%;">
+            <option value="{{ menu.historyConfigurationId }}" data-type="3">
+                {{ menu.historyConfigurationName }}
+            </option>
+
+            {% for element in menu.historySubConfigurations %}
+                    <option value="{{ element.subConfigurationId}}" data-type="2">
+                        &nbsp&nbsp&nbsp{{ element.subConfigurationName }}
+                    </option>
+            {% endfor %}
+        </select>
+        <input type="hidden" name="action" value="history">
+        <input type="hidden" name="method" value="regenerateView">
+    </form>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $( document ).ready(function() {
+            {% if id is not null %}
+                $('#configuration_list option[value="{{ id }}"]').prop("selected", "selected").change();
+            {% endif %}
+
+            $(document).on('change', '#configuration_list', function () {
+                let type = $(this).find('option:selected').attr('data-type');
+
+                $('#history_configurations_form').prepend('<input type="hidden" name="type" value="' + type +'">');
+                $('#history_configurations_form').submit();
+            });
+        });
+    </script>
+{% endblock %}
+
+

@@ -1,0 +1,48 @@
+<!-- Dialogs -->
+
+<div id="parameter-options-list"
+     title="{{ 'vehicles.configuration.partials.availableOptionsForProperty.twig.availableOptions' | trans }}"></div>
+
+{% block javascripts %}
+    <script>
+        function availableOptionsDialog(optionsList) {
+            let resultData = '';
+            if (optionsList != null) {
+                let availableOptionsTable = $('<table>').addClass('availableOptionsTable');
+                let headerRow = $('<tr>').addClass('optionsTableRow');
+                headerRow.append($('<th>').text("{{ 'vehicles.configuration.partials.availableOptionsForProperty.twig.symbol' | trans }}"));
+                headerRow.append($('<th>').text("{{ 'vehicles.configuration.partials.availableOptionsForProperty.twig.description' | trans }}"));
+                availableOptionsTable.append(headerRow);
+
+                for (let i = 0; i < optionsList.length; i++) {
+                    let row = $('<tr>');
+                    row.append($('<td>').text(optionsList[i]['symbol']));
+                    row.append($('<td>').text(optionsList[i]['description']));
+                    availableOptionsTable.append(row);
+                }
+                resultData = availableOptionsTable;
+            } else {
+                resultData = $('<h1>').text("{{ 'vehicles.configuration.partials.availableOptionsForProperty.twig.dataNotExist' | trans }}");
+            }
+
+            $('#parameter-options-list').empty();
+            $('#parameter-options-list').html(resultData);
+
+            availableOptionsDialogWindow.dialog('open');
+        }
+
+        /*------------- Dialogs ------------*/
+        var availableOptionsDialogWindow = $("#parameter-options-list").dialog({
+            autoOpen: false,
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "{{ 'dialog.button.close' | trans }}": function () {
+                    availableOptionsDialogWindow.dialog("close");
+                }
+            }
+        });
+    </script>
+{% endblock %}

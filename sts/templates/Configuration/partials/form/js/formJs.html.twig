@@ -1,0 +1,490 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        let defaultParameterType = {{ constant('App\\Enum\\Entity\\EcuSwParameterTypes::ECU_PARAMETER_TYPE_PARAMETER') }};
+        let globalParameterType = {{ constant('App\\Enum\\Parameter::LINKING_TYPE_GLOBAL_PARAMETER') }};
+        let dynamicParameterType = {{ constant('App\\Enum\\Parameter::LINKING_TYPE_DYNAMIC_VALUE') }};
+        {#let cocParameterType = {{ constant('App\\Enum\\Parameter::LINKING_TYPE_COC_PARAMETER') }};#}
+
+        let protocolXcp = '{{ constant('App\\Enum\\Entity\\EcuCommunicationProtocols::ECU_COMMUNICATION_PROTOCOL_XCP_NAME') }}';
+        let protocolUdsXcp = '{{ constant('App\\Enum\\Entity\\EcuCommunicationProtocols::ECU_COMMUNICATION_PROTOCOL_UDS_XCP_NAME') }}';
+
+        /* Copy sts Part number */
+        let odx = {{ odx }};
+
+        $(document).on('change', 'select[name="Odx' + odx + 'ParameterCollectionType[parameters][0][name]"], ' +
+            'select[name="Odx' + odx + 'ParameterCollectionType[parameters][1][name]"]', function () {
+            let val = 1;
+            if ($(this).attr('name') == 'Odx' + odx + 'ParameterCollectionType[parameters][0][name]') {
+                val = 1;
+            } else {
+                val = 3;
+            }
+            if ($(this).val() == val) {
+                $(this).parent().parent().find('.linkingType').find('.copySts').prop('disabled', false);
+            } else {
+                $(this).parent().parent().find('.linkingType').find('.copySts').prop('disabled', true);
+            }
+        });
+
+        $(document).on('click', '.copySts', function () {
+            $(this).parent().prevUntil(':visible').last().prev().find('input').val($('#header_stsVersion').val());
+        });
+
+        /* R/W/C */
+        $(document).on('change', '.rights', function() {
+            let read = $(this).find('input.readRight');
+            let write = $(this).find('input.writeRight');
+            let confirm = $(this).find('input.confirmRight');
+
+            let linkingType = $(this).closest('tr').find('td.linkingType select');
+            let variableType = parseInt($(this).closest('tr').find('td.variableType select').val());
+            let valueString = $(this).closest('tr').find('td.valueString input');
+
+            let valueBlob = null;
+
+            if (odx === 2) {
+                valueBlob = $(this).closest('tr').find('td.valueBlob input');
+            }
+
+            let valueInteger = $(this).closest('tr').find('td.valueInteger input');
+            let valueUnsigned = $(this).closest('tr').find('td.valueUnsigned input');
+            let valueBool = $(this).closest('tr').find('td.valueBool input');
+
+            if (read.prop('checked') && !write.prop('checked') && !confirm.prop('checked')) {
+                toggleLinkingTypeWithValues(
+                    true,
+                    variableType,
+                    linkingType,
+                    valueString,
+                    valueBlob,
+                    valueInteger,
+                    valueUnsigned,
+                    valueBool,
+                );
+            } else {
+                toggleLinkingTypeWithValues(
+                    false,
+                    variableType,
+                    linkingType,
+                    valueString,
+                    valueBlob,
+                    valueInteger,
+                    valueUnsigned,
+                    valueBool,
+                );
+            }
+        });
+
+        /* Hide Write & Confirm for Serial */
+        $('.serialWrite').toggle(false);
+        $('.serialConfirm').toggle(false);
+
+        /* Hide default GP, Dynamic & CoC */
+        $('.globalValue').toggle(false);
+        $('.dynamicValue').toggle(false);
+        // $('.cocValue').toggle(false);
+
+        /* Hide all value inputs if they don't match to type */
+        $('.parameter').each(function () {
+            let variableType =  getVariableTypeByName($(this).find("input[id*='variableType']").val()) ;
+            let valueString = $(this).find('td.valueString');
+
+            let valueBlob = null;
+
+            if (odx === 2) {
+                valueBlob = $(this).find('td.valueBlob');
+            }
+
+            let valueInteger = $(this).find('td.valueInteger');
+            let valueUnsigned = $(this).find('td.valueUnsigned');
+            let valueBool = $(this).find('td.valueBool');
+
+            toggleVisibilityOfValues(
+                variableType,
+                valueString,
+                valueBlob,
+                valueInteger,
+                valueUnsigned,
+                valueBool,
+            );
+
+
+            $('.rights').change();
+        });
+
+        $(document).on('change', '.variableType select', function() {
+            let selectedVariableType = parseInt($(this).val());
+            let selectedLinkingType = parseInt($(this).parent().parent().find('td.linkingType select').val());
+
+
+            let valueString = $(this).closest('tr').find('td.valueString');
+
+            let valueBlob = null;
+
+            if (odx === 2) {
+                valueBlob = $(this).closest('tr').find('td.valueBlob');
+            }
+
+            let valueInteger = $(this).closest('tr').find('td.valueInteger');
+            let valueUnsigned = $(this).closest('tr').find('td.valueUnsigned');
+            let valueBool = $(this).closest('tr').find('td.valueBool');
+
+            //&& selectedLinkingType != cocParameterType
+            if (selectedLinkingType != globalParameterType
+                && selectedLinkingType != dynamicParameterType) {
+                toggleVisibilityOfValues(
+                    selectedVariableType,
+                    valueString,
+                    valueBlob,
+                    valueInteger,
+                    valueUnsigned,
+                    valueBool,
+                );
+            }
+        });
+
+        $(document).on('change', '.linkingType select', function() {
+            let selectedLinkingType = parseInt($(this).val());
+
+            let globalValue = $(this).closest('tr').find('td.globalValue');
+            let dynamicValue = $(this).closest('tr').find('td.dynamicValue');
+            // let cocValue = $(this).closest('tr').find('td.cocValue');
+
+            let variableType = parseInt($(this).closest('tr').find('td.variableType select').val());
+
+            let valueString = $(this).closest('tr').find('td.valueString');
+
+            let valueBlob = null;
+
+            if (odx === 2) {
+                valueBlob = $(this).closest('tr').find('td.valueBlob');
+            }
+
+            let valueInteger = $(this).closest('tr').find('td.valueInteger');
+            let valueUnsigned = $(this).closest('tr').find('td.valueUnsigned');
+            let valueBool = $(this).closest('tr').find('td.valueBool');
+
+            switch (selectedLinkingType) {
+                case globalParameterType:
+                    $(globalValue).toggle(true);
+                    $(dynamicValue).toggle(false);
+                    // $(cocValue).toggle(false);
+
+                    toggleVisibilityOfValues(
+                        0,
+                        valueString,
+                        valueBlob,
+                        valueInteger,
+                        valueUnsigned,
+                        valueBool,
+                    );
+                    break;
+                case dynamicParameterType:
+                    $(dynamicValue).toggle(true);
+                    $(globalValue).toggle(false);
+                    // $(cocValue).toggle(false);
+
+                    toggleVisibilityOfValues(
+                        0,
+                        valueString,
+                        valueBlob,
+                        valueInteger,
+                        valueUnsigned,
+                        valueBool,
+                    );
+                    break;
+                // case cocParameterType:
+                //     $(cocValue).toggle(true);
+                //     $(dynamicValue).toggle(false);
+                //     $(globalValue).toggle(false);
+                //
+                //     toggleVisibilityOfValues(
+                //         0,
+                //         valueString,
+                //         valueBlob,
+                //         valueInteger,
+                //         valueUnsigned,
+                //         valueBool,
+                //     );
+                //     break;
+                default:
+                    $('#dynamic').toggle(false);
+                    $('#global').toggle(false);
+                    // $('#coc').toggle(false);
+
+                    $(globalValue).toggle(false);
+                    $(dynamicValue).toggle(false);
+                    // $(cocValue).toggle(false);
+
+                    toggleVisibilityOfValues(
+                        variableType,
+                        valueString,
+                        valueBlob,
+                        valueInteger,
+                        valueUnsigned,
+                        valueBool,
+                    );
+                    break;
+            }
+        });
+
+        let selectedProtocol = '{{ header.protocol.ecuCommunicationProtocolName }}';
+
+        /* Fix protocol name */
+        $(document).on('change', '#header_protocol', function() {
+            selectedProtocol = $(this).find('option:selected').text();
+            handleProtocolAndUds(selectedProtocol);
+            //todo: fix - dynamic protocol change for the header in parameters
+            $('.odx2-table tbody tr input:nth-child(3):not([type=\'checkbox\'])').val(selectedProtocol);
+        });
+
+        /* Hide Protocol & UDS */
+        $('.udsId').toggle(false);
+        $('.udsIdValue').toggle(false);
+        $('.protocol').toggle(false);
+        $('.protocolValue').toggle(false);
+
+        handleProtocolAndUds(selectedProtocol);
+
+        /* Initialize Collection */
+        $('.odx' + odx + '-table').collection({
+            allow_add: true,
+            allow_delete: true,
+            allow_up: false,
+            allow_down: false,
+            add: '<a href="#" class="collection-add btn btn-default" title="Add parameter">[ + ]</a>',
+            delete: '<a href="#" class="collection-remove btn btn-default" title="Remove parameter">[ - ]</a>',
+            after_add: function(collection, element) {
+                /* GP & Dynamic */
+                let globalValue = $(element).closest('tr').find('td.globalValue');
+                let dynamicValue = $(element).closest('tr').find('td.dynamicValue');
+                // let cocValue = $(element).closest('tr').find('td.cocValue');
+
+                $(globalValue).toggle(false);
+                $(dynamicValue).toggle(false);
+                // $(cocValue).toggle(false);
+
+                /* Set default type to parameter */
+                $(element).closest('tr').find('.type').val(defaultParameterType);
+
+                /* Protocol & UdsId */
+                handleProtocolAndUds(selectedProtocol);
+
+                /* Hide values */
+                let variableType = parseInt($(element).find('.variableType select').val());
+                let valueString = $(element).find('.valueString');
+
+                let valueBlob = null;
+
+                if (odx === 2) {
+                    valueBlob = $(element).find('.valueBlob');
+                }
+
+                let valueInteger = $(element).find('.valueInteger');
+                let valueUnsigned = $(element).find('.valueUnsigned');
+                let valueBool = $(element).find('.valueBool');
+
+                toggleVisibilityOfValues(
+                    variableType,
+                    valueString,
+                    valueBlob,
+                    valueInteger,
+                    valueUnsigned,
+                    valueBool,
+                );
+            },
+
+            elements_selector: 'tr.parameter',
+            elements_parent_selector: '%id% tbody'
+        });
+
+        /* Fix serial read rights */
+        $(document).on('click', '.serialReadRights', function (event) {
+            event.preventDefault();
+        });
+
+        function handleProtocolAndUds(protocol) {
+            if (protocol != protocolXcp) {
+                $('.udsId').toggle(true);
+                $('.udsIdValue').toggle(true);
+                $('.udsIdValue').find('input').prop('disabled', false);
+            } else {
+                $('.udsId').toggle(false);
+                $('.udsIdValue').toggle(false);
+                $('.udsIdValue').find('input').prop('disabled', true);
+            }
+
+            if (protocol == protocolUdsXcp) {
+                $('.protocol').toggle(true);
+                $('.protocolValue').toggle(true);
+                $('.protocolValue').find('select').prop('disabled', false);
+            } else {
+                $('.protocol').toggle(false);
+                $('.protocolValue').toggle(false);
+                $('.protocolValue').find('select').prop('disabled', true);
+            }
+        }
+
+        function toggleVisibilityOfValues(
+            variableType,
+            valueString,
+            valueBlob,
+            valueInteger,
+            valueUnsigned,
+            valueBool,
+        ) {
+            switch (variableType) {
+                case 0:
+                    valueString.toggle(false);
+                    if (valueBlob !== null)
+                        valueBlob.toggle(false);
+                    valueInteger.toggle(false);
+                    valueUnsigned.toggle(false);
+                    valueBool.toggle(false);
+                    break;
+                case 1:
+                    valueString.toggle(true);
+                    if (valueBlob !== null)
+                        valueBlob.toggle(false);
+                    valueInteger.toggle(false);
+                    valueUnsigned.toggle(false);
+                    valueBool.toggle(false);
+                    break;
+                case 2:
+                    valueString.toggle(true);
+                    if (valueBlob !== null)
+                        valueBlob.toggle(false);
+                    valueInteger.toggle(false);
+                    valueUnsigned.toggle(false);
+                    valueBool.toggle(false);
+                    break;
+                case 3:
+                    valueString.toggle(false);
+                    if (valueBlob !== null)
+                        valueBlob.toggle(true);
+                    valueInteger.toggle(false);
+                    valueUnsigned.toggle(false);
+                    valueBool.toggle(false);
+                    break;
+                case 4:
+                case 8:
+                case 10:
+                    valueString.toggle(false);
+                    if (valueBlob !== null)
+                        valueBlob.toggle(false);
+                    valueInteger.toggle(true);
+                    valueUnsigned.toggle(false);
+                    valueBool.toggle(false);
+                    break;
+                case 5:
+                    valueString.toggle(false);
+                    if (valueBlob !== null)
+                        valueBlob.toggle(false);
+                    valueInteger.toggle(false);
+                    valueUnsigned.toggle(true);
+                    valueBool.toggle(false);
+                    break;
+                case 7:
+                    valueString.toggle(false);
+                    if (valueBlob !== null)
+                        valueBlob.toggle(false);
+                    valueInteger.toggle(false);
+                    valueUnsigned.toggle(false);
+                    valueBool.toggle(true);
+                    break;
+            }
+        }
+        
+        function getVariableTypeByName(variableType) {
+            let VARIABLE_TYPE_STRING = 1;
+            let VARIABLE_TYPE_ASCII = 2;
+            let VARIABLE_TYPE_BLOB = 3;
+            let VARIABLE_TYPE_INTEGER = 4;
+            let VARIABLE_TYPE_UNSIGNED = 5;
+            let VARIABLE_TYPE_BOOLEAN = 7;
+            let VARIABLE_TYPE_BIGINTEGER = 8;
+            let VARIABLE_TYPE_SIGNED = 10;
+
+            let availableVariableTypes = {
+                'string': VARIABLE_TYPE_STRING,
+                'ASCII': VARIABLE_TYPE_ASCII,
+                'blob': VARIABLE_TYPE_BLOB,
+                'integer': VARIABLE_TYPE_INTEGER,
+                'unsigned': VARIABLE_TYPE_UNSIGNED,
+                'bool': VARIABLE_TYPE_BOOLEAN,
+                'biginteger': VARIABLE_TYPE_BIGINTEGER,
+                'signed': VARIABLE_TYPE_SIGNED
+            };
+
+            return availableVariableTypes[variableType];
+        }
+
+        function toggleLinkingTypeWithValues(
+            visible,
+            variableType,
+            linkingType,
+            valueString,
+            valueBlob,
+            valueInteger,
+            valueUnsigned,
+            valueBool,
+        ) {
+            /* Disable LinkingType */
+            linkingType.prop('disabled', visible);
+
+            /* Disable specific value */
+            switch (variableType) {
+                case 1:
+                    valueString.prop('disabled', visible);
+                    if (valueBlob !== null)
+                        valueBlob.prop('disabled', !visible);
+                    valueInteger.prop('disabled', visible);
+                    valueUnsigned.prop('disabled', visible);
+                    valueBool.prop('disabled', visible);
+                    break;
+                case 2:
+                    valueString.prop('disabled', visible);
+                    if (valueBlob !== null)
+                        valueBlob.prop('disabled', visible);
+                    valueInteger.prop('disabled', visible);
+                    valueUnsigned.prop('disabled', visible);
+                    valueBool.prop('disabled', visible);
+                    break;
+                case 3:
+                    valueString.prop('disabled', visible);
+                    if (valueBlob !== null)
+                        valueBlob.prop('disabled', visible);
+                    valueInteger.prop('disabled', visible);
+                    valueUnsigned.prop('disabled', visible);
+                    valueBool.prop('disabled', visible);
+                    break;
+                case 4:
+                case 8:
+                case 10:
+                    valueString.prop('disabled', visible);
+                    if (valueBlob !== null)
+                        valueBlob.prop('disabled', visible);
+                    valueInteger.prop('disabled', visible);
+                    valueUnsigned.prop('disabled', visible);
+                    valueBool.prop('disabled', visible);
+                    break;
+                case 5:
+                    valueString.prop('disabled', visible);
+                    if (valueBlob !== null)
+                        valueBlob.prop('disabled', visible);
+                    valueInteger.prop('disabled', visible);
+                    valueUnsigned.prop('disabled', visible);
+                    valueBool.prop('disabled', visible);
+                    break;
+                case 7:
+                    valueString.prop('disabled', visible);
+                    if (valueBlob !== null)
+                        valueBlob.prop('disabled', visible);
+                    valueInteger.prop('disabled', visible);
+                    valueUnsigned.prop('disabled', visible);
+                    valueBool.prop('disabled', visible);
+                    break;
+            }
+        }
+    });
+</script>

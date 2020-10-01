@@ -1,0 +1,590 @@
+<script>
+    //Custom search closure
+    const customSearch = (function () {
+        let
+            enabled = false,
+            enable = function () {
+                enabled = true;
+            },
+            disable = function () {
+                enabled = false;
+            },
+            getStatus = function () {
+                return enabled;
+            };
+
+        return {
+            enable: enable,
+            disable: disable,
+            getStatus: getStatus
+        }
+    }());
+
+    // Fill type list
+    $(document).ready(function () {
+        getTypeList();
+    });
+
+    // Fill year list
+    $('#sel_type').on('change', function (event) {
+        selectedType = $(this).find("option:selected").val();
+
+        getYearList(selectedType);
+
+        $('#sel_series').empty();
+
+        disableButtonsByLevel(1);
+    });
+
+    // Fill series list
+    $('#sel_year').on('change', function (event) {
+        selectedType = $('#sel_type').find("option:selected").val();
+        selectedYear = $(this).find("option:selected").val();
+
+        getSeriesList(selectedType, selectedYear);
+
+        disableButtonsByLevel(1);
+    });
+
+    $('#sel_series').on('change', function (event) {
+        selectedType = $('#sel_type').find("option:selected").val();
+        selectedYear = $('#sel_year').find("option:selected").val();
+        selectedSeries = $(this).find("option:selected").val();
+        selectedCustomerKey = $(this).find("option:selected").attr('data-customer-key');
+        clearConfigurationView();
+        clearByLevel(1);
+
+        getSearchListResult(selectedType, selectedYear, selectedSeries, selectedCustomerKey);
+
+        enableButtonsByLevel(1);
+    });
+
+    $('#btn_search_veh_conf').on('click', function (e) {
+        if ($(this).hasClass('disabled'))
+            return false;
+
+        disableButtonsByLevel(2);
+        clearByLevel(1);
+        clearConfigurationView();
+
+        let searchInputText = $('#inp_search_veh_conf').val();
+
+        if (searchInputText.length) {
+            customSearch.enable();
+            getSearchListResultByTextSearch(searchInputText.toUpperCase());
+        } else {
+            customSearch.disable();
+            getSearchListResult(selectedType, selectedYear, selectedSeries, selectedCustomerKey);
+        }
+    });
+
+    $('#btn_search_veh_conf_by_vin').on('click', function (e) {
+        if ($(this).hasClass('disabled'))
+            return false;
+
+        customSearch.enable();
+        let searchInputText = $('#inp_search_veh_conf_by_vin').val();
+
+        $.ajax({
+            method: "GET",
+            url: "index.php",
+            data: {
+                action: 'vehicleConfigurations',
+                method: 'ajaxCall',
+                ajax: 'search',
+                vin: searchInputText
+            },
+            dataType: "json",
+            success: function (ajaxResultData) {
+                fillSelectConfigurationBoxList(ajaxResultData);
+            }
+        });
+
+    });
+
+    $('#btn_search_veh_conf_by_location').on('click', function (e) {
+        if ($(this).hasClass('disabled'))
+            return false;
+
+        customSearch.enable();
+        let searchInputText = $('#inp_search_veh_conf_by_location').val();
+
+        $.ajax({
+            method: "GET",
+            url: "index.php",
+            data: {
+                action: 'vehicleConfigurations',
+                method: 'ajaxCall',
+                ajax: 'search',
+                location: searchInputText
+            },
+            dataType: "json",
+            success: function (ajaxResultData) {
+                fillSelectConfigurationBoxList(ajaxResultData);
+            }
+        });
+    });
+
+    $('#btn_search_veh_conf_by_license_plate').on('click', function (e) {
+        if ($(this).hasClass('disabled'))
+            return false;
+
+        customSearch.enable();
+        let searchInputText = $('#inp_search_veh_conf_by_license_plate').val();
+
+        $.ajax({
+            method: "GET",
+            url: "index.php",
+            data: {
+                action: 'vehicleConfigurations',
+                method: 'ajaxCall',
+                ajax: 'search',
+                licPlate: searchInputText
+            },
+            dataType: "json",
+            success: function (ajaxResultData) {
+                fillSelectConfigurationBoxList(ajaxResultData);
+            }
+        });
+    });
+
+    $(document).on('change', "#sel_search_result_list", function () {
+        if ($('option:selected', this).attr('data-type') == 'configuration') {
+            viewSelectedMainConfiguration($('option:selected', this).val());
+        } else {
+            viewSelectedConfiguration($('option:selected', this).val());
+        }
+    });
+
+    $('#sel_search_result_list').on('change', function (event) {
+        enableButtonsByLevel(2);
+    });
+
+    $('#inp_search_veh_conf').on('input', function (event) {
+        if ($('#inp_search_veh_conf').val()) {
+            enableButtonsByLevel(8);
+        }
+    });
+
+    $('#inp_search_veh_conf_by_vin').on('input', function (event) {
+        if ($('#inp_search_veh_conf_by_vin').val()) {
+            enableButton('btn_search_veh_conf_by_vin');
+        } else
+            disableButton('btn_search_veh_conf_by_vin');
+    });
+
+    $('#inp_search_veh_conf_by_location').on('input', function (event) {
+        if ($('#inp_search_veh_conf_by_location').val()) {
+            enableButton('btn_search_veh_conf_by_location');
+        } else
+            disableButton('btn_search_veh_conf_by_location');
+    });
+
+    $('#inp_search_veh_conf_by_license_plate').on('input', function (event) {
+        if ($('#inp_search_veh_conf_by_license_plate').val()) {
+            enableButton('btn_search_veh_conf_by_license_plate');
+        } else
+            disableButton('btn_search_veh_conf_by_license_plate');
+    });
+
+    function disableButton(buttonId) {
+        $('#' + buttonId).addClass("disabled");
+    }
+
+    function enableButton(buttonId) {
+        $('#' + buttonId).removeClass("disabled");
+    }
+
+
+    function getTypeList() {
+        return $.ajax({
+            method: "GET",
+            url: "index.php",
+            data: {
+                action: 'vehicleConfigurations',
+                method: 'ajaxCall',
+                ajax: 'type'
+            },
+            dataType: "json",
+            success: function (ajaxResultData) {
+                fillSelectList('sel_type', ajaxResultData);
+            }
+        });
+    }
+
+    function getYearList(vehConType) {
+        return $.ajax({
+            method: "GET",
+            url: "index.php",
+            data: {
+                action: 'vehicleConfigurations',
+                method: 'ajaxCall',
+                type: vehConType,
+                ajax: 'year'
+            },
+            dataType: "json",
+            success: function (ajaxResultData) {
+                fillSelectList('sel_year', ajaxResultData);
+            }
+        });
+    }
+
+    function getSeriesList(vehConfType, vehConfYear) {
+        return $.ajax({
+            method: "GET",
+            url: "index.php",
+            data: {
+                action: 'vehicleConfigurations',
+                method: 'ajaxCall',
+                type: vehConfType,
+                year: vehConfYear,
+                ajax: 'series'
+            },
+            dataType: "json",
+            success: function (ajaxResultData) {
+                fillSeriesSelectList('sel_series', ajaxResultData);
+            }
+        });
+    }
+
+    function fillSelectList(elementId, dataToList) {
+        let select = document.getElementById(elementId);
+        $('#' + elementId).empty();
+
+        if (dataToList.length) {
+            dataToList.forEach(function (singleType) {
+                if (singleType != null && singleType.length)
+                    select.options[select.options.length] = new Option(singleType, singleType);
+            })
+        } else {
+            select.options[select.options.length] = new Option('-', '-');
+        }
+    }
+
+    function fillSeriesSelectList(elementId, dataToList) {
+        let select = $('#' + elementId);
+        select.empty();
+
+        if (dataToList.length) {
+            dataToList.forEach(function (data) {
+                if (!jQuery.isEmptyObject(data)) {
+                    select.append($('<option>', {
+                        value: data.vehicleConfigurationKey,
+                        text: ('' + data.vehicleConfigurationKey + ((data.vehicleCustomerKey != '') ?
+                            ('_' + data.vehicleCustomerKey) : ''))
+                    }).attr('data-customer-key', data.vehicleCustomerKey));
+                }
+            })
+        } else {
+            select.append($('<option>', {value: '', text: ''}));
+        }
+    }
+
+    function getSearchListResult(type, year, series, customerKey) {
+        return $.ajax({
+            method: "GET",
+            url: "index.php",
+            data: {
+                action: 'vehicleConfigurations',
+                method: 'ajaxCall',
+                type: type,
+                year: year,
+                series: series,
+                customerKey: (customerKey != '') ? customerKey : 'null',
+                ajax: 'search'
+            },
+            dataType: "json",
+            success: function (ajaxResultData) {
+                fillSelectConfigurationBoxList(ajaxResultData);
+            }
+        });
+    }
+
+    function viewSelectedConfiguration(selectedConfigurationId) {
+        return $.ajax({
+            method: "GET",
+            url: "index.php",
+            data: {
+                action: 'parameterSettings',
+                method: 'ajaxCall',
+                ajax: selectedConfigurationId,
+                path: 'showConfiguration'
+            },
+            success: function (ajaxResultData) {
+                $('#result_page').children().remove();
+                $('#result_page').html(ajaxResultData);
+            }
+        });
+    };
+
+    function viewSelectedMainConfiguration(selectedConfigurationId) {
+        $.ajax({
+            method: "GET",
+            url: "index.php",
+            data: {
+                action: 'parameterSettings',
+                method: 'ajaxCall',
+                path: selectedConfigurationId,
+                main: 'showConfiguration'
+            },
+            success: function (ajaxResultData) {
+                $('#result_page').children().remove();
+                $('#result_page').html(ajaxResultData);
+            }
+        });
+    }
+
+    function getSearchListResultByTextSearch(textSearch) {
+        $.ajax({
+            method: "GET",
+            url: "index.php",
+            data: {
+                action: 'vehicleConfigurations',
+                method: 'ajaxCall',
+                search: textSearch
+            },
+            dataType: "json",
+            success: function (ajaxResultData) {
+                fillSelectConfigurationBoxList(ajaxResultData);
+            }
+        });
+    }
+    function disableButtonsByLevel(level) {
+        if (level == 4) {
+            $('#btn_assign_primary_sw').addClass("disabled");
+            return;
+        }
+
+        if (level == 6) {
+            $('#btn_assign_alternative_sw').addClass("disabled");
+            return;
+        }
+
+        if (level <= 1)
+            $('#btn_search_veh_conf').addClass("disabled");
+
+        if (level <= 2)
+            $('#btn_select_vehicle_configuration').addClass("disabled");
+
+        if (level <= 3) {
+            $('#btn_select_global').addClass("disabled");
+            $('#btn_select_coc').addClass("disabled");
+            $('#btn_select_support_ecu').addClass("disabled");
+            $('#btn_import_odx').addClass("disabled");
+        }
+
+        if (level <= 5)
+            $('#btn_preview_primary_sw').addClass("disabled");
+
+        if (level <= 7)
+            $('#btn_preview_alternative_sw').addClass("disabled");
+    }
+
+    function enableButtonsByLevel(level) {
+        if (level == 4) {
+            $('#btn_assign_primary_sw').removeClass("disabled");
+            return;
+        }
+
+        if (level == 6) {
+            $('#btn_assign_alternative_sw').removeClass("disabled");
+            return;
+        }
+
+        if (level >= 8)
+            $('#btn_search_veh_conf').removeClass("disabled");
+
+        if (level >= 2)
+            $('#btn_select_vehicle_configuration').removeClass("disabled");
+
+        if (level >= 3) {
+            $('#btn_select_global').removeClass("disabled");
+            $('#btn_select_coc').removeClass("disabled");
+            $('#btn_select_support_ecu').removeClass("disabled");
+            $('#btn_import_odx').removeClass("disabled");
+        }
+
+        if (level >= 5)
+            $('#btn_preview_primary_sw').removeClass("disabled");
+
+
+        if (level >= 7)
+            $('#btn_preview_alternative_sw').removeClass("disabled");
+    }
+
+    function clearByLevel(level) {
+        if (level <= 1)
+            $('#sel_search_result_list').empty();
+
+        if (level <= 2) {
+            $('#sel_globals_result_list').empty();
+            $('#sel_cocs_result_list').empty();
+            $('#sel_support_ecu_list').empty();
+        }
+
+        if (level <= 3) {
+            $('#sel_primary_sw_list').empty();
+            $('#sel_alternative_sw_list').empty();
+        }
+    }
+
+    function clearConfigurationView() {
+        if (!($('#sel_search_result_list:selected').length > 0)) {
+            $('#result_page').empty();
+        }
+    }
+
+    let fillSelectConfigurationBoxList = function (dataToList) {
+        $('#sel_search_result_list option').remove();
+
+        if (dataToList.length < 1) {
+            const paramOptList = $('#validation-errors-list');
+            let resultData = $('<p>').text("{{ 'vehicles.configuration.partials.searchingForError.twig.noDataExist' | trans }}");
+
+            paramOptList.empty();
+            paramOptList.html(resultData);
+
+            validationErrorDialogWindow.dialog('open');
+        } else {
+            let select = $('#sel_search_result_list');
+            let previousConfigurationId = null;
+            let previousConfigurationKey = null;
+            let previousConfigurationDraft = null;
+            let configuration = '';
+            let subconfigurations = '';
+            let vehicle = false;
+            let vehiclesCount = 0;
+            let first = true;
+
+            $.each(dataToList, function (index, value) {
+                if (first) {
+                    previousConfigurationId = value['vehicleConfigurationId'];
+                    first = false;
+                }
+
+                if (value['vehicleConfigurationId'] != previousConfigurationId) {
+                    configuration = '<option value="' + previousConfigurationId + '" ' +
+                        ' class="' + ((previousConfigurationDraft) ? 'invalid' : '') +
+                        ' " data-type="configuration">'
+                        + previousConfigurationKey + ' (' + vehiclesCount + ')</option>';
+                    vehicle = false;
+                    vehiclesCount = 0;
+                    select.append(configuration);
+                    select.append(subconfigurations);
+                    subconfigurations = '';
+                }
+
+                if (value['vehiclesCount'] != 0) {
+                    vehicle = true;
+                    vehiclesCount += value['vehiclesCount'];
+                }
+
+                subconfigurations += '<option value="' + value['subVehicleConfigurationId'] + '" ' +
+                    'class="' + ((value['sub_configuration_draft'] == true) ? 'invalid' : '') + '" data-type="subconfiguration">&nbsp&nbsp&nbsp'
+                    + value['subVehicleConfigurationName'] + ' (' + value['vehiclesCount'] + ')</option>';
+
+                previousConfigurationId = value['vehicleConfigurationId'];
+                previousConfigurationKey = value['vehicleConfigurationKey'];
+                previousConfigurationDraft = value['configuration_draft'];
+            });
+
+            configuration = '<option value="' + previousConfigurationId + '" ' +
+                ' class="' + ((previousConfigurationDraft) ? 'invalid' : '') +
+                ' " data-type="configuration">'
+                + previousConfigurationKey + ' (' + vehiclesCount + ')</option>';
+            vehicle = false;
+            vehiclesCount = 0;
+            select.append(configuration);
+            select.append(subconfigurations);
+            subconfigurations = '';
+        }
+    };
+
+    /* ----------------- AUTOCOMPLETE --------------------- */
+    /* Fill autocompletion data for (sub)configuration search.*/
+    $.ajax({
+        method: "GET",
+        url: "index.php",
+        data: {
+            action: 'vehicleConfigurations',
+            method: 'ajaxCall',
+            ajax: 'autocomplete'
+        },
+        success: function (configurations) {
+            fillAutocompletionDataContainer('inp_search_veh_conf', configurations, 'vehicleConfigurationKey');
+        }
+    });
+
+    /* Fill autocompletion data for VIN search.*/
+    $('#inp_search_veh_conf_by_vin').on('click', function () {
+        if (!$(this).val()) {
+            $.ajax({
+                method: "GET",
+                url: "index.php",
+                data: {
+                    action: 'vehicleConfigurations',
+                    method: 'ajaxCall',
+                    ajax: 'vinsAutocomplete'
+                },
+                success: function (vins) {
+                    fillAutocompletionDataContainer('inp_search_veh_conf_by_vin', vins, 'vin');
+                }
+            })
+        }
+    });
+
+    /* Fill autocompletion data for License plate search.*/
+    $('#inp_search_veh_conf_by_license_plate').on('click', function () {
+        if (!$(this).val()) {
+            $.ajax({
+                method: "GET",
+                url: "index.php",
+                data: {
+                    action: 'vehicleConfigurations',
+                    method: 'ajaxCall',
+                    ajax: 'licPlatAutocomplete'
+                },
+                success: function (licensePlates) {
+                    fillAutocompletionDataContainer('inp_search_veh_conf_by_license_plate', licensePlates, 'code');
+                }
+            })
+        }
+    });
+
+    /* Fill autocompletion data for location search.*/
+    $('#inp_search_veh_conf_by_location').on('click', function () {
+        if (!$(this).val()) {
+            $.ajax({
+                method: "GET",
+                url: "index.php",
+                data: {
+                    action: 'vehicleConfigurations',
+                    method: 'ajaxCall',
+                    ajax: 'locationsAutocomplete'
+                },
+                success: function (locations) {
+                    fillAutocompletionDataContainer('inp_search_veh_conf_by_location', locations, 'name');
+                }
+            })
+        }
+    });
+
+    function fillAutocompletionDataContainer(inputId, data, columnName) {
+        $("#" + inputId).autocomplete({
+            autocomplete: 1,
+            delay: 0,
+            minLength: 1,
+            select: function (event, ui) {
+                $("#inputId").empty();
+                $("#inputId").val(ui);
+            },
+            source: JSON.parse(data).map((v, k) => {
+                return v[columnName]
+            })
+        });
+        $("#" + inputId).attr('autocomplete', 'on');
+    }
+
+
+    /* ---------------------------------------------------- */
+</script>

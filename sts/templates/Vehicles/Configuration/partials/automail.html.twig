@@ -1,0 +1,5 @@
+{% if parameters[0].releaseState.releaseState == 'Ready for ECU assignment'%}
+<form action='?page=success' method='post' id="select-configuration=type">
+            <input type="hidden" id="" name='conf' value="{{ parameters[0].pentaName }} ">
+</form>
+{% endif %}

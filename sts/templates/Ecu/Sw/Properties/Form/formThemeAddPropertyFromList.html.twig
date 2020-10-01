@@ -1,0 +1,36 @@
+{% trans_default_domain 'messages' %}
+
+
+{% block collection_widget %}
+    {% spaceless %}
+        <table {{ block('widget_attributes') }}>
+            <thead>
+            <tr>
+                <th>{{ 'properties.Form.formThemeAddPropertyFromList.selected' | trans }}</th>
+                <th>{{ 'properties.Form.formThemeAddPropertyFromList.name' | trans }}</th>
+                <th>{{ 'properties.Form.formThemeAddPropertyFromList.value' | trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in form %}
+                {{ form_widget(item) }}
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endspaceless %}
+{% endblock %}
+
+
+{% block EcuSwPropAddFromListModelType_widget %}
+
+    {% set dissableField = form.isAssigned %}
+    <tr>
+        {{ form_widget(form.id) }}
+        {{ form_widget(form.name) }}
+        {{ form_widget(form.value) }}
+        <td>{{ form_widget(form.isAssigned) }}</td>
+        <td>{{ form.name.vars.value }}</td>
+        <td>{{ form.value.vars.value }}</td>
+    </tr>
+
+{% endblock %}

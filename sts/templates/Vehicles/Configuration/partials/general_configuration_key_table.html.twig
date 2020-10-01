@@ -1,0 +1,30 @@
+<h2>{{ 'vehicles.configuration.partials.generalConfigurationKeyTable.twig.vehKey' | trans }}</h2>
+<div>
+    <table>
+        {% if (parameters[0].subVehConfigId is not null) %}
+            <tr>
+                {% if parameters[0].customerKey is defined %}
+                    <th>{{ 'vehicles.configuration.partials.generalConfigurationKeyTable.twig.typeDesignation' | trans }}</th>
+                    <td>{{ parameters[0].type~parameters[0].year~parameters[0].series~((parameters[0].customerKey is not null)?
+                        '_'~parameters[0].customerKey : '') }}</td>
+                {%  endif %}
+            </tr>
+        {% endif %}
+        <tr>
+            <th>{{ 'vehicles.configuration.show.twig.vehKey' | trans }}</th>
+            <td>{{ parameters[0].VehicleConfigurationKey }}</td>
+        </tr>
+        {% if (parameters[0].pentaName is defined) %}
+            <tr>
+                <th>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.pentaNumber' | trans }}</th>
+                <td>{{ parameters[0].pentaName }}</td>
+            </tr>
+        {% endif %}
+        {% if (parameters[0].isNewNameConvention is defined and parameters[0].isNewNameConvention == true) %}
+            <tr>
+                <th>{{ 'vehicles.configuration.partials.generalConfigurationKeyTable.twig.shortProdDesc' | trans }}</th>
+                <td>{{ parameters[0].shortProductionDescription }}</td>
+            </tr>
+        {% endif %}
+    </table>
+</div>

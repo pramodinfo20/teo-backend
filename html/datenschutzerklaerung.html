@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>StreetScooter Cloud Systems : Engineering</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/skeleton.css?5316">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <style>
+
+        ol.ebene1 {
+            list-style-type: upper-alpha;
+            font-size: 15px;
+        }
+
+        ol.ebene2 {
+            list-style-type: upper-roman;
+            font-size: 12px;
+        }
+
+        ol.ebene3 {
+            list-style-type: decimal;
+            font-size: 12px;
+        }
+
+        p {
+            margin-top: 2px;
+        }
+
+        h1 {
+            margin-top: 3em;
+        }
+
+        ]
+        h2 {
+            margin-top: 2em;
+        }
+
+        h3 {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 0px;
+        }
+
+        .abschnitt {
+            margin-bottom: 3em;
+        }
+
+        .absatz {
+            margin-bottom: 2em;
+        }
+
+        .absatz2 {
+            margin-left: 4em;
+            margin-bottom: 1em;
+        }
+
+        .absatz3 {
+            margin-bottom: 1em;
+        }
+
+        table,
+        td,
+        th {
+            margin: 1em 0 3em 0;
+            border: 1px solid black;
+            align: left;
+        }
+
+    </style>
+</head>
+<body class="logged-in">
+<div class="pagewrap">
+    <div class="container">
+        <div class="row">
+            <div class="six columns div4logo">
+                <a href="https://streetscooter-cloud-system.eu/">
+                    <img src="/images/Logo_StreetScooter_Long.svg" class="sts_logo" alt="StreetScooter">
+                </a>
+            </div>
+            <div class="six columns div4logo">
+                <img src="/images/dplogo.svg" class="dp_logo" alt="StreetScooter">
+            </div>
+        </div>
+
+        <div class="row user_login_info">
+            <div class="six columns" style="text-align: left; padding:6px 0; white-space: nowrap;">&nbsp;</div>
+            <div class="six columns" style="text-align: right; padding:6px 0">&nbsp;</div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="seitenteiler" style="width:10%;">&nbsp;</div>
+                <div class="seitenteiler" style="width:70%;">
+                    <div id="Inhaltsverzeichnis">
+                        <h1>Inhaltsverzeichnis</h1>
+                        <ol class="ebene1">
+                            <li><a href="#A" class="ah1">Informationen über den Verantwortlichen</a>
+                                <ol class="ebene2">
+                                    <li><a href="#A.1" class="ah2">Name und Kontaktdaten des Verantwortlichen</a></li>
+                                    <li><a href="#A.2" class="ah2">Kontaktdaten des Datenschutzbeauftragten des
+                                        Verantwortlichen</a></li>
+                                </ol>
+                            </li>
+                            <li><a href="#B" class="ah1">Informationen über Rechte der betroffenen Personen</a>
+                                <ol class="ebene2">
+                                    <li><a href="#B.1" class="ah2">Recht auf Auskunft</a></li>
+                                    <li><a href="#B.2" class="ah2">Recht auf Berichtigung</a></li>
+                                    <li><a href="#B.3" class="ah2">Recht auf Löschung („Recht auf Vergessenwerden“)</a>
+                                    </li>
+                                    <li><a href="#B.4" class="ah2">Recht auf Einschränkung der Verarbeitung</a></li>
+                                    <li><a href="#B.5" class="ah2">Recht auf Datenübertragbarkeit</a></li>
+                                    <li><a href="#B.6" class="ah2">Recht auf Widerspruch</a>
+                                        <ol class="ebene3">
+                                            <li><a href="#B.6.1" class="ah3">Recht auf Widerspruch aus Gründen, die sich
+                                                aus der besonderen Situation der betroffenen Person ergeben</a></li>
+                                            <li><a href="#B.6.2" class="ah3">Recht auf Widerspruch gegen
+                                                Direktwerbung</a></li>
+                                        </ol>
+                                    </li>
+                                    <li><a href="#B.7" class="ah2">Recht auf Widerruf von Einwilligungen</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="C" class="ah1">Informationen über die Verarbeitung personenbezogener Daten</a>
+                                <ol class="ebene2">
+                                    <li>
+                                        <a href="#C.1" class="ah2">Informatorische Nutzung der Website und
+                                            Login-Maske</a>
+                                        <ol class="ebene3">
+                                            <li><a href="#C.2.1" class="ah3">Details zu den personenbezogenen Daten, die
+                                                verarbeitet werden</a></li>
+                                            <li><a href="#C.2.2" class="ah3">Details zu der Verarbeitung der
+                                                personenbezogenen Daten</a></li>
+                                            <li><a href="#C.2.3" class="ah3">Details zu den Empfängern personenbezogener
+                                                Daten und der Übermittlung personenbezogener Daten in Drittländer und /
+                                                oder an internationale Organisationen</a></li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li><a href="#D" class="ah1">Stand und Änderung dieser Datenschutzinformationen</a></li>
+                        </ol>
+                    </div>
+
+
+                    <div id="A" class="abschnitt">
+                        <h1>A. Informationen über den Verantwortlichen</h1>
+                        <div id="A.1" class="absatz">
+                            <h2>I. Name und Kontaktdaten des Verantwortlichen</h2>
+                            <p><b>StreetScooter GmbH</b><br>
+                                Jülicher Straße 191<br>
+                                52070 Aachen</p>
+                            <p>
+                                <span class="LabelX W060">Telefon:  </span>0049 (0)241 9900 23-0<br>
+                                <span class="LabelX W060">E-Mail:   </span><a
+                                    href="mailto:ticket@streetscooter-cloud-system.eu">mailto:ticket@streetscooter-cloud-system.eu</a>
+                            </p>
+                        </div>
+                        <div id="A.2" class="absatz">
+                            <h2>II. Kontaktdaten des Datenschutzbeauftragten des Verantwortlichen</h2>
+                            <p><b>Imatec GmbH</b><br>
+                                Hans-Jürgen Fellgiebel<br>
+                                Bickerather Str. 3<br>
+                                52152 Simmerath</p>
+                            <p>
+                                <span class="LabelX W060">Telefon:  </span>0049 (0)2473 928 7925<br>
+                                <span class="LabelX W060">Mobil:    </span>0049 (0)175 584 0627<br>
+                                <span class="LabelX W060">E-Mail:   </span><a href="mailto:fellgiebel@imatec.de">mailto:fellgiebel@imatec.de</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div id="B" class="abschnitt">
+                        <div class="absatz">
+                            <h1>B. Informationen über Rechte der betroffenen Personen</h1>
+                            <p>Als betroffene Person haben Sie in Bezug
+                                auf die Verarbeitung Ihrer personenbezogenen Daten folgende Rechte:</p>
+                            <ul>
+                                <li><a href="#B.1">Recht auf Auskunft (Artikel 15 der Datenschutz-Grundverordnung)</a>
+                                </li>
+                                <li><a href="#B.2">Recht auf Berichtigung (Artikel 16 der
+                                    Datenschutz-Grundverordnung)</a></li>
+                                <li><a href="#B.3">Recht auf Löschung („Recht auf Vergessenwerden“) (Artikel 17 der
+                                    Datenschutz-Grundverordnung)</a></li>
+                                <li><a href="#B.4">Recht auf Einschränkung der Verarbeitung (Artikel 18 der
+                                    Datenschutz-Grundverordnung)</a></li>
+                                <li><a href="#B.5">Recht auf Datenübertragbarkeit (Artikel 20 der
+                                    Datenschutz-Grundverordnung)</a></li>
+                                <li><a href="#B.6">Recht auf Widerspruch (Artikel 21 der
+                                    Datenschutz-Grundverordnung)</a></li>
+                                <li><a href="#B.7">Recht auf Widerruf von Einwilligungen (Artikel 7 Absatz 3 der
+                                    Datenschutz-Grundverordnung)</a></li>
+                                <li><a href="#B.8">Recht auf Beschwerde bei der Aufsichtsbehörde (Artikel 57 Absatz 1
+                                    Buchstabe f der Datenschutz-Grundverordnung)</a></li>
+                            </ul>
+                            <p>Zur Ausübung Ihrer Rechte können Sie sich unter den in Abschnitt Fehler: Referenz nicht
+                                gefunden. genannten Kontaktinformationen an uns wenden.</p>
+                            <p>Im Folgenden erhalten Sie detailliertere Informationen zur Ihren Rechten in Bezug auf die
+                                Verarbeitung Ihrer personenbezogenen Daten:</p>
+                        </div>
+                        <div id="B.1" class="absatz">
+                            <h2>I. Recht auf Auskunft</h2>
+                            <p>Als betroffene Person haben Sie unter den Voraussetzungen von Artikel 15 der
+                                Datenschutz-Grundverordnung ein Recht auf Auskunft. </p>
+                            <p>Das bedeutet insbesondere, dass Sie das Recht haben, von uns eine Bestätigung darüber zu
+                                verlangen, ob wir Sie betreffende personenbezogene
+                                Daten verarbeiten.
+                                Ist dies der Fall, haben Sie außerdem ein Recht auf Auskunft über diese
+                                personenbezogenen Daten und auf die in Artikel 15 Absatz 1
+                                der Datenschutz-Grundverordnung aufgeführten Informationen. Dazu gehören beispielsweise
+                                Informationen über die Verarbeitungszwecke,
+                                über die Kategorien personenbezogener Daten, die verarbeitet werden, sowie über die
+                                Empfänger oder Kategorien von Empfängern,
+                                gegenüber denen die personenbezogenen Daten offengelegt worden sind oder noch
+                                offengelegt werden (Artikel 15 Absatz 1 Buchstaben a, b und c
+                                der Datenschutz-Grundverordnung).</p>
+                            <p>Den vollen Umfang Ihres Rechts auf Auskunft können Sie Artikel 15 der
+                                Datenschutz-Grundverordnung entnehmen,
+                                die Sie unter folgendem Link abrufen können: <a
+                                        href="http://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32016R0679">http://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32016R0679</a>.
+                            </p>
+                        </div>
+                        <div id="B.2" class="absatz">
+                            <h2>II. Recht auf Berichtigung</h2>
+                            <p>Als betroffene Person haben Sie unter den Voraussetzungen von Artikel 16 der
+                                Datenschutz-Grundverordnung ein Recht auf Berichtigung.</p>
+                            <p>Das bedeutet insbesondere, dass Sie das Recht haben, von uns unverzüglich die
+                                Berichtigung Sie betreffender unrichtiger personenbezogener Daten sowie die
+                                Vervollständigung unvollständiger personenbezogener Daten zu verlangen.</p>
+                            <p>Den vollen Umfang Ihres Rechts auf Berichtigung können Sie Artikel 16 der
+                                Datenschutz-Grundverordnung entnehmen, die Sie unter folgendem Link abrufen können: <a
+                                        href="http://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32016R0679">http://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32016R0679</a>.
+                            </p>
+                        </div>
+                        "
+                        <div id="B.3" class="absatz">
+                            <h2>III. Recht auf Löschung („Recht auf Vergessenwerden“)</h2>
+                            <p>Als betroffene Person haben Sie unter den Voraussetzungen von Artikel 17 der
+                                Datenschutz-Grundverordnung ein Recht auf Löschung („Recht auf Vergessenwerden“).
+                                Das bedeutet, dass Sie grundsätzlich das Recht haben, von uns zu verlangen, dass Sie
+                                betreffende personenbezogene Daten unverzüglich gelöscht werden, und wir verpflichtet
+                                sind, personenbezogene Daten unverzüglich zu löschen, sofern einer der in Artikel 17
+                                Absatz 1 der Datenschutz-Grundverordnung aufgeführten Gründe zutrifft. Das kann
+                                beispielsweise der Fall sein, wenn personenbezogenen Daten für die Zwecke, für die sie
+                                erhoben oder auf sonstige Weise verarbeitet wurden, nicht mehr notwendig sind (Artikel
+                                17 Absatz 1 Buchstabe a der Datenschutz-Grundverordnung).</p>
+                            <p>Soweit wir die personenbezogenen Daten öffentlich gemacht haben und wir zu deren Löschung
+                                verpflichtet sind, sind wir außerdem verpflichtet unter Berücksichtigung der verfügbaren
+                                Technologie und der Implementierungskosten angemessene Maßnahmen, auch technischer Art,
+                                zu treffen, um andere für die Datenverarbeitung Verantwortliche, die die
+                                personenbezogenen Daten verarbeiten, darüber zu informieren, dass eine betroffene Person
+                                von ihnen die Löschung aller Links zu diesen personenbezogenen Daten oder von Kopien
+                                oder Replikationen dieser personenbezogenen Daten verlangt hat (Artikel 17 Absatz 2 der
+                                Datenschutz-Grundverordnung).</p>
+                            <p>Das Recht auf Löschung („Recht auf Vergessenwerden“) gilt ausnahmsweise nicht, soweit die
+                                Verarbeitung aus den in Artikel 17 Absatz 3 der Datenschutz-Grundverordnung aufgeführten
+                                Gründen erforderlich ist. Das kann beispielsweise der Fall sein, soweit die Verarbeitung
+                                zur Erfüllung einer rechtlichen Verpflichtung oder zur Geltendmachung, Ausübung oder
+                                Verteidigung von Rechtsansprüchen erforderlich ist (Artikel 17 Absatz 3 Buchstaben a und
+                                e der Datenschutz-Grundverordnung).</p>
+                            <p>Den vollen Umfang Ihres Rechts auf Löschung können Sie Artikel 17 der
+                                Datenschutz-Grundverordnung entnehmen, die Sie unter folgendem Link abrufen können: <a
+                                        href="http://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32016R0679">http://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32016R0679</a>.
+                            </p>
+                        </div>
+                        <div id="B.4" class="absatz">
+                            <h2>IV. Recht auf Einschränkung der Verarbeitung</h2>
+                            <p>Als betroffene Person haben Sie unter den Voraussetzungen von Artikel 18 der
+                                Datenschutz-Grundverordnung ein Recht auf Einschränkung der Verarbeitung.</p>
+                            <p>Das bedeutet, dass Sie das Recht haben, von uns die Einschränkung der Verarbeitung zu
+                                verlangen, wenn eine der in Artikel 18 Absatz 1 der Datenschutz-Grundverordnung
+                                aufgeführten Voraussetzungen gegeben ist. Das kann beispielsweise der Fall sein, wenn
+                                Sie die Richtigkeit der personenbezogenen Daten bestreiten. Die Einschränkung der
+                                Verarbeitung erfolgt in diesem Fall für eine Dauer, die es uns ermöglicht, die
+                                Richtigkeit der personenbezogenen Daten zu überprüfen (Artikel 18 Absatz 1 Buchstabe a
+                                der Datenschutz-Grundverordnung).</p>
+                            <p>Einschränkung bedeutet die Markierung gespeicherter personenbezogener Daten mit dem Ziel,
+                                ihre künftige Verarbeitung einzuschränken (Artikel 4 Nummer 3 der
+                                Datenschutz-Grundverordnung).</p>
+                            <p>Den vollen Umfang Ihres Rechts auf Einschränkung der Verarbeitung können Sie Artikel 18
+                                der Datenschutz-Grundverordnung entnehmen, die Sie unter folgendem Link abrufen können:
+                                <a href="http://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32016R0679">http://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32016R0679</a>.
+                            </p>
+                        </div>
+                        <div id="B.5" class="absatz">
+                            <h2>V. Recht auf Datenübertragbarkeit</h2>
+                            <p>Als betroffene Person haben Sie unter den Voraussetzungen von Artikel 20 der
+                                Datenschutz-Grundverordnung ein Recht auf Datenübertragbarkeit.</p>
+                            <p>Das bedeutet, dass Sie grundsätzlich das Recht haben, die Sie betreffenden
+                                personenbezogenen Daten, die sie uns bereitgestellt haben, in einem strukturierten,
+                                gängigen und maschinenlesbaren Format zu erhalten, und Sie das Recht haben, diese Daten
+                                einem anderen Verantwortlichen ohne Behinderung durch uns zu übermitteln, sofern die
+                                Verarbeitung auf einer Einwilligung gemäß Artikel 6 Absatz 1 Buchstabe a oder Artikel 9
+                                Absatz 2 Buchstabe a der Datenschutz-Grundverordnung oder auf einem Vertrag gemäß
+                                Artikel 6 Absatz 1 Buchstabe b der Datenschutz-Grundverordnung beruht und die
+                                Verarbeitung mithilfe automatisierter Verfahren erfolgt (Artikel 20 Absatz 1 der
+                                Datenschutz-Grundverordnung).</p>
+                            <p>Informationen dazu, ob eine Verarbeitung auf einer Einwilligung gemäß Artikel 6 Absatz 1
+                                Buchstabe a oder Artikel 9 Absatz 2 Buchstabe a der Datenschutz-Grundverordnung oder auf
+                                einem Vertrag gemäß Artikel 6 Absatz 1 Buchstabe b der Datenschutz-Grundverordnung
+                                beruht, erhalten Sie in den Informationen zu den Rechtsgrundlagen der Verarbeitung in
+                                Abschnitt Fehler: Referenz nicht gefunden dieser Datenschutzinformationen.</p>
+                            <p>Bei der Ausübung ihres Rechts auf Datenübertragbarkeit haben Sie außerdem grundsätzlich
+                                das Recht, zu erwirken, dass die personenbezogenen Daten direkt von uns einem anderen
+                                Verantwortlichen übermittelt werden, soweit dies technisch machbar ist (Artikel 20
+                                Absatz 2 der Datenschutz-Grundverordnung).</p>
+                            <p>Den vollen Umfang Ihres Rechts auf Einschränkung der Verarbeitung können Sie Artikel 20
+                                der Datenschutz-Grundverordnung entnehmen, die Sie unter folgendem Link abrufen können:
+                                <a href="http://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32016R0679">http://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32016R0679</a>.
+                            </p>
+                        </div>
+                        <div id="B.6" class="absatz">
+                            <h2>VI. Recht auf Widerspruch</h2>
+                            <p>
+                                Als betroffene Person haben Sie unter den Voraussetzungen von Artikel 21 der
+                                Datenschutz-Grundverordnung ein Recht auf Widerspruch.<br>
+                                Auf Ihr Recht auf Widerspruch weisen wir Sie als betroffene Person spätestens zum
+                                Zeitpunkt der ersten Kommunikation mit Ihnen ausdrücklich hin.<br>
+                            </p>
+                            <p>Im Folgenden erhalten Sie detailliertere Informationen hierzu:</p>
+                            <div id="B.6.1" class="absatz2">
+                                <h3>1. Recht auf Widerspruch aus Gründen, die sich aus der besonderen Situation der
+                                    betroffenen Person ergeben</h3>
+                                <p>Als betroffene Person haben Sie das Recht, aus Gründen, die sich aus Ihrer besonderen
+                                    Situation ergeben, jederzeit gegen die Verarbeitung Sie betreffender
+                                    personenbezogener Daten, die aufgrund von Artikel 6 Absatz 1 Buchstaben e oder f der
+                                    Datenschutz-Grundverordnung erfolgt, Widerspruch einzulegen; dies gilt auch für ein
+                                    auf diese Bestimmungen gestütztes Profiling. </p>
+                                <p>Informationen dazu, ob eine Verarbeitung aufgrund von Artikel 6 Absatz 1 Buchstaben e
+                                    oder f der Datenschutz-Grundverordnung erfolgt, erhalten Sie in den Informationen zu
+                                    den Rechtsgrundlagen der Verarbeitung in Abschnitt Fehler: Referenz nicht gefunden
+                                    dieser Datenschutzinformationen.</p>
+                                <p>Im Falle eines Widerspruchs aus Gründen, die sich aus Ihrer besonderen Situation
+                                    ergeben, verarbeiten wir die betroffenen personenbezogenen Daten nicht mehr, es sei
+                                    denn, wir können zwingende schutzwürdige Gründe für die Verarbeitung nachweisen, die
+                                    Ihre Interessen, Rechte und Freiheiten überwiegen, oder die Verarbeitung dient der
+                                    Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen. </p>
+                                <p>Den vollen Umfang Ihres Rechts auf Widerspruch können Sie Artikel 21 der
+                                    Datenschutz-Grundverordnung entnehmen, die Sie unter folgendem Link abrufen können:
+                                    <a href="http://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32016R0679">http://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32016R0679</a>.
+                                </p>
+                            </div>
+                            <div id="B.6.2" class="absatz2">
+                                <h3>2. Recht auf Widerspruch gegen Direktwerbung</h3>
+                                <p>Werden personenbezogene Daten verarbeitet, um Direktwerbung zu betreiben, so haben
+                                    Sie das Recht, jederzeit Widerspruch gegen die Verarbeitung Sie betreffender
+                                    personenbezogener Daten zum Zwecke derartiger Werbung einzulegen; dies gilt auch für
+                                    das Profiling, soweit es mit solcher Direktwerbung in Verbindung steht. </p>
+                                <p>Informationen dazu, ob und in welchem Umfang personenbezogene Daten verarbeitet
+                                    werden, um Direktwerbung zu betreiben, erhalten Sie in den Informationen zu den
+                                    Zwecken der Verarbeitung in Abschnitt Fehler: Referenz nicht gefunden dieser
+                                    Datenschutzinformationen.</p>
+                                <p>Im Falle eines Widerspruchs gegen Verarbeitung für Zwecke der Direktwerbung,
+                                    verarbeiten wir die betroffenen personenbezogenen Daten nicht mehr für diese
+                                    Zwecke.</p>
+                                <p>Den vollen Umfang Ihres Rechts auf Widerspruch können Sie Artikel 21 der
+                                    Datenschutz-Grundverordnung entnehmen, die Sie unter folgendem Link abrufen können:
+                                    <a href="http://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32016R0679">http://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32016R0679</a>.
+                                </p>
+                            </div>
+
+                        </div>
+                        <div id="B.7" class="absatz">
+                            <h2>VII. Recht auf Widerruf von Einwilligungen</h2>
+                            <p>Wenn die Verarbeitung auf einer Einwilligung nach Artikel 6 Absatz 1 Buchstabe a oder
+                                Artikel 9 Absatz 2 Buchstabe a der Datenschutz-Grundverordnung beruht, haben Sie als
+                                betroffene Person nach Artikel 7 Absatz 3 der Datenschutz-Grundverordnung das Recht,
+                                Ihre Einwilligung jederzeit zu widerrufen. Durch den Widerruf der Einwilligung wird die
+                                Rechtmäßigkeit der aufgrund der Einwilligung bis zum Widerruf erfolgten Verarbeitung
+                                nicht berührt. Hiervon setzen wir Sie vor Abgabe der Einwilligung in Kenntnis.</p>
+                            <p>Informationen dazu, ob eine Verarbeitung auf einer Einwilligung nach Artikel 6 Absatz 1
+                                Buchstabe a oder Artikel 9 Absatz 2 Buchstabe a der Datenschutz-Grundverordnung beruht,
+                                erhalten Sie in den Informationen zu den Rechtsgrundlagen der Verarbeitung in Abschnitt
+                                C dieser Datenschutzinformationen.
+                                <br>
+                            </p>
+                        </div>
+                        <div id=B.8 class="absatz">
+                            <h2>VIII. Recht auf Beschwerde bei der Aufsichtsbehörde</h2>
+                            <p>Als betroffene Person haben Sie unter den Voraussetzungen von Artikel 57 Absatz 1
+                                Buchstabe f der Datenschutz-Grundverordnung das Recht, Beschwerde bei der zuständigen
+                                Aufsichtsbehörde einzulegen.</p>
+                            <p>Die für uns zuständige Aufsichtsbehörde ist: </p>
+                            <div class="absatz2">
+                                <b>Landesbeauftragte für Datenschutz und Informationsfreiheit
+                                    Nordrhein-Westfalen</b><br>
+                                Postfach 20 04 44<br>
+                                40102 Düsseldorf<br>
+                                Telefonnummer: 0211/38424-0<br>
+                                Homepage: <a href="https://www.ldi.nrw.de"
+                                             target="_blank">https://www.ldi.nrw.de</a><br>
+                                E-Mail-Adresse: <a href="mailto:poststelle@ldi.nrw.de">poststelle@ldi.nrw.de</a><br>
+                                PGP Key: <a href="https://www.ldi.nrw.de/metanavi_Kontakt/index.php" target="_blank">https://www.ldi.nrw.de/metanavi_Kontakt/index.php</a><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="C" class="abschnitt">
+                        <div class="absatz">
+                            <h1>C. Informationen über die Verarbeitung personenbezogener Daten</h1>
+                            <p>Im Zusammenhang mit der Website und der auf der Website bereitgestellten Angebote werden
+                                verschiedene personenbezogene Daten für verschiedene Zwecke verarbeitet. Beispielsweise
+                                verarbeiten wir bestimmte Protokolldaten, die beim Aufruf der Website technisch bedingt
+                                anfallen, zur Bereitstellung der von Ihnen aufgerufenen Inhalte der Website.</p>
+                            <p>Soweit wir als sog. Verantwortlicher allein oder gemeinsam mit anderen über die Zwecke
+                                und Mittel der Verarbeitung von personenbezogenen Daten entscheiden, erhalten Sie im
+                                Folgenden insbesondere Informationen über </p>
+                            <ul>
+                                <li>die personenbezogenen Daten oder Kategorien personenbezogener Daten, die verarbeitet
+                                    werden,
+                                </li>
+                                <li>die Zwecke, für die die personenbezogenen Daten verarbeitet werden sollen,</li>
+                                <li>die Rechtsgrundlage für die Verarbeitung und wenn die Verarbeitung auf Artikel 6
+                                    Absatz 1 Buchstabe f der Datenschutz-Grundverordnung beruht, die berechtigten
+                                    Interessen, die von uns oder einem Dritten verfolgt werden,
+                                </li>
+                                <li>gegebenenfalls die Empfänger oder Kategorien von Empfängern der personenbezogenen
+                                    Daten,
+                                </li>
+                                <li>gegebenenfalls unsere Absicht, die personenbezogenen Daten an ein Drittland oder
+                                    eine internationale Organisation zu übermitteln, sowie das Vorhandensein oder das
+                                    Fehlen eines Angemessenheitsbeschlusses der Kommission oder im Falle von
+                                    Übermittlungen gemäß Artikel 46 oder Artikel 47 der Datenschutz-Grundverordnung oder
+                                    Artikel 49 Absatz 1 Unterabsatz 2 der Datenschutz-Grundverordnung einen Verweis auf
+                                    die geeigneten oder angemessenen Garantien und die Möglichkeit, wie eine Kopie von
+                                    ihnen zu erhalten ist, oder wo sie verfügbar sind,
+                                </li>
+                                <li>die Dauer, für die die personenbezogenen Daten gespeichert werden oder, falls dies
+                                    nicht möglich ist, die Kriterien für die Festlegung dieser Dauer,
+                                </li>
+                                <li>das Bestehen einer automatisierten Entscheidungsfindung einschließlich Profiling
+                                    gemäß Artikel 22 Absätze 1 und 4 der Datenschutz-Grundverordnung und — zumindest in
+                                    diesen Fällen — aussagekräftige Informationen über die involvierte Logik sowie die
+                                    Tragweite und die angestrebten Auswirkungen einer derartigen Verarbeitung für Sie.
+                                </li>
+                            </ul>
+                            <p>Soweit wir Ihre personenbezogenen Daten bei Ihnen als betroffener Person erheben,
+                                erhalten Sie im Folgenden außerdem Information dazu ob die Bereitstellung der
+                                personenbezogenen Daten gesetzlich oder vertraglich vorgeschrieben oder für einen
+                                Vertragsabschluss erforderlich ist, ob Sie verpflichtet sind, die personenbezogenen
+                                Daten bereitzustellen, und welche mögliche Folgen die Nichtbereitstellung hätte.</p>
+                            <p>Soweit wir personenbezogene Daten nicht bei Ihnen als betroffener Person erheben,
+                                erhalten Sie im Folgenden außerdem Information dazu aus welcher Quelle die
+                                personenbezogenen Daten stammen und gegebenenfalls ob sie aus öffentlich zugänglichen
+                                Quellen stammen.</p>
+                        </div>
+                        <div id="C.1">
+                            <h2>I. Informatorische Nutzung der Website und Login-Maske</h2>
+                            <p>
+                                Bei der Nutzung der Website einschließlich der Login-Maske auf der Website werden durch
+                                den auf Ihrem Endgerät zum Einsatz kommenden Browser technisch bedingt bestimmte
+                                Informationen an den Server unserer Website gesendet, beispielsweise Ihre IP-Adresse und
+                                die von Ihnen eingegebenen Login-Daten. Wir verarbeiten diese Informationen zur
+                                Bereitstellung der Website einschließlich der Login-Funktion für den
+                                registrierungspflichtigen Bereich unserer Website. Zur Gewährleistung der Sicherheit der
+                                für die Bereitstellung der Website eingesetzten IT-Infrastruktur werden diese
+                                Informationen außerdem temporär in einem sog. Webserver-Logfile gespeichert. Für die
+                                Bereitstellung der Login-Funktion setzen wir auf der Website unbedingt erforderliche
+                                Cookies ein, mittels derer personenbezogene Daten verarbeitet werden.
+                            </p>
+                            <p>
+                                Diese Website-Datenschutzinformationen betreffen nicht die Datenverarbeitung nach
+                                erfolgreichem Login. Hierüber informieren wir die berechtigten Nutzer gesondert.
+                            </p>
+                            <p>
+                                Im Folgenden erhalten Sie detailliertere Informationen hierzu:
+                            </p>
+                            <div id="C.2.1" class="absatz3">
+                                <h3>1. Details zu den personenbezogenen Daten, die verarbeitet werden</h3>
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            Kategorien personenbezogener Daten, die verarbeitet werden
+                                        </th>
+                                        <th>Personenbezogene Daten, die in den Kategorien enthalten sind
+                                        </th>
+                                        <th>Quellen der Daten</th>
+                                        <th>Verpflichtung zur Bereitstellung der Daten</th>
+                                        <th>Speicherdauer</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            Protokolldaten, die beim Aufruf der Login-Maske für den
+                                            registrierungspflichtigen Bereich dieser Website über das Hypertext Transfer
+                                            Protocol (Secure) (HTTP(S)) technisch bedingt anfallen („HTTP-Daten“).
+                                        </td>
+                                        <td>
+                                            IP-Adresse, Typ und Version Ihres Internet-Browsers, verwendetes
+                                            Betriebssystem, die aufgerufene Seite, die zuvor besuchte Seite (Referrer
+                                            URL), Datum und Uhrzeit des Abrufs.
+                                        </td>
+                                        <td>Nutzer der Website.
+                                        </td>
+                                        <td><p>Bereitstellung ist nicht gesetzlich oder vertraglich vorgeschrieben oder
+                                            für einen Vertragsabschluss erforderlich. Es besteht keine Verpflichtung zur
+                                            Bereitstellung der Daten.</p>
+                                            <p>Im Falle einer Nichtbereitstellung der Daten können wir die aufgerufenen
+                                                Inhalte der Website nicht bereitstellen.</p></td>
+                                        <td><p>Wir speichern einzelne personenbezogene Daten 1 Monat lang. Einige Daten
+                                            werden für statistische Zwecke <a
+                                                    href="http://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32016R0679&from=DEP#d1e6503-1-1"
+                                                    target="_blank">(gemäß Artikel 89 Absatz 2 der DSGVO)</a> bis zu 45
+                                            Tagen gespeichert. </p>
+                                            <p>
+                                            <p>Die Daten auf Backup (Kopien Ihrer Daten, die nicht an der aktiven
+                                                Nutzung teilnehmen) werden 1 Jahre lang gespeichert.</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p>Login-Daten, die Sie in die Login-Maske für den registrierungspflichtigen
+                                            Bereich unserer Website eingeben („Login-Daten“).</p></td>
+                                        <td>Benutzername, Passwort.</td>
+                                        <td>Nutzer der Website.</td>
+                                        <td><p>Bereitstellung ist nicht gesetzlich oder vertraglich vorgeschrieben oder
+                                            für einen Vertragsabschluss erforderlich. Es besteht keine Verpflichtung zur
+                                            Bereitstellung der Daten.</p>
+                                            <p>Im Falle einer Nichtbereitstellung der Daten können wir die aufgerufenen
+                                                Inhalte der Website nicht bereitstellen.</p></td>
+                                        <td><p>B1) Wir speichern diese Daten 3 Monate lang. Die Daten auf Backup (Kopien
+                                            Ihrer Daten,
+                                            die nicht an der aktiven Nutzung teilnehmen) werden 3 Jahre lang
+                                            gespeichert.</p>
+                                            <p> B2) Bis Ihr Account durch Ihren Wunsch oder durch jemand anderes
+                                                gelöscht wird. </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p>Daten, die in unbedingt erforderlichen Cookies ( Abschnitt B) zum Login
+                                            für den registrierungspflichtigen Bereich unserer Website auf dem Endgerät
+                                            des Nutzers gespeichert werden („Login-Cookie-Daten“).</p>
+                                            Cookies werden genutzt, um mit einer Website bzw. Domain verbundene
+                                            Informationen für einige Zeit lokal auf dem Computer zu speichern und dem
+                                            Server auf Anfrage wieder zu übermitteln.
+                                        </td>
+                                        <td>Der von uns geschriebene Cookies ist ausschließlich ein Sitzungsbezeichner
+                                            (engl. Session-ID) und dient dazu, Sie als Besucher zu authentifizieren.
+                                            Sollte es erneut notwendig sein Cookies bei Ihnen zu speichern – etwas nach
+                                            dem Login, werden Sie vorher um Einverständnis fragen.
+                                        </td>
+                                        <td>Dieser Sitzungsbezeichner ist eine zufällig erzeugte Zahl.</td>
+                                        <td>Bereitstellung ist nicht gesetzlich oder vertraglich vorgeschrieben oder für
+                                            einen Vertragsabschluss erforderlich. Es besteht keine Verpflichtung zur
+                                            Bereitstellung der Daten.
+                                            Im Falle einer Nichtbereitstellung der Daten können wir die aufgerufenen
+                                            Inhalte der Website nicht bereitstellen.
+                                        </td>
+                                        <td>Dieser Sitzungs­bezeichner wird nicht über die Zeit der Benutzung der
+                                            Webseite, d.h. nach 10 min ohne Bedienung unserer Webseite, gespeichert.
+                                            Dadurch ist keinerlei Rückverfolgbarkeit Ihres Besuches auf unserer Seite
+                                            ermöglicht.
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="C.2.2" class="absatz3">
+                                <h3>2. Details zu der Verarbeitung der personenbezogenen Daten</h3>
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Zweck der Verarbeitung der personenbezogenen Daten</th>
+                                        <th>Kategorien personenbezogener Daten, die verarbeitet werden</th>
+                                        <th>Automatisierte Entscheidungsfindung</th>
+                                        <th>Rechtsgrundlage und ggf. berechtigte Interessen
+                                        </th>
+                                        <th>Empfänger</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Bereitstellung der Login-Maske auf unserer Website für den
+                                            registrierungspflichtigen Bereich unserer Website.
+                                        </td>
+                                        <td>HTTP-Daten, Login-Daten, Login-Cookie-Daten</td>
+                                        <td>Es findet keine automatisierte Entscheidungsfindung statt.</td>
+                                        <td>Vertragserfüllung (Artikel 6 Absatz 1 Buchstabe b der
+                                            Datenschutz-Grundverordnung) sowie Interessenabwägung (Artikel 6 Absatz 1
+                                            Buchstabe f der Datenschutz-Grundverordnung). Unser berechtigtes Interesse
+                                            ist die Bereitstellung der durch den Nutzer aufgerufenen Inhalte der
+                                            Website.
+                                        </td>
+                                        <td>Hosting-Provider.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Zur Gewährleistung der Sicherheit der für die Bereitstellung der Website
+                                            eingesetzten IT-Infrastruktur, insbesondere zur Feststellung, Beseitigung
+                                            und beweissicheren Dokumentation von Störungen (z.B. DDoS-Angriffen) werden
+                                            HTTP-Daten sowie Daten zu erfolgten Login-Versuchen temporär in
+                                            Webserver-Log-Dateien verarbeitet.
+                                        </td>
+                                        <td>HTTP-Daten, Login-Daten, Login-Cookie-Daten.</td>
+                                        <td>Es findet keine automatisierte Entscheidungsfindung statt.</td>
+                                        <td>Interessenabwägung (Artikel 6 Absatz 1 Buchstabe f der
+                                            Datenschutz-Grundverordnung). Unser berechtigtes Interesse ist die
+                                            Gewährleistung der Sicherheit der für die Bereitstellung der Website
+                                            eingesetzten IT-Infrastruktur, insbesondere zur Feststellung, Beseitigung
+                                            und beweissicheren Dokumentation von Störungen (z.B. DDoS-Angriffen).
+                                        </td>
+                                        <td>Hosting-Provider.</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="C.2.3" class="absatz3">
+                                <h3>3. Details zu den Empfängern personenbezogener Daten und der Übermittlung
+                                    personenbezogener Daten in Drittländer und / oder an internationale
+                                    Organisationen</h3>
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Empfänger</th>
+                                        <th>Rolle des Empfängers</th>
+                                        <th>Sitz des Empfängers/th>
+                                        <th>Angemessenheitsbeschluss oder geeignete oder angemessene Garantien für
+                                            Übermittlungen an Drittländer und/oder an internationale Organisationen
+                                        </th>
+                                    </tr>
+
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Hosting-Provider</td>
+                                        <td>Auftragsverarbeiter</td>
+                                        <td>EU
+                                        </td>
+                                        <td>-
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="D" class="abschnitt">
+                        <h1>D. Stand und Änderung dieser Datenschutzinformationen</h1>
+                        <p>Diese Datenschutzinformation hat den Stand <b>2018-05-24</b>
+                        <p>Aufgrund technischer Weiterentwicklung und/oder aufgrund geänderter
+                            gesetzlicher und/oder behördlicher Vorgaben kann es notwendig werden,
+                            diese Datenschutzinformationen anzupassen.</p>
+                        <p>Die jeweils aktuelle Datenschutzinformation kann jederzeit unter
+                            <a href="https://streetscooter-cloud-system.eu/html/datenschutzerklaerung.html">https://streetscooter-cloud-system.eu/html/datenschutzerklaerung.html</a>
+                            abgerufen werden.</p>
+                    </div>
+
+                    <div style="text-align: center; padding-bottom: 20px;">
+                        <a href="/html/impressum.html">Impressum</a>
+                    </div>
+
+
+                </div>
+            </div><!--row-->
+        </div><!--container-->
+    </div><!--container-->
+</div><!--pagewrap-->
+</body>
+</html>

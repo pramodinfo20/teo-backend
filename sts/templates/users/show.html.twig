@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users{% endblock %}
+
+{% block body %}
+    <h1>Users</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>DivisionId</th>
+                <td>{{ user.divisionId }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Passwd</th>
+                <td>{{ user.passwd }}</td>
+            </tr>
+            <tr>
+                <th>Privileges</th>
+                <td>{{ user.privileges }}</td>
+            </tr>
+            <tr>
+                <th>Fname</th>
+                <td>{{ user.fname }}</td>
+            </tr>
+            <tr>
+                <th>Lname</th>
+                <td>{{ user.lname }}</td>
+            </tr>
+            <tr>
+                <th>Addedby</th>
+                <td>{{ user.addedby }}</td>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <td>{{ user.role }}</td>
+            </tr>
+            <tr>
+                <th>ZsplId</th>
+                <td>{{ user.zsplId }}</td>
+            </tr>
+            <tr>
+                <th>Notifications</th>
+                <td>{{ user.notifications }}</td>
+            </tr>
+            <tr>
+                <th>CookiesAccepted</th>
+                <td>{{ user.cookiesAccepted ? user.cookiesAccepted|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>PrivacyAccepted</th>
+                <td>{{ user.privacyAccepted ? user.privacyAccepted|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>TimestampLastLoggedIn</th>
+                <td>{{ user.timestampLastLoggedIn ? user.timestampLastLoggedIn|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>IpLastLoggedIn</th>
+                <td>{{ user.ipLastLoggedIn }}</td>
+            </tr>
+            <tr>
+                <th>LastSessionId</th>
+                <td>{{ user.lastSessionId }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('users_index') }}">back to list</a>
+
+    <a href="{{ path('users_edit', {'id': user.id}) }}">edit</a>
+
+    {{ include('users/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,63 @@
+{% form_theme propertiesForm 'Ecu/Sw/Properties/Form/formThemeAddProperty.html.twig' %}
+
+{{ form(propertiesForm) }}
+
+{% block stylesheets %}
+    <style>
+        .collection-add {
+            background: linear-gradient(to bottom,
+            #080 0,#684 90%,
+            #080 100%);
+            color: #fff;
+            padding: 0 5px;
+            transition: all .3s;
+            margin: 10px;
+            border: none;
+        }
+    </style>
+{% endblock %}
+
+<script>
+    $(document).ready(function () {
+        $(".properties-table").collection({
+            allow_up: false,
+            allow_down: false,
+            allow_add: true,
+            allow_remove: false,
+            add_at_the_end: true,
+            elements_selector: '.properties',
+            elements_parent_selector: '%id% tbody',
+            add: '<a href="#" class="collection-add btn btn-default" title="Add parameter"><i class="fas fa-plus"></i></a>',
+            after_add: function (collection, element) {
+                $(element).find('input').removeAttr('readonly');
+            }
+        });
+
+        $(document).on('click', '#save', function () {
+            $.ajax({
+                method: 'POST',
+                data: $('form[name="EcuSwPropertiesCollectionType"]').serialize(),
+                url: 'index.php?action=propertiesManagement&method=ajaxCallPost&ajax=addNew&sw=' + {{ sw }},
+                dataType: "json",
+                beforeSend: function () {
+                    $('#streetscooter-loader-mask').css('display', 'flex');
+                },
+                success: function (result) {
+                    if (result['status'] === 'success') {
+                        window.location.href = "index.php?action=propertiesManagement&method=regenerateView&ecu=" + {{ ecu }} +
+                        "&sw=" + {{ sw }};
+                    } else {
+                        saveValidationErrorWindow(result);
+                    }
+                    $('#streetscooter-loader-mask').css('display', 'none');
+                },
+                error: function () {
+                    $('#streetscooter-loader-mask').css('display', 'none');
+                }
+            });
+        });
+    });
+
+</script>
+
+

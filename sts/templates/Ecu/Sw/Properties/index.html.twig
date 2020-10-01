@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'Common/Dialog/Validation/errorDialog.html.twig' %}
+
+    {% if sw is not null and mode == constant('App\\Enum\\Menu::MODE_VIEW') %}
+        {% include 'Ecu/Sw/Properties/PopupDialogs/addPropertyFromList.html.twig' %}
+        {% include 'Ecu/Sw/Properties/PopupDialogs/changeCanVersion.html.twig' %}
+    {% endif %}
+
+    <div class="row">
+        <h1 id="ecu_sw_configuration_header">{{ 'properties.index.header' | trans }}</h1>
+    </div>
+    <div class="row">
+        {% include 'Ecu/Sw/Properties/selectEcuSwPanel.html.twig' with {'ecus': ecus} %}
+        <div class="columns ten">
+            <div class="row">
+                {% if sw is not null %}
+                    {% include 'Ecu/Sw/Properties/topHorizontalMenu.html.twig' with {'buttonsState': topHorizontalButtonsState} %}
+                    <br>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <th>{{ 'properties.index.canVersion' | trans }}</th>
+                            <td>{{ assignedCan }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    {% if mode == constant('App\\Enum\\Menu::MODE_VIEW') %}
+                        {% include 'Ecu/Sw/Properties/propertiesValuesTableView.html.twig' %}
+                    {% elseif mode == constant('App\\Enum\\Menu::MODE_CHANGE_ORDER') %}
+                        {% include 'Ecu/Sw/Properties/Form/propertiesValuesTableChangeOrder.html.twig' %}
+                    {% elseif mode == constant('App\\Enum\\Menu::MODE_ADD_NEW_PROPERTY') %}
+                        {% include 'Ecu/Sw/Properties/Form/propertiesValuesTableAddProperty.html.twig' %}
+                    {% elseif mode == constant('App\\Enum\\Menu::MODE_COPY_TO_ANOTHER') %}
+                        {% include 'Ecu/Sw/Properties/Form/propertiesValuesTableCopyToAnother.html.twig' %}
+                    {% endif %}
+                    <br>
+                    {% include 'Ecu/Sw/Properties/bottomHorizontalMenu.html.twig' with {'buttonsState': bottomHorizontalButtonsState} %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .parametersValues {
+            max-height: 50vh;
+        }
+
+        .version_header {
+            margin: 10px 0
+        }
+
+        .version_header tr td:nth-child(odd) {
+            font-weight: 700
+        }
+
+        .horizontalMenuButtons {
+            border: 1px solid #b0b0b0;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5px
+        }
+
+        .submenu_ul li {
+            margin-bottom: 0 !important;
+            padding: 5px 0
+        }
+
+        .MiniButtons {
+            text-align: center
+        }
+
+        .parameters_table thead {
+            font-weight: 700
+        }
+
+        .sts_submenu {
+            cursor: default !important
+        }
+
+        .parameters_table {
+            margin-bottom: 10px
+        }
+
+        .odxVersion {
+            margin-bottom: 10px
+        }
+
+        .centerColumn {
+            text-align: center
+        }
+
+        .centerColumnExtra input {
+            vertical-align: middle;
+            display: inline-block
+        }
+
+        .odxSts02 {
+            content: " "
+        }
+
+        table {
+            word-break: break-all;
+            width: 100%
+        }
+
+        .firstColumn {
+            width: 50px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+
+            $(document).on('click', '#sw_config_actions span', function () {
+                if (!$(this).hasClass("disabled")) {
+                    let value = ($(this).attr('id') == 'mode') ? 2 : 1;
+                    if (!['save', 'change_can_version_btn', 'add_new_prop_from_list_btn', 'confirm_copy_btn', 'btn_add_new_property',
+                        'copy_prop_to_other', 'delete_parameters', 'locked'].includes($(this).attr('id'))) {
+                        window.location.href = "index.php?action=propertiesManagement&method=regenerateView&ecu=" + {{ ecu }} +
+                            "&sw=" + {{ sw }} +"&path=menu&" + $(this).attr('id') + "=" + value;
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

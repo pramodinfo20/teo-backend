@@ -1,0 +1,37 @@
+{% include 'History/Vehicles/Configuration/partials/shortKey/generalConfigurationKeyTable.html.twig' %}
+
+{% block body %}
+    <div>
+        <h2>{{ 'vehicles.configuration.partials.keyComponents.twig.keyTableTitle' | trans }}</h2>
+        <table class="{{  parameters.historyEvent | historyEventClass }}">
+            <tr>
+                <th>{{ 'vehicles.configuration.partials.keyComponents.twig.vehicleType' | trans }}</th>
+                {{ parameters.type | historyValueTd }}
+            </tr>
+            <tr>
+                <th>{{ 'vehicles.configuration.partials.keyComponents.twig.vehicleYear' | trans }}</th>
+                {{ parameters.year | historyValueTd }}
+            </tr>
+            <tr>
+                <th>{{ 'vehicles.configuration.partials.keyComponents.twig.vehicleSeries' | trans }}</th>
+                {{ parameters.series | historyValueTd }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.layout' | trans }}</td>
+                {{ parameters.layout
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\ShortKeyModel::LAYOUT')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.feature' | trans }}</td>
+                {{ parameters.feature
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\ShortKeyModel::FEATURE')]) }}
+            </tr>
+            <tr>
+                <td>{{ 'vehicles.configuration.form.create.twig.battery' | trans }}</td>
+                {{ parameters.battery
+                | historyValueTd([], [], [], [], null, keyOptions, [constant('App\\Model\\ShortKeyModel::BATTERY')]) }}
+
+            </tr>
+        </table>
+    </div>
+{% endblock %}

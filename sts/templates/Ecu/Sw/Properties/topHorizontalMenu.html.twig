@@ -1,0 +1,55 @@
+{% block body %}
+    <div id="sw_config_actions" class="horizontalMenuButtons">
+        <div class="MiniButtons">
+            <ul class="submenu_ul">
+                <li><span class="sts_submenu W150 {{ (buttonsState.isCreateNewAvailable) ? '' : 'disabled' }}"
+                          id="btn_add_new_property">
+                        {{ 'properties.topHorizMenu.addProp' | trans }}</span></li>
+                <li><span class="sts_submenu W150 {{ (buttonsState.isCreateFromListAvailable) ? '' : 'disabled' }}"
+                          id="add_new_prop_from_list_btn">
+                        {{ 'properties.topHorizMenu.addPropFromList' | trans }}</span></li>
+                <li><span class="sts_submenu W130 {{ (buttonsState.isListExportAvailable) ? '' : 'disabled' }}">
+                        {{ 'ecu.sw.partials.menu.twig.horizontal.export' | trans }}</span></li>
+                <li><span class="sts_submenu W130 {{ (buttonsState.isHistoryAvailable) ? '' : 'disabled' }}">
+                        {{ 'ecu.sw.partials.menu.twig.horizontal.history' | trans }}</span></li>
+                <li><span class="sts_submenu W130 {{ (buttonsState.isRvSAvailable) ? '' : 'disabled' }}">
+                        {{ 'ecu.sw.partials.menu.twig.horizontal.release' | trans }}</span></li>
+                <li><span class="sts_submenu W040 {{ (buttonsState.isSwLocked) ? 'locked-yes' : 'locked-no' }}"
+                        {% if buttonsState.isSwLocked %}
+                            title="{{ 'ecu.sw.partials.menu.twig.horizontal.lockedTitle' | trans }}"
+                        {% else %}
+                            title="{{ 'ecu.sw.partials.menu.twig.horizontal.notLockedTitle' | trans }}"
+                        {% endif %}
+                    id="locked">
+                        <i class="fa {{ (buttonsState.isSwLocked) ? 'fa-lock' : 'fa-lock-open' }}"></i>
+    {#                    {{ (buttonsState.isSwLocked) ? 'Locked' : 'Not locked' }}#}
+                    </span></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).on('click', '#btn_add_new_property', function () {
+            if (!$(this).hasClass('disabled')) {
+                window.location.href = "index.php?action=propertiesManagement&method=regenerateView&ecu=" + {{ ecu }} +
+                    "&sw=" + {{ sw }} +"&ajax=menu&mode=4";
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .locked-yes {
+            background: linear-gradient(to bottom, #880000 0, #884400 90%, #880000 100%) !important;
+            color: #ffdddd !important;
+        }
+
+        .locked-no {
+            background: linear-gradient(to bottom, #008800 0, #668844 90%, #008800 100%) !important;
+            color: #ddffdd !important;
+        }
+    </style>
+{% endblock %}

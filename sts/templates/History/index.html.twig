@@ -1,0 +1,187 @@
+{% extends 'base.html.twig' %}
+
+{% trans_default_domain 'messages' %}
+
+{% block body %}
+    {% if searchResults is not null %}
+        {% include 'History/partials/searchResults.html.twig' with {'results' : searchResults, 'type': typeId, 'log': log } %}
+    {% else %}
+        <h1>{{ 'history.twig.index.hModule' | trans }}</h1>
+        <div class="row">
+            <div class="columns three">
+                <div class="my-legend">
+                    <div class="legend-title">{{ 'history.twig.index.events' | trans }}</div>
+                    <div class="legend-scale">
+                        <ul class="legend-labels">
+                            <li class="createLegend">{{ 'history.twig.index.create' | trans }}</li>
+                            <li class="updateLegend">{{ 'history.twig.index.update' | trans }}</li>
+                            <li class="deleteLegend">{{ 'history.twig.index.delete' | trans }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tooltip-info">
+                    <i class="fas fa-info-circle"></i> {{ 'history.twig.index.tip' | trans }}
+                </div>
+            </div>
+            <div class="columns nine">
+                <table class="history">
+                    <thead>
+                        <tr>
+                            <th>{{ 'history.twig.index.user' | trans }}</th>
+                            <th>{{ 'history.twig.index.comment' | trans }}</th>
+                            <th>{{ 'history.twig.index.date' | trans }}</th>
+                            <th>{{ 'history.twig.index.event' | trans }}</th>
+                            <th>{{ 'history.twig.index.name' | trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ historyMetaData.user }}</td>
+                            <td>{{ historyMetaData.comment }}</td>
+                            <td>{{ historyMetaData.dateTime | date('Y-m-d H:i:s') }}</td>
+                            <td>{{ historyMetaData.historyEvent.eventName }}</td>
+                            <td>{{ historyMetaData.name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        {% if type.ecuParameterManagement %}
+            {% include 'History/Ecu/Sw/index.html.twig' with {'historyModel' : historyModel} %}
+        {% elseif type.vehicleConfigurationSvcManagement  %}
+            {% include 'History/Vehicles/Configuration/subConfiguration/index.html.twig' with {'historyModel' : historyModel,
+                'parameters' : historyModel.historyConfiguration, 'keyOptions' : historyModel.keyOptions } %}
+        {% elseif type.vehicleConfigurationVcManagement %}
+            {% include 'History/Vehicles/Configuration/configuration/index.html.twig' with {'historyModel' : historyModel,
+                'parameters' : historyModel.historyConfiguration, 'keyOptions' : historyModel.keyOptions } %}
+        {% endif %}
+        {% include 'History/partials/menu/footer.html.twig' with {
+            'type' : typeId, 'form': historyForm, 'fk': fkId, 'legacyAction' : legacyAction
+        } %}
+    {% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .createEvent tr td {
+            /*border: 1px solid rgb(34,102,34);*/
+        }
+
+        .updateEvent tr td {
+            /*border: 1px solid rgb(34,34,136) !important;*/
+            /*border: 1px solid rgb(255, 203, 71);*/
+        }
+
+        .deleteEvent tr td {
+            /*border: 1px solid rgb(136,0,0);*/
+        }
+
+        .errorEvent tr td {
+            border: 5px solid rgb(136,0,0) !important;
+        }
+
+        .createLegend::before {
+            background: rgba(34,102,34, 0.5) !important;
+        }
+
+        .updateLegend::before {
+            background:  rgba(255, 203, 71, 0.5) !important;
+        }
+
+        .deleteLegend::before {
+            background: rgba(136,0,0, 0.5) !important;
+        }
+
+        table .createValue  {
+            background: rgba(34,102,34, 0.5) !important;
+        }
+
+        table .updateValue {
+            background:  rgba(255, 203, 71, 0.5) !important;
+        }
+
+        table .deleteValue {
+            background: rgba(136,0,0,0.5) !important;
+        }
+
+        .historyError {
+            background: rgba(136,0,0,0.7) !important;
+        }
+
+        .historyError span {
+            text-decoration: underline;
+        }
+
+        .my-legend {
+            float: left;
+        }
+
+        .tooltip-info {
+            float: left;
+        }
+
+        .my-legend .legend-title {
+            text-align: left;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .my-legend .legend-scale ul {
+            margin: 0;
+            margin-bottom: 5px;
+            padding: 0;
+            float: left;
+            list-style: none;
+        }
+
+        .my-legend .legend-scale ul li {
+            list-style: none;
+            margin-left: 0;
+            line-height: 18px;
+        }
+
+        .my-legend ul.legend-labels li::before {
+            content: " ";
+            display: inline-block;
+            height: 16px;
+            width: 30px;
+            margin-right: 5px;
+            margin-left: 0;
+            border: 1px solid #999;
+            top: 5px;
+        }
+
+        .legend-labels li {
+            display: inline-flex;
+        }
+
+        .horizontalMenuButtons {
+            border:             1px solid #b0b0b0;
+            height:             auto;
+            display:            flex;
+            align-items:        center;
+            justify-content:    center;
+            padding:            0px 5px;
+        }
+
+        .submenu_ul li {
+            margin-bottom:  0px !important;
+            padding:        5px 0px;
+        }
+
+        .MiniButtons {
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $( document ).ready(function() {
+            $('.historyValue').tooltip({
+               tooltipClass: "custom-tooltip"
+            });
+        });
+    </script>
+{% endblock %}

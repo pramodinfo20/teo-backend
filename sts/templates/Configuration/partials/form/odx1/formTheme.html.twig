@@ -1,0 +1,158 @@
+{% trans_default_domain 'messages' %}
+
+{% block Odx1ParameterCollectionType_widget %}
+    {# form_row would write extra markup, so we directly write the collection #}
+    {{ form_widget(form.parameters) }}
+{% endblock %}
+
+{# By default, collection uses the form_widget block to create its markup, but we want a table #}
+{% block collection_widget %}
+    {% spaceless %}
+        {#
+         # This is almost a copy/paste of jquery.collection.html.twig, we can't use it as it also
+         # use form_widget. Note that we also use form_widget(prototype) instead of form_row(prototype)
+         # to avoid generating extra markup.
+         #}
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': form_widget(prototype)}) %}
+            {% set attr = attr|merge({'data-prototype-name': prototype.vars.name}) %}
+        {% endif %}
+        {% set attr = attr|merge({'data-allow-add': allow_add ? 1 : 0}) %}
+        {% set attr = attr|merge({'data-allow-remove': allow_delete ? 1 : 0 }) %}
+        {% set attr = attr|merge({'data-name-prefix': full_name}) %}
+
+        {# Don't forget to add the collection attributes in your markup #}
+        <table {{ block('widget_attributes') }}>
+            <thead>
+                <th>{{ 'configuration.partials.form.odx1.twig.formTheme.ord' | trans }}</th>
+                <th>{{ 'configuration.partials.form.odx1.twig.formTheme.name' | trans }}</th>
+                {% if not form[0].odxSts02.vars.value %}
+                    <th>{{ 'configuration.partials.form.odx1.twig.formTheme.odx1' | trans }}</th>
+                {% endif %}
+                <th>{{ 'configuration.partials.form.odx1.twig.formTheme.rwc' | trans }}</th>
+                <th>{{ 'configuration.partials.form.odx1.twig.formTheme.type' | trans }}</th>
+                <th>{{ 'configuration.partials.form.odx1.twig.formTheme.unit' | trans }}</th>
+                <th>{{ 'configuration.partials.form.odx1.twig.formTheme.value' | trans }}</th>
+                <th id="global" style="display: none">{{ 'configuration.partials.form.odx1.twig.formTheme.gp' | trans }}</th>
+                <th id="dynamic" style="display: none">{{ 'configuration.partials.form.odx1.twig.formTheme.dp' | trans }}</th>
+{#                <th id="coc" style="display: none">{{ 'configuration.partials.form.odx1.twig.formTheme.coc' | trans }}</th>#}
+                <th>{{ 'configuration.partials.form.odx1.twig.formTheme.default' | trans }}</th>
+            </thead>
+            <tbody>
+            {#
+             # we can't form_widget(form) as it would render parent markup for a collection, so
+             # we iterate manually on children
+             #}
+            {% for item in form %}
+                {{ form_widget(item) }}
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endspaceless %}
+{% endblock %}
+
+{% block Odx1ParameterType_widget %}
+    {# widget_attributes will generate class="item" from the DiscountCollectionType.entry_options configuration #}
+    {% set nonAddableParameters =
+        [
+            constant('App\\Enum\\Entity\\EcuSwParameterTypes::ECU_PARAMETER_TYPE_HW'),
+        ]
+    %}
+    {% set nonRemovableParameters =
+        [
+            constant('App\\Enum\\Entity\\EcuSwParameterTypes::ECU_PARAMETER_TYPE_HW'),
+            constant('App\\Enum\\Entity\\EcuSwParameterTypes::ECU_PARAMETER_TYPE_SW'),
+        ]
+    %}
+    <tr class="parameter" {{ block('widget_attributes') }}>
+        {{ form_widget(form.overwrittenValueSetId) }}
+        {{ form_widget(form.parameterId) }}
+        {{ form_widget(form.variableType) }}
+        {{ form_widget(form.variableTypeId) }}
+        {{ form_widget(form.linkingType) }}
+        {{ form_widget(form.linkingTypeId) }}
+        {{ form_widget(form.odx2) }}
+        {{ form_widget(form.order) }}
+        {{ form_widget(form.name) }}
+        {{ form_widget(form.read) }}
+        {{ form_widget(form.write) }}
+        {{ form_widget(form.confirm) }}
+        {{ form_widget(form.unit) }}
+        {{ form_widget(form.type) }}
+        <td>{{ form.order.vars.value | orderForReservedParameter(form.order.vars.value) }}</td>
+        <td>{{ form.name.vars.value  }}</td>
+        {% if not form.odxSts02.vars.value %}
+            <td class="centerColumn">
+                {{ (form.odx2.vars.value )?
+                ('<span class="odx_yes">' ~ ('configuration.partials.form.odx1.twig.formTheme.yes' | trans) ~ '</span>') | raw
+                : ('<span class="odx_no">' ~ ('configuration.partials.form.odx1.twig.formTheme.no' | trans) ~ '</span>') | raw  }}
+            </td>
+        {% endif %}
+        <td>
+            {{ (form.read.vars.value )? ('configuration.partials.form.odx1.twig.formTheme.r' | trans) : '' }}
+            {{ (form.write.vars.value )? ('configuration.partials.form.odx1.twig.formTheme.w' | trans) : '' }}
+            {{ (form.confirm.vars.value )? ('configuration.partials.form.odx1.twig.formTheme.c' | trans) : '' }}
+        </td>
+        <td class="variableType">{{ form.variableType.vars.value  }}</td>
+        <td class="variableTypeId">{{ form.variableTypeId.vars.value  }}</td>
+        <td>{{ form.unit.vars.value  }}</td>
+
+        {% if form.linkingType.vars.value == 'Default' %}
+            <td class="valueString">{% if form.valueString is defined %}{{ form_widget(form.valueString) }}{% endif %}</td>
+            <td class="valueInteger">{% if form.valueInteger is defined %}{{ form_widget(form.valueInteger)}}{% endif %}</td>
+            <td class="valueUnsigned">{% if form.valueUnsigned is defined %}{{ form_widget(form.valueUnsigned)}}{% endif %}</td>
+            <td class="centerColumn valueBool">{% if form.valueBool is defined %}{{ form_widget(form.valueBool)}}{% endif %}</td>
+        {% elseif form.linkingType.vars.value == 'Constant' %}
+            <td class="valueString">
+                {% if form.valueString.vars.value is not null %}
+                    {{ form.valueString.vars.value  }}
+                {% endif %}
+            </td>
+            <td class="valueInteger">
+                {% if form.valueInteger.vars.value is not null %}
+                    {{ form.valueInteger.vars.value  }}
+                {% endif %}
+            </td>
+            <td class="valueUnsigned">
+                {% if form.valueUnsigned.vars.value is not null %}
+                    {{ form.valueUnsigned.vars.value  }}
+                {% endif %}
+            </td>
+            <td class="centerColumn valueBool">
+                {% if form.valueBool.vars.value is not null %}
+                    {{ (form.valueBool.vars.value) ?
+                    ('configuration.partials.form.odx1.twig.formTheme.trueTxt' | trans)
+                    : ('configuration.partials.form.odx1.twig.formTheme.falseTxt' | trans) }}
+                {% endif %}
+            </td>
+        {% else %}
+
+        {% endif %}
+        <td class="globalValue">
+            {% if form.linkingType.vars == 'Global' %}
+                {% if form.linkedValueName.vars.value is not null %}
+                    {{ form.linkedValueName.vars.value }}
+                {% endif %}
+            {% endif %}
+        </td>
+        <td class="dynamicValue">
+            {% if form.linkingType.vars == 'Dynamic' %}
+                {% if form.valueString.vars.value  is not null %}
+                    {{ form.linkedValueName.vars.value  }}
+                {% endif %}
+            {% endif %}
+        </td>
+{#        <td class="cocValue">#}
+{#            {% if form.linkingType.vars == 'Coc' %}#}
+{#                {% if form.valueString.vars.value  is not null %}#}
+{#                    {{ form.linkedValueName.vars.value  }}#}
+{#                {% endif %}#}
+{#            {% endif %}#}
+{#        </td>#}
+        <td class="linkingType">
+            {{ form.linkingType.vars.value }}
+        </td>
+    </tr>
+{% endblock %}
+
+{% block Odx1ParameteType_label %}{% endblock %}

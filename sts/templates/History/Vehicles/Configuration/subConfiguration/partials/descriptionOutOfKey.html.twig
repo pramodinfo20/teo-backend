@@ -1,0 +1,76 @@
+{% block body %}
+    <div>
+        <h2>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.presentEcus' | trans }}</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Ecu</th>
+                <th>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.primarySoftwareVersion' | trans }}</th>
+                <th>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.alternativeSoftwareVersion' | trans }}</th>
+                <th>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.usage' | trans }}</th>
+                <th>{{ 'vehicles.configuration.partials.descrptionOutOfKey.twig.canForwarding' | trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for ecuId, ecuName in historyModel.ecus %}
+                <tr>
+                    <td>{{ ecuName }}</td>
+                    <td>
+                        -
+                    </td>
+                    <td>
+                        -
+                    </td>
+                    <td>
+                        {% if ecuId in parameters.ecus | historyRawAfterValue %}
+                            {% if ecuId in parameters.ecus | historyRawBeforeValue %}
+                                <span class="historyValue" title="Previous value: True">
+                                    <input type="checkbox" name="ecus[]" checked disabled>
+                                </span>
+                            {% else %}
+                                <span class="historyValue" title="Previous value: False">
+                                    <input type="checkbox" name="ecus[]" checked disabled>
+                                </span>
+                            {% endif %}
+                         {% else %}
+                             {% if ecuId in parameters.ecus | historyRawBeforeValue %}
+                                 <span class="historyValue" title="Previous value: True">
+                                    <input type="checkbox" name="ecus[]" disabled>
+                                </span>
+                             {% else %}
+                                 <span class="historyValue" title="Previous value: False">
+                                    <input type="checkbox" name="ecus[]" disabled>
+                                </span>
+                             {% endif %}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if ecuId in parameters.cans | historyRawAfterValue %}
+                            {% if ecuId in parameters.cans | historyRawBeforeValue %}
+                                <span class="historyValue" title="Previous value: True">
+                                    <input type="radio" name="cans[]" checked disabled>
+                                </span>
+                            {% else %}
+                                <span class="historyValue" title="Previous value: False">
+                                    <input type="radio" name="cans[]" checked disabled>
+                                </span>
+                            {% endif %}
+                        {% else %}
+                            {% if ecuId in parameters.cans | historyRawBeforeValue %}
+                                <span class="historyValue" title="Previous value: True">
+                                    <input type="radio" name="cans[]" disabled>
+                                </span>
+                            {% else %}
+                                <span class="historyValue" title="Previous value: False">
+                                    <input type="radio" name="cans[]" disabled>
+                                </span>
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

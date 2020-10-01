@@ -1,0 +1,16 @@
+{% extends 'Vehicles/Configuration/content_page.html.twig' %}
+
+{% block title %}{{ 'vehicles.configuration.show.twig.title' | trans }}{% endblock %}
+
+{% block body %}
+    {% include 'Vehicles/Configuration/partials/keyComponents.html.twig' %}
+    {% include 'Vehicles/Configuration/partials/oldCodeSupport.html.twig'%}
+    {% if (parameters[0].configurationId is null)  %}
+        {% include 'Vehicles/Configuration/partials/subConfigurationComponents.html.twig' %}
+        {% include 'Vehicles/Configuration/partials/descrptionOutOfKey.html.twig' %}
+        {% include 'Vehicles/Configuration/partials/statistics.html.twig' %}
+        {% include 'Vehicles/Configuration/partials/release_status_table.html.twig' %}
+        {% include 'Vehicles/Configuration/partials/automail.html.twig' %}
+    {% endif %}
+
+{% endblock %}

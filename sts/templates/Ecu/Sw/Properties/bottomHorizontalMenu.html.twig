@@ -1,0 +1,44 @@
+{% block  body %}
+    <div id="sw_config_actions" class="horizontalMenuButtons">
+        <div class="MiniButtons">
+            <ul class="submenu_ul">
+                <li><span class="sts_submenu W130 {{ (buttonsState.isChangeOrderAvailable) ? '' : 'disabled' }}"
+                          id="order">{{ 'ecu.sw.partials.menu.twig.footer.changeOrder' | trans }}</span></li>
+                <li><span class="sts_submenu W160 {{ (buttonsState.isCopyToOtherVersionAvailable) ? '' : 'disabled' }}"
+                          id="copy_prop_to_other">{{ 'ecu.sw.partials.menu.twig.footer.copyOther' | trans }}</span></li>
+                <li><span class="sts_submenu W160 {{ (buttonsState.isChangeCanAvailable) ? '' : 'disabled' }}"
+                          id="change_can_version_btn">{{ 'properties.botHorMenu.chgCanVerBtn' | trans }}</span></li>
+                <li><span class="sts_submenu W130 {{ (buttonsState.isSaveAvailable) ? '' : 'disabled' }}"
+                          id="save">{{ 'ecu.sw.partials.menu.twig.footer.save' | trans }}</span></li>
+                <li><span class="sts_submenu W130 {{ (buttonsState.isConfirmCopyAvailable) ? '' : 'disabled' }}"
+                          id="confirm_copy_btn">{{ 'properties.botHorMenu.copyBtn' | trans }}</span></li>
+                <li><span class="sts_submenu W130 {{ (buttonsState.isCancelAvailable) ? '' : 'disabled' }}"
+                          id="cancel">{{ 'ecu.sw.partials.menu.twig.footer.cancel' | trans }}</span></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '#copy_prop_to_other', function () {
+                if (!$(this).hasClass('disabled')) {
+                    window.location.href = "index.php?action=propertiesManagement&method=regenerateView&ecu=" + {{ ecu }} +
+                        "&sw=" + {{ sw }} +"&ajax=menu&mode=5";
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+
+{% block stylesheets %}
+    <style>
+        .copy-property-form {
+            max-height: 350px;
+            overflow-y: scroll;
+        }
+    </style>
+{% endblock %}

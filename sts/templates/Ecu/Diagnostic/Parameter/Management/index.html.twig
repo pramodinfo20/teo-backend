@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'messages' %}
+{% block body %}
+    <h1>{{ 'ecu.diagnostic.parameter.management.index.twig.dynamic' | trans }}</h1>
+
+    <div class="row">
+        <div>
+            <div>
+                {% if mode == 1  %}
+                    {% include 'Ecu/Diagnostic/Parameter/Management/view/viewParameters.html.twig'
+                        with {'parameters': parameters} %}
+                {% else %}
+                    {% include 'Ecu/Diagnostic/Parameter/Management/form/editParameters.html.twig'
+                        with {'parameters': parametersForm} %}
+                {% endif %}
+            </div>
+        </div>
+        {% with
+            {
+                'mode': mode
+            } %}
+            {% include 'Ecu/Diagnostic/Parameter/Management/menu/footer.html.twig' %}
+        {% endwith %}
+    </div>
+
+{% endblock %}
+
+
+{% block stylesheets %}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+
+    </script>
+{% endblock %}

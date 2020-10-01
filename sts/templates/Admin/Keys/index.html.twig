@@ -1,0 +1,248 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'messages' %}
+{% block body %}
+    <div class="row">
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">{{ 'admin.keys.twig.index.uploadKeys' | trans }}</a></li>
+                <li><a href="#tabs-2">{{ 'admin.keys.twig.index.downloadKeys' | trans }}</a></li>
+            </ul>
+            <div id="tabs-1">
+                <h1>{{ 'admin.keys.twig.index.uploadKeys' | trans }}</h1>
+                <p>{{ 'admin.keys.twig.index.uploadHeader' | trans }}</p>
+                <form action="" id="upload_server_keys" method="POST"
+                      enctype="multipart/form-data">
+                    <label for="privateKey">{{ 'admin.keys.twig.index.privateKey' | trans }}</label>
+                    <input type="file" name="privateKey" id="privateKey" required>
+                    <label for="publicKey">{{ 'admin.keys.twig.index.publicKey' | trans }}</label>
+                    <input type="file" name="publicKey" id="publicKey" required> <br/><br/>
+                    <div class="MiniButtons">
+                        <ul class="submenu_ul">
+                            <li>
+                                <span class="sts_submenu W190 disabled"
+                                      id="uploadKeys">{{ 'admin.keys.twig.index.uploadButton' | trans }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+            <div id="tabs-2">
+                <h1>{{ 'admin.keys.twig.index.downloadKeys' | trans }}</h1>
+
+                <div id="download_keys_actions" class="horizontalMenuButtons">
+                    <div class="MiniButtons">
+                        <ul class="submenu_ul">
+                            <li>
+                                <span class="sts_submenu W190 {{ (keys.privateKeyExists) ? '' : 'disabled'}}"
+                                id="downloadPrivateKey">{{ 'admin.keys.twig.index.downloadPrivate' | trans }}</span>
+                            </li>
+                            <li>
+                                <span class="sts_submenu W190 {{ (keys.publicKeyExists) ? '' : 'disabled'}}"
+                                      id="downloadPublicKey">{{ 'admin.keys.twig.index.downloadPublic' | trans }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="upload-success" title="{{ 'admin.keys.twig.index.dialog.title.success' | trans }}">
+       <p>{{ 'admin.keys.twig.index.dialog.body.messageSuccess' | trans }}</p>
+    </div>
+    <div id="upload-failure-format" title="{{ 'admin.keys.twig.index.dialog.tittle.failure' | trans }}">
+        <p>{{ 'admin.keys.twig.index.dialog.body.messageFailure1' | trans }}</p>
+        <p>
+            {{ 'admin.keys.twig.index.dialog.body.messageFailure2' | trans }}
+        </p>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .ui-tabs-vertical {
+            width: 100%;
+        }
+
+        .ui-tabs-vertical .ui-tabs-nav {
+            padding: .2em .1em .2em .2em;
+            float: left;
+            width: 13.3333333333%;
+        }
+
+        .ui-tabs-vertical .ui-tabs-nav li {
+            clear: left;
+            width: 100%;
+            border-bottom-width: 1px !important;
+            border-right-width: 0 !important;
+            margin: 0 -1px .2em 0;
+        }
+
+        .ui-tabs-vertical .ui-tabs-nav li a {
+            display: block;
+        }
+
+        .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
+            padding-bottom: 0;
+            padding-right: .1em;
+            border-right-width: 1px;
+        }
+
+        .ui-tabs-vertical .ui-tabs-panel {
+            padding: 1em;
+            margin-left: 15%;
+            width: 65.3333333333%;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .horizontalMenuButtons {
+            border:             1px solid #b0b0b0;
+            height:             auto;
+            display:            flex;
+            align-items:        center;
+            justify-content:    center;
+            padding:            0px 5px;
+        }
+
+        .submenu_ul li {
+            margin-bottom:  0px !important;
+            padding:        5px 0px;
+        }
+
+        .MiniButtons {
+            text-align: center;
+        }
+
+        #download_keys_actions {
+            margin-top: 15px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $( document ).ready(function() {
+            $("#tabs").tabs().addClass("ui-tabs-vertical ui-helper-clearfix");
+            $("#tabs li").removeClass("ui-corner-top").addClass("ui-corner-left");
+
+            $(document).on('change', 'input[name="privateKey"]', function() {
+                if ($(this).val() && $('input[name="publicKey"]').val()) {
+                    {% if (not(keys.privateKeyExists and keys.publicKeyExists)) %}
+                        $('#uploadKeys').removeClass('disabled');
+                    {% endif %}
+                } else {
+                    $('#uploadKeys').addClass('disabled');
+                }
+            });
+
+            $(document).on('change', 'input[name="publicKey"]', function() {
+                if ($(this).val() && $('input[name="privateKey"]').val()) {
+                    {% if (not(keys.privateKeyExists and keys.publicKeyExists)) %}
+                        $('#uploadKeys').removeClass('disabled');
+                    {% endif %}
+                } else {
+                    $('#uploadKeys').addClass('disabled');
+                }
+            });
+
+            $(document).on('click', '#uploadKeys', function() {
+                if ($(this).hasClass('disabled')) {
+                    return false;
+                }
+
+                $.ajax({
+                    method: 'POST',
+                    enctype: 'multipart/form-data',
+                    data: new FormData($('#upload_server_keys')[0]),
+                    processData: false,
+                    contentType: false,
+                    url: 'index.php?action=serverKeys&method=ajaxCallFiles&ajax=upload',
+                    dataType: "json",
+
+                    success: function (result) {
+                        if (result['status'] == 'success') {
+                            uploadSuccessDialog.dialog('open');
+                        } else {
+                            wrongFormatDialog.dialog('open');
+                        }
+                    }
+
+                });
+            });
+
+            const PRIVATE_KEY = 'private';
+            const PUBLIC_KEY = 'public';
+
+            function downloadKey(key) {
+                $.ajax({
+                    method: 'GET',
+                    url: 'index.php',
+                    data: {
+                        action: 'serverKeys',
+                        method: 'ajaxCall',
+                        path: key,
+                        ajax: 'download'
+                    },
+                    success: function(data) {
+                        let blob = new Blob([data]);
+                        let link = document.createElement('a');
+                        link.href = window.URL.createObjectURL(blob);
+                        link.download = key + ".key";
+                        link.id = 'ajax-download-key';
+
+                        $('body').append(link);
+                        link.click();
+                        $("#"+link.id).remove();
+                    }
+                });
+            }
+
+            $(document).on('click', '#downloadPrivateKey', function () {
+                if ($(this).hasClass('disabled')) {
+                    return false;
+                }
+
+                downloadKey(PRIVATE_KEY);
+            });
+
+            $(document).on('click', '#downloadPublicKey', function() {
+                if ($(this).hasClass('disabled')) {
+                    return false;
+                }
+
+                downloadKey(PUBLIC_KEY);
+            });
+
+            const uploadSuccessDialog =    $("#upload-success").dialog({
+                                                autoOpen: false,
+                                                resizable: false,
+                                                height: "auto",
+                                                width: 400,
+                                                modal: true,
+                                                buttons: {
+                                                     "{{ 'dialog.button.close' | trans }}": function () {
+                                                         $(this).dialog("close");
+                                                         location.reload();
+                                                     }
+                                                }
+                                             });
+            const wrongFormatDialog =   $("#upload-failure-format").dialog({
+                                            autoOpen: false,
+                                            resizable: false,
+                                            height: "auto",
+                                            width: 400,
+                                            modal: true,
+                                            buttons: {
+                                                "{{ 'dialog.button.close' | trans }}": function () {
+                                                    $(this).dialog("close");
+                                                }
+                                            }
+                                        });
+        });
+    </script>
+
+{% endblock %}

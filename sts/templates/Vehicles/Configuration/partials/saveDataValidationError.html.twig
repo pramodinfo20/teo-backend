@@ -1,0 +1,39 @@
+<!-- Dialogs -->
+<div id="validation-errors-list" title="Error"></div>
+
+{% block javascripts %}
+    <script>
+        function saveValidationErrorWindow(errorInputData) {
+            let resultData = '';
+            let resultData1 = '';
+
+            for (let key in errorInputData['errors']) {
+                if (errorInputData['errors'][key] == 'This value should not be blank.') {
+                    resultData = "{{ 'vehicles.configuration.partials.saveDataValidationError.twig.validationError' | trans }}" + '!<br>';
+                } else {
+                    resultData1 += errorInputData['errors'][key] + '<br>';
+                }
+            }
+
+            $('#validation-errors-list').empty();
+            $('#validation-errors-list').html(resultData + resultData1);
+            $("#save_vc").removeClass('disabled');
+            validationErrorDialogWindow.dialog('open');
+        }
+
+        /*------------- Dialogs ------------*/
+        var validationErrorDialogWindow = $("#validation-errors-list").dialog({
+            autoOpen: false,
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "{{ 'dialog.button.close' | trans }}": function () {
+                    $("#save_vc").removeClass('disabled');
+                    validationErrorDialogWindow.dialog("close");
+                }
+            }
+        });
+    </script>
+{% endblock %}

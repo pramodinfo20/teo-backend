@@ -1,0 +1,538 @@
+<?php
+require_once $_SERVER['STS_ROOT'] . '/includes/sts-defines.php';
+require_once $_SERVER['STS_ROOT'] . '/includes/sts-array-tools.php';
+
+class AClass_Coc extends AClass_Base {
+    const NO_APPROVAL_CODE = 1;
+    const COC_NOT_RELEASED = 2;
+    const MORE_THAN_1000 = 3;
+    const NO_TEMPLATE = 4;
+
+    const ErrorDescription = [
+        1 => "kein COC-Zulassungscode",
+        2 => "COC-Fahrzeugwerte nicht freigegeben",
+        3 => "Kleinserienlimit (1000 St.) erreicht!",
+        4 => "keine passende Vorlagedatei gefunden!"
+    ];
+
+    protected $fn_template = [
+        'N1-X' => 'COC_Vollstaendige_fzg.N1',
+        'N1-Y' => 'COC_Unvollstaendige_fzg.N1',
+        'N2-X' => 'COC_Vervollstaendigte_fzg.N2',
+    ];
+
+    protected $vehicles = [];
+    protected $temlate_contents = [];
+    protected $coc_vehicle_cnt = [];
+    protected $vehicle_coc_no = [];
+    protected $not_printed = [];
+    protected $regex = '/{{([a-zA-Z0-9_]*)}}/';
+    protected $pdf_files = [];
+    protected $pdf_out_suffix = "";
+    protected $signatory = "fschmitt";
+    protected $vid_list = null;
+    protected $vin_from = null;
+    protected $vin_to = null;
+    protected $local_filename = "";
+    protected $thisYear = 2018;
+    protected $testdruck = false;
+    protected $dummy_vehicle = false;
+    protected $lastfile = null;
+    protected $delete_files = true;
+    protected $tmp_folder = '/var/www/pdf_temp';
+    // protected $tmp_folder = '/tmp/gen_pdf';
+
+    // ===============================================================================================
+    function __construct() {
+        parent::__construct();
+
+        $this->vehiclesPtr = $this->controller->GetObject("vehicles");
+        $this->vehicleVariantsPtr = $this->controller->GetObject("vehicleVariants");
+        $this->vehicleVariantsInfo = $this->vehicleVariantsPtr->queryColumnInfo();
+
+        $this->signatories = &$GLOBALS['person_designation'];
+        $this->thisYear = date('Y');
+
+        $this->S_new_documents = &InitSessionVar($this->S_data['new_documents'], []);
+    }
+
+    // ===============================================================================================
+    public function CreateDummyDocument($variant_id, $dummy_vin = 'WS5T1801ABCDEF123456') {
+        $this->testdruck = true;
+        $dummy_id = date('Y-m-d-H-i-s');
+
+        if (isset ($_REQUEST['no_delete']))
+            $this->delete_files = false;
+
+        if (isset ($_REQUEST['tmp_folder']) && preg_match('/^[a-z0-9_-]{1,10}$/i', $_REQUEST['tmp_folder']))
+            $this->tmp_folder = "/tmp/{$_REQUEST['tmp_folder']}";
+
+        if (isset ($_REQUEST['id']) && preg_match('/^[a-z0-9_-]{1,10}$/i', $_REQUEST['id']))
+            $dummy_id = $_REQUEST['id'];
+
+        $this->vehicles[1] = $this->vehicleVariantsPtr
+            ->newQuery()
+            ->where('vehicle_variant_id', '=', $variant_id)
+            ->getOne('*');
+
+//         print_r($this->vehicles[1]);        exit;
+
+        $this->vehicles[1]['vin'] = $dummy_vin;
+        $this->vehicles[1]['vehicle_id'] = 'TEST-' . $dummy_id;
+
+        $this->dummy_vehicle = ['vin' => 'WS5T1801ABCDEF123456'];
+        if ($this->CheckVehicleSet($this->vehicles[1]))
+            return $this->CreatePdfFile();
+        return false;
+    }
+
+    // ===============================================================================================
+    public function CreateDocuments($vin_from, $vin_to, $signatory, $testdruck = false) {
+        $this->vin_from = $vin_from;
+        $this->vin_to = $vin_to;
+        $this->signatory = $signatory;
+        $this->testdruck = $testdruck;
+
+        $this->QueryVehicles();
+        $this->updateVehiclesCocNumber();
+        return $this->CreatePdfFile();
+    }
+
+    // ===============================================================================================
+    protected function QueryVehicles() {
+        $qry = $this->vehiclesPtr->newQuery();
+
+        if (isset ($this->vid_list)) {
+            $qry = $qry->where('vehicle_id', 'in', $vehicle_ids);
+
+            if (count($this->vid_list) <= 20)
+                $this->pdf_out_suffix = '-' . implode('-', $this->vid_list);
+            else
+                $this->pdf_out_suffix = '-selected';
+        } else
+            if (isset ($this->vin_from) && isset ($this->vin_to)) {
+                $qry = $qry->where('vin', '>=', $this->vin_from)
+                    ->where('vin', '<=', $this->vin_to);
+                $this->pdf_out_suffix = "-{$this->vin_from}-{$this->vin_to}";
+            } else
+                return;
+
+        $this->vehicles = $qry
+            ->join('vehicle_variants', 'vehicle_variant=vehicle_variants.vehicle_variant_id')
+            ->join('vehicles_sales', 'using(vehicle_id)')
+            ->join('penta_numbers', 'using(penta_number_id)')
+            ->join('colors', 'vehicles.color_id = colors.color_id')
+            ->orderBy('vehicles.vin')
+            ->get('vehicle_id,vehicles.vin, penta_number, colors.name,vehicle_variants.*,
+                        vehicles_sales.production_date, vehicles_sales.coc, vehicles_sales.coc_year, colors.name as color',
+                'vehicle_id');
+
+        foreach ($this->vehicles as $vid => &$set)
+            if (!$this->CheckVehicleSet($set))
+                unset ($this->vehicles[$vid]);
+
+        foreach ($this->vehicles as $vid => &$set)
+            $this->ProcessVehicleSet($set);
+    }
+
+    // ===============================================================================================
+    function updateVehiclesCocNumber() {
+        if ($this->testdruck)
+            return;
+
+        foreach ($this->vehicle_coc_no as $vehicle_id => $laufende) {
+            $this->vehiclesPtr->newQuery('vehicles_sales')
+                ->where('vehicle_id', '=', $vehicle_id)
+                ->update(['coc', 'coc_year'], [$laufende, $this->thisYear]);
+        }
+    }
+
+    // ===============================================================================================
+    protected function getNextCocNumbers($approval_code, $limit) {
+        $result = [];
+
+        $sql = "
+select lnum::integer from (
+    select right ('0000' || x::text, 5) as lnum from (
+	select * from generate_series(1,999) as x) as sub1
+    ) as sub2
+left join (
+    select coc, coc_year
+    from vehicles_sales
+    join vehicles using (vehicle_id)
+    join vehicle_variants on vehicles.vehicle_variant=vehicle_variants.vehicle_variant_id
+    where coc is not null and coc_year={$this->thisYear} and approval_code='$approval_code'
+    ) as sub3
+    on lnum=coc
+where coc is null
+order by lnum
+limit $limit";
+
+        $qry = $this->vehiclesPtr->newQuery();
+        if ($qry->query($sql)) {
+            $qresult = $qry->fetchAll();
+            if ($qresult) {
+                foreach ($qresult as $set) {
+                    $free = $set['lnum'];
+                    $result[$free] = $free;
+                }
+            }
+        }
+        return $result;
+    }
+
+    // ===============================================================================================
+    protected function CheckVehicleSet(&$set) {
+        $vehicle_id = $set['vehicle_id'];
+        $approval_code = $set['approval_code'];
+        if (empty ($approval_code)) {
+            $this->not_printed[$set['vin']] = self::NO_APPROVAL_CODE;
+            return false;
+        }
+
+        if (!$this->testdruck && !$set['coc_released_by']) {
+            $this->not_printed[$set['vin']] = self::COC_NOT_RELEASED;
+            return false;
+        }
+
+
+        if (!isset ($this->coc_vehicle_cnt[$approval_code])) {
+            $kleinserie = preg_match('/^e[1-9][0-9]?[*]KS.*$/', $approval_code);
+            if ($kleinserie)
+                $this->coc_vehicle_cnt[$approval_code] = $this->getNextCocNumbers($approval_code, count($this->vehicles));
+            else
+                $this->coc_vehicle_cnt[$approval_code] = true;
+        }
+
+        $coc_free_list = &$this->coc_vehicle_cnt[$approval_code];
+        if ($coc_free_list === true)
+            return true;
+
+        $set['head_jahr'] = 'Jahr:';
+        $set['head_laufende_nr'] = 'laufende Nr.:';
+
+        if (empty ($set['coc'])) {
+            $next_free = array_shift($coc_free_list);
+            if (empty ($next_free)) {
+                $this->not_printed[$set['vin']] = self::MORE_THAN_1000;
+                return false;
+            }
+
+            $set['coc'] = sprintf('%05d', $next_free);
+            $set['coc_year'] = $this->thisYear;
+            $this->vehicle_coc_no[$vehicle_id] = $set['coc'];
+        }
+        return true;
+    }
+
+    // ===============================================================================================
+    protected function ProcessVehicleSet(&$set) {
+        $vehicle_id = $set['vehicle_id'];
+        $set['signatory'] = $this->signatories[$this->signatory]['person'];
+        $set['position_signatory'] = $this->signatories[$this->signatory]['designation'];
+        $set['today'] = date('d.m.Y');
+    }
+
+    // ===============================================================================================
+    protected function getTemplateFileType(&$vehicle) {
+        $completion_key = substr($vehicle['variant'], -1);
+
+        if ($vehicle['vehicle_category'] == 'N2')
+            return 'N2-X';
+
+        return "N1-$completion_key";
+    }
+
+    // ===============================================================================================
+    protected function getTemplateContent($vehicle) {
+        $templaType = $this->getTemplateFileType($vehicle);
+        if (empty ($templaType))
+            return "";
+
+        if (!isset ($this->temlate_contents[$templaType])) {
+            $fname = $this->fn_template[$templaType];
+            if (empty ($fname))
+                return "";
+
+            for ($s = 1; $s <= 2; $s++) {
+                $fpath = $_SERVER['STS_ROOT'] . "/doctemplate/$fname-$s.fods";
+                $fsize = filesize($fpath);
+                $fin = fopen($fpath, 'r');
+
+                $this->temlate_contents[$templaType][$s] = fread($fin, $fsize);
+                fclose($fin);
+            }
+        }
+        return $this->temlate_contents[$templaType];
+    }
+
+    // ===============================================================================================
+    protected function replaceRegexMatch($match, &$vehicle, $seite) {
+        $key = strtolower($match[1]);
+
+        switch ($key) {
+            case 'seite':
+                return $seite;
+
+            case 'testausdruck':
+                return $this->testdruck ? 'TESTDRUCK' : '';
+
+            case 'tabellenname':
+                return "{$vehicle['vin']} Seite $seite";
+
+            case 'left_hand':
+                return toBool($set['left_hand']) ? 'Linksverkehr' : 'Rechsverkehr';
+
+            case 'metric_or_imperial_system':
+                return toBool($set['metric_or_imperial_system']) ?
+                    'Einheiten des englischen Maßsystems (imperial system)' : 'metrische Einheiten';
+
+            case 'cert_for_international_traffic':
+                return toBool($set['cert_for_international_traffic']) ? 'grenzüberschreitenden' : 'innerstaatlichen';
+
+        }
+
+        $value = str_replace(["\n", "\r"], ['</text:p><text:p>', ''], stripslashes($vehicle[$key]));
+
+
+        if (strncasecmp($this->vehicleVariantsInfo[$key], 'timestamp', 9) == 0) {
+            $value = to_locale_date($value);
+            return $value;
+        }
+
+        switch ($this->vehicleVariantsInfo[$key]) {
+            case 'boolean':
+                $value = toBool($value) ? 'JA' : 'NEIN';
+                break;
+
+            case 'date':
+                $value = to_locale_date($value);
+                break;
+        }
+        return $value;
+    }
+
+    // ===============================================================================================
+    protected function replaceContent($temp_content, &$vehicle, $seite) {
+        return preg_replace_callback($this->regex,
+            function ($match) use (&$vehicle, $seite) {
+                return $this->replaceRegexMatch($match, $vehicle, $seite);
+            },
+            $temp_content);
+    }
+
+    // ===============================================================================================
+    protected function CreatePdfFile() {
+        if (!$this->vehicles || !count($this->vehicles))
+            return;
+
+        if (!file_exists($this->tmp_folder))
+            mkdir($this->tmp_folder);
+
+        $this->pdf_files = [];
+
+        foreach ($this->vehicles as $vehicle_id => $vehicle) {
+            $templ_content = $this->getTemplateContent($vehicle);
+            if (empty ($templ_content)) {
+                $this->not_printed[$vehicle['vin']] = self::NO_TEMPLATE;
+                continue;
+            }
+
+            foreach ($templ_content as $seite => &$content) {
+                $outName = "{$this->tmp_folder}/COC{$vehicle['vehicle_id']}-$seite";
+                $fout = fopen("$outName.fods", 'w+');
+                $replaced = $this->replaceContent($content, $vehicle, $seite);
+
+                fwrite($fout, $replaced);
+                fclose($fout);
+
+                exec("libreoffice --convert-to pdf:writer_pdf_Export $outName.fods --outdir {$this->tmp_folder} --headless");
+
+                var_dump($this->pdf_files);
+                if ($this->delete_files)
+                    unlink("$outName.fods");
+
+                $this->pdf_files[] = "$outName.pdf";
+            }
+        }
+
+        $prefix = $this->testdruck ? "COC-Testdruck" : "COC-Papiere";
+
+        if (count($this->pdf_files) == 0) {
+            return "";
+        } else
+            if (count($this->pdf_files) == 1) {
+                $filename = "$prefix-{$this->vehicles[0]['vin']}.pdf";
+            } else {
+                $datestr = date('Y-m-j_H_i');
+                $filename = "$prefix-$datestr{$this->pdf_out_suffix}.pdf";
+            }
+
+
+        $pdf_list = implode(' ', $this->pdf_files);
+
+//        exec("pdftk $pdf_list cat output {$this->tmp_folder}/{$filename}");
+
+        $datadir = "/var/www/pdf_temp/";
+        $outputName = $datadir."coc_test_" . $this->vehicles[0]['vin'] . ".pdf";
+
+        $cmd = "gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$outputName ";
+
+        foreach($this->pdf_files as $file) {
+            $cmd .= $file." ";
+        }
+
+        shell_exec($cmd);
+
+        if ($this->delete_files)
+            foreach ($this->pdf_files as $file)
+                unlink($file);
+
+        $this->lastfile = $filename;
+        $this->S_new_documents[] = $filename;
+
+        return $filename;
+    }
+
+    // ===============================================================================================
+    public function Execute() {
+        global $CvsDataRegex;
+        $regex_vin = "/[\"']?({$CvsDataRegex['vin']})[\"']?/";
+        $regex_vlist = '/^[0-9][0-9,]*$/';
+
+        $this->mode = $_REQUEST['mode'];
+
+        if (preg_match('/^[0-9]*$/', $_REQUEST['getcoc'])) {
+            $getdoc = $_REQUEST['getcoc'];
+            if (isset ($this->S_new_documents[$getdoc]))
+                $this->DownloadDocument($this->S_new_documents[$getdoc]);
+        }
+
+        if (preg_match('/^[a-z]*$/', $_REQUEST['signatory'])) {
+            $sign = $_REQUEST['signatory'];
+            if (isset ($this->signatories[$sign]))
+                $this->signatory = $sign;
+        }
+
+        if (preg_match($regex_vlist, $_REQUEST['vlist'])) {
+            $this->vid_list = explode(',', $_REQUEST['vlist']);
+        } else {
+            if (preg_match($regex_vin, $_REQUEST['vin_from'], $from) && preg_match($regex_vin, $_REQUEST['vin_to'], $to)) {
+                $this->vin_from = $from[1];
+                $this->vin_to = $to[1];
+            }
+        }
+
+        $do_export = isset ($_REQUEST['export_coc']);
+        $do_testdruck = isset ($_REQUEST['testdruck']);
+        $this->testdruck = $do_testdruck;
+
+        if ($do_export || $do_testdruck) {
+            $this->QueryVehicles();
+            $this->updateVehiclesCocNumber();
+            $this->CreatePdfFile();
+        }
+    }
+
+    // ===============================================================================================
+    function WriteHtmlPage($displayheader, $displayfooter) {
+        if (isset ($this->lastfile))
+            $this->DownloadDocument($this->lastfile);
+    }
+
+    // ===============================================================================================
+    function DownloadDocument($filename) {
+
+        $pdf_size = filesize("{$this->tmp_folder}/$filename");
+        if ($pdf_size) {
+            header('Pragma: public');
+            if ($_REQUEST['mode'] == 'view') {
+                header('Content-Disposition: inline; filename="' . $filename . '"');
+            } else {
+                header('Content-Description: File Transfer');
+                header('Content-Disposition: attachment; filename="' . $filename . '"');
+            }
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Content-Length: ' . $pdf_size);
+            header('Content-Type: application/pdf');
+
+            readfile("{$this->tmp_folder}/$filename");
+            exit;
+        }
+    }
+
+    // ===============================================================================================
+    function GetHtml_StandardForm() {
+        $options = $this->GetHtml_SelectOptions(reduce_assoc($this->signatories, 'person'), $this->signatory);
+        $result = $this->GetHtml_FormHeader() . <<<HEREDOC
+            <table class="transparent cocForm" style="width: 400px; margin-left: 100px;">
+              <tr style="background-color: #eee; margin: 4px 0px; text-align: center;">
+                <th colspan="2" style="margin: 4px 0px; text-align: center;">
+                  COC Papiere erstellen
+                </th>
+              </tr>
+              <tr>
+                <td>Von VIN</td>
+                <td><input id="startval-0" name="vin_from" type="text" value="{$this->vin_from}"></td>
+              </tr>
+              <tr>
+                <td>Bis VIN</td>
+                <td><input id="endval-0" name="vin_to" type="text" value="{$this->vin_to}"></td>
+              </tr>
+              <tr>
+                <td>Unterschriftberechtigte Person</td>
+                <td><select name="signatory">$options</select></td>
+              </tr>
+              <tr style="background-color: #eee;">
+                <th colspan="2" style="margin: 4px 0px; text-align: center;">
+                    <input type="submit" name="testdruck" value="Testdruck">
+                    <input type="submit" name="export_coc" value="COC Papiere erstlellen">
+                </th>
+              </tr>
+            </table>
+          </form>
+          <div style="margin-left: 100px;">
+HEREDOC;
+
+        $result .= $this->GetHtml_ErrorVins();
+        $result .= $this->GetHtml_Downloads();
+
+        $result .= "          </div>\n";
+        return $result;
+    }
+
+    // ===============================================================================================
+    public function GetHtml_ErrorVins() {
+        $result = "";
+        if (count($this->not_printed)) {
+            $result .= "         <h2>Zu folgenden Fahrzeugen konnten keine COC Papiere erstellt werden:</h2>\n";
+            $result .= "         <ul>\n";
+
+            foreach ($this->not_printed as $vin => $grund) {
+                $str_grund = self::ErrorDescription[$grund];
+                $result .= "         <li><span class=\"LabelX W200\">$vin</span>$str_grund</li>\n";
+            }
+            $result .= "         </ul>\n";
+        }
+        return $result;
+    }
+
+    // ===============================================================================================
+    public function GetHtml_Downloads() {
+        $result = "";
+        if (count($this->S_new_documents)) {
+            $result .= "        <h3>In dieser Sitzung erstelle COC-Papiere zum herunterladen</h3>\n";
+            $result .= "         <ul>\n";
+
+            foreach ($this->S_new_documents as $index => $filename) {
+                $result .= "              <li><a href=\"index.php?action={$this->action}&command=getcoc&getcoc=$index\">$filename</a></li>\n";
+            }
+
+            $result .= "         </ul>\n";
+        }
+        return $result;
+    }
+}
+
+?>

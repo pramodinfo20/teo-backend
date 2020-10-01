@@ -1,0 +1,20 @@
+{% trans_default_domain 'messages' %}
+<div class="columns two">
+    <h1>{{ 'ecu.diagnosticParameter.menu.twig.vertical_ecus.header' | trans }}</h1>
+    <form action="" id="ecus_form" method="GET">
+        {% if ecus is defined %}
+            <select id="list_of_ecus" name="ecu" style="width: 100%;" size="14">
+                <option value="0">{{ 'ecu.diagnosticParameter.menu.twig.vertical_ecus.select' | trans }}</option>
+                {% for ecu in ecus %}
+                    {% if ecu.diagnosticSoftwareSupportsStsOdx2ForThisEcu == true %}
+                        <option value="{{ ecu.ceEcuId }}" odx2="true">{{ ecu.ecuName }}</option>
+                    {% else %}
+                        <option value="{{ ecu.ceEcuId }}" odx2="false">{{ ecu.ecuName }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <input type="hidden" name="action" value="parameterManagement">
+            <input type="hidden" name="method" value="regenerateView">
+        {% endif %}
+    </form>
+</div>

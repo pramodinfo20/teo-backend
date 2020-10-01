@@ -1,0 +1,74 @@
+{% trans_default_domain 'messages' %}
+
+<div id="global_values_sets_actions" class="horizontalMenuButtons">
+    <div class="MiniButtons">
+        <ul class="submenu_ul">
+            <li><span class="sts_submenu W130"
+                      id="btn_save">{{ 'parameters.twig.footer.save' | trans }}</span></li>
+            <li><span class="sts_submenu W130"
+                      id="btn_cancel">{{ 'parameters.twig.footer.cancel' | trans }}</span></li>
+        </ul>
+    </div>
+</div>
+
+{#---------------------------- Dialogs -----------------------------------------#}
+
+<div id="value-validation-dialog" title="{{ 'parameters.twig.footer.dialog.title.incorrectValue' | trans }}">
+    <p>{{ 'parameters.twig.footer.dialog.body.valueBetween' | trans }}</p>
+</div>
+
+{% include '/Parameters/Global/saveDataValidationError.html.twig' %}
+{#------------------------------------------------------------------------------#}
+
+{% block stylesheets %}
+    <style>
+        #treeview > ul, li {
+            list-style-type: none;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '#btn_save', function () {
+                $.ajax({
+                    method: 'POST',
+                    data: $('#saveGlobalParameter').serialize(),
+
+                {% if stateToSave == 'edit' %}
+                    url: 'index.php?action=globalParameters&method=saveEdited&globalParameter={{ globalParameter.globalParameterId }}',
+                {% else %}
+                    url: 'index.php?action=globalParameters&method=saveNew',
+                {% endif %}
+                    dataType: "json",
+                    success: function (result) {
+                        if (result['redirect'] != null) {
+                            window.location.href = 'index.php?action=globalParameters';
+                        } else {
+                            saveValidationErrorWindow(result);
+                        }
+                    }
+                })
+            });
+
+            $(document).on('click', '#btn_cancel', function () {
+                window.location.href = 'index.php?action=globalParameters';
+            });
+
+            let valueValidationDialog = $("#value-validation-dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 600,
+                modal: true,
+                buttons: {
+                    "{{ 'dialog.button.ok' | trans }}": function () {
+                        valueValidationDialog.dialog("close");
+                    }
+                }
+            });
+
+        });
+    </script>
+{% endblock %}

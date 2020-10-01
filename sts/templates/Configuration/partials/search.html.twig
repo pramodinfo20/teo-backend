@@ -1,0 +1,445 @@
+{% trans_default_domain 'messages' %}
+
+<div id="search_window" class="seitenteiler">
+    <fieldset class="">
+        <legend class="collapsible"><span class="genericon genericon-expand"></span>{{ 'configuration.partials.view.twig.search.searchLegend' | trans }}
+        </legend>
+        <!--            <div id="search_window_collapsible" class="collapsible_content">-->
+        <div id="search_window_collapsible" class="">
+
+            {% include 'Common/Configuration/searchAdditionalWays.html.twig' %}
+
+            <div class="" style="">
+                <label for="sel_support_ecu_list">{{ 'configuration.partials.view.twig.search.ecuResult' | trans }}</label><br>
+                <select id="sel_support_ecu_list" size="10" style="width: 100%"></select>
+            </div>
+
+            <div class="options-bar">
+                <ul class="submenu_ul">
+                    <li><span id="btn_select_support_ecu" class="sts_submenu W140 disabled">{{ 'configuration.partials.view.twig.search.selectECU' | trans }}</span></li>
+                </ul>
+            </div>
+            <br>
+            <div class="sw-selector">
+                <label for="sel_primary_sw_list">{{ 'configuration.partials.view.twig.search.primary' | trans }}</label><br>
+                <select id="sel_primary_sw_list" size="10" style="width: 100%"></select>
+            </div>
+            <div class="sw-selector">
+                <label for="sel_alternative_sw_list">{{ 'configuration.partials.view.twig.search.alternative' | trans }}</label><br>
+                <select id="sel_alternative_sw_list" size="10" style="width: 100%"></select>
+            </div>
+            <div class="sw-selector">
+                <div class="options-bar">
+                    <ul class="submenu_ul">
+                        <li><span id="btn_assign_primary_sw" class="sts_submenu W080 disabled">{{ 'configuration.partials.view.twig.search.accept' | trans }}</span></li>
+                    </ul>
+                </div>
+                <div class="options-bar">
+                    <ul class="submenu_ul">
+                        <li><span id="btn_preview_primary_sw" class="sts_submenu W080 disabled">{{ 'configuration.partials.view.twig.search.preview' | trans }}</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sw-selector">
+                <div class="options-bar">
+                    <ul class="submenu_ul">
+                        <li><span id="btn_assign_alternative_sw" class="sts_submenu W080 disabled">{{ 'configuration.partials.view.twig.search.accept' | trans }}</span></li>
+                    </ul>
+                </div>
+                <div class="options-bar">
+                    <ul class="submenu_ul">
+                        <li><span id="btn_preview_alternative_sw" class="sts_submenu W080 disabled">{{ 'configuration.partials.view.twig.search.preview' | trans }}</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="options-bar">
+                <ul class="submenu_ul">
+                    <li><span id="btn_history" class="sts_submenu W140 disabled">{{ 'configuration.partials.view.twig.search.history' | trans }}</span></li>
+                </ul>
+            </div>
+        </div>
+    </fieldset>
+</div>
+
+    {% if configuration is defined and configuration is not null %}
+        {% include 'History/partials/selector/generalSelector.html.twig' with {
+            'type' : historyType, 'form': historyForm, 'fk': configuration
+        } %}
+    {% endif %}
+{% block javascripts %}
+    {% include 'Common/Configuration/searchJs.html.twig' %}
+
+    <script>
+            function getParameters(versionType) {
+                let type = $('#sel_type').find("option:selected").val();
+                let year = $('#sel_year').find("option:selected").val();
+                let series = $('#sel_series').find("option:selected").val();
+                let configuration = $('#sel_search_result_list').val();
+                let ecu = $('#sel_support_ecu_list').val();
+                let sw = ((versionType == 1) ? $('#sel_primary_sw_list').val() : $('#sel_alternative_sw_list').val())
+
+                {% if search is not null %}
+                    if (type === undefined && year === undefined && series === undefined && ecu === undefined && sw === undefined) {
+                        type = "{{ search['type'] }}";
+                        year = {{ search['year'] }};
+                        series = "{{ search['series'] }}";
+                        configuration = {{ search['configuration'] }};
+                        ecu = {{ search['ecu'] }};
+                        sw = {{ search['sw'] }};
+                    }
+                {% endif %}
+
+                return {
+                    'type': type, 'year': year, 'series': series, 'configuration': configuration, 'ecu': ecu, 'sw': sw
+                };
+            }
+
+            {% if configuration is defined and configuration is not null %}
+                $('#btn_history').removeClass('disabled');
+            {% endif %}
+
+            $(document).on('click', '#btn_history', function() {
+                if ($(this).hasClass('disabled'))
+                    return false;
+
+                historyDialog.dialog('open');
+            });
+
+            $('#btn_search_veh_conf').on('click', function (e) {
+                if ($(this).hasClass('disabled'))
+                    return false;
+
+                disableButtonsByLevel(2);
+                clearByLevel(1);
+
+                let searchInputText = $('#inp_search_veh_conf').val();
+
+                if (searchInputText.length) {
+                    customSearch.enable();
+                    getSearchListResultByTextSearch(searchInputText);
+                } else {
+                    getSearchListResult(selectedType, selectedYear, selectedSeries, selectedCustomerKey);
+                }
+            });
+
+
+            function regenerateView(parameters) {
+                if (parameters.type === undefined && parameters.year === undefined && parameters.series === undefined
+                    && parameters.configuration === undefined && parameters.ecu === undefined && parameters.sw === undefined
+                    && customSearch.getStatus()
+                ) {
+                    window.location.href = "index.php?action=vehicleConfigurations&method=regenerateView&configuration="
+                        + parameters.configuration;
+                } else {
+                    window.location.href = `index.php?action=parameterSettings&method=regenerateView&type=${parameters.type}&year=${parameters.year}` +
+                        `&series=${parameters.series}&configuration=${parameters.configuration}&ecu=${parameters.ecu}&sw=${parameters.sw}`;
+                }
+            }
+
+            $(document).on('click', '#btn_assign_primary_sw', function () {
+                if ($(this).hasClass('disabled'))
+                    return false;
+
+                let parameters = getParameters(1);
+
+                historyComment().then(function (result) {
+                    $.ajax({
+                        method: "GET",
+                        url: "index.php",
+                        data: {
+                            action: 'parameterSettings',
+                            method: 'ajaxCall',
+                            subconfiguration: parameters.configuration,
+                            sw: parameters.sw,
+                            ecu: parameters.ecu,
+                            primary: 1,
+                            path: 'assign'
+                        },
+                        dataType: "json",
+                        success: function (ajaxResultData) {
+                            if (ajaxResultData['status'] === 'failure') {
+                                saveHistoryExceptionWindow(ajaxResultData);
+                            } else {
+                                regenerateView(parameters);
+                            }
+                        }
+                    });
+                });
+            });
+
+            $(document).on('click', '#btn_preview_primary_sw', function () {
+                if ($(this).hasClass('disabled'))
+                    return false;
+
+                let parameters = getParameters(1);
+
+                regenerateView(parameters);
+            });
+
+
+            $(document).on('click', '#btn_assign_alternative_sw', function () {
+                if ($(this).hasClass('disabled'))
+                    return false;
+                let parameters = getParameters(2);
+
+                historyComment().then(function (result) {
+                    $.ajax({
+                        method: "GET",
+                        url: "index.php",
+                        data: {
+                            action: 'parameterSettings',
+                            method: 'ajaxCall',
+                            subconfiguration: parameters.configuration,
+                            sw: parameters.sw,
+                            ecu: parameters.ecu,
+                            primary: 0,
+                            path: 'assign'
+                        },
+                        dataType: "json",
+                        success: function (ajaxResultData) {
+                            if (ajaxResultData['status'] === 'failure') {
+                                saveHistoryExceptionWindow(ajaxResultData);
+                            } else {
+                                regenerateView(parameters);
+                            }
+                        }
+                    });
+                });
+            });
+
+            $(document).on('click', '#btn_preview_alternative_sw', function () {
+                if ($(this).hasClass('disabled'))
+                    return false;
+                let parameters = getParameters(2);
+
+                regenerateView(parameters);
+            });
+
+            $('#sel_support_ecu_list').on('change', function () {
+                enableButtonsByLevel(3);
+            });
+
+            $('#sel_primary_sw_list').on('change', function () {
+                let selectedPrimarySw = $('#sel_primary_sw_list').find("option:selected").val();
+
+                if (selectedPrimarySw == selectedPreviousPrimarySwValue) {
+                    // disableButtonsByLevel(4);
+                    $('#btn_assign_primary_sw').addClass("disabled");
+
+                } else {
+                    $('#btn_assign_primary_sw').removeClass("disabled");
+
+                    enableButtonsByLevel(4);
+                }
+            });
+
+            $('#sel_alternative_sw_list').on('change', function () {
+                let selectedAlternativeSw = $('#sel_alternative_sw_list').find("option:selected").val();
+
+                if (selectedAlternativeSw == selectedPreviousAlternativeSwValue) {
+                    disableButtonsByLevel(6);
+                } else {
+                    enableButtonsByLevel(6);
+                }
+            });
+
+            $('#btn_select_vehicle_configuration').on('click', function () {
+                if ($(this).hasClass('disabled'))
+                    return false;
+
+                let parameters = getParameters(1);
+
+                if (parameters.type === undefined && parameters.year === undefined && parameters.series === undefined
+                    && parameters.configuration === undefined && customSearch.getStatus()
+                ) {
+                    window.location.href = `index.php?action=parameterSettings&method=regenerateView&type=${parameters.type}&year=${parameters.year}` +
+                        `&series=${parameters.series}&configuration=${parameters.configuration}`;
+                } else {
+                    window.location.href = `index.php?action=parameterSettings&method=regenerateView&configuration=${parameters.configuration}`;
+                }
+            });
+
+            $('#btn_select_support_ecu').on('click', function () {
+                if ($(this).hasClass('disabled'))
+                    return false;
+
+                let selectedConfiguration = $('#sel_search_result_list').val();
+                let selectedEcuId = $('#sel_support_ecu_list').val();
+
+                getPrimarySws(selectedEcuId, selectedConfiguration);
+
+                getAlternativeSws(selectedEcuId, selectedConfiguration);
+            });
+
+            function getSupportedECUs(selectedConfigurationId) {
+                return $.ajax({
+                    method: "GET",
+                    url: "index.php",
+                    data: {
+                        action: "parameterSettings",
+                        method: "ajaxCall",
+                        path: 'getSupportedECUs',
+                        ajax: selectedConfigurationId
+                    },
+                    dataType: "json",
+                    success: function (ajaxResultData) {
+                        fillSelectEcuBoxList(ajaxResultData);
+                    }
+                });
+            }
+
+            function getPrimarySws(selectedEcuId, selectedConfigurationId) {
+                return $.ajax({
+                    method: "GET",
+                    url: "index.php",
+                    data: {
+                        action: "parameterSettings",
+                        method: "ajaxCall",
+                        ecu: selectedEcuId,
+                        subconfiguration: selectedConfigurationId,
+                        primary: 1
+                    },
+                    dataType: "json",
+                    success: function (ajaxResultData) {
+                        fillPrimarySwBoxList(ajaxResultData);
+                        disableButtonsByLevel(4);
+
+                        if ($('#sel_primary_sw_list').find("option:selected").val()) {
+                            $('#sel_primary_sw_list').find("option:selected").css('color', 'green');
+                        } else {
+                            $("#sel_primary_sw_list [value='0']").css('color', 'green');
+                        }
+                    }
+                });
+            }
+
+
+            function getAlternativeSws(selectedEcuId, selectedConfigurationId) {
+                return $.ajax({
+                    method: "GET",
+                    url: "index.php",
+                    data: {
+                        action: "parameterSettings",
+                        method: "ajaxCall",
+                        ecu: selectedEcuId,
+                        subconfiguration: selectedConfigurationId,
+                        primary: 0
+                    },
+                    dataType: "json",
+                    success: function (ajaxResultData) {
+                        fillAlternativeSwBoxList(ajaxResultData);
+                        disableButtonsByLevel(6);
+
+                        if ($('#sel_alternative_sw_list').find("option:selected").val()) {
+                            $('#sel_alternative_sw_list').find("option:selected").css('color', 'green');
+                        } else {
+                            $("#sel_alternative_sw_list [value='0']").css('color', 'green');
+                        }
+                    }
+                });
+            }
+
+
+            function fillSelectEcuBoxList(dataToList) {
+                $('#sel_support_ecu_list option').remove();
+                let select = $('#sel_support_ecu_list');
+
+                $.each(dataToList, function (index, value) {
+                    select.append('<option value="' + value['ceEcuId'] + '">' + value['ecuName'] + '</option>')
+                });
+            }
+
+            function fillPrimarySwBoxList(dataToList) {
+                $('#sel_primary_sw_list option').remove();
+                let select = $('#sel_primary_sw_list');
+                selectedPreviousPrimarySwValue = 0;
+                select.append("<option value='0' selected>{{ 'configuration.partials.view.twig.search.assignment' | trans }}</option>");
+                $.each(dataToList, function (index, value) {
+                    if (!value['subversionSuffix']) {
+                        select.append('<option value="' + value['ecuSwVersionId'] + '" ' +
+                            ((value['assignedSw'] == 1 && value['disabled'] == 0) ? 'selected ' : ' ') +
+                            ((value['disabled'] == 1) ? 'disabled' : '') + ' >' + value['swVersion'] + '</option>');
+                    } else {
+                        select.append('<option value="' + value['ecuSwVersionId'] + '" ' +
+                            ((value['assignedSw'] == 1 && value['disabled'] == 0) ? 'selected ' : ' ') +
+                            ((value['disabled'] == 1) ? 'disabled' : '') + '>---> ' + value['subversionSuffix'] + '</option>');
+                    }
+
+                    if (value['assignedSw'] == 1) {
+                        $("#sel_primary_sw_list [value='0']").removeAttr('selected', 'selected');
+                        selectedPreviousPrimarySwValue = value['ecuSwVersionId'];
+                        $('#btn_preview_primary_sw').removeClass("disabled")
+                    }
+                })
+            }
+
+            function fillAlternativeSwBoxList(dataToList) {
+                $('#sel_alternative_sw_list option').remove();
+                let select = $('#sel_alternative_sw_list');
+                selectedPreviousAlternativeSwValue = 0;
+                select.append("<option value='0' selected>{{ 'configuration.partials.view.twig.search.assignment' | trans }}</option>");
+                $.each(dataToList, function (index, value) {
+                    if (!value['subversionSuffix']) {
+                        select.append('<option value="' + value['ecuSwVersionId'] + '" ' +
+                            ((value['assignedSw'] == 1 && value['disabled'] == 0) ? 'selected ' : ' ') +
+                            ((value['disabled'] == 1) ? 'disabled' : '') + ' >' + value['swVersion'] + '</option>');
+                    } else {
+                        select.append('<option value="' + value['ecuSwVersionId'] + '" ' +
+                            ((value['assignedSw'] == 1 && value['disabled'] == 0) ? 'selected ' : ' ') +
+                            ((value['disabled'] == 1) ? 'disabled' : '') + '>---> ' + value['subversionSuffix'] + '</option>');
+                    }
+
+                    if (value['assignedSw'] == 1) {
+                        $("#sel_alternative_sw_list [value='0']").removeAttr('selected', 'selected');
+                        selectedPreviousAlternativeSwValue = value['ecuSwVersionId'];
+                        $('#btn_preview_alternative_sw').removeClass("disabled");
+                    }
+                });
+            }
+
+
+            /* Select search after regenerate view */
+            {% if search is not empty %}
+                let type = "{{ search['type'] }}";
+                let year = {{ search['year'] }};
+                let series = "{{ search['series'] }}";
+                let customerKey = "{{ search['customerKey'] }}";
+                let configuration = {{ search['configuration'] }};
+                let ecu = {{ search['ecu'] }};
+
+                $.when(getTypeList(), getYearList(type), getSeriesList(type, year),
+                    getSearchListResult(type, year, series, customerKey), getSupportedECUs(configuration), getPrimarySws(ecu, configuration),
+                    getAlternativeSws(ecu, configuration))
+                    .done(function () {
+                        $('#sel_type option[value="' + type + '"]').prop('selected', 'selected');
+                        $('#sel_year option[value="' + year + '"]').prop('selected', 'selected');
+                        $('#sel_series option[value="' + series + '"][data-customer-key="' + customerKey + '"]')
+                            .prop('selected', 'selected');
+                        $('#sel_search_result_list option[value="' + configuration + '"]').prop('selected', 'selected');
+                        $('#sel_support_ecu_list option[value="' + ecu + '"]').prop('selected', 'selected');
+                    });
+            {% endif %}
+    </script>
+
+{% endblock %}
+
+{% block stylesheets %}
+    {% include 'Common/Configuration/searchCss.html.twig' %}
+
+    <style>
+        .sw-selector {
+            display: inline-block;
+            width: calc(100% / 2 - 2px);
+        }
+
+        .sw-selector > select {
+            width: 100%;
+        }
+
+        .sw-selector > .options-bar li {
+            margin-bottom: 0px;
+            padding-bottom: 5px;
+        }
+    </style>
+{% endblock %}

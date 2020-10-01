@@ -1,0 +1,135 @@
+<script type="text/javascript">
+    let odx={{odx}};
+    $(document).ready(function(){
+        let defaultParameterType={{constant('App\\Enum\\Entity\\EcuSwParameterTypes::ECU_PARAMETER_TYPE_PARAMETER')}};
+        let globalParameterType={{constant('App\\Enum\\Parameter::LINKING_TYPE_GLOBAL_PARAMETER')}};
+        let dynamicParameterType={{constant('App\\Enum\\Parameter::LINKING_TYPE_DYNAMIC_VALUE')}};
+        {#let cocParameterType={{constant('App\\Enum\\Parameter::LINKING_TYPE_COC_PARAMETER')}};#}
+        let protocolXcp='{{ constant('App\\Enum\\Entity\\EcuCommunicationProtocols::ECU_COMMUNICATION_PROTOCOL_XCP_NAME') }}';
+        let protocolUdsXcp='{{ constant('App\\Enum\\Entity\\EcuCommunicationProtocols::ECU_COMMUNICATION_PROTOCOL_UDS_XCP_NAME') }}';
+        $(document).on('change','select[name="Odx'+odx+'ParameterCollectionType[parameters][0][name]"], '+'select[name="Odx'+odx+'ParameterCollectionType[parameters][1][name]"]', function(){
+            let val=1;
+
+            if ($(this).attr('name')=='Odx'+odx+'ParameterCollectionType[parameters][0][name]') {
+                val=1
+            } else {
+                val=3
+            }
+
+
+            if($(this).val()==val) {
+                $(this).parent().parent().find('.linkingType').find('.copySts').prop('disabled',!1)
+            } else {
+                $(this).parent().parent().find('.linkingType').find('.copySts').prop('disabled',!0)}});
+        $(document).on('click','.copySts', function(){
+            $(this).parent().prevUntil(':visible').last().prev().find('input').val($('#header_stsVersion').val())});
+            $(document).on('change','.rights',function() {
+                let read=$(this).find('input.readRight');
+                let write=$(this).find('input.writeRight');
+                let confirm=$(this).find('input.confirmRight');
+                let linkingType=$(this).closest('tr').find('td.linkingType select');
+                let variableType=parseInt($(this).closest('tr').find('td.variableType select').val());
+                let valueString=$(this).closest('tr').find('td.valueString input');
+                let valueBlob=null;
+
+                if(odx===2) {
+                    valueBlob=$(this).closest('tr').find('td.valueBlob input')
+                }
+
+
+                let valueInteger=$(this).closest('tr').find('td.valueInteger input');let valueUnsigned=$(this).closest('tr').find('td.valueUnsigned input');let valueBool=$(this).closest('tr').find('td.valueBool input');
+
+                if(read.prop('checked')&&!write.prop('checked')&&!confirm.prop('checked')){toggleLinkingTypeWithValues(!0,variableType,linkingType,valueString,valueBlob,valueInteger,valueUnsigned,valueBool,)}else{toggleLinkingTypeWithValues(!1,variableType,linkingType,valueString,valueBlob,valueInteger,valueUnsigned,valueBool,)}});$('.serialWrite').toggle(!1);$('.serialConfirm').toggle(!1);$('.globalValue').toggle(!1);$('.dynamicValue').toggle(!1);$('.parameter').each(function(){$(this).find('.customShow').closest('td').toggle(!0);$(this).find('.customShow').removeClass('customShow');$(this).find('.customHide').closest('td').toggle(!1);$(this).find('.customHide').removeClass('customHide')});$(document).on('change','.variableType select',function(){let selectedVariableType=parseInt($(this).val());let selectedLinkingType=parseInt($(this).parent().parent().find('td.linkingType select').val());let valueString=$(this).closest('tr').find('td.valueString');let valueBlob=null;if(odx===2){valueBlob=$(this).closest('tr').find('td.valueBlob')}
+                let valueInteger=$(this).closest('tr').find('td.valueInteger');let valueUnsigned=$(this).closest('tr').find('td.valueUnsigned');let valueBool=$(this).closest('tr').find('td.valueBool');if(selectedLinkingType!=globalParameterType&&selectedLinkingType!=dynamicParameterType){toggleVisibilityOfValues(selectedVariableType,valueString,valueBlob,valueInteger,valueUnsigned,valueBool,)}
+            checkIsValuesEmpty()});$(document).on('change','.linkingType select',function(){let selectedLinkingType=parseInt($(this).val());let globalValue=$(this).closest('tr').find('td.globalValue');let dynamicValue=$(this).closest('tr').find('td.dynamicValue');let variableType=parseInt($(this).closest('tr').find('td.variableType select').val());let valueString=$(this).closest('tr').find('td.valueString');let valueBlob=null;if(odx===2){valueBlob=$(this).closest('tr').find('td.valueBlob')}
+            let valueInteger=$(this).closest('tr').find('td.valueInteger');let valueUnsigned=$(this).closest('tr').find('td.valueUnsigned');let valueBool=$(this).closest('tr').find('td.valueBool');switch(selectedLinkingType){case globalParameterType:$(globalValue).toggle(!0);$(dynamicValue).toggle(!1);toggleVisibilityOfValues(0,valueString,valueBlob,valueInteger,valueUnsigned,valueBool,);break;case dynamicParameterType:$(dynamicValue).toggle(!0);$(globalValue).toggle(!1);toggleVisibilityOfValues(0,valueString,valueBlob,valueInteger,valueUnsigned,valueBool,);break;default:$('#dynamic').toggle(!1);$('#global').toggle(!1);$(globalValue).toggle(!1);$(dynamicValue).toggle(!1);toggleVisibilityOfValues(variableType,valueString,valueBlob,valueInteger,valueUnsigned,valueBool,);break}});let selectedProtocol='{{ header.protocol.ecuCommunicationProtocolName }}';$(document).on('change','#header_protocol',function(){selectedProtocol=$(this).find('option:selected').text();handleProtocolAndUds(selectedProtocol);$('.odx2-table tbody tr input:nth-child(3):not([type=\'checkbox\'])').val(selectedProtocol)});$('.udsId').toggle(!1);$('.udsIdValue').toggle(!1);$('.protocol').toggle(!1);$('.protocolValue').toggle(!1);handleProtocolAndUds(selectedProtocol);$('.odx'+odx+'-table').collection({allow_add:!0,allow_delete:!0,allow_up:!1,allow_down:!1,max:1000000,add:'<a href="#" class="collection-add btn btn-default" title="Add parameter"><i class="fas fa-plus"></i></a>',delete:'<a href="#" class="collection-remove btn btn-default" title="Remove parameter"><i class="fas fa-minus"></i></a>',after_add:function(collection,element){let globalValue=$(element).closest('tr').find('td.globalValue');let dynamicValue=$(element).closest('tr').find('td.dynamicValue');let odxSts02=$(element).closest('tr').parent().find('td.odxSts02').find('input').val();if(odxSts02){$('.odx').hide()}
+                $(globalValue).toggle(!1);$(dynamicValue).toggle(!1);$(element).closest('tr').find('.type').val(defaultParameterType);handleProtocolAndUds(selectedProtocol);let variableType=parseInt($(element).find('.variableType select').val());let valueString=$(element).find('.valueString');let valueBlob=null;if(odx===2){valueBlob=$(element).find('.valueBlob')}
+                let valueInteger=$(element).find('.valueInteger');let valueUnsigned=$(element).find('.valueUnsigned');let valueBool=$(element).find('.valueBool');toggleVisibilityOfValues(variableType,valueString,valueBlob,valueInteger,valueUnsigned,valueBool,);let headerBigEndian=Boolean(Number($('#header_bigEndian').val()));$(element).find('.bigEndian input').prop('checked',headerBigEndian)},elements_selector:'tr.parameter',elements_parent_selector:'%id% tbody'});$(document).on('click','.serialReadRights',function(event){event.preventDefault()});function handleProtocolAndUds(protocol){if(protocol!=protocolXcp){$('.udsId').toggle(!0);$('.udsIdValue').toggle(!0);$('.udsIdValue').find('input').prop('disabled',!1)}else{$('.udsId').toggle(!1);$('.udsIdValue').toggle(!1);$('.udsIdValue').find('input').prop('disabled',!0)}
+            if(protocol==protocolUdsXcp){$('.protocol').toggle(!0);$('.protocolValue').toggle(!0);$('.protocolValue').find('select').prop('disabled',!1)}else{$('.protocol').toggle(!1);$('.protocolValue').toggle(!1);$('.protocolValue').find('select').prop('disabled',!0)}}
+        function toggleVisibilityOfValues(variableType,valueString,valueBlob,valueInteger,valueUnsigned,valueBool,){switch(variableType){case 0:valueString.toggle(!1);if(valueBlob!==null)
+            valueBlob.toggle(!1);valueInteger.toggle(!1);valueUnsigned.toggle(!1);valueBool.toggle(!1);break;case 1:valueString.toggle(!0);if(valueBlob!==null)
+            valueBlob.toggle(!1);valueInteger.toggle(!1);valueUnsigned.toggle(!1);valueBool.toggle(!1);break;case 2:valueString.toggle(!0);if(valueBlob!==null)
+            valueBlob.toggle(!1);valueInteger.toggle(!1);valueUnsigned.toggle(!1);valueBool.toggle(!1);break;case 3:valueString.toggle(!1);if(valueBlob!==null)
+            valueBlob.toggle(!0);valueInteger.toggle(!1);valueUnsigned.toggle(!1);valueBool.toggle(!1);break;case 4:case 8:case 10:valueString.toggle(!1);if(valueBlob!==null)
+            valueBlob.toggle(!1);valueInteger.toggle(!0);valueUnsigned.toggle(!1);valueBool.toggle(!1);break;case 5:valueString.toggle(!1);if(valueBlob!==null)
+            valueBlob.toggle(!1);valueInteger.toggle(!1);valueUnsigned.toggle(!0);valueBool.toggle(!1);break;case 7:valueString.toggle(!1);if(valueBlob!==null)
+            valueBlob.toggle(!1);valueInteger.toggle(!1);valueUnsigned.toggle(!1);valueBool.toggle(!0);break}}
+        function toggleLinkingTypeWithValues(visible,variableType,linkingType,valueString,valueBlob,valueInteger,valueUnsigned,valueBool,){linkingType.prop('disabled',visible);switch(variableType){case 1:valueString.prop('disabled',visible);if(valueBlob!==null)
+            valueBlob.prop('disabled',!visible);valueInteger.prop('disabled',visible);valueUnsigned.prop('disabled',visible);valueBool.prop('disabled',visible);break;case 2:valueString.prop('disabled',visible);if(valueBlob!==null)
+            valueBlob.prop('disabled',visible);valueInteger.prop('disabled',visible);valueUnsigned.prop('disabled',visible);valueBool.prop('disabled',visible);break;case 3:valueString.prop('disabled',visible);if(valueBlob!==null)
+            valueBlob.prop('disabled',visible);valueInteger.prop('disabled',visible);valueUnsigned.prop('disabled',visible);valueBool.prop('disabled',visible);break;case 4:case 8:case 10:valueString.prop('disabled',visible);if(valueBlob!==null)
+            valueBlob.prop('disabled',visible);valueInteger.prop('disabled',visible);valueUnsigned.prop('disabled',visible);valueBool.prop('disabled',visible);break;case 5:valueString.prop('disabled',visible);if(valueBlob!==null)
+            valueBlob.prop('disabled',visible);valueInteger.prop('disabled',visible);valueUnsigned.prop('disabled',visible);valueBool.prop('disabled',visible);break;case 7:valueString.prop('disabled',visible);if(valueBlob!==null)
+            valueBlob.prop('disabled',visible);valueInteger.prop('disabled',visible);valueUnsigned.prop('disabled',visible);valueBool.prop('disabled',visible);break}}
+
+            checkIsValuesEmpty();
+    });
+
+            let errorArray=0;
+
+        function checkIsValuesEmpty()
+    {
+        let selects=$('.variableType select');
+        selects.each(function(index){
+            console.log('odx'+index);
+            if (odx===2 && index===2) {
+                return false;
+            }
+
+            let variableType=parseInt($(this).closest('tr').find('td.variableType select').val());
+            let tdClassName = '';
+            switch(variableType) {
+                case 1: case 2:
+                    tdClassName='valueString';
+                    break;
+                case 3:
+                    tdClassName='valueBlob';
+                    break;
+                case 4: case 8: case 10:
+                    tdClassName='valueInteger';
+                    break;
+                case 5:
+                    tdClassName='valueUnsigned';
+                    break;
+                case 7:
+                    tdClassName='valueBool';
+                    break
+            }
+        let searchFor='td.'+tdClassName+' input';
+
+            if (tdClassName != 'valueBool') {
+                let value=$(this).closest('tr').find(searchFor);
+                $(document).ready(function() {
+                    addToArray(value);
+                });
+                value.keyup(function() {
+                    addToArray(value);
+                });
+            } else {
+                console.log('test');
+            }
+        });
+    }
+
+    function addToArray(value)
+    {
+        if(value.val() == '') {
+            value.addClass('validation-error');
+            $('#save').addClass('disabled');
+            errorArray=1
+        }
+    else {
+        if(value.hasClass('validation-error')) {
+            value.removeClass('validation-error');
+            errorArray=0;
+            switchOnSave()
+        }
+    }
+    }
+    function switchOnSave()
+    {
+        if(errorArray == 0) {
+            $('#save').removeClass('disabled');
+        }
+    }
+</script>
